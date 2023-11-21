@@ -1,0 +1,28 @@
+/* .customModal{
+    width: 98vw;
+    margin: 0 auto; 
+
+} */
+
+.customModal{
+    width: 98vw;
+    margin: 0 auto; /* Center the modal horizontally */
+
+}
+
+.bgcolor{
+    background-color: rgba(128, 128, 128, 0.575) !important;
+    margin-left: 10px !important;
+}
+
+.fontcolor{
+    color: black;
+}
+
+.tabclass{
+    color: black !important;
+}
+
+.tabTitle{
+    color: black !important;
+}

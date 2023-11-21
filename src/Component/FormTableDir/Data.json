@@ -1,0 +1,11 @@
+[
+    {
+        "fieldName" : "status",
+        "isEnable" : "true"
+    },
+    {
+        "fieldName" : "Aprrover",
+        "isEnable" : "false"
+
+    }
+]

@@ -1,0 +1,26 @@
+[
+    {
+        "fieldName" : "Field Name",
+        "accessor" : "fieldName",
+        "width" : 800,
+        "cellType" : "textArea",
+        "isEnable" : "false"
+        },
+    {
+        "fieldName" : "Field Value",
+        "accessor" : "fieldValue",
+        "width" : 800,
+        "cellType" : "textArea"
+    },
+    {
+        "fieldName" : "Action",
+        "accessor" : "action",
+        "width" : 250,
+        "cellType" : "addRemove"
+
+    }
+]
+
+
+
+

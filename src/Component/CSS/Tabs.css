@@ -1,0 +1,9 @@
+.tabDiv::-webkit-scrollbar{
+    width: .5vw;
+    height : 1vh
+  }
+  
+  .tabDiv::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius : 20px
+  }
