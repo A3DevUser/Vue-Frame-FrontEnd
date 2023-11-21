@@ -15,7 +15,7 @@ import { Checkbox } from './Checkbox'
 import { Button } from 'react-bootstrap'
 
 const FormTable = ({col,dData,gridData,handleSave}) => {
-    const [data,setdata]=useState([...dData])
+    const [data,setdata]=useState([])
     const [chngRow,setchngRow]=useState({})
     const [finalArr, setfinalArr] =useState([])
     const prevDData = useRef(dData);
@@ -118,10 +118,10 @@ const FormTable = ({col,dData,gridData,handleSave}) => {
       },[col])
   
       useEffect(()=>{
-        if(EmdRed!=='add'){
-          setdata(dData)   
+        if(dData !== data){
+          setdata([...dData])   
         }
-      },[EmdRed])
+      },[dData,data])
   
         useEffect(()=>{
           if(window.location.pathname == '/confform'){

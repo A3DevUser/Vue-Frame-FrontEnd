@@ -32,6 +32,11 @@ const Navbar = () => {
         if(res.emd){
             dispatch(EmdAct(res.emd))
         }
+        if(res.emd=='add'){
+            navigate('/addTable')
+        }else if(res.emd=='yes'){
+            navigate('/editTable')
+        }
         navigate(res.navigate)
 
     }

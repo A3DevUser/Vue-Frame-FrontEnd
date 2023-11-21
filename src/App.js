@@ -11,6 +11,8 @@ import Home from './Component/LogInDirectory/Home'
 import ProtectedRoutes from './Component/LogInDirectory/ProtectedRoutes'
 import LogInPage from './Component/LogInDirectory/LogInPage'
 import { useSelector } from 'react-redux'
+import AddTable from './Component/EditViewAdd/AddTable'
+import EditTable from './Component/EditViewAdd/EditTable'
 const App = () => {
 
   const [show, setshow] = useState(false)
@@ -44,6 +46,8 @@ const App = () => {
       <Routes>
         <Route path='/' element={<LogInPage/>} />
         <Route element={<ProtectedRoutes logStatus={LogInStateRed}/>}>
+          <Route path='/addTable' element={<AddTable/>} />
+          <Route path='/editTable' element={<EditTable/>} />
           <Route path='/homepage' element={<Home  />} />
           <Route path='/forms' element={<Form />} />
           <Route path='/GridForm' element={<GridForm />} />

@@ -36,7 +36,6 @@ export const FetchColumnData = (id,emd,token) =>{
             dispatch(ColumnErr(err))
         })
     }
-
 }
 
 
