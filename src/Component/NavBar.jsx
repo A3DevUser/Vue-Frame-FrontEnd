@@ -36,8 +36,11 @@ const Navbar = () => {
             navigate('/addTable')
         }else if(res.emd=='yes'){
             navigate('/editTable')
+        }else if(res.emd=='no'){
+            navigate('/viewTable')
+        }else{
+            navigate(res.navigate)
         }
-        navigate(res.navigate)
 
     }
 

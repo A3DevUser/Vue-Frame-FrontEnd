@@ -101,7 +101,7 @@ const FormTable = ({col,dData,gridData,handleSave}) => {
        ColumnHeader(col,updateMyData,'',addAndDeleteRow,gridData,data,handleOnfocus,DropValRed.val)
     
     )
-      // console.log('logColDtls',ColumnHeader(col,updateMyData,'',addAndDeleteRow,gridData,data,handleOnfocus,DropValRed.val))
+      // console.log(ColumnHeader(col,updateMyData))
 
       useEffect(()=>{
         setcolumns(
@@ -117,11 +117,11 @@ const FormTable = ({col,dData,gridData,handleSave}) => {
       )
       },[col])
   
-      useEffect(()=>{
-        if(dData !== data){
-          setdata([...dData])   
-        }
-      },[dData,data])
+      // useEffect(()=>{
+      //   if(dData !== data){
+      //     setdata([...dData])   
+      //   }
+      // },[dData])
   
         useEffect(()=>{
           if(window.location.pathname == '/confform'){
@@ -198,14 +198,10 @@ const FormTable = ({col,dData,gridData,handleSave}) => {
           //   }
           // }, [dData]);
 
-          const initialState = { hiddenColumns : col.filter((fil)=>{return fil.hideShow=='true'}).map((res)=>{return res.accessor})}
-
-          console.log('initialState',initialState)
   
       const tableInstance = useTable({
           columns,
           data,
-          initialState
           
       },useBlockLayout,useResizeColumns,useSticky,useRowSelect,(hooks)=>{
         hooks.visibleColumns.push((columns)=>{
