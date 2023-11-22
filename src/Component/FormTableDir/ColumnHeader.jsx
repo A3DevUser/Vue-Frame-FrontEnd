@@ -13,7 +13,8 @@ export const ColumnHeader = (colData,updateMyData,dropDown,addAndDeleteRow,gridD
         accessor : res.accessor,
         Cell: ({cell})=>{  return <EditableCell column={cell.column.id} row={cell.row.id} updateMyData={updateMyData} value={cell.value} colObj={cell.column} parentId={cell} rowObj={cell.row} valWidth={res.subSecWidth} type={res.cellType}/>},
         width : res.width,
-        sticky : res.sticky
+        sticky : res.sticky,
+        // show : res.hideShow
     }
     }else if(res.cellType==='dropDown'){
       let formIdVal = res.formId

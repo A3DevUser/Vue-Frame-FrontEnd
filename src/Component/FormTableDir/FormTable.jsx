@@ -198,6 +198,9 @@ const FormTable = ({col,dData,gridData,handleSave}) => {
           //   }
           // }, [dData]);
 
+          const initialState = { hiddenColumns : col.filter((fil)=>{return fil.hideShow=='true' && gridData.gridId==fil.gridId }).map((res)=>{return res.accessor})}
+
+          console.log(`initialState ${gridData.gridId}`,col.filter((fil)=>{return fil.hideShow=='true'}))
   
       const tableInstance = useTable({
           columns,
