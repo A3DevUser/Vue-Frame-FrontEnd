@@ -47,7 +47,7 @@ return (
 className='navbar-background'
 >
 <img src={'./User2.png'} alt="user" className='m-1' style={{float:'right',height:'6.5vh', width:'3.2vw', borderRadius:'30px'}} onClick={funProfile}/>
-{MainObject.SimpleModal('User Info','this is body',show,funProfile)}
+{MainObject.SimpleModal('User Details','',show,funProfile)}
 {
     NavBarRed.val.map((res,i)=>{
         if(res.navType=='img'){
@@ -62,14 +62,21 @@ className='navbar-background'
             // className=' btn btn-sm my-1 mx-2 p-2' 
             // style={{backgroundColor:'#131D40', color:'white', float:'right'}}
             // >{res.navName}</button>
+        }else if (res.navigate=='/GridForm'){
+            return <NavDropdown className='ddClassEle' title={res.navName} key={i} >
+            <NavDropdown.Item className='click' onClick={()=>{handleNavigate({formId : res.formId,navigate:res.navigate,emd :'no'})}}>{`View ${res.navName}`}</NavDropdown.Item>
+            <NavDropdown.Item className='click' onClick={()=>{handleNavigate({formId : res.formId,navigate:res.navigate,emd :'yes'})}}>{`Edit ${res.navName}`}</NavDropdown.Item>
+            <NavDropdown.Item className='click' onClick={()=>{handleNavigate({formId : res.formId,navigate:res.navigate,emd:'add'})}}>{`Add ${res.navName}`}</NavDropdown.Item>
+        </NavDropdown>
         }
         else{
-            return <NavDropdown className='ddClassEle' title={res.navName} key={i} >
-                <NavDropdown.Item className='click' onClick={()=>{handleNavigate({formId : res.formId,navigate:res.navigate,emd :'no'})}}>{`View ${res.navName}`}</NavDropdown.Item>
-                <NavDropdown.Item className='click' onClick={()=>{handleNavigate({formId : res.formId,navigate:res.navigate,emd :'yes'})}}>{`Edit ${res.navName}`}</NavDropdown.Item>
-                <NavDropdown.Item className='click' onClick={()=>{handleNavigate({formId : res.formId,navigate:res.navigate,emd:'add'})}}>{`Add ${res.navName}`}</NavDropdown.Item>
+            return null
+            // <NavDropdown className='ddClassEle' title={res.navName} key={i} >
+            //     <NavDropdown.Item className='click' onClick={()=>{handleNavigate({formId : res.formId,navigate:res.navigate,emd :'no'})}}>{`View ${res.navName}`}</NavDropdown.Item>
+            //     <NavDropdown.Item className='click' onClick={()=>{handleNavigate({formId : res.formId,navigate:res.navigate,emd :'yes'})}}>{`Edit ${res.navName}`}</NavDropdown.Item>
+            //     <NavDropdown.Item className='click' onClick={()=>{handleNavigate({formId : res.formId,navigate:res.navigate,emd:'add'})}}>{`Add ${res.navName}`}</NavDropdown.Item>
 
-            </NavDropdown>
+            // </NavDropdown>
             
             // <button onClick={()=>{handleNavigate(res)}} key={i} 
             // className=' btn btn-sm my-1 mx-2 p-2' 

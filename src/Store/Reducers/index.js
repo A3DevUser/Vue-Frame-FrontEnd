@@ -20,6 +20,7 @@ import { LogInStateRed } from "./GeneralStatesRed";
 import { WFCommonRed } from "./WorkFlowCommRed";
 import { ActionRed } from "./ActionRed";
 import { UserDataStateRed } from "./GeneralStatesRed";
+import { GetDataRed } from "./GetDataRed";
 
 const rootReducers = combineReducers({
     SectionRed,  
@@ -46,7 +47,8 @@ const rootReducers = combineReducers({
     LogInStateRed,
     WFCommonRed,
     ActionRed,
-    UserDataStateRed
+    UserDataStateRed,
+    GetDataRed
     });
 
 export default rootReducers

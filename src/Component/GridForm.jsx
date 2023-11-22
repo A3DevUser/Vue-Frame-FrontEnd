@@ -11,6 +11,7 @@ import ImpExp from './ImportExport/ImpExp'
 import './GridForm.css'
 import { PostFormExcelData } from '../Store/Actions/FormExcelPostAct'
 import { FetchWFCommonData } from '../Store/Actions/WorkFlowCommon'
+import { FetchGetData } from '../Store/Actions/GetDataAct'
 
 const GridForm = () => {
 
@@ -24,12 +25,14 @@ const GridForm = () => {
     const ExcelDataRed = useSelector((state)=>state.ExcelDataRed)
     const AuthRed = useSelector((state)=>state.AuthRed)
     const ActionRed = useSelector((state)=>state.ActionRed)
+    const GetDataRed = useSelector((state)=> state.GetDataRed)
 
 
     useEffect(()=>{
       dispatch(FetchGridData(FormIdRed,AuthRed.val))
     dispatch(FetchColumnData(FormIdRed,EmdRed,AuthRed.val))
-    },[FormIdRed,EmdRed])
+    dispatch(FetchGetData(FormIdRed,AuthRed.val))
+    },[FormIdRed,EmdRed,GetDataRed])
 
     useEffect(()=>{
       console.log('ActionRed',ActionRed)
@@ -55,6 +58,13 @@ const GridForm = () => {
 
       }
 
+      useEffect(()=>{
+        console.log('GetDataRed',GetDataRed)
+      },[GetDataRed])
+
+      const dataVal = [{"GRID_ID":"GID-429","DATA":[{"issue_name":"issue 1","Issue_id":null,"action_id":null,"recommendation":null,"severity":null,"actions":null,"actions_val":null},{"issue_name":"issue 1","Issue_id":null,"action_id":null,"recommendation":null,"severity":null,"actions":null,"actions_val":null},{"issue_name":"Issue name","Issue_id":null,"action_id":null,"recommendation":null,"severity":null,"actions":null,"actions_val":null}]},{"GRID_ID":"GID-433","DATA":[{"issue_name":"SMITH","issue_id":"I-01","action_id":"A01","action_name":"ACT1","due_date":"2023-12-02T00:00:00","owner":"FORD","resolution":null,"resolution_com":null,"remarks":"XYZ"}]}]
+
+
   return (
     <div style={{marginTop:'5vh'}}>
       <div style={{ display:'none', justifyContent : 'flex-end'}} className='mx-5 my-2'>
@@ -71,7 +81,7 @@ const GridForm = () => {
         GridRed.loading ? MainObject.loader() :
         ColumnRed.loading ? MainObject.loader() :
         GridRed.val.filter((fil)=>{return fil.isMain }).map((res,i)=>{
-         return <GridFormSub column={ColumnRed.val.sort((a,b)=>{return a.number-b.number})} data={ FormIdRed == 'FORM-400' ? ActionRed.val :[]} gridData={res} key={i} handleSave={handleSave}/>
+         return <GridFormSub column={ColumnRed.val.sort((a,b)=>{return a.number-b.number})} data={dataVal.filter((fil)=>{return fil.GRID_ID == res.gridId})[0].DATA} gridData={res} key={i} handleSave={handleSave}/>
         })
         // <FormTable col={ColumnRed.val} dData={[]}/>
       }
