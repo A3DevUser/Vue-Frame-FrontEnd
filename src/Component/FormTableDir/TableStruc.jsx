@@ -11,7 +11,7 @@ const TableStruc = ({getTableProps,getTableBodyProps,headerGroups,prepareRow,row
 
   return (
     <div>
- <div style={{display:'flex', flexDirection:'row',justifyContent:'space-between',maxWidth:'83vw'}}>
+ <div style={{display:'flex', flexDirection:'row',justifyContent:'space-between',maxWidth:gridData.width, maxHeight:gridData.height}}>
     <div >
     <h6 className="mx-5 my-2" id={gridData.gridId}>{gridData.gridName}</h6>
     </div>
@@ -27,7 +27,7 @@ const TableStruc = ({getTableProps,getTableBodyProps,headerGroups,prepareRow,row
   }   
   </div>             
   </div>
-      <div {...getTableProps()} className="table sticky mx-3 my-1 tableCont "  style={{maxHeight :'66vh', maxWidth:'83vw' , overflow:'scroll', border:'none' }} >
+      <div {...getTableProps()} className="table sticky mx-3 my-1 tableCont "  style={{maxHeight :gridData.height, maxWidth:gridData.width , overflow:'scroll', border:'none' }} >
         <div className='header'>
             {
                 headerGroups.map((headerGroup)=>(

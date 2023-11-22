@@ -58,11 +58,6 @@ const GridForm = () => {
 
       }
 
-      useEffect(()=>{
-        console.log('GetDataRed',GetDataRed)
-      },[GetDataRed])
-
-      const dataVal = [{"GRID_ID":"GID-429","DATA":[{"issue_name":"issue 1","Issue_id":null,"action_id":null,"recommendation":null,"severity":null,"actions":null,"actions_val":null},{"issue_name":"issue 1","Issue_id":null,"action_id":null,"recommendation":null,"severity":null,"actions":null,"actions_val":null},{"issue_name":"Issue name","Issue_id":null,"action_id":null,"recommendation":null,"severity":null,"actions":null,"actions_val":null}]},{"GRID_ID":"GID-433","DATA":[{"issue_name":"SMITH","issue_id":"I-01","action_id":"A01","action_name":"ACT1","due_date":"2023-12-02T00:00:00","owner":"FORD","resolution":null,"resolution_com":null,"remarks":"XYZ"}]}]
 
 
   return (

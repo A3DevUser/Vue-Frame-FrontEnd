@@ -32,7 +32,15 @@ const Navbar = () => {
         if(res.emd){
             dispatch(EmdAct(res.emd))
         }
-        navigate(res.navigate)
+        if(res.emd=='add'){
+            navigate('/addTable')
+        }else if(res.emd=='yes'){
+            navigate('/editTable')
+        }else if(res.emd=='no'){
+            navigate('/viewTable')
+        }else{
+            navigate(res.navigate)
+        }
 
     }
 

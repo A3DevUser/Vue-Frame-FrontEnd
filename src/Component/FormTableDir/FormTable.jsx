@@ -15,7 +15,7 @@ import { Checkbox } from './Checkbox'
 import { Button } from 'react-bootstrap'
 
 const FormTable = ({col,dData,gridData,handleSave}) => {
-    const [data,setdata]=useState([...dData])
+    const [data,setdata]=useState([])
     const [chngRow,setchngRow]=useState({})
     const [finalArr, setfinalArr] =useState([])
     const prevDData = useRef(dData);
@@ -101,7 +101,7 @@ const FormTable = ({col,dData,gridData,handleSave}) => {
        ColumnHeader(col,updateMyData,'',addAndDeleteRow,gridData,data,handleOnfocus,DropValRed.val)
     
     )
-      // console.log('logColDtls',ColumnHeader(col,updateMyData,'',addAndDeleteRow,gridData,data,handleOnfocus,DropValRed.val))
+      // console.log(ColumnHeader(col,updateMyData))
 
       useEffect(()=>{
         setcolumns(
@@ -117,11 +117,11 @@ const FormTable = ({col,dData,gridData,handleSave}) => {
       )
       },[col])
   
-      useEffect(()=>{
-        if(EmdRed!=='add'){
-          setdata(dData)   
-        }
-      },[EmdRed])
+      // useEffect(()=>{
+      //   if(dData !== data){
+      //     setdata([...dData])   
+      //   }
+      // },[dData])
   
         useEffect(()=>{
           if(window.location.pathname == '/confform'){
@@ -205,7 +205,6 @@ const FormTable = ({col,dData,gridData,handleSave}) => {
       const tableInstance = useTable({
           columns,
           data,
-          initialState
           
       },useBlockLayout,useResizeColumns,useSticky,useRowSelect,(hooks)=>{
         hooks.visibleColumns.push((columns)=>{
