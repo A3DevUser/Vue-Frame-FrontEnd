@@ -15,7 +15,7 @@ import { Checkbox } from './Checkbox'
 import { Button } from 'react-bootstrap'
 
 const FormTable = ({col,dData,gridData,handleSave}) => {
-    const [data,setdata]=useState([])
+    const [data,setdata]=useState([...dData])
     const [chngRow,setchngRow]=useState({})
     const [finalArr, setfinalArr] =useState([])
     const prevDData = useRef(dData);
@@ -84,6 +84,7 @@ const FormTable = ({col,dData,gridData,handleSave}) => {
       }
     }
     const handleOnfocus = (fid,gid,cid,rData,oData,rowInd) =>{
+      console.log('dropvaldata',rData)
       // console.log('dropvaldata',encodeURI(JSON.stringify(rData)))
       let rowData = encodeURI(JSON.stringify(rData))
       dispatch(FetchDropValData(fid,gid,cid,rowData,oData,rowInd,AuthRed.val))
@@ -205,6 +206,7 @@ const FormTable = ({col,dData,gridData,handleSave}) => {
       const tableInstance = useTable({
           columns,
           data,
+          initialState
           
       },useBlockLayout,useResizeColumns,useSticky,useRowSelect,(hooks)=>{
         hooks.visibleColumns.push((columns)=>{

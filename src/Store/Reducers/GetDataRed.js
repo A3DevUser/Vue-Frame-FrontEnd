@@ -20,6 +20,10 @@ export const GetDataRed = (state = initialState, action) =>{
             err : action.payload
         }
 
+        case 'ResetFormState' : return {
+            ...initialState
+        }
+
         default : return {...state}
     }
 }

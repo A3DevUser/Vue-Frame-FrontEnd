@@ -52,3 +52,9 @@ export const UserDataState = (val) =>{
         payload : val
     }
 }
+
+export const ResetFormState = (val) =>{
+    return{
+        type : 'ResetFormState'
+    }
+}

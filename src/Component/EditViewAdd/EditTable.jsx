@@ -6,6 +6,8 @@ import { FetchColumnData } from '../../Store/Actions/Column'
 import { FetchGridData } from '../../Store/Actions/GridAct'
 import { MainObject } from '../../Component/Elements/commonFun'
 import GridFormSub from '../../Component/GridFormSub'
+import { FetchGetData } from '../../Store/Actions/GetDataAct'
+import { ResetFormState } from '../../Store/Actions/GeneralStates'
 
 const EditTable = () => {
     const dispatch = useDispatch()
@@ -18,11 +20,30 @@ const EditTable = () => {
     const EmdRed = useSelector((state)=>state.EmdRed)
     const ExcelDataRed = useSelector((state)=>state.ExcelDataRed)
     const AuthRed = useSelector((state)=>state.AuthRed)
+    const GetDataRed = useSelector((state)=> state.GetDataRed)
+    const ResetFormRed = useSelector((state)=>state.ResetFormRed)
 
     useEffect(()=>{
-    dispatch(FetchGridData(FormIdRed,AuthRed.val))
-    dispatch(FetchColumnData(FormIdRed,EmdRed,AuthRed.val))      
+    console.log('GetDataRed',FormIdRed)
+    dispatch(ResetFormState())
+ 
     },[FormIdRed])
+
+    useEffect(()=>{
+      dispatch(FetchGridData(FormIdRed,AuthRed.val))
+      dispatch(FetchColumnData(FormIdRed,EmdRed,AuthRed.val))   
+      dispatch(FetchGetData(FormIdRed,AuthRed.val))  
+      console.log('ResetFormRed',GetDataRed)
+    },[ResetFormRed])
+
+    useEffect(()=>{console.log('GetDataRed',GetDataRed)
+    },[GetDataRed])
+
+    // useEffect(()=>{
+    //   console.log('GetDataRed', GridRed.val.filter((fil)=>{return fil.isMain }).map((res,i)=>{
+    //     return GetDataRed.val.filter((fil)=>{return fil.GRID_ID == res.gridId})[0]
+    //    })[0].DATA)
+    // },[GetDataRed])
 
     const handleSave = () =>{
         // console.log('FormDatRed',Object.values(FormDatRed).filter((fil)=>{return fil.length > 0})) 
@@ -50,8 +71,14 @@ const EditTable = () => {
       {
         GridRed.loading ? MainObject.loader() :
         ColumnRed.loading ? MainObject.loader() :
+        GetDataRed.loading ? MainObject.loader() :
         GridRed.val.filter((fil)=>{return fil.isMain }).map((res,i)=>{
-         return <GridFormSub column={ColumnRed.val.sort((a,b)=>{return a.number-b.number})} data={[]} gridData={res} key={i} handleSave={handleSave}/>
+         return <GridFormSub column={ColumnRed.val.sort((a,b)=>{return a.number-b.number})} data=
+        //  {[]}
+         {
+          GetDataRed.val.filter((fil)=>{return fil.GRID_ID == res.gridId})[0].DATA 
+        }
+          gridData={res} key={i} handleSave={handleSave}/>
         })
       }
     </div>

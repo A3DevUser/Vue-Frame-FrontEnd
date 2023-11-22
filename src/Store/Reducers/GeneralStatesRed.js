@@ -49,3 +49,10 @@ export const UserDataStateRed = (state=false, action) =>{
         default : return state
     }
 }
+
+export const ResetFormRed = (state=false, action) =>{
+    switch (action.type) {
+        case 'ResetFormState' : return !state
+        default : return state
+    }
+}

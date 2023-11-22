@@ -4,6 +4,7 @@ import ModalButton from "../ModalButton"
 import  {ModalCompo, SimpleModalCompo } from "../ModalCompo"
 import TabsBar from "../Tabs"
 import './CommonFunc.css'
+import ConfTabsBar from "../../Component/ConfTabs"
 
 export const MainObject = {
     alert : (alertVal) => {
@@ -27,6 +28,8 @@ export const MainObject = {
     },
 
     table : (col,data,gridData,handleSave) =>{
+//   console.log('gridData',data)
+
          return <FormTable col={col} dData={data} gridData={gridData} handleSave={handleSave}/> },
 
     accordion : (accordionVal,subsAccordianVal,col,data,width,defaultVal,setdefaultVal) => {
@@ -110,6 +113,10 @@ export const MainObject = {
 
     tabs : (accordionVal,gridData, columnData, data,defaultVal,setdefaultVal,handleSave) =>{
         return <><TabsBar accordionVal={accordionVal.sort((a,b) => parseInt(a.orderId) - parseInt(b.orderId))} columnData={columnData.sort((a,b) => parseInt(a.number) - parseInt(b.number))} gridData={gridData.sort((a,b) => parseInt(a.orderId) - parseInt(b.orderId))} data={data} defaultVal={defaultVal} setdefaultVal={setdefaultVal} handleSave={handleSave} /></>
+    },
+
+    conftabs : (accordionVal,gridData, columnData, data,defaultVal,setdefaultVal,handleSave) =>{
+        return <><ConfTabsBar accordionVal={accordionVal.sort((a,b) => parseInt(a.orderId) - parseInt(b.orderId))} columnData={columnData.sort((a,b) => parseInt(a.number) - parseInt(b.number))} gridData={gridData.sort((a,b) => parseInt(a.orderId) - parseInt(b.orderId))} data={data} defaultVal={defaultVal} setdefaultVal={setdefaultVal} handleSave={handleSave}/></>
     },
 
     CustomAlert : (setShowAlert)=>{

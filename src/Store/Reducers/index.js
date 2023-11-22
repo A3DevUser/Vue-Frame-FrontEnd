@@ -19,7 +19,7 @@ import { AuthRed } from "./AuthenticationRed";
 import { LogInStateRed } from "./GeneralStatesRed";
 import { WFCommonRed } from "./WorkFlowCommRed";
 import { ActionRed } from "./ActionRed";
-import { UserDataStateRed } from "./GeneralStatesRed";
+import { UserDataStateRed, ResetFormRed } from "./GeneralStatesRed";
 import { GetDataRed } from "./GetDataRed";
 
 const rootReducers = combineReducers({
@@ -48,7 +48,8 @@ const rootReducers = combineReducers({
     WFCommonRed,
     ActionRed,
     UserDataStateRed,
-    GetDataRed
+    GetDataRed,
+    ResetFormRed
     });
 
 export default rootReducers

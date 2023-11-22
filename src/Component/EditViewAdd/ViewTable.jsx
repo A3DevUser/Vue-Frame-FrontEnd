@@ -5,6 +5,7 @@ import { FetchWFCommonData } from '../../Store/Actions/WorkFlowCommon'
 import { FetchColumnData } from '../../Store/Actions/Column'
 import { FetchGridData } from '../../Store/Actions/GridAct'
 import GridFormSub from '../../Component/GridFormSub'
+import { MainObject } from '../../Component/Elements/commonFun'
 const ViewTable = () => {
     const dispatch = useDispatch()
 

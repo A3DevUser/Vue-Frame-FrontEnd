@@ -25,18 +25,13 @@ const GridForm = () => {
     const ExcelDataRed = useSelector((state)=>state.ExcelDataRed)
     const AuthRed = useSelector((state)=>state.AuthRed)
     const ActionRed = useSelector((state)=>state.ActionRed)
-    const GetDataRed = useSelector((state)=> state.GetDataRed)
 
 
     useEffect(()=>{
       dispatch(FetchGridData(FormIdRed,AuthRed.val))
     dispatch(FetchColumnData(FormIdRed,EmdRed,AuthRed.val))
-    dispatch(FetchGetData(FormIdRed,AuthRed.val))
-    },[FormIdRed,EmdRed,GetDataRed])
+    },[FormIdRed,EmdRed])
 
-    useEffect(()=>{
-      console.log('ActionRed',ActionRed)
-    },[ActionRed])
 
     // useEffect(()=>{
     // //   console.log('FormDatRed',JSON.stringify(Object.values(FormDatRed).filter((fil)=>{return fil.length > 0})))
@@ -76,7 +71,7 @@ const GridForm = () => {
         GridRed.loading ? MainObject.loader() :
         ColumnRed.loading ? MainObject.loader() :
         GridRed.val.filter((fil)=>{return fil.isMain }).map((res,i)=>{
-         return <GridFormSub column={ColumnRed.val.sort((a,b)=>{return a.number-b.number})} data={dataVal.filter((fil)=>{return fil.GRID_ID == res.gridId})[0].DATA} gridData={res} key={i} handleSave={handleSave}/>
+         return <GridFormSub column={ColumnRed.val.sort((a,b)=>{return a.number-b.number})} data={[]} gridData={res} key={i} handleSave={handleSave}/>
         })
         // <FormTable col={ColumnRed.val} dData={[]}/>
       }

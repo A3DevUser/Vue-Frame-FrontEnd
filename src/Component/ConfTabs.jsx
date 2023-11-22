@@ -2,7 +2,7 @@ import { Tab, Tabs } from "react-bootstrap"
 import { MainObject } from "./Elements/commonFun"
 import './CSS/Tabs.css'
 
-function TabsBar({accordionVal,gridData,columnData,data,defaultVal,setdefaultVal,handleSave}) {
+function ConfTabsBar({accordionVal,gridData,columnData,data,defaultVal,setdefaultVal,handleSave}) {
 
     const handleChangeSec = (e) =>{
         // console.log(e)
@@ -31,7 +31,7 @@ function TabsBar({accordionVal,gridData,columnData,data,defaultVal,setdefaultVal
                     <div style={{maxWidth : subRes.width}}>
                         {
                         columnData&&data&&
-                        MainObject.table(columnData,data.filter((fil)=>{return fil.GRID_ID==subRes.gridId})[0].DATA,subRes,handleSave)
+                        MainObject.table(columnData,[dataObj],subRes,handleSave)
                     }
                       <span className='mx-5 my-2' style={{float:'right',display:window.location.pathname.includes('confform') ? 'block' : 'none'}}>
   {/* {
@@ -48,4 +48,4 @@ function TabsBar({accordionVal,gridData,columnData,data,defaultVal,setdefaultVal
         </Tabs>
 
 }
-export default TabsBar;
+export default ConfTabsBar;
