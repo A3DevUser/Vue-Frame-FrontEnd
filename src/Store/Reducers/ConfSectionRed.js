@@ -6,9 +6,8 @@ const initialState = {
 
 export const ConfSectionRed = (state = initialState, action) =>{
     switch(action.type){
-        case 'ConfSectionReq' : return {
-            ...state
-        }
+        case 'ConfSectionReq' : return {...state,loading :true}
+
         case 'ConfSectionSuccess' : return {
             loading :false, val : action.payload , err : ''
         }

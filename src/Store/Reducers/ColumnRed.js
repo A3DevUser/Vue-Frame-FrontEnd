@@ -6,7 +6,7 @@ const initialState = {
 
 export const ColumnRed = (state = initialState, action) =>{
     switch(action.type){
-        case 'ColumnReq' : return {...state}
+        case 'ColumnReq' : return {...state,loading :true}
 
         case 'ColumnSuccess' : return {
             loading : false,

@@ -6,7 +6,7 @@ const initialState = {
 
 export const NavBarRed = (state = initialState, action) =>{
     switch(action.type){
-        case 'NavbarReq' : return {...state}
+        case 'NavbarReq' : return {...state,loading :true}
 
         case 'NavbarSuccess' : return {
             loading : false,

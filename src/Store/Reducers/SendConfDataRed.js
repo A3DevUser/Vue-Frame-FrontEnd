@@ -7,9 +7,7 @@ const initialFieldVal = {
 export const SendConfDataRed = (state=initialFieldVal,action) => {
 
     switch(action.type){
-        case 'ConfReq' : return{
-            ...state, loading:true
-        }
+        case 'ConfReq' : return {...state,loading :true}
 
         case 'ConfSuccess' : return{
             loading:false, val:action.payload, error:''

@@ -6,7 +6,7 @@ const initialState = {
 
 export const GridRed = (state = initialState, action) =>{
     switch(action.type){
-        case 'GridReq' : return {...state}
+        case 'GridReq' : return {...state,loading :true}
 
         case 'GridSuccess' : return {
             loading : false,

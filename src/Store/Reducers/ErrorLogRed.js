@@ -6,9 +6,7 @@ const initialState = {
 
 export const ErrorLogRed = (state = initialState, action) =>{
     switch(action.type){
-        case 'ErrorLogReq' : return {
-            ...state
-        }
+        case 'ErrorLogReq' : return {...state,loading :true}
         case 'ErrorLogSuccess' : return {
             loading :false, val : action.payload , err : ''
         }

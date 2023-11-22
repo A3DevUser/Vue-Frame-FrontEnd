@@ -6,7 +6,7 @@ const initialState = {
 
 export const GetDataRed = (state = initialState, action) =>{
     switch(action.type){
-        case 'GetDataReq' : return {...state}
+        case 'GetDataReq' : return {...state,loading :true}
 
         case 'GetDataSuccess' : return {
             loading : false,

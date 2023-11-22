@@ -6,7 +6,7 @@ const initialState = {
 
 export const ModalColumnRed = (state = initialState, action) =>{
     switch(action.type){
-        case 'ModalColumnReq' : return {...state}
+        case 'ModalColumnReq' : return {...state,loading :true}
 
         case 'ModalColumnSuccess' : return {
             loading : false,
