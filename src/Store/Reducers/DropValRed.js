@@ -6,9 +6,7 @@ const initialState = {
 
 export const DropValRed = (state = initialState, action) =>{
     switch(action.type){
-        case 'DropValReq' : return {
-            ...state
-        }
+        case 'DropValReq' : return {...state,loading :true}
         case 'DropValSuccess' : return {
             loading :false, val : action.payload , err : ''
         }

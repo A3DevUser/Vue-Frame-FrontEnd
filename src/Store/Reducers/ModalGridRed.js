@@ -6,7 +6,7 @@ const initialState = {
 
 export const ModalGridRed = (state = initialState, action) =>{
     switch(action.type){
-        case 'ModalGridReq' : return {...state}
+        case 'ModalGridReq' : return {...state,loading :true}
 
         case 'ModalGridSuccess' : return {
             loading : false,

@@ -6,7 +6,7 @@ const initialState = {
 
 export const ConfGridRed = (state = initialState, action) =>{
     switch(action.type){
-        case 'ConfGridReq' : return {...state}
+        case 'ConfGridReq' : return {...state,loading :true}
 
         case 'ConfGridSuccess' : return {
             loading : false,

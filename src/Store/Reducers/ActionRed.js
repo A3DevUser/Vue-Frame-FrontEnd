@@ -6,9 +6,7 @@ const initialState = {
 
 export const ActionRed = (state = initialState, action) =>{
     switch(action.type){
-        case 'ActionReq' : return {
-            ...state
-        }
+        case 'ActionReq' : return {...state,loading :true}
         case 'ActionSuccess' : return {
             loading :false, val : action.payload , err : ''
         }

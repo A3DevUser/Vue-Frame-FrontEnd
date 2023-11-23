@@ -24,26 +24,11 @@ const EditTable = () => {
     const ResetFormRed = useSelector((state)=>state.ResetFormRed)
 
     useEffect(()=>{
-    console.log('GetDataRed',FormIdRed)
-    dispatch(ResetFormState())
- 
+    dispatch(FetchGridData(FormIdRed,AuthRed.val))
+    dispatch(FetchColumnData(FormIdRed,EmdRed,AuthRed.val))   
+    dispatch(FetchGetData(FormIdRed,AuthRed.val))  
     },[FormIdRed])
 
-    useEffect(()=>{
-      dispatch(FetchGridData(FormIdRed,AuthRed.val))
-      dispatch(FetchColumnData(FormIdRed,EmdRed,AuthRed.val))   
-      dispatch(FetchGetData(FormIdRed,AuthRed.val))  
-      console.log('ResetFormRed',GetDataRed)
-    },[ResetFormRed])
-
-    useEffect(()=>{console.log('GetDataRed',GetDataRed)
-    },[GetDataRed])
-
-    // useEffect(()=>{
-    //   console.log('GetDataRed', GridRed.val.filter((fil)=>{return fil.isMain }).map((res,i)=>{
-    //     return GetDataRed.val.filter((fil)=>{return fil.GRID_ID == res.gridId})[0]
-    //    })[0].DATA)
-    // },[GetDataRed])
 
     const handleSave = () =>{
         // console.log('FormDatRed',Object.values(FormDatRed).filter((fil)=>{return fil.length > 0})) 

@@ -6,7 +6,7 @@ const initialState = {
 
 export const ConfColumnRed = (state = initialState, action) =>{
     switch(action.type){
-        case 'ConfColumnReq' : return {...state}
+        case 'ConfColumnReq' : return {...state,loading :true}
 
         case 'ConfColumnSuccess' : return {
             loading : false,

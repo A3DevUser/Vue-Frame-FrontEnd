@@ -6,9 +6,7 @@ const initialState = {
 
 export const WFCommonRed = (state = initialState, action) =>{
     switch(action.type){
-        case 'WFCommonReq' : return {
-            ...state
-        }
+        case 'WFCommonReq' : return {...state,loading :true}
         case 'WFCommonSuccess' : return {
             loading :false, val : action.payload , err : ''
         }

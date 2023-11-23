@@ -6,7 +6,7 @@ const initialState = {
 
 export const FormExcelPostRed = (state = initialState, action) =>{
     switch(action.type){
-        case 'FormExcelReq' : return {...state}
+        case 'FormExcelReq' : return {...state,loading :true}
 
         case 'FormExcelSuccess' : return {
             loading : false,

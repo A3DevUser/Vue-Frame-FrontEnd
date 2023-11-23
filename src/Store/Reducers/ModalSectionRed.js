@@ -6,9 +6,7 @@ const initialState = {
 
 export const ModalSectionRed = (state = initialState, action) =>{
     switch(action.type){
-        case 'ModalSectionReq' : return {
-            ...state
-        }
+        case 'ModalSectionReq' : return {...state,loading :true}
         case 'ModalSectionSuccess' : return {
             loading :false, val : action.payload , err : ''
         }

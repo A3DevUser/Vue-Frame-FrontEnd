@@ -11,7 +11,7 @@ export const MainObject = {
         return alert(alertVal)
     },
     button : (btnInfo,funButton,i) => {
-        return <button key={i} className={btnInfo.classNameVal} style={{width: btnInfo.widthVal, height: btnInfo.heightVal}} onClick={funButton}>{btnInfo.btnName}</button>
+        return <button key={i} className={btnInfo.classNameVal} style={{width: btnInfo.widthVal, height: btnInfo.heightVal, display:window.location.pathname.includes('viewTable') ?'none' :'block' }} onClick={funButton}>{btnInfo.btnName}</button>
     },
     input : (inputInfo,funInput) => {
         if(inputInfo.typeVal == 'dropDown'){
