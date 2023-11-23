@@ -27,7 +27,11 @@ const FormTable = ({col,dData,gridData,handleSave}) => {
     const FormIdRed = useSelector((state)=>state.FormIdRed)
     const DropValRed = useSelector((state) => state.DropValRed)
     const AuthRed = useSelector((state)=>state.AuthRed)
+    const SendConfDataRed = useSelector((state)=> state.SendConfDataRed)
 
+    // useEffect(()=>{
+    //   console.log('SendConfDataRed',SendConfDataRed.val)
+    // },[SendConfDataRed])
 
 
     useEffect(()=>{
@@ -55,8 +59,8 @@ const FormTable = ({col,dData,gridData,handleSave}) => {
           if (index == rowIndex) {
             return {
               ...old[rowIndex],
-              [columnId]: value,
-              ['auditId'] : 'auditId'
+              [columnId]: value
+              // ['auditId'] : 'auditId'
             }
           }
           return row
@@ -83,10 +87,31 @@ const FormTable = ({col,dData,gridData,handleSave}) => {
           })
       }
     }
+
     const handleOnfocus = (fid,gid,cid,rData,oData,rowInd) =>{
-      console.log('dropvaldata',rData)
+
+      // const [jrowData,setJrowData] = useState(rData)
+
+      // const updateRowData = (rData,SendConfDataRed) => {
+      //   setJrowData((old)=>{
+      //     return old.map((res)=>{
+      //       if (rData.formId == SendConfDataRed.val.formId){
+      //         return {...rData,...SendConfDataRed.val}
+      //       }
+      //       return res
+      //     })
+      //   })
+      // } 
+
+      // let JrowData = [rData].map((res)=>{
+      //   return {...res,...SendConfDataRed.val}
+      // })
+      // console.log('dropvaldata',JrowData)
+
       // console.log('dropvaldata',encodeURI(JSON.stringify(rData)))
-      let rowData = encodeURI(JSON.stringify(rData))
+      let rowData = encodeURI(JSON.stringify(...[rData].map((res)=>{
+        return {...res,...SendConfDataRed.val}
+      })))
       dispatch(FetchDropValData(fid,gid,cid,rowData,oData,rowInd,AuthRed.val))
     }
 
