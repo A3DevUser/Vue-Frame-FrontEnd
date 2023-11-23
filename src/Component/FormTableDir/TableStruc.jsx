@@ -5,9 +5,10 @@ import TableCell from './TableCell'
 import { useSelector } from 'react-redux'
 
 
-const TableStruc = ({getTableProps,getTableBodyProps,headerGroups,prepareRow,rows,gridData,handleAddRow,handleSave,handleRemove,handleCopy}) => {
+const TableStruc = ({getTableProps,getTableBodyProps,headerGroups,prepareRow,rows,gridData,handleAddRow,handleSave,handleRemove,handleCopy,previousPage,canPreviousPage,nextPage,canNextPage,pageOptions,state,pageCount,gotoPage}) => {
 
     const EmdRed = useSelector((state)=>state.EmdRed)
+    const { pageIndex } = state
 
     const save = ['/viewTable']
     const add = ['/viewTable','/editTable']
@@ -67,6 +68,24 @@ const TableStruc = ({getTableProps,getTableBodyProps,headerGroups,prepareRow,row
             }
         </div>
       </div>
+        <div style={{display:'flex', justifyContent:'center', marginTop:'1vw'}} >
+        <span className='my-2'>
+            page: {' '}
+            <strong>
+                { pageIndex + 1} of { pageOptions.length }
+            </strong>{' '}
+            Go To Page <input type='number' defaultValue={pageIndex -1} onChange={
+                (e)=>{
+                    const PageNumber = e.target.value ? Number(e.target.value) -1 : 0
+                    gotoPage(PageNumber)
+                }
+            }></input>
+        </span>
+        <button className='btn btn-success btn-sm mx-2' onClick={() => gotoPage(0)} disabled={!canPreviousPage}>{'<<'}</button>
+        <button className='btn btn-success btn-sm mx-2' onClick={() => previousPage()} disabled={!canPreviousPage}>Previous</button>
+        <button className='btn btn-success btn-sm' onClick={() => nextPage()} disabled={!canNextPage}>Next</button>
+        <button className='btn btn-success btn-sm mx-2' onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>{'>>'}</button>
+    </div>
     </div>
   )
 }

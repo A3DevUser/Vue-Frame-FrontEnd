@@ -26,12 +26,14 @@ function TabsBar({accordionVal,gridData,columnData,data,defaultVal,setdefaultVal
                             dataObj[fe.accessor]=''
                         }
                         })
-                        // console.log(dataObj)
+                        // console.log('RowDataNew',dataObj)
                     return (<>
                     <div style={{maxWidth : subRes.width}}>
                         {
                         columnData&&data&&
-                        MainObject.table(columnData,data.filter((fil)=>{return fil.GRID_ID==subRes.gridId})[0].DATA,subRes,handleSave)
+                        MainObject.table(columnData,
+                            (data.length >= 1) ? data.filter((fil)=>{return fil.GRID_ID==subRes.gridId})[0].DATA : [dataObj],
+                            subRes,handleSave)
                     }
                       <span className='mx-5 my-2' style={{float:'right',display:window.location.pathname.includes('confform') ? 'block' : 'none'}}>
   {/* {
