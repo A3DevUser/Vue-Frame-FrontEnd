@@ -88,30 +88,12 @@ const FormTable = ({col,dData,gridData,handleSave}) => {
       }
     }
 
+
+
     const handleOnfocus = (fid,gid,cid,rData,oData,rowInd) =>{
-
-      // const [jrowData,setJrowData] = useState(rData)
-
-      // const updateRowData = (rData,SendConfDataRed) => {
-      //   setJrowData((old)=>{
-      //     return old.map((res)=>{
-      //       if (rData.formId == SendConfDataRed.val.formId){
-      //         return {...rData,...SendConfDataRed.val}
-      //       }
-      //       return res
-      //     })
-      //   })
-      // } 
-
-      // let JrowData = [rData].map((res)=>{
-      //   return {...res,...SendConfDataRed.val}
-      // })
-      // console.log('dropvaldata',JrowData)
-
+      console.log('dropvaldata',rData)
       // console.log('dropvaldata',encodeURI(JSON.stringify(rData)))
-      let rowData = encodeURI(JSON.stringify(...[rData].map((res)=>{
-        return {...res,...SendConfDataRed.val}
-      })))
+      let rowData = encodeURI(JSON.stringify(rData))
       dispatch(FetchDropValData(fid,gid,cid,rowData,oData,rowInd,AuthRed.val))
     }
 
@@ -150,6 +132,7 @@ const FormTable = ({col,dData,gridData,handleSave}) => {
       // },[dData])
   
         useEffect(()=>{
+          console.log('opData',data)
           if(window.location.pathname == '/confform'){
             dispatch(FormDataAct({...FormDatRed,[gridData.gridId] : data}) )   
           }else{

@@ -75,6 +75,7 @@ export const EditableCell = ({
     const [value, setValue] = React.useState(initialValue)
     const [dataValdd,setdataValdd] = useState()
     
+    const SendConfDataRed = useSelector((state)=> state.SendConfDataRed)
     const AuthRed = useSelector((state)=>state.AuthRed)
 
     const onChange = e => {
@@ -98,6 +99,13 @@ export const EditableCell = ({
     React.useEffect(() => {
       setValue(initialValue)
     }, [initialValue])
+
+    useEffect(()=>{
+      Object.keys(SendConfDataRed.val).forEach((res)=>{
+        return updateMyData(index, res, SendConfDataRed.val[res],null,'')
+      })
+
+    },[SendConfDataRed])
 
     // useEffect(()=>{console.log('dropDownec',dataValdd)},[dataValdd])
 
