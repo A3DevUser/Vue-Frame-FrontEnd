@@ -8,6 +8,9 @@ import { useDispatch, useSelector } from "react-redux"
 import { DropDownVal, FormDataAct } from "../../Store/Actions/GeneralStates"
 import { FetchDropValData } from "../../Store/Actions/DropVal"
 import { FetchDropValSecData } from "../../Store/Actions/DropValSec"
+import DownloadOpt from "../ImportExport/DownloadOpt"
+import ExcelReader from "../ImportExport/Upload"
+import { Link } from "react-router-dom"
 export const EditableCell = ({
     value: initialValue,
     row:  index ,
@@ -441,4 +444,26 @@ if(dropDown.filter((fil,i)=>{return i==index})[0].mixVal){
       {MainObject.modalButton('Actions', handleFunc)}
       {MainObject.modalpop('',<><ModalForm/></>,show,handleFunc)}
     </div>
+  }
+
+
+  export const EditableDownloader = ({
+    gridData: gridData,
+    columnData: columnData
+  }) => {
+    return <DownloadOpt griData={gridData} columnData={columnData}/>
+  }
+
+  export const EditableUploader = ({
+    gridData: gridData,
+    columnData: columnData
+  }) => {
+    return <ExcelReader griData={gridData} columnData={columnData}/>
+  }
+
+  export const EditableLink = ({
+    to: path,
+    lable: lable
+  }) => {
+    return <Link to={path}>{lable}</Link>
   }

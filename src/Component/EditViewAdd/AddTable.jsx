@@ -27,7 +27,7 @@ const AddTable = () => {
     const handleSave = () =>{
         // console.log('FormDatRed',Object.values(FormDatRed).filter((fil)=>{return fil.length > 0})) 
         // console.log('FormDatRed',ExcelDataRed)
-       console.log(FormDatRed)
+       console.log('GridFormrowData',JSON.stringify(FormDatRed))
           // dispatch(PostFormExcelData(res)) 
           Object.values(FormDatRed).forEach((res)=>{
             dispatch(PostFormExcelData(res,AuthRed.val)) 

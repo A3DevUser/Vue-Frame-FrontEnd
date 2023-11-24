@@ -70,7 +70,7 @@ const FormConf = () => {
     const width = '75vw'
 
     const handleSave = (val) =>{
-
+      // console.log('FormDataGrid',FormDatRed)
       let isMan = []
 
       let GridCol = ColumnRed.val.filter((fil)=>{
