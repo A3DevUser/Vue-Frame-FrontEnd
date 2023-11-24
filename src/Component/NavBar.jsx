@@ -49,7 +49,7 @@ const Navbar = () => {
     }
 
 return (
-<div style={{display: window.location.pathname == '/' ? 'none' : 'block'}}>
+<div style={{display: window.location.pathname == '/' ? 'none' : 'block',position:'sticky', top :'0',zIndex:'5'}}>
 <nav 
 // style={{backgroundColor:'#131D40'}}
 className='navbar-background'
