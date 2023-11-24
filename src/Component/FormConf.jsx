@@ -9,6 +9,7 @@ import { FormConfData } from '../Store/Actions/SendConfData';
 import { useNavigate } from 'react-router';
 import './CSS/FormConf.css'
 import { Alert } from 'react-bootstrap';
+import swal from 'sweetalert';
 
 let AlertVal = {}
 export const AlertData = {
@@ -69,12 +70,42 @@ const FormConf = () => {
     const width = '75vw'
 
     const handleSave = (val) =>{
-      // console.log('AterDataNew',AlertVal)
 
+      let isMan = []
+
+      let GridCol = ColumnRed.val.filter((fil)=>{
+        return fil.gridId == val.gridId
+      }).map((res)=>{
+        return res.accessor
+      })
+
+     FormDatRed[val.gridId].forEach((fFe)=>{
+        GridCol.forEach((gFe)=>{
+            if(fFe[gFe].length < 1){
+              isMan.push(gFe)
+            }
+        })
+      })
+
+      if(isMan.length > 0){
+        swal({
+          title :'Alert',
+          text : 'Kindly Fill the Mandatory Fields',
+          icon: "warning",
+          dangerMode: true
+      })
+      }else{
         if(Object.keys(FormDatRed).includes(val.gridId)){
           const FormData = FormDatRed[val.gridId].map((res) => {return {...res, ...SendConfDataRed.val}})
           dispatch(FormConfData(val.api,FormData,AuthRed.val))
         }
+      }
+
+
+        // if(Object.keys(FormDatRed).includes(val.gridId)){
+        //   const FormData = FormDatRed[val.gridId].map((res) => {return {...res, ...SendConfDataRed.val}})
+        //   dispatch(FormConfData(val.api,FormData,AuthRed.val))
+        // }
 
 
 
