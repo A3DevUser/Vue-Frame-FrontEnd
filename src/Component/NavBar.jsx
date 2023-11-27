@@ -70,6 +70,12 @@ className='navbar-background'
             // className=' btn btn-sm my-1 mx-2 p-2' 
             // style={{backgroundColor:'#131D40', color:'white', float:'right'}}
             // >{res.navName}</button>
+            }else if (res.navType == 'btn'){
+                return <button onClick={()=>{handleNavigate({formId : 'FORM-502',emd :'add'})}} key={i} className=' btn btn-sm my-1 mx-2 p-2' style={{backgroundColor:'#131D40', color:'white', float:'right'}}>Import & Export</button>
+                // return <NavDropdown className='ddClass' title={<span class="bi bi-gear customIcon"></span>} key={i}>
+                // <NavDropdown.Item className='click' onClick={()=>{handleNavigate({formId : 'FORM-502',navigate:'/GridForm'})}}>Import & Export</NavDropdown.Item>
+                // </NavDropdown>
+
         }else if (res.navigate=='/GridForm'){
             return <NavDropdown className='ddClassEle' title={res.navName} key={i} >
             <NavDropdown.Item className='click' onClick={()=>{handleNavigate({formId : res.formId,navigate:res.navigate,emd :'no'})}}>{`View ${res.navName}`}</NavDropdown.Item>

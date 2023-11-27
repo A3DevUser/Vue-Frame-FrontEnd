@@ -96,6 +96,7 @@ const FormConf = () => {
       })
       }else{
         if(Object.keys(FormDatRed).includes(val.gridId)){
+          console.log('mainGrid Val',val.gridId)
           const FormData = FormDatRed[val.gridId].map((res) => {return {...res, ...SendConfDataRed.val}})
           dispatch(FormConfData(val.api,FormData,AuthRed.val))
         }
