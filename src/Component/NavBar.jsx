@@ -71,13 +71,14 @@ className='navbar-background'
             return<NavDropdown className='ddClass' title={<span class="bi bi-gear customIcon"></span>} key={i}>
                 <NavDropdown.Item className='click' onClick={()=>{handleNavigate({formId : 'FORM-105',navigate:'/confform'})}}>Form Confg</NavDropdown.Item>
                 <NavDropdown.Item className='click' onClick={()=>{handleNavigate({formId : 'FORM-106',navigate:'/confform'})}}>WorkFlow Confg</NavDropdown.Item>
+                <NavDropdown.Item className='click' onClick={()=>{handleNavigate({formId : 'FORM-502',navigate:'/GridForm'})}}>Import & Export</NavDropdown.Item>
             </NavDropdown>
             // <button onClick={()=>{handleNavigate(res)}} key={i} 
             // className=' btn btn-sm my-1 mx-2 p-2' 
             // style={{backgroundColor:'#131D40', color:'white', float:'right'}}
             // >{res.navName}</button>
-            }else if (res.navType == 'btn'){
-                return <button onClick={()=>{handleNavigate({formId : 'FORM-502',emd :'add'})}} key={i} className=' btn btn-sm my-1 mx-2 p-2' style={{backgroundColor:'#131D40', color:'white', float:'right'}}>Import & Export</button>
+            // }else if (res.navType == 'btn'){
+            //     return <button onClick={()=>{handleNavigate({formId : 'FORM-502',emd :'add'})}} key={i} className=' btn btn-sm my-1 mx-2 p-2' style={{backgroundColor:'#131D40', color:'white', float:'right'}}>Import & Export</button>
                 // return <NavDropdown className='ddClass' title={<span class="bi bi-gear customIcon"></span>} key={i}>
                 // <NavDropdown.Item className='click' onClick={()=>{handleNavigate({formId : 'FORM-502',navigate:'/GridForm'})}}>Import & Export</NavDropdown.Item>
                 // </NavDropdown>
