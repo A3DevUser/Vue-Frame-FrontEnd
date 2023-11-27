@@ -21,6 +21,10 @@ import { WFCommonRed } from "./WorkFlowCommRed";
 import { ActionRed } from "./ActionRed";
 import { UserDataStateRed, ResetFormRed } from "./GeneralStatesRed";
 import { GetDataRed } from "./GetDataRed";
+import { ExportRed } from "./ExportRed";
+import { ImportGridRed } from "./ImportGridRed";
+import { ImportColumnRed } from "./ImportColumnRed";
+
 
 const rootReducers = combineReducers({
     SectionRed,  
@@ -49,7 +53,10 @@ const rootReducers = combineReducers({
     ActionRed,
     UserDataStateRed,
     GetDataRed,
-    ResetFormRed
+    ResetFormRed,
+    ExportRed,
+    ImportGridRed,
+    ImportColumnRed
     });
 
 export default rootReducers

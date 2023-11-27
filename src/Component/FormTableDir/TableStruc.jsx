@@ -1,6 +1,6 @@
 import { MainObject } from '../../Component/Elements/commonFun'
 import React from 'react'
-import { Button } from 'react-bootstrap'
+import { Button, Tooltip } from 'react-bootstrap'
 import TableCell from './TableCell'
 import { useSelector } from 'react-redux'
 
@@ -81,10 +81,10 @@ const TableStruc = ({getTableProps,getTableBodyProps,headerGroups,prepareRow,row
                 }
             }></input>
         </span>
-        <button className='btn btn-success btn-sm ' onClick={() => gotoPage(0)} disabled={!canPreviousPage}>{'<<'}</button>
-        <button className='btn btn-success btn-sm ' onClick={() => previousPage()} disabled={!canPreviousPage}>Previous</button>
-        <button className='btn btn-success btn-sm' onClick={() => nextPage()} disabled={!canNextPage}>Next</button>
-        <button className='btn btn-success btn-sm' onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>{'>>'}</button>
+        <button className='btn btn-secondary btn-sm ' title='First page' onClick={() => gotoPage(0)} disabled={!canPreviousPage}>{'<<'}</button>
+        <button className='btn btn-secondary btn-sm ' title='Previous page' onClick={() => previousPage()} disabled={!canPreviousPage}>Previous</button>
+        <button className='btn btn-secondary btn-sm' title='Next page' onClick={() => nextPage()} disabled={!canNextPage}>Next</button>
+        <button className='btn btn-secondary btn-sm' title='Last page' onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>{'>>'}</button>
     </div>
     </div>
   )

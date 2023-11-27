@@ -53,9 +53,9 @@ export const EditableCell = ({
     }, [initialValue])
     
     return <div>
-      <textarea value={value} className='form-control' style={{width:colObj.width,height:'7vh'
-      // , background : value ? '#28a745' : 'white', color : 'white',
-      }} onChange={onChange} onBlur={onBlur} placeholder='Enter Remark...' maxLength={valWidth} disabled={freeze}/>
+      <textarea value={value} className='form-control' style={{width:colObj.width,height:'7vh',border:'none'
+      // , background : value ? '#28a745' : 'white', color : 'white', 
+      }} onChange={onChange} onBlur={onBlur} placeholder='Type here...' maxLength={valWidth} disabled={freeze}/>
       {/* xyz */}
     </div>
   }
@@ -116,11 +116,12 @@ export const EditableCell = ({
     const DropValRed = useSelector((state) => state.DropValRed)
     const DropDownValRed = useSelector((state)=> state.DropDownValRed)
     const ColumnRed = useSelector((state)=>state.ConfColumnRed)
+    console.log('DropValRed',DropValRed)
 
-  return <select name={id} value={value} onFocus={()=>{handleOnfocus(parentId.formIdVal,parentId.gridIdVal,parentId.colIdVal,parentId.json.original,DropValRed.val,index)}} onChange={onChange} onBlur={onBlur} className='form-control' style={{width:colObj.width,height:'7vh'}} disabled={rowObj.original.isDisable}>
+  return <select name={id} value={value} onFocus={()=>{handleOnfocus(parentId.formIdVal,parentId.gridIdVal,parentId.colIdVal,parentId.json.original,DropValRed.val,index)}} onChange={onChange} onBlur={onBlur} className='form-control' style={{width:colObj.width,height:'7vh', border:'none'}} disabled={rowObj.original.isDisable}>
       <option value="">Select One</option>
       {
-       DropValRed.loading ? <option value="">Drop Down</option> : 
+       DropValRed.loading ? <option>loading...</option> : 
        DropValRed.val.filter((fil)=>{return (fil.ColId == parentId.colIdVal)&&(fil.rowInd == index)}).map((res,i)=>{
             return <option key={i} value={res.storedValue}>{res.displayValue}</option>
       })
@@ -177,7 +178,7 @@ export const EditableCell = ({
     }, [initialValue])
 
     return <div>
-      <input value={value} type={'number'} className='form-control' style={{width:colObj.width}} onChange={onChange} onBlur={onBlur} placeholder='Enter Remark...' disabled={freeze} 
+      <input value={value} type={'number'} className='form-control' style={{width:colObj.width, border:'none'}} onChange={onChange} onBlur={onBlur} placeholder='Type here...' disabled={freeze} 
       min={'0'}/>
     </div>
   }
@@ -206,7 +207,7 @@ export const EditableCell = ({
     }, [initialValue])
   
     return <div>
-      <input value={value} type={'date'} className='form-control' style={{width:colObj.width}} onChange={onChange} onBlur={onBlur} placeholder='Enter Remark...'  />
+      <input value={value} type={'date'} className='form-control' style={{width:colObj.width, border:'none'}} onChange={onChange} onBlur={onBlur} placeholder='Enter Remark...'  />
       {/* xyz disabled={rowObj.original.isDisable}*/}
     </div>
   }
@@ -242,7 +243,7 @@ if(dropDown.filter((fil,i)=>{return i==index})[0].mixVal){
   
     if(obj.original.inputType==='text'){
       return <div>
-      <textarea value={value} className='form-control' style={{width:colObj.width
+      <textarea value={value} className='form-control' style={{width:colObj.width, border:'none'
       }} onChange={onChange} onBlur={onBlur} placeholder='Enter Remark...' disabled={obj.original.isDisable} />
     </div>
     }else if(obj.original.inputType==='number'){
@@ -304,7 +305,7 @@ if(dropDown.filter((fil,i)=>{return i==index})[0].mixVal){
 
     return <div>
       { value==='' || value===null || value === undefined ?
-        <input type={'file'}  className='form-control' style={{width:colObj.width}} onChange={onChange}  placeholder='Enter Remark...' disabled={rowObj.original.isDisable} /> :
+        <input type={'file'}  className='form-control' style={{width:colObj.width, border:'none'}} onChange={onChange}  placeholder='Enter Remark...' disabled={rowObj.original.isDisable} /> :
         <div ><span onClick={(e)=>{handleDownload(value)}} className='fileName'>{value}</span><br/><button className="btn btn-danger btn-sm"  onClick={handleRemove}>Remove</button></div>
       }
     </div>
@@ -451,6 +452,8 @@ if(dropDown.filter((fil,i)=>{return i==index})[0].mixVal){
     gridData: gridData,
     columnData: columnData
   }) => {
+
+
     return <DownloadOpt griData={gridData} columnData={columnData}/>
   }
 
@@ -466,4 +469,71 @@ if(dropDown.filter((fil,i)=>{return i==index})[0].mixVal){
     lable: lable
   }) => {
     return <Link to={path}>{lable}</Link>
+  }
+
+  export const EditableDdIe = ({
+    value: initialValue,
+    row:  index ,
+    column:  id ,
+    updateMyData,
+    dropDown : dropDown ,
+    colObj:colObj,
+    rowObj : rowObj,
+    parentId,
+    handleOnfocus,
+    dropDownData : dropDownData
+  }) => {
+    
+    const [value, setValue] = React.useState(initialValue)
+    const [dataValdd,setdataValdd] = useState()
+    
+    const SendConfDataRed = useSelector((state)=> state.SendConfDataRed)
+    const AuthRed = useSelector((state)=>state.AuthRed)
+
+    const onChange = e => {
+      setValue(e.target.value)
+      // if(e.target.value == 'textArea'){
+      //   freez = false
+      // }else{
+      //   freez = true
+      // }
+    }
+  
+    const onBlur = () => {
+        updateMyData(index, id, value,null,'')
+    }
+  
+    // const updatedArray = Object.values(dataValdd.reduce((acc, curr) => {
+    //   acc[curr.formId] = curr;
+    //   return acc;
+    //   }, {}));
+
+    React.useEffect(() => {
+      setValue(initialValue)
+    }, [initialValue])
+
+    // useEffect(()=>{
+    //   Object.keys(SendConfDataRed.val).forEach((res)=>{
+    //     return updateMyData(index, res, SendConfDataRed.val[res],null,'')
+    //   })
+
+    // },[SendConfDataRed])
+
+    // useEffect(()=>{console.log('dropDownec',dataValdd)},[dataValdd])
+
+    // const dispatch = useDispatch()
+    const DropValRed = useSelector((state) => state.DropValRed)
+    // const DropDownValRed = useSelector((state)=> state.DropDownValRed)
+    // const ColumnRed = useSelector((state)=>state.ConfColumnRed)
+    console.log('DropValRed',DropValRed)
+
+  return <select name={id} value={value} onFocus={()=>{handleOnfocus(parentId.formIdVal,parentId.gridIdVal,parentId.colIdVal,parentId.json.original,DropValRed.val,index)}} onChange={onChange} onBlur={onBlur} className='form-control' style={{width:colObj.width,height:'7vh', border:'none'}} disabled={rowObj.original.isDisable}>
+      <option value="">Select One</option>
+      {
+       DropValRed.loading ? <option>loading...</option> : 
+       DropValRed.val.filter((fil)=>{return (fil.ColId == parentId.colIdVal)&&(fil.rowInd == index)}).map((res,i)=>{
+            return <option key={i} value={res.storedValue}>{res.displayValue}</option>
+      })
+      }
+           </select>
   }

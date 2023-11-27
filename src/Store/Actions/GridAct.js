@@ -26,6 +26,8 @@ export const FetchGridData = (id,token) =>{
         'Content-Type': 'application/json', 
         'Authorization': `Bearer ${token}` , 
       };
+      console.log(id)
+      console.log(headers)
     return (dispatch)=>{
         dispatch(GridReq());
         axios.get(`http://localhost:8080/VF/getByGrid?formId=${id}`,{headers})

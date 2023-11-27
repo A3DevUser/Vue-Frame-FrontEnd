@@ -1,28 +1,25 @@
 import { useEffect } from "react"
-import { EditableActionCell, EditableActionPopCell, EditableAnaCell, EditableAttachCell, EditableCell, EditableDateCell, EditableDdCell, EditableLogicCell, EditableMixCell, EditableMksCell, EditableNumCell, EditableStaticCell } from "./EditableCell"
+import { EditableActionCell, EditableActionPopCell, EditableAnaCell, EditableAttachCell, EditableCell, EditableDateCell, EditableDdCell, EditableDdIe, EditableLogicCell, EditableMixCell, EditableMksCell, EditableNumCell, EditableStaticCell, } from "./EditableCell"
 
 export const ColumnHeader = (colData,updateMyData,dropDown,addAndDeleteRow,gridData,data,handleOnfocus,dropDownData) =>{
-// console.log('dropDownData',dropDownData)
 
   return colData.filter((fil)=>{return fil.gridId == gridData.gridId}).map((res)=>{
-    // console.log("cellValuesHide",res.subSecWidth)
     if(res.cellType==='textArea'){
-      // console.log("cellValuesHide",res.hideShow)
       return {
         Header : res.fieldName,
         accessor : res.accessor,
-        Cell: ({cell})=>{  return <EditableCell column={cell.column.id} row={cell.row.id} updateMyData={updateMyData} value={cell.value} colObj={cell.column} parentId={cell} rowObj={cell.row} valWidth={res.subSecWidth} type={res.cellType}/>},
+        Cell: ({cell,row})=>{  
+          console.log('theCellData',row.getRowProps())
+          console.log('theCellData',cell)
+
+          return <EditableCell column={cell.column.id} row={cell.row.id} updateMyData={updateMyData} value={cell.value} colObj={cell.column} parentId={cell} rowObj={cell.row} valWidth={res.subSecWidth} type={res.cellType}/>},
         width : res.width,
         sticky : res.sticky,
-        // show : res.hideShow
     }
     }else if(res.cellType==='dropDown'){
       let formIdVal = res.formId
       let gridIdVal = res.gridId
       let colIdVal = res.columnId
-      // let json = rowObj.original
-      // console.log("to get id",cell)
-      // console.log('line23',dropDownData,res.columnId)
       return {
         Header : res.fieldName,
         accessor : res.accessor,
@@ -74,8 +71,16 @@ export const ColumnHeader = (colData,updateMyData,dropDown,addAndDeleteRow,gridD
         width : res.width,
         sticky : res.sticky
       }
-    }
-    else{
+    }else if(res.cellType === 'iEdropDown'){
+      let formIdVal = res.formId
+      let gridIdVal = res.gridId
+      let colIdVal = res.columnId
+      return{
+          Cell : ({cell}) =>{
+            console.log(cell)
+            return<EditableDdIe column={cell.column.id} row={cell.row.id} updateMyData={updateMyData} value={cell.value} dropDown={dropDownData}  rowObj={cell.row} colObj={cell.column} parentId={{formIdVal, gridIdVal, colIdVal, json: cell.row}}  handleOnfocus={handleOnfocus} />}
+      }
+    }else{
       return {
         Header : res.fieldName,
         accessor : res.accessor,

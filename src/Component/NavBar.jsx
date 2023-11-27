@@ -9,6 +9,8 @@ import { Modal } from 'react-bootstrap'
 import Dropdown from 'react-dropdown';
 import './Nabar.css'
 import { FetchActionData } from '../Store/Actions/ActionAct'
+import { FetchImportColumnData } from '../Store/Actions/ImportColumnAct'
+import { FetchImportGridData } from '../Store/Actions/ImportGridAct'
 
 
 const Navbar = () => {
@@ -18,10 +20,14 @@ const Navbar = () => {
     const navigate = useNavigate()
     const NavBarRed = useSelector((state)=>state.NavBarRed)
     const AuthRed = useSelector((state)=>state.AuthRed)
+    const ImportColumnRed = useSelector((state)=>state.ImportColumnRed)
+    const FormIdRed = useSelector((state)=>state.FormIdRed)
 
     useEffect(()=>{
         dispatch(FetchNavbarData(AuthRed.val))
     },[AuthRed])
+
+
 
     const handleNavigate = (res) =>{
         if(res.emd=='yes' || res.emd =='no'){
