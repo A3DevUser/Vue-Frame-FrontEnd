@@ -14,7 +14,7 @@ export const ImportColumnRed =(state = initialState, action) =>{
             err : ''
         }
         case 'ImportColumnError' : return{
-            loading:false,
+            loading:true,
             val: [],
             err : action.payload
         }

@@ -31,6 +31,8 @@ const ExportExcel = ({ griData, columnData }) => {
   };
 
   const handleClick = async () => {
+    console.log('exported')
+
     const workbook = new ExcelJS.Workbook();
   
     griData.forEach((fe, i) => {
@@ -77,6 +79,7 @@ const ExportExcel = ({ griData, columnData }) => {
     } finally {
       setExporting(false);
     }
+
   };
   
 

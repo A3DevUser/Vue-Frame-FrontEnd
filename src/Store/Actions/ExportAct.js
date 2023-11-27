@@ -1,4 +1,5 @@
-const { default: axios } = require("axios")
+import axios from "axios"
+
 
 const ExportReq = (val) =>{
     return{
@@ -20,10 +21,14 @@ const ExportError = (val) =>{
     }
 }
 
-const PostExportData = () =>{
+export const PostExportData = (data,token) =>{
+    const headers = {
+        'Content-Type': 'application/json', 
+        'Authorization': `Bearer ${token}` , 
+      };
     return(dispatch)=>{
         dispatch(ExportReq())
-        axios.post('')
+        axios.post(`http://localhost:8080/VF/callWorkflowProcedure`,data,{headers})
         .then((res)=>{
             dispatch(ExportSuccess(res.data))
         })

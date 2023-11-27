@@ -11,6 +11,8 @@ import { FetchDropValSecData } from "../../Store/Actions/DropValSec"
 import DownloadOpt from "../ImportExport/DownloadOpt"
 import ExcelReader from "../ImportExport/Upload"
 import { Link } from "react-router-dom"
+import { FetchImportColumnData } from "../../Store/Actions/ImportColumnAct"
+import { FetchImportGridData } from "../../Store/Actions/ImportGridAct"
 export const EditableCell = ({
     value: initialValue,
     row:  index ,
@@ -448,20 +450,30 @@ if(dropDown.filter((fil,i)=>{return i==index})[0].mixVal){
   }
 
 
-  export const EditableDownloader = ({
+  export const EditableImporter = ({
     gridData: gridData,
     columnData: columnData
   }) => {
+const ImportColumnRed = useSelector((state)=>state.ImportColumnRed)
+const ImportGridRed = useSelector((state)=>state.ImportGridRed)
 
+useEffect(()=>{
+  console.log('ImportGridRed',ImportGridRed)
+  console.log('ImportColumnRed',ImportColumnRed)
 
-    return <DownloadOpt griData={gridData} columnData={columnData}/>
+},[ImportColumnRed,ImportGridRed])
+
+    return <DownloadOpt griData={ImportGridRed.val} columnData={ImportColumnRed.val}/>
   }
 
   export const EditableUploader = ({
     gridData: gridData,
     columnData: columnData
   }) => {
-    return <ExcelReader griData={gridData} columnData={columnData}/>
+
+    const ImportColumnRed = useSelector((state)=>state.ImportColumnRed)
+    const ImportGridRed = useSelector((state)=>state.ImportGridRed)
+    return <ExcelReader griData={ImportGridRed.val} columnData={ImportColumnRed.val}/>
   }
 
   export const EditableLink = ({
@@ -489,9 +501,14 @@ if(dropDown.filter((fil,i)=>{return i==index})[0].mixVal){
     
     const SendConfDataRed = useSelector((state)=> state.SendConfDataRed)
     const AuthRed = useSelector((state)=>state.AuthRed)
+    const dispatch = useDispatch()
+
 
     const onChange = e => {
       setValue(e.target.value)
+      dispatch(FetchImportColumnData(e.target.value,AuthRed.val))
+      dispatch(FetchImportGridData(e.target.value,AuthRed.val))
+      console.log('rowObj')
       // if(e.target.value == 'textArea'){
       //   freez = false
       // }else{

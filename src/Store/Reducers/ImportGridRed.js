@@ -14,7 +14,7 @@ export const ImportGridRed =(state = initialState, action) =>{
             err : ''
         }
         case 'ImportGridError' : return{
-            loading:false,
+            loading:true,
             val: [],
             err : action.payload
         }

@@ -4,21 +4,21 @@ import axios from "axios"
 
 const ImportColumnReq = (val) =>{
     return{
-        type : 'ImportReq',
+        type : 'ImportColumnReq',
         payload : val
     }
 }
 
 const ImportColumnSuccess = (val)=>{
     return{
-        type :'ImportSuccess',
+        type :'ImportColumnSuccess',
         payload:val,
     }
 }
 
 const ImportColumnError = (val) =>{
     return {
-        type :'ImportError',
+        type :'ImportColumnError',
         payload:val
     }
 }
@@ -30,7 +30,7 @@ export const FetchImportColumnData = (formId,token)=>{
       };
     return(dispatch)=>{
         dispatch(ImportColumnReq())
-        axios.get(`http://localhost:8080/VF/getcol?formId=${formId}`,{headers})
+        axios.get(`http://localhost:8080/VF/getcol?formId=${formId}&emd=add`,{headers})
         .then((res)=>{
             dispatch(ImportColumnSuccess(res.data))
         })

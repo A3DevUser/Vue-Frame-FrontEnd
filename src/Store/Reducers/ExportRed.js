@@ -14,7 +14,7 @@ export const ExportRed =(state = initialState, action) =>{
             err : ''
         }
         case 'ExportError' : return{
-            loading:false,
+            loading:true,
             val: [],
             err : action.payload
         }

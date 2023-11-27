@@ -1,9 +1,12 @@
 import React from 'react';
 import ExcelJS from 'exceljs';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { ExcelDataAct } from '../../Store/Actions/GeneralStates';
+import { PostExportData } from '../../Store/Actions/ExportAct';
 
 function ExcelReader({columnData, gridData}) {
+
+  const AuthRed = useSelector((state)=>state.AuthRed)
 
   const dispatch = useDispatch()
 
@@ -37,7 +40,8 @@ function ExcelReader({columnData, gridData}) {
             }
           });
         });
-        dispatch(ExcelDataAct(result)); // You can set the result in the component state or perform any other necessary operations
+        dispatch(ExcelDataAct(result)); 
+        dispatch(PostExportData(result,AuthRed.val)) // You can set the result in the component state or perform any other necessary operations
       } catch (error) {
         console.error('Error loading the Excel file:', error);
       }

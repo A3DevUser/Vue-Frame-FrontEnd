@@ -2,21 +2,21 @@ import axios from "axios"
 
 const ImportGridReq = (val) =>{
     return{
-        type : 'ImportReq',
+        type : 'ImportGridReq',
         payload : val
     }
 }
 
 const ImportGridSuccess = (val)=>{
     return{
-        type :'ImportSuccess',
+        type :'ImportGridSuccess',
         payload:val,
     }
 }
 
 const ImportGridError = (val) =>{
     return {
-        type :'ImportError',
+        type :'ImportGridError',
         payload:val
     }
 }

@@ -8,6 +8,7 @@ import { MainObject } from '../../Component/Elements/commonFun'
 import GridFormSub from '../../Component/GridFormSub'
 import { FetchGetData } from '../../Store/Actions/GetDataAct'
 import { ResetFormState } from '../../Store/Actions/GeneralStates'
+import ImpExp from '../../Component/ImportExport/ImpExp'
 
 const EditTable = () => {
     const dispatch = useDispatch()
@@ -47,12 +48,12 @@ const EditTable = () => {
 
   return (
 <div style={{marginTop:'5vh'}}>
-      {/* <div style={{ display:'none', justifyContent : 'flex-end'}} className='mx-5 my-2'>
+      <div style={{ display:'none', justifyContent : 'flex-end'}} className='mx-5 my-2'>
         <ImpExp columnData={ColumnRed.val} gridData={GridRed.val}/>
         <div>
       {MainObject.button({classNameVal:'btn btn-primary', widthVal:'', heightVal:'',btnName:'Submit'},handleSave)}
       </div>
-      </div> */}
+      </div>
       {
         GridRed.loading ? MainObject.loader() :
         ColumnRed.loading ? MainObject.loader() :
