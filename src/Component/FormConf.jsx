@@ -71,42 +71,43 @@ const FormConf = () => {
 
     const handleSave = (val) =>{
       // console.log('FormDataGrid',FormDatRed)
-      let isMan = []
+    //   let isMan = []
 
-      let GridCol = ColumnRed.val.filter((fil)=>{
-        return fil.gridId == val.gridId
-      }).map((res)=>{
-        return res.accessor
-      })
+    //   let GridCol = ColumnRed.val.filter((fil)=>{
+    //     return fil.gridId == val.gridId
+    //   }).map((res)=>{
+    //     return res.accessor
+    //   })
 
-     FormDatRed[val.gridId].forEach((fFe)=>{
-        GridCol.forEach((gFe)=>{
-            if(fFe[gFe].length < 1){
-              isMan.push(gFe)
-            }
-        })
-      })
+    //  FormDatRed[val.gridId].forEach((fFe)=>{
+    //     GridCol.forEach((gFe)=>{
+    //         if(fFe[gFe].length < 1){
+    //           isMan.push(gFe)
+    //         }
+    //     })
+    //   })
 
-      if(isMan.length > 0){
-        swal({
-          title :'Alert',
-          text : 'Kindly Fill the Mandatory Fields',
-          icon: "warning",
-          dangerMode: true
-      })
-      }else{
-        if(Object.keys(FormDatRed).includes(val.gridId)){
-          console.log('mainGrid Val',val.gridId)
-          const FormData = FormDatRed[val.gridId].map((res) => {return {...res, ...SendConfDataRed.val}})
-          dispatch(FormConfData(val.api,FormData,AuthRed.val))
-        }
+    //   if(isMan.length > 0){
+    //     swal({
+    //       title :'Alert',
+    //       text : 'Kindly Fill the Mandatory Fields',
+    //       icon: "warning",
+    //       dangerMode: true
+    //   })
+    //   }else{
+    //     if(Object.keys(FormDatRed).includes(val.gridId)){
+    //       // console.log('mainGrid Val',val.gridId)
+    //       const FormData = FormDatRed[val.gridId].map((res) => {return {...res, ...SendConfDataRed.val, targetId: val.gridId}})
+    //       dispatch(FormConfData(val.api,FormData,AuthRed.val))
+    //     }
+    //   }
+
+
+      if(Object.keys(FormDatRed).includes(val.gridId)){
+        // console.log('mainGrid Val',val.gridId)
+        const FormData = FormDatRed[val.gridId].map((res) => {return {...res, ...SendConfDataRed.val, targetId: val.gridId}})
+        dispatch(FormConfData(val.api,FormData,AuthRed.val))
       }
-
-
-        // if(Object.keys(FormDatRed).includes(val.gridId)){
-        //   const FormData = FormDatRed[val.gridId].map((res) => {return {...res, ...SendConfDataRed.val}})
-        //   dispatch(FormConfData(val.api,FormData,AuthRed.val))
-        // }
 
 
 
