@@ -1,4 +1,5 @@
 import axios from "axios"
+import swal from "sweetalert"
 
 
 const ExportReq = (val) =>{
@@ -31,9 +32,20 @@ export const PostExportData = (data,token) =>{
         axios.post(`http://localhost:8080/VF/callWorkflowProcedure`,data,{headers})
         .then((res)=>{
             dispatch(ExportSuccess(res.data))
+            return swal({
+                title :'Alert',
+                text : 'Data Save Successfully',
+                icon: "success",
+            })
         })
         .catch((err)=>{
             dispatch(ExportError(err))
+            return swal({
+                title :'Alert',
+                text : err,
+                icon: "warning",
+                dangerMode: true
+            })
         })
     }
 }

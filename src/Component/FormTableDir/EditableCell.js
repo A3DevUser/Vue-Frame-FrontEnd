@@ -457,11 +457,7 @@ if(dropDown.filter((fil,i)=>{return i==index})[0].mixVal){
 const ImportColumnRed = useSelector((state)=>state.ImportColumnRed)
 const ImportGridRed = useSelector((state)=>state.ImportGridRed)
 
-useEffect(()=>{
-  console.log('ImportGridRed',ImportGridRed)
-  console.log('ImportColumnRed',ImportColumnRed)
 
-},[ImportColumnRed,ImportGridRed])
 
     return <DownloadOpt griData={ImportGridRed.val} columnData={ImportColumnRed.val}/>
   }
@@ -473,7 +469,18 @@ useEffect(()=>{
 
     const ImportColumnRed = useSelector((state)=>state.ImportColumnRed)
     const ImportGridRed = useSelector((state)=>state.ImportGridRed)
-    return <ExcelReader griData={ImportGridRed.val} columnData={ImportColumnRed.val}/>
+
+
+    useEffect(()=>{
+      console.log('ImportGridRed',ImportGridRed)
+      console.log('ImportColumnRed',ImportColumnRed)
+    
+    },[ImportColumnRed,ImportGridRed])
+
+    return<div className="container">     
+      <ExcelReader gridData={ImportGridRed.val} columnData={ImportColumnRed.val}/>
+      </div>
+
   }
 
   export const EditableLink = ({

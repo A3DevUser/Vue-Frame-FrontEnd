@@ -6,6 +6,10 @@ import { PostExportData } from '../../Store/Actions/ExportAct';
 
 function ExcelReader({columnData, gridData}) {
 
+  console.log('dataUpload',columnData)
+  console.log('dataUpload',gridData)
+
+
   const AuthRed = useSelector((state)=>state.AuthRed)
 
   const dispatch = useDispatch()
