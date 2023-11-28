@@ -13,6 +13,7 @@ import { FetchDropValData } from '../../Store/Actions/DropVal'
 import { MainObject } from '../Elements/commonFun'
 import { Checkbox } from './Checkbox'
 import { Button } from 'react-bootstrap'
+import { FetchObjectIdData } from '../../Store/Actions/ObjectIdAct'
 
 const FormTable = ({col,dData,gridData,handleSave}) => {
     const [data,setdata]=useState([...dData])
@@ -28,6 +29,7 @@ const FormTable = ({col,dData,gridData,handleSave}) => {
     const DropValRed = useSelector((state) => state.DropValRed)
     const AuthRed = useSelector((state)=>state.AuthRed)
     const SendConfDataRed = useSelector((state)=> state.SendConfDataRed)
+    const SendObjectIdRed = useSelector((state) => state.SendObjectIdRed)
 
     // useEffect(()=>{
     //   console.log('SendConfDataRed',SendConfDataRed.val)
@@ -79,7 +81,12 @@ const FormTable = ({col,dData,gridData,handleSave}) => {
       //     }
       //   }).flat()
       // })
+
+      dispatch(FetchObjectIdData(FormIdRed,AuthRed.val))
+
+
       setdata((old)=>{return [...old,obj]})
+
     }else{
           setdata((old)=>{
             return old.filter((fil,i)=>{
@@ -88,7 +95,7 @@ const FormTable = ({col,dData,gridData,handleSave}) => {
       }
     }
 
-
+console.log('SendObjectIdRed',SendObjectIdRed)
 
     const handleOnfocus = (fid,gid,cid,rData,oData,rowInd) =>{
       console.log('dropvaldata',rData)

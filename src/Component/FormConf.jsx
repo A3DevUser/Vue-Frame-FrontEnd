@@ -53,7 +53,7 @@ const FormConf = () => {
     },[FormIdRed])
 
     useEffect(()=>{
-      console.log('location',location.state.formId)
+      // console.log('location',location.state.formId)
     },[location])
 
     // useEffect(()=>{
