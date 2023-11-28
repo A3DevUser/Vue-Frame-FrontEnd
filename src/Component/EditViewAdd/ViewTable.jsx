@@ -58,9 +58,17 @@ const EditTable = () => {
         ColumnRed.loading ? MainObject.loader() :
         GetDataRed.loading ? MainObject.loader() :
         GridRed.val.filter((fil)=>{return fil.isMain }).map((res,i)=>{
+          let dataObj = {}
+          ColumnRed.val.filter((fil)=>{return fil.gridId == res.gridId}).forEach((fres)=>{
+            dataObj[fres.accessor] = ''
+          })
+          console.log('dataObj',GetDataRed.val.length)
+          console.log('dataObj',dataObj)
+          let gridIdArr = ['GID-542','GID-562']
          return <GridFormSub column={ColumnRed.val.sort((a,b)=>{return a.number-b.number})} data=
         //  {[]}
          {
+          gridIdArr.includes(res.gridId)  ?  [dataObj] :
           GetDataRed.val.filter((fil)=>{return fil.GRID_ID == res.gridId})[0].DATA 
         }
           gridData={res} key={i} handleSave={handleSave}/>

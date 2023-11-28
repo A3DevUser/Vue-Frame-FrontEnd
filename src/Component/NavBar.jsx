@@ -71,7 +71,8 @@ className='navbar-background'
             return<NavDropdown className='ddClass' title={<span class="bi bi-gear customIcon"></span>} key={i}>
                 <NavDropdown.Item className='click' onClick={()=>{handleNavigate({formId : 'FORM-105',navigate:'/confform'})}}>Form Confg</NavDropdown.Item>
                 <NavDropdown.Item className='click' onClick={()=>{handleNavigate({formId : 'FORM-106',navigate:'/confform'})}}>WorkFlow Confg</NavDropdown.Item>
-                <NavDropdown.Item className='click' onClick={()=>{handleNavigate({formId : 'FORM-502',navigate:'/addTable', emd:'add'})}}>Import & Export</NavDropdown.Item>
+                <NavDropdown.Item className='click' onClick={()=>{handleNavigate({formId : 'FORM-502', emd:'no'})}}>Import & Export</NavDropdown.Item>
+                <NavDropdown.Item className='click' onClick={()=>{handleNavigate({formId : 'FORM-522', emd:'no'})}}>Form Edit</NavDropdown.Item>
             </NavDropdown>
             // <button onClick={()=>{handleNavigate(res)}} key={i} 
             // className=' btn btn-sm my-1 mx-2 p-2' 

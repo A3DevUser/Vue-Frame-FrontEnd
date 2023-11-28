@@ -1,9 +1,10 @@
 import { useEffect } from "react"
-import { EditableActionCell, EditableActionPopCell, EditableAnaCell, EditableAttachCell, EditableCell, EditableDateCell, EditableDdCell, EditableDdIe, EditableImporter, EditableLogicCell, EditableMixCell, EditableMksCell, EditableNumCell, EditableStaticCell, EditableUploader, } from "./EditableCell"
+import { EditableActionCell, EditableActionPopCell, EditableAnaCell, EditableAttachCell, EditableCell, EditableDateCell, EditableDdCell, EditableDdIe, EditableImporter, EditableLink, EditableLogicCell, EditableMixCell, EditableMksCell, EditableNumCell, EditableStaticCell, EditableUploader, } from "./EditableCell"
 
 export const ColumnHeader = (colData, updateMyData, dropDown, addAndDeleteRow, gridData, data, handleOnfocus, dropDownData) => {
 
   return colData.filter((fil) => { return fil.gridId == gridData.gridId }).map((res) => {
+    console.log('colData',res)
     if (res.cellType === 'textArea') {
       return {
         Header: res.fieldName,
@@ -82,7 +83,9 @@ export const ColumnHeader = (colData, updateMyData, dropDown, addAndDeleteRow, g
         Cell: ({ cell }) => {
           console.log(cell)
           return <EditableDdIe column={cell.column.id} row={cell.row.id} updateMyData={updateMyData} value={cell.value} dropDown={dropDownData} rowObj={cell.row} colObj={cell.column} parentId={{ formIdVal, gridIdVal, colIdVal, json: cell.row }} handleOnfocus={handleOnfocus} />
-        }
+        },
+        width: res.width,
+        sticky: res.sticky
       }
     } else if (res.cellType === 'import') {
 
@@ -91,7 +94,9 @@ export const ColumnHeader = (colData, updateMyData, dropDown, addAndDeleteRow, g
         accessor: res.accessor,
         Cell: ({ cell }) => {
           return <EditableImporter gridData={gridData} columnData={cell.column} />
-        }
+        },
+        width: res.width,
+        sticky: res.sticky
       }
 
     } else if (res.cellType === 'export') {
@@ -101,10 +106,24 @@ export const ColumnHeader = (colData, updateMyData, dropDown, addAndDeleteRow, g
         accessor: res.accessor,
         Cell : ({cell})=>{
           return<EditableUploader gridData={gridData} columnData={cell.column} />
-        }
+        },
+        width: res.width,
+        sticky: res.sticky
       }
 
-    } else {
+    }else if(res.cellType == 'link'){
+      return{
+        Header: res.fieldName,
+        accessor: res.accessor,
+        Cell : ({cell})=>{
+          // console.log('cell.row',cell.row)
+          return<EditableLink lable={'Edit'} to={'/confform'} />
+        },
+        width: res.width,
+        sticky: res.sticky
+      }
+    }
+     else {
       return {
         Header: res.fieldName,
         accessor: res.accessor,
