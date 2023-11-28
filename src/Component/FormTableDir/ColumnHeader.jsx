@@ -116,8 +116,8 @@ export const ColumnHeader = (colData, updateMyData, dropDown, addAndDeleteRow, g
         Header: res.fieldName,
         accessor: res.accessor,
         Cell : ({cell})=>{
-          // console.log('cell.row',cell.row)
-          return<EditableLink lable={'Edit'} to={'/confform'} />
+          console.log('cell.row',cell.row)
+          return<EditableLink lable={'Edit'} to={'/confform'} rowObj={cell.row}  />
         },
         width: res.width,
         sticky: res.sticky

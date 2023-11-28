@@ -485,7 +485,8 @@ const ImportGridRed = useSelector((state)=>state.ImportGridRed)
 
   export const EditableLink = ({
     to: path,
-    lable: lable
+    lable: lable,
+    rowObj : rowObj,
   }) => {
 
     const dispatch = useDispatch()
@@ -493,7 +494,7 @@ const ImportGridRed = useSelector((state)=>state.ImportGridRed)
     const handleClick = () =>{
       dispatch(FormIdAct('FORM-105'))
     }
-    return <Link to={path} onClick={handleClick} >{lable}</Link>
+    return <Link to={{pathname : path}} state={{formId : rowObj.original.form_id}} onClick={handleClick}  >{lable}</Link>
   }
 
   export const EditableDdIe = ({

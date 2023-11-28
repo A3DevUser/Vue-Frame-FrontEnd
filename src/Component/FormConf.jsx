@@ -6,7 +6,7 @@ import { FetchConfColumnData } from '../Store/Actions/ConfColumn'
 import { FetchConfGridData } from '../Store/Actions/ConfGridAct'
 import { FetchConfSectionData } from '../Store/Actions/ConfSection'
 import { FormConfData } from '../Store/Actions/SendConfData';
-import { useNavigate } from 'react-router';
+import { useLocation, useNavigate } from 'react-router';
 import './CSS/FormConf.css'
 import { Alert } from 'react-bootstrap';
 import swal from 'sweetalert';
@@ -27,6 +27,7 @@ export const AlertData = {
 const FormConf = () => {
   // console.log('AterDataNew',AlertVal)
     const dispatch = useDispatch();
+    const location = useLocation();
     const navigate = useNavigate()
     const SectionRed = useSelector((state)=>state.ConfSectionRed)
     const ColumnRed = useSelector((state)=>state.ConfColumnRed)
@@ -50,6 +51,10 @@ const FormConf = () => {
         dispatch(FetchConfGridData(FormIdRed,AuthRed.val))
         dispatch(FetchConfColumnData(FormIdRed,AuthRed.val))
     },[FormIdRed])
+
+    useEffect(()=>{
+      console.log('location',location.state.formId)
+    },[location])
 
     // useEffect(()=>{
     //   console.log('FormDatRed',Object.values(FormDatRed).filter((fil)=>{return fil.length > 0}))
