@@ -5,7 +5,7 @@ import { MainObject } from "../Elements/commonFun"
 import Form from "../Form"
 import ModalForm from "../ModalForm"
 import { useDispatch, useSelector } from "react-redux"
-import { DropDownVal, FormDataAct } from "../../Store/Actions/GeneralStates"
+import { DropDownVal, FormDataAct, FormIdAct } from "../../Store/Actions/GeneralStates"
 import { FetchDropValData } from "../../Store/Actions/DropVal"
 import { FetchDropValSecData } from "../../Store/Actions/DropValSec"
 import DownloadOpt from "../ImportExport/DownloadOpt"
@@ -487,7 +487,13 @@ const ImportGridRed = useSelector((state)=>state.ImportGridRed)
     to: path,
     lable: lable
   }) => {
-    return <Link to={path}>{lable}</Link>
+
+    const dispatch = useDispatch()
+    
+    const handleClick = () =>{
+      dispatch(FormIdAct('FORM-105'))
+    }
+    return <Link to={path} onClick={handleClick} >{lable}</Link>
   }
 
   export const EditableDdIe = ({
