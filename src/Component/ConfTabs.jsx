@@ -9,6 +9,8 @@ function ConfTabsBar({accordionVal,gridData,columnData,data,defaultVal,setdefaul
         setdefaultVal([e.secId])
     }
     // console.log('columnData',columnData)
+    console.log('Confdata',data)
+
 
     return <Tabs activeKey={defaultVal ? defaultVal[0] : ''} id="fill-tab-example" className="mb-3 m-2 bg-gray" fill>
         
@@ -19,6 +21,7 @@ function ConfTabsBar({accordionVal,gridData,columnData,data,defaultVal,setdefaul
                 gridData.filter((fil)=>{
                     return fil.secId == res.secId
                 }).map((subRes)=>{
+                    console.log('confdata24',subRes.gridId, data.filter((fil)=>{return fil.GRID_ID == subRes.gridId}))
                     let dataObj ={}
                     // columnData.filter((fil)=>{return fil.gridId == subRes.gridId}).
                     columnData.forEach((fe)=>{
@@ -31,7 +34,10 @@ function ConfTabsBar({accordionVal,gridData,columnData,data,defaultVal,setdefaul
                     <div style={{maxWidth : subRes.width}}>
                         {
                         columnData&&data&&
-                        MainObject.table(columnData,[dataObj],subRes,handleSave)
+                        MainObject.table(columnData,
+                            (data.filter((fil)=>{return fil.GRID_ID == subRes.gridId}).length == 1) ? data.filter((fil)=>{return fil.GRID_ID==subRes.gridId})[0].DATA :
+                            [dataObj]
+                            ,subRes,handleSave)
                     }
                       <span className='mx-5 my-2' style={{float:'right',display:window.location.pathname.includes('confform') ? 'block' : 'none'}}>
   {/* {

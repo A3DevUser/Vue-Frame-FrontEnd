@@ -13,6 +13,8 @@ import ExcelReader from "../ImportExport/Upload"
 import { Link } from "react-router-dom"
 import { FetchImportColumnData } from "../../Store/Actions/ImportColumnAct"
 import { FetchImportGridData } from "../../Store/Actions/ImportGridAct"
+import { FetchObjectIdData } from "../../Store/Actions/ObjectIdAct"
+
 export const EditableCell = ({
     value: initialValue,
     row:  index ,
@@ -410,7 +412,11 @@ if(dropDown.filter((fil,i)=>{return i==index})[0].mixVal){
     rowObj : rowObj,
   }) => {
 
+    
+
     const handleClick = (act) =>{
+      dispatch(FetchObjectIdData(FormIdRed,AuthRed.val))
+
       let Obj = {}
       Object.keys(rowObj.original).forEach((fe)=>{Obj[fe] =''})
       // console.log(Obj)

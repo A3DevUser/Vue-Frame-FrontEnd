@@ -82,10 +82,9 @@ const FormTable = ({col,dData,gridData,handleSave}) => {
       //   }).flat()
       // })
 
-      dispatch(FetchObjectIdData(FormIdRed,AuthRed.val))
 
 
-      setdata((old)=>{return [...old,obj]})
+      setdata((old)=>{return [...old,{...obj,objId:SendObjectIdRed.val}]})
 
     }else{
           setdata((old)=>{
@@ -95,7 +94,7 @@ const FormTable = ({col,dData,gridData,handleSave}) => {
       }
     }
 
-console.log('SendObjectIdRed',SendObjectIdRed)
+
 
     const handleOnfocus = (fid,gid,cid,rData,oData,rowInd) =>{
       console.log('dropvaldata',rData)

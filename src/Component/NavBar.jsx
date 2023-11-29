@@ -6,11 +6,12 @@ import { Link, useNavigate } from 'react-router-dom'
 import { FetchNavbarData } from '../Store/Actions/NavBar'
 import { EmdAct, FormDataAct, FormIdAct, ResetAct } from '../Store/Actions/GeneralStates'
 import { Modal } from 'react-bootstrap'
-import Dropdown from 'react-dropdown';
+// import Dropdown from 'react-dropdown';
 import './Nabar.css'
 import { FetchActionData } from '../Store/Actions/ActionAct'
 import { FetchImportColumnData } from '../Store/Actions/ImportColumnAct'
 import { FetchImportGridData } from '../Store/Actions/ImportGridAct'
+import Dropdown from 'react-multilevel-dropdown';
 
 
 const Navbar = () => {
@@ -60,8 +61,18 @@ return (
 // style={{backgroundColor:'#131D40'}}
 className='navbar-background'
 >
+
 <img src={'./User2.png'} alt="user" className='m-1' style={{float:'right',height:'6.5vh', width:'3.2vw', borderRadius:'30px'}} onClick={funProfile}/>
 {MainObject.SimpleModal('User Details','',show,funProfile)}
+{/* <Dropdown title='User Access' className='multiDrop'>
+{
+    NavBarRed.val.filter((fil)=>{
+        return fil.navigate=='/GridForm'
+    }).map((res)=>{
+        return <Dropdown.Item>{res.navName}</Dropdown.Item>
+    })
+}
+</Dropdown> */}
 {
     NavBarRed.val.map((res,i)=>{
         if(res.navType=='img'){
@@ -71,8 +82,8 @@ className='navbar-background'
             return<NavDropdown className='ddClass' title={<span class="bi bi-gear customIcon"></span>} key={i}>
                 <NavDropdown.Item className='click' onClick={()=>{handleNavigate({formId : 'FORM-105',navigate:'/confform'})}}>Form Confg</NavDropdown.Item>
                 <NavDropdown.Item className='click' onClick={()=>{handleNavigate({formId : 'FORM-106',navigate:'/confform'})}}>WorkFlow Confg</NavDropdown.Item>
-                <NavDropdown.Item className='click' onClick={()=>{handleNavigate({formId : 'FORM-502', emd:'no'})}}>Import & Export</NavDropdown.Item>
-                <NavDropdown.Item className='click' onClick={()=>{handleNavigate({formId : 'FORM-522', emd:'no'})}}>Form Edit</NavDropdown.Item>
+                <NavDropdown.Item className='click' onClick={()=>{handleNavigate({formId : 'FORM-528', emd:'no'})}}>Import & Export</NavDropdown.Item>
+                <NavDropdown.Item className='click' onClick={()=>{handleNavigate({formId : 'FORM-529', emd:'no'})}}>Form Edit</NavDropdown.Item>
             </NavDropdown>
             // <button onClick={()=>{handleNavigate(res)}} key={i} 
             // className=' btn btn-sm my-1 mx-2 p-2' 
@@ -85,11 +96,16 @@ className='navbar-background'
                 // </NavDropdown>
 
         }else if (res.navigate=='/GridForm'){
-            return <NavDropdown className='ddClassEle' title={res.navName} key={i} >
-            <NavDropdown.Item className='click' onClick={()=>{handleNavigate({formId : res.formId,navigate:res.navigate,emd :'no'})}}>{`View ${res.navName}`}</NavDropdown.Item>
-            <NavDropdown.Item className='click' onClick={()=>{handleNavigate({formId : res.formId,navigate:res.navigate,emd :'yes'})}}>{`Edit ${res.navName}`}</NavDropdown.Item>
-            <NavDropdown.Item className='click' onClick={()=>{handleNavigate({formId : res.formId,navigate:res.navigate,emd:'add'})}}>{`Add ${res.navName}`}</NavDropdown.Item>
-        </NavDropdown>
+            // return  <Dropdown title={res.navName} className = 'multiDrop' >
+            //     <Dropdown.Item>{`View ${res.navName}`}</Dropdown.Item>
+            //     <Dropdown.Item>{`Edit ${res.navName}`}</Dropdown.Item>
+            //     <Dropdown.Item>{`Add ${res.navName}`}</Dropdown.Item>
+            // </Dropdown>
+        //     <NavDropdown className='ddClassEle' title={res.navName} key={i} >
+        //     <NavDropdown.Item className='click' onClick={()=>{handleNavigate({formId : res.formId,navigate:res.navigate,emd :'no'})}}>{`View ${res.navName}`}</NavDropdown.Item>
+        //     <NavDropdown.Item className='click' onClick={()=>{handleNavigate({formId : res.formId,navigate:res.navigate,emd :'yes'})}}>{`Edit ${res.navName}`}</NavDropdown.Item>
+        //     <NavDropdown.Item className='click' onClick={()=>{handleNavigate({formId : res.formId,navigate:res.navigate,emd:'add'})}}>{`Add ${res.navName}`}</NavDropdown.Item>
+        // </NavDropdown>
         }
         else{
             return null
@@ -107,6 +123,21 @@ className='navbar-background'
         }
     })
 }
+<Dropdown title='User Access' className='multiDrop' position='right'>
+{
+    NavBarRed.val.filter((fil)=>{
+        return fil.navigate=='/GridForm'
+    }).map((res)=>{
+        return <Dropdown.Item>{res.navName}
+        <Dropdown.Submenu position='right'>
+            <Dropdown.Item onClick={()=>{handleNavigate({formId : res.formId,navigate:res.navigate,emd :'no'})}} >{`View ${res.navName}`}</Dropdown.Item>
+            <Dropdown.Item onClick={()=>{handleNavigate({formId : res.formId,navigate:res.navigate,emd :'yes'})}}>{`Edit ${res.navName}`}</Dropdown.Item>
+            <Dropdown.Item onClick={()=>{handleNavigate({formId : res.formId,navigate:res.navigate,emd:'add'})}}>{`Add ${res.navName}`}</Dropdown.Item>
+        </Dropdown.Submenu>
+        </Dropdown.Item>
+    })
+}
+</Dropdown>
 </nav></div>
 )
 }

@@ -10,6 +10,7 @@ import { useLocation, useNavigate } from 'react-router';
 import './CSS/FormConf.css'
 import { Alert } from 'react-bootstrap';
 import swal from 'sweetalert';
+import { FetchFormEditData } from '../Store/Actions/FormEditAct';
 
 let AlertVal = {}
 export const AlertData = {
@@ -36,6 +37,7 @@ const FormConf = () => {
     const FormDatRed = useSelector((state) => state.FormDatRed)
     const SendConfDataRed = useSelector((state) => state.SendConfDataRed)    
     const AuthRed = useSelector((state)=>state.AuthRed)
+    const FormEditRed = useSelector((state)=>state.FormEditRed)
 
 
 
@@ -50,11 +52,12 @@ const FormConf = () => {
         dispatch(FetchConfSectionData(FormIdRed,AuthRed.val))
         dispatch(FetchConfGridData(FormIdRed,AuthRed.val))
         dispatch(FetchConfColumnData(FormIdRed,AuthRed.val))
+        dispatch(FetchFormEditData(location.state !== null ? location.state.formId : '' ,AuthRed.val))
     },[FormIdRed])
 
     useEffect(()=>{
-      // console.log('location',location.state.formId)
-    },[location])
+      console.log('location',FormEditRed)
+    },[FormEditRed])
 
     // useEffect(()=>{
     //   console.log('FormDatRed',Object.values(FormDatRed).filter((fil)=>{return fil.length > 0}))
@@ -148,8 +151,9 @@ const FormConf = () => {
   {
         SectionRed.loading ? MainObject.loader() : GridRed.loading ? MainObject.loader() : 
          ColumnRed.loading ? MainObject.loader() :
+         FormEditRed.loading ? MainObject.loader() :
       // defaultVal&&MainObject.tabs(SectionRed.val,GridRed.val,ColumnRed.val.sort((a,b) => parseInt(a.number) - parseInt(b.number)),[],defaultVal,setdefaultVal,handleSave)
-      defaultVal&&MainObject.conftabs(SectionRed.val,GridRed.val,ColumnRed.val.sort((a,b) => parseInt(a.number) - parseInt(b.number)),[],defaultVal,setdefaultVal,handleSave)
+      defaultVal&&MainObject.conftabs(SectionRed.val,GridRed.val,ColumnRed.val.sort((a,b) => parseInt(a.number) - parseInt(b.number)),FormEditRed.val,defaultVal,setdefaultVal,handleSave)
         //  MainObject.accordion(SectionRed.val,SubSectionRed.val,ColumnRed.val,[],width,defaultVal,setdefaultVal) 
   }
   {/* <span className='mx-5 my-2' style={{float:'right'}}>
