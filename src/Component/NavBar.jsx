@@ -28,6 +28,7 @@ const Navbar = () => {
         dispatch(FetchNavbarData(AuthRed.val))
     },[AuthRed])
 
+    console.log('NavBarRed',[...new Set(NavBarRed.val.filter((fil)=>{return fil.cat !== null}).map((nres)=>{return nres.cat}))])
 
 
     const handleNavigate = (res) =>{
@@ -123,7 +124,25 @@ className='navbar-background'
         }
     })
 }
-<Dropdown title='User Access' className='multiDrop' position='right'>
+{
+    [...new Set(NavBarRed.val.filter((fil)=>{return fil.cat !== null}).map((nres)=>{return nres.cat}))].map((res)=>{
+        return <Dropdown title={res} className='multiDrop' position='right'>
+            {
+                NavBarRed.val.filter((fil)=>{return fil.cat == res}).map((nres)=>{
+                    return <Dropdown.Item>
+                        {nres.navName}
+                        <Dropdown.Submenu position='right'>
+            <Dropdown.Item onClick={()=>{handleNavigate({formId : nres.formId,navigate:nres.navigate,emd :'no'})}} >{`View ${nres.navName}`}</Dropdown.Item>
+            <Dropdown.Item onClick={()=>{handleNavigate({formId : nres.formId,navigate:nres.navigate,emd :'yes'})}}>{`Edit ${nres.navName}`}</Dropdown.Item>
+            <Dropdown.Item onClick={()=>{handleNavigate({formId : nres.formId,navigate:nres.navigate,emd:'add'})}}>{`Add ${nres.navName}`}</Dropdown.Item>
+        </Dropdown.Submenu>
+                    </Dropdown.Item>
+                })
+            }
+        </Dropdown>
+    })
+}
+{/* <Dropdown title='User Access' className='multiDrop' position='right'>
 {
     NavBarRed.val.filter((fil)=>{
         return fil.navigate=='/GridForm'
@@ -137,7 +156,7 @@ className='navbar-background'
         </Dropdown.Item>
     })
 }
-</Dropdown>
+</Dropdown> */}
 </nav></div>
 )
 }

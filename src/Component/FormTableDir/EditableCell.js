@@ -415,7 +415,7 @@ if(dropDown.filter((fil,i)=>{return i==index})[0].mixVal){
     
 
     const handleClick = (act) =>{
-      dispatch(FetchObjectIdData(FormIdRed,AuthRed.val))
+      // dispatch(FetchObjectIdData(FormIdRed,AuthRed.val))
 
       let Obj = {}
       Object.keys(rowObj.original).forEach((fe)=>{Obj[fe] =''})
