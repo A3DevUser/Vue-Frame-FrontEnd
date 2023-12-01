@@ -1,0 +1,28 @@
+.chart-flex{
+    display: grid;
+    grid-template-columns: 33vw 33vw 33vw;
+    grid-template-rows: 20vw 20vw;
+    /* height: 80vh; */
+
+}
+
+.chart-flex > div{
+    border: solid rgb(185, 185, 185) 1px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.item4{
+    grid-column-start: 1;
+    grid-column-end: 4;
+}
+
+.mainDiv{
+    height: 89vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    /* margin-top: 2vh; */
+    background-color: #e4e4e4;
+}
