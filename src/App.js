@@ -14,6 +14,8 @@ import { useSelector } from 'react-redux'
 import AddTable from './Component/EditViewAdd/AddTable'
 import EditTable from './Component/EditViewAdd/EditTable'
 import ViewTable from './Component/EditViewAdd/ViewTable'
+import {Offline,Online} from 'react-detect-offline'
+import { Modal } from 'react-bootstrap'
 const App = () => {
 
   const [show, setshow] = useState(false)
@@ -33,6 +35,20 @@ const App = () => {
 
   return (
     <div>
+<Offline>
+  <div style={{ width: '100vw', height: '50vh', display: 'flex', justifyContent: 'center', alignItems: 'end' }}>
+    <span style={{ fontSize: '150px' }} class="bi bi-wifi-off"></span>
+  </div>
+  <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+  <ul>
+  <h3>No internet</h3><br/>
+  <h5>Try:</h5><br/>
+    <li>Checking the network cables, modem, and router</li>
+    <li>Reconnecting to Wi-Fi</li>
+  </ul>
+</div>
+
+</Offline>
 
       {/* {
 
@@ -42,8 +58,8 @@ const App = () => {
       } */}
       {/* <MultiDropDown/> */}
       {/* <button className='btn btn-primary' onClick={()=>{eval('handleClick()')}}>Click me</button> */}
+      <Online>
       <Navbar />
-      {/* <TabsBar/> */}
       <Routes>
         <Route path='/' element={<LogInPage/>} />
         <Route element={<ProtectedRoutes logStatus={LogInStateRed}/>}>
@@ -56,6 +72,7 @@ const App = () => {
           <Route path='/confform' element={<FormConf />} />
         </Route>
       // </Routes>
+      </Online>
     </div>
   )
 }

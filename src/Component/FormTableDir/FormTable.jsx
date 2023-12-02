@@ -38,7 +38,11 @@ const FormTable = ({col,dData,gridData,handleSave}) => {
 
     useEffect(()=>{
       if(EmdRed=='add'&&window.location.pathname.includes('Table')){
-        setdata([])
+        if(Object.keys(FormDatRed).includes(gridData.gridId)){
+          setdata([...FormDatRed[gridData.gridId]])
+        }else{
+          setdata([])
+        }
       }
     },[EmdRed])
 

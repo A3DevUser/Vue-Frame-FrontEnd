@@ -27,15 +27,17 @@ const AddTable = () => {
     const handleSave = () =>{
         // console.log('FormDatRed',Object.values(FormDatRed).filter((fil)=>{return fil.length > 0})) 
         // console.log('FormDatRed',ExcelDataRed)
-       console.log('GridFormrowData',JSON.stringify(FormDatRed))
+       console.log('GridFormrowData',FormDatRed)
           // dispatch(PostFormExcelData(res)) 
-          Object.values(FormDatRed).forEach((res)=>{
-            dispatch(PostFormExcelData(res,AuthRed.val)) 
-          })
 
-          Object.keys(FormDatRed).forEach((res)=>{
-            dispatch(FetchWFCommonData(res,AuthRed.val))
-          })
+
+          // Object.values(FormDatRed).forEach((res)=>{
+          //   dispatch(PostFormExcelData(res,AuthRed.val)) 
+          // })
+
+          // Object.keys(FormDatRed).forEach((res)=>{
+          //   dispatch(FetchWFCommonData(res,AuthRed.val))
+          // })
 
       }
 
@@ -51,7 +53,7 @@ const AddTable = () => {
         GridRed.loading&&GridRed.val.length == 0 ? MainObject.loader() :
         ColumnRed.loading&&GridRed.val.length == 0  ? MainObject.loader() :
         GridRed.val.filter((fil)=>{return fil.isMain }).map((res,i)=>{
-         return <GridFormSub column={ColumnRed.val.sort((a,b)=>{return a.number-b.number})} data={[]} gridData={res} key={i} handleSave={handleSave}/>
+         return <GridFormSub column={ColumnRed.val.sort((a,b)=>{return a.number-b.number})} data={Object.keys(FormDatRed).includes(res.gridId) ? FormDatRed[res.gridId] : []} gridData={res} key={i} handleSave={handleSave}/>
         })
       }
     </div>

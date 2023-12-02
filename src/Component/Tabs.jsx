@@ -1,14 +1,19 @@
 import { Tab, Tabs } from "react-bootstrap"
 import { MainObject } from "./Elements/commonFun"
 import './CSS/Tabs.css'
+import { useSelector } from "react-redux"
+import { useEffect } from "react"
 
 function TabsBar({accordionVal,gridData,columnData,data,defaultVal,setdefaultVal,handleSave}) {
+
+    const FormDatRed = useSelector((state) => state.FormDatRed)
 
     const handleChangeSec = (e) =>{
         // console.log(e)
         setdefaultVal([e.secId])
     }
     // console.log('columnData',columnData)
+
 
     return <Tabs activeKey={defaultVal ? defaultVal[0] : ''} id="fill-tab-example" className="mb-3 m-2 bg-gray" fill>
         
@@ -32,7 +37,7 @@ function TabsBar({accordionVal,gridData,columnData,data,defaultVal,setdefaultVal
                         {
                         columnData&&data&&
                         MainObject.table(columnData,
-                            (data.length >= 1) ? data.filter((fil)=>{return fil.GRID_ID==subRes.gridId})[0].DATA : [dataObj],
+                            (data.filter((fil)=>{return fil.GRID_ID == subRes.gridId}).length == 1) ? data.filter((fil)=>{return fil.GRID_ID==subRes.gridId})[0].DATA : [dataObj],
                             subRes,handleSave)
                     }
                       <span className='mx-5 my-2' style={{float:'right',display:window.location.pathname.includes('confform') ? 'block' : 'none'}}>
