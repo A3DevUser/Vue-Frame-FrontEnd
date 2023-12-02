@@ -77,7 +77,7 @@ className='navbar-background'
 {
     NavBarRed.val.map((res,i)=>{
         if(res.navType=='img'){
-            return <img src={res.url} alt="logo" style={{width:'10vw', height:'4vw'}} key={i}/>
+            return <img src={res.url} alt="logo" onClick={()=>{navigate('/homepage')}} style={{width:'10vw', height:'4vw', cursor:'pointer'}}  key={i}/>
 
         }else if(res.navType=='conf'){
             return<NavDropdown className='ddClass' title={<span class="bi bi-gear customIcon"></span>} key={i}>
