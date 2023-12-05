@@ -112,12 +112,13 @@ export const ColumnHeader = (colData, updateMyData, dropDown, addAndDeleteRow, g
       }
 
     }else if(res.cellType == 'link'){
+      let gridIdVal = res.gridId
       return{
         Header: res.fieldName,
         accessor: res.accessor,
         Cell : ({cell})=>{
           console.log('cell.row',cell.row)
-          return<EditableLink lable={'Edit form'} to={'/confform'} rowObj={cell.row}  />
+          return<EditableLink lable={gridIdVal== 'GID-576' ? 'Edit Form' : 'Edit WorkFlow'} to={'/confform'} rowObj={cell.row} gridIdVal={gridIdVal} />
         },
         width: res.width,
         sticky: res.sticky

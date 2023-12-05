@@ -85,6 +85,7 @@ className='navbar-background'
                 <NavDropdown.Item className='click' onClick={()=>{handleNavigate({formId : 'FORM-106',navigate:'/confform'})}}>WorkFlow Confg</NavDropdown.Item>
                 <NavDropdown.Item className='click' onClick={()=>{handleNavigate({formId : 'FORM-528', emd:'no'})}}>Import & Export</NavDropdown.Item>
                 <NavDropdown.Item className='click' onClick={()=>{handleNavigate({formId : 'FORM-529', emd:'no'})}}>Form Edit</NavDropdown.Item>
+                <NavDropdown.Item className='click' onClick={()=>{handleNavigate({formId : 'FORM-601', emd:'no'})}}>WorkFlow Edit</NavDropdown.Item>
             </NavDropdown>
             // <button onClick={()=>{handleNavigate(res)}} key={i} 
             // className=' btn btn-sm my-1 mx-2 p-2' 
