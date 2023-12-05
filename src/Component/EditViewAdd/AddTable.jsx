@@ -6,6 +6,7 @@ import { FetchColumnData } from '../../Store/Actions/Column'
 import { FetchGridData } from '../../Store/Actions/GridAct'
 import { MainObject } from '../../Component/Elements/commonFun'
 import GridFormSub from '../../Component/GridFormSub'
+import { FormDataAct } from '../../Store/Actions/GeneralStates'
 
 const AddTable = () => {
     const dispatch = useDispatch()
@@ -21,7 +22,7 @@ const AddTable = () => {
 
     useEffect(()=>{
     dispatch(FetchGridData(FormIdRed,AuthRed.val))
-    dispatch(FetchColumnData(FormIdRed,EmdRed,AuthRed.val))      
+    dispatch(FetchColumnData(FormIdRed,EmdRed,AuthRed.val))  
     },[FormIdRed])
 
     const handleSave = () =>{
@@ -53,7 +54,11 @@ const AddTable = () => {
         GridRed.loading&&GridRed.val.length == 0 ? MainObject.loader() :
         ColumnRed.loading&&GridRed.val.length == 0  ? MainObject.loader() :
         GridRed.val.filter((fil)=>{return fil.isMain }).map((res,i)=>{
-         return <GridFormSub column={ColumnRed.val.sort((a,b)=>{return a.number-b.number})} data={Object.keys(FormDatRed).includes(res.gridId) ? FormDatRed[res.gridId] : []} gridData={res} key={i} handleSave={handleSave}/>
+          ColumnRed
+         return FormDatRed&&<GridFormSub column={ColumnRed.val.sort((a,b)=>{return a.number-b.number})} data=
+        //  {[]}
+         {Object.keys(FormDatRed).includes(res.gridId) ? FormDatRed[res.gridId] : []} 
+         gridData={res} key={i} handleSave={handleSave}/>
         })
       }
     </div>

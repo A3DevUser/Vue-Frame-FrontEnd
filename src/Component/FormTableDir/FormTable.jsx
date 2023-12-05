@@ -37,15 +37,19 @@ const FormTable = ({col,dData,gridData,handleSave}) => {
 
 
     useEffect(()=>{
+      console.log('FormDatRed',FormDatRed);
       if(EmdRed=='add'&&window.location.pathname.includes('Table')){
         if(Object.keys(FormDatRed).includes(gridData.gridId)){
-          console.log('FormDatRed[gridData.gridId]',FormDatRed[gridData.gridId])
+          console.log('FormDatRed[gridData.gridId]if',FormDatRed)
           setdata([...FormDatRed[gridData.gridId]])
         }else{
-          setdata([])
+          console.log('FormDatRed[gridData.gridId]ifelse',FormDatRed)
+          let dataObj = {}
+          col.filter((fil)=>{return fil.gridId == gridData.gridId}).forEach((fe)=>{dataObj[fe.accessor]=''})
+          setdata([dataObj])
         }
       }
-    },[EmdRed])
+    },[EmdRed,FormIdRed])
 
     // const mySelRowState = useSelector((state)=>state.selectedRowState)
     // const AreaSchemeDateSetRed = useSelector((state)=>state.AreaSchemeDateSetRed)

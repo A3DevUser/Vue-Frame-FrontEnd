@@ -21,14 +21,14 @@ const ModalColumnErr = (val) =>{
     }
 };
 
-export const FetchModalColumnData = (id,token) =>{
+export const FetchModalColumnData = (id,emd,token) =>{
     const headers = {
         'Content-Type': 'application/json', 
         'Authorization': `Bearer ${token}` , 
       };
     return (dispatch)=>{
         dispatch(ModalColumnReq());
-        axios.get(`http://localhost:8080/VF/getcolumn?formId=${id}`,{headers})
+        axios.get(`http://localhost:8080/VF/getcol?formId=${id}&emd=${emd}`,{headers})
         .then((res)=>{
             dispatch(ModalColumnSuccess(res.data))
         })

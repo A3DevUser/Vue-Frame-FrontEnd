@@ -18,6 +18,8 @@ const ModalForm = () => {
   const ModalGridRed = useSelector((state) => state.ModalGridRed)
   const AuthRed = useSelector((state)=>state.AuthRed)
   const GetDataRed = useSelector((state)=> state.GetDataRed)
+  const EmdRed = useSelector((state)=>state.EmdRed)
+
 
 
 
@@ -30,7 +32,7 @@ const ModalForm = () => {
 
     dispatch(FetchModalSectionData(FormIdRed,AuthRed.val))
     dispatch(FetchModalGridData(FormIdRed,AuthRed.val))
-    dispatch(FetchModalColumnData(FormIdRed,AuthRed.val))
+    dispatch(FetchModalColumnData(FormIdRed,EmdRed,AuthRed.val))
   }, [])
 
 
