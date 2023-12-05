@@ -14,6 +14,8 @@ import { Link } from "react-router-dom"
 import { FetchImportColumnData } from "../../Store/Actions/ImportColumnAct"
 import { FetchImportGridData } from "../../Store/Actions/ImportGridAct"
 import { FetchObjectIdData } from "../../Store/Actions/ObjectIdAct"
+import RichText from "../../Component/RichText/RichText"
+import { Button, Modal } from "react-bootstrap"
 
 export const EditableCell = ({
     value: initialValue,
@@ -574,3 +576,36 @@ const ImportGridRed = useSelector((state)=>state.ImportGridRed)
       }
            </select>
   }
+
+ export const EditableRtf = ({
+    value: initialValue,
+    row:  index ,
+    column:  id ,
+    updateMyData, 
+    colObj : colObj
+ }) =>{
+
+  const [show,setshow] = useState(false)
+  const [value,setvalue] = useState('')
+
+  const handleModal = ()=>{
+    setshow(!show)
+  }
+
+  useEffect(()=>{
+    if(!show){
+      updateMyData(index, id, value,null)
+    }
+  },[show])
+
+  return( 
+  <>
+  <Button variant="primary" onClick={handleModal}>  <i class="bi bi-file-earmark-richtext"></i>  {colObj.Header}</Button>
+  <Modal show={show} size="lg" centered>
+    <Modal.Title style={{marginLeft:'1vw'}}>{colObj.Header}</Modal.Title>
+    <Modal.Body><RichText setvalue={setvalue} value={value} /></Modal.Body>
+    <Modal.Footer><Button onClick={handleModal}>Close</Button></Modal.Footer>
+  </Modal>
+  </>
+  )
+ }

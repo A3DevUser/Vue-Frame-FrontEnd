@@ -1,5 +1,5 @@
 import { useEffect } from "react"
-import { EditableActionCell, EditableActionPopCell, EditableAnaCell, EditableAttachCell, EditableCell, EditableDateCell, EditableDdCell, EditableDdIe, EditableImporter, EditableLink, EditableLogicCell, EditableMixCell, EditableMksCell, EditableNumCell, EditableStaticCell, EditableUploader, } from "./EditableCell"
+import { EditableActionCell, EditableActionPopCell, EditableAnaCell, EditableAttachCell, EditableCell, EditableDateCell, EditableDdCell, EditableDdIe, EditableImporter, EditableLink, EditableLogicCell, EditableMixCell, EditableMksCell, EditableNumCell, EditableRtf, EditableStaticCell, EditableUploader, } from "./EditableCell"
 
 export const ColumnHeader = (colData, updateMyData, dropDown, addAndDeleteRow, gridData, data, handleOnfocus, dropDownData) => {
 
@@ -118,6 +118,16 @@ export const ColumnHeader = (colData, updateMyData, dropDown, addAndDeleteRow, g
         Cell : ({cell})=>{
           console.log('cell.row',cell.row)
           return<EditableLink lable={'Edit form'} to={'/confform'} rowObj={cell.row}  />
+        },
+        width: res.width,
+        sticky: res.sticky
+      }
+    }else if(res.cellType == 'rtf'){
+      return {
+        Header : res.fieldName,
+        accessor : res.accessor,
+        Cell : ({cell}) =>{
+          return <EditableRtf colObj={cell.column} column={cell.column.id} row={cell.row.id} updateMyData={updateMyData} value={cell.value} />
         },
         width: res.width,
         sticky: res.sticky
