@@ -22,11 +22,12 @@ const EditTable = () => {
     const AuthRed = useSelector((state)=>state.AuthRed)
     const GetDataRed = useSelector((state)=> state.GetDataRed)
     const ResetFormRed = useSelector((state)=>state.ResetFormRed)
+    const UserDataStateRed = useSelector((state)=>state.UserDataStateRed)
 
     useEffect(()=>{
     dispatch(FetchGridData(FormIdRed,AuthRed.val))
     dispatch(FetchColumnData(FormIdRed,EmdRed,AuthRed.val))   
-    dispatch(FetchGetData(FormIdRed,AuthRed.val))  
+    dispatch(FetchGetData(FormIdRed,AuthRed.val,UserDataStateRed))
     },[FormIdRed])
 
 
@@ -64,7 +65,7 @@ const EditTable = () => {
           })
           console.log('dataObj',GetDataRed.val.length)
           console.log('dataObj',dataObj)
-          let gridIdArr = ['GID-575','GID-576']
+          let gridIdArr = ['GID-575','GID-576','GID-641']
          return <GridFormSub column={ColumnRed.val.sort((a,b)=>{return a.number-b.number})} data=
         //  {[]}
          {

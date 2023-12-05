@@ -54,7 +54,7 @@ const AddTable = () => {
         GridRed.loading&&GridRed.val.length == 0 ? MainObject.loader() :
         ColumnRed.loading&&GridRed.val.length == 0  ? MainObject.loader() :
         GridRed.val.filter((fil)=>{return fil.isMain }).map((res,i)=>{
-          ColumnRed
+          // ColumnRed
          return FormDatRed&&<GridFormSub column={ColumnRed.val.sort((a,b)=>{return a.number-b.number})} data=
         //  {[]}
          {Object.keys(FormDatRed).includes(res.gridId) ? FormDatRed[res.gridId] : []} 

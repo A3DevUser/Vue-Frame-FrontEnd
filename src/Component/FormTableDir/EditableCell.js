@@ -493,12 +493,20 @@ const ImportGridRed = useSelector((state)=>state.ImportGridRed)
     to: path,
     lable: lable,
     rowObj : rowObj,
+    gridIdVal: gridIdVal 
   }) => {
 
     const dispatch = useDispatch()
     
     const handleClick = () =>{
-      dispatch(FormIdAct('FORM-105'))
+      if(gridIdVal == 'GID-576'){
+          dispatch(FormIdAct('FORM-105'))
+      }else if(gridIdVal == 'GID-641'){
+          dispatch(FormIdAct('FORM-106'))
+      }else{
+        console.log('FormDataNewVal',gridIdVal)        
+      }
+
     }
     return <Link to={{pathname : path}} state={{formId : rowObj.original.form_id}} onClick={handleClick}  >{lable}</Link>
   }
