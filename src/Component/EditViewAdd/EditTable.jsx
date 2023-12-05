@@ -23,11 +23,12 @@ const EditTable = () => {
     const AuthRed = useSelector((state)=>state.AuthRed)
     const GetDataRed = useSelector((state)=> state.GetDataRed)
     const ResetFormRed = useSelector((state)=>state.ResetFormRed)
+    const UserDataStateRed = useSelector((state)=>state.UserDataStateRed)
 
     useEffect(()=>{
     dispatch(FetchGridData(FormIdRed,AuthRed.val))
     dispatch(FetchColumnData(FormIdRed,EmdRed,AuthRed.val))   
-    dispatch(FetchGetData(FormIdRed,AuthRed.val))  
+    dispatch(FetchGetData(FormIdRed,AuthRed.val,UserDataStateRed))  
     },[FormIdRed])
 
 
