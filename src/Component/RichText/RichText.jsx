@@ -3,7 +3,7 @@ import ReactQuill from 'react-quill'
 import 'react-quill/dist/quill.snow.css';
 
 
-const RichText = ({setvalue,value}) => {
+const RichText = ({setvalue,value,setDisplayTxt}) => {
 
     const modules = {
 
@@ -20,9 +20,13 @@ const RichText = ({setvalue,value}) => {
     ['link','image','video']
     ]
         }
+        const handleChange = (content, delta, source, editor) =>{
+            setvalue(editor.getHTML())
+            setDisplayTxt(editor.getText())
+        }
   return (
     <div style ={{height:'50vh'}}>
-      <ReactQuill style ={{height:'40vh'}} theme='snow' modules={modules} onChange={setvalue} value={value} />
+      <ReactQuill  style ={{height:'40vh'}} theme='snow' modules={modules} onChange={handleChange} value={value} />
     </div>
   )
 }

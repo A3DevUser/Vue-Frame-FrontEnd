@@ -15,7 +15,7 @@ import { FetchImportColumnData } from "../../Store/Actions/ImportColumnAct"
 import { FetchImportGridData } from "../../Store/Actions/ImportGridAct"
 import { FetchObjectIdData } from "../../Store/Actions/ObjectIdAct"
 import RichText from "../../Component/RichText/RichText"
-import { Button, Modal } from "react-bootstrap"
+import { Button, InputGroup, Modal } from "react-bootstrap"
 
 export const EditableCell = ({
     value: initialValue,
@@ -59,7 +59,7 @@ export const EditableCell = ({
     }, [initialValue])
     
     return <div>
-      <textarea value={value} className='form-control' style={{width:colObj.width,height:'7vh',border:'none'
+      <textarea value={value} className='form-control' style={{width:colObj.width,border:'none'
       // , background : value ? '#28a745' : 'white', color : 'white', 
       }} onChange={onChange} onBlur={onBlur} placeholder='Type here...' maxLength={valWidth} disabled={freeze}/>
       {/* xyz */}
@@ -595,6 +595,7 @@ const ImportGridRed = useSelector((state)=>state.ImportGridRed)
 
   const [show,setshow] = useState(false)
   const [value,setvalue] = useState('')
+  const [displayTxt,setDisplayTxt]=useState('')
 
   const handleModal = ()=>{
     setshow(!show)
@@ -608,10 +609,16 @@ const ImportGridRed = useSelector((state)=>state.ImportGridRed)
 
   return( 
   <>
-  <Button variant="primary" onClick={handleModal}>  <i class="bi bi-file-earmark-richtext"></i>  {colObj.Header}</Button>
+  {/* <Button variant="primary" onClick={handleModal}>  <i class="bi bi-file-earmark-richtext"></i>  {colObj.Header}</Button> */}
+  <InputGroup>
+  <textarea style={{width:colObj.width}} className='form-control' onClick={handleModal} value={displayTxt} readOnly/>
+  <InputGroup.Text id="btnGroupAddon">
+  <span style={{fontSize:'25px'}} class="bi bi-file-earmark-text"></span>
+    </InputGroup.Text>
+  </InputGroup>
   <Modal show={show} size="lg" centered>
     <Modal.Title style={{marginLeft:'1vw'}}>{colObj.Header}</Modal.Title>
-    <Modal.Body><RichText setvalue={setvalue} value={value} /></Modal.Body>
+    <Modal.Body><RichText setvalue={setvalue} setDisplayTxt={setDisplayTxt} value={value} /></Modal.Body>
     <Modal.Footer><Button onClick={handleModal}>Close</Button></Modal.Footer>
   </Modal>
   </>
