@@ -611,7 +611,7 @@ const ImportGridRed = useSelector((state)=>state.ImportGridRed)
   <>
   {/* <Button variant="primary" onClick={handleModal}>  <i class="bi bi-file-earmark-richtext"></i>  {colObj.Header}</Button> */}
   <InputGroup>
-  <textarea style={{width:colObj.width}} className='form-control' onClick={handleModal} value={displayTxt} readOnly/>
+  <textarea maxLength='5' style={{width:colObj.width}} className='form-control' onClick={handleModal} value={displayTxt} readOnly/>
   <InputGroup.Text id="btnGroupAddon">
   <span style={{fontSize:'25px'}} class="bi bi-file-earmark-text"></span>
     </InputGroup.Text>

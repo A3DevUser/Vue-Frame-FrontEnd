@@ -76,22 +76,13 @@ const FormTable = ({col,dData,gridData,handleSave}) => {
       )
     }
   
-    const addAndDeleteRow = (index,obj,action) => {
+    const addAndDeleteRow =  (index,obj,action) => {
       if(action=='add'){
-      // setdata((old)=>{
-      //   return old.map((res,i)=>{
-      //     if(i == index){
-      //       return [{...res},{...obj}]
-      //     }else{
-      //       return res
-      //     }
-      //   }).flat()
-      // })
-
-
-
-      setdata((old)=>{return [...old,{...obj,objId:SendObjectIdRed.val}]})
-
+        if(gridData.isMain=='true'){
+          setdata((old)=>{return [...old,{...obj,VF_MAIN_OBJ_ID:SendObjectIdRed.val}]})
+        }else{
+          setdata((old)=>{return [...old,{...obj,VF_OBJ_ID:SendObjectIdRed.val}]})
+        }
     }else{
           setdata((old)=>{
             return old.filter((fil,i)=>{
@@ -184,14 +175,23 @@ const FormTable = ({col,dData,gridData,handleSave}) => {
           //   console.log(finalArr)
           // },[finalArr])
 
+          useEffect(()=>{
+            console.log('datadata',typeof SendObjectIdRed.val)
+            if((typeof SendObjectIdRed.val == 'string')&&(!SendObjectIdRed.loading)){
+              let obj ={}
+              columns.forEach((res)=> obj[res.accessor]='')
+              addAndDeleteRow('',obj,'add')
+            }
+          },[SendObjectIdRed])
 
         
           const handleAddRow = ()=>{
-            let obj ={}
+            dispatch(FetchObjectIdData(FormIdRed,AuthRed.val))
+            // let obj ={}
             
-            columns.forEach((res)=> obj[res.accessor]='')
-            console.log('GridFormSub',obj)
-            addAndDeleteRow('',obj,'add')
+            // columns.forEach((res)=> obj[res.accessor]='')
+            // console.log('GridFormSub',obj)
+            // addAndDeleteRow('',obj,'add')
           }
 
           const handleRemove = () =>{
