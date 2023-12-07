@@ -10,6 +10,9 @@ export const AuthRed = (state = IntialValue, action) => {
         case "AuthReq": return {...state,loading :true}
         case "AuthSucess": return { loading: false, val: action.payload, error: '' }
         case "AuthError": return { loading: true, val: {}, error: action.payload }
+        case 'ResetAct' : return {
+            ...initialState
+        }
         default: return state
     }
 }

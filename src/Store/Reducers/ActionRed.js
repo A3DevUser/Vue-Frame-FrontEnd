@@ -13,6 +13,9 @@ export const ActionRed = (state = initialState, action) =>{
         case 'ActionErr' : return{
             loading : true, val : [] , err :action.payload
         }
+        case 'ResetAct' : return {
+            ...initialState
+        }
 
         default : return {
             ...state

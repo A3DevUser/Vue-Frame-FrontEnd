@@ -19,6 +19,10 @@ export const NavBarRed = (state = initialState, action) =>{
             val : [],
             err : action.payload
         }
+
+        case 'ResetAct' : return {
+            ...initialState
+        }
         
         default : return {...state}
     }

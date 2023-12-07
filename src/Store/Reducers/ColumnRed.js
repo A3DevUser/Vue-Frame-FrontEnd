@@ -20,6 +20,9 @@ export const ColumnRed = (state = initialState, action) =>{
             err : action.payload
         }
         
+        case 'ResetAct' : return {
+            ...initialState
+        }
 
         default : return {...state}
     }

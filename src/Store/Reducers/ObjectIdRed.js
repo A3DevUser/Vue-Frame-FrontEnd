@@ -17,6 +17,10 @@ export const SendObjectIdRed = (state=initialFieldVal,action) => {
             loading:true, val:[], error:action.payload
         }
 
+        case 'ResetAct' : return {
+            ...initialState
+        }
+
         default :return state
     }
 

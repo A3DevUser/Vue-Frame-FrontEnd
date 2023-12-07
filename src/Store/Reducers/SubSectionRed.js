@@ -13,7 +13,9 @@ export const SubSectionRed = (state = initialState, action) =>{
         case 'SubSectionErr' : return{
             loading : true, val : [] , err :action.payload
         }
-        case 'ResetAct' : return {...state}
+        case 'ResetAct' : return {
+            ...initialState
+        }
 
         default : return {
             ...state

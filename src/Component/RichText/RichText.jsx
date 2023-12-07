@@ -7,7 +7,9 @@ const RichText = ({setvalue,value,setDisplayTxt}) => {
 
     const modules = {
 
-       toolbar: [[{header : [1,2,3,4,5,6,false]}],
+       toolbar: [
+        [{header : [1,2,3,4,5,6,false]}],
+        [{'table':[]}],
     [{font:[]}],
     [{size:[]}],
     ['bold','italic','underline','strike','blockquote'],
