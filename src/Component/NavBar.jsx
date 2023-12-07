@@ -12,6 +12,7 @@ import { FetchActionData } from '../Store/Actions/ActionAct'
 import { FetchImportColumnData } from '../Store/Actions/ImportColumnAct'
 import { FetchImportGridData } from '../Store/Actions/ImportGridAct'
 import Dropdown from 'react-multilevel-dropdown';
+import ReportForm from './Report/ReportForm'
 
 
 const Navbar = () => {
@@ -86,6 +87,7 @@ className='navbar-background'
                 <NavDropdown.Item className='click' onClick={()=>{handleNavigate({formId : 'FORM-528', emd:'no'})}}>Import & Export</NavDropdown.Item>
                 <NavDropdown.Item className='click' onClick={()=>{handleNavigate({formId : 'FORM-529', emd:'no'})}}>Form Edit</NavDropdown.Item>
                 <NavDropdown.Item className='click' onClick={()=>{handleNavigate({formId : 'FORM-601', emd:'no'})}}>WorkFlow Edit</NavDropdown.Item>
+                <NavDropdown.Item className='click' onClick={()=>{navigate('/report')}}>Report</NavDropdown.Item>
             </NavDropdown>
             // <button onClick={()=>{handleNavigate(res)}} key={i} 
             // className=' btn btn-sm my-1 mx-2 p-2' 

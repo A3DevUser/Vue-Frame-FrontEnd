@@ -18,7 +18,7 @@ export const SendConfDataRed = (state=initialFieldVal,action) => {
         }
 
         case 'ResetAct' : return {
-            ...initialState
+            ...initialFieldVal
         }
 
         default :return state
