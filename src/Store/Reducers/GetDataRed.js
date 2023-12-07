@@ -24,6 +24,10 @@ export const GetDataRed = (state = initialState, action) =>{
             ...initialState
         }
 
+        case 'ResetAct' : return {
+            ...initialState
+        }
+
         default : return {...state}
     }
 }

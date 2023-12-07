@@ -20,7 +20,9 @@ export const GridRed = (state = initialState, action) =>{
             err : action.payload
         }
         
-        case 'ResetAct' : return {...state}
+        case 'ResetAct' : return {
+            ...initialState
+        }
 
         default : return {...state}
     }

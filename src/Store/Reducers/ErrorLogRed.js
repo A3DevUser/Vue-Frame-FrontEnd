@@ -13,6 +13,9 @@ export const ErrorLogRed = (state = initialState, action) =>{
         case 'ErrorLogError' : return{
             loading : true, val : [] , err :action.payload
         }
+        case 'ResetAct' : return {
+            ...initialState
+        }
         default : return {
             ...state
         }

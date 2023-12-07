@@ -13,6 +13,9 @@ export const DropValRed = (state = initialState, action) =>{
         case 'DropValErr' : return{
             loading : true, val : [] , err :action.payload
         }
+        case 'ResetAct' : return {
+            ...initialState
+        }
         default : return {
             ...state
         }
