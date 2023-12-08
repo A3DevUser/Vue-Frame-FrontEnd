@@ -1,0 +1,41 @@
+/* body{
+    background-color: blue;
+} */
+
+.left-sidebar {
+    width: 15vw;
+    height: 97.9vh;
+    background-color: rgb(173, 173, 173);
+    color: black;
+    transition: width 0.3s;
+    /* border: solid black 1px; */
+  }
+  
+  .left-sidebar.collapsed {
+    width: 60px;
+  }
+  
+  .sidebar-header {
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  .sidebar-content {
+    padding: 10px;
+    color: rgb(179, 179, 179);
+  }
+  
+  .sidebar-footer {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    /* background-color: grey; */
+    /* color: black; */
+  }
+
+  .line-icon{
+    position: relative;
+    left: 5.5rem;
+    top: 8px;
+  }
+  
