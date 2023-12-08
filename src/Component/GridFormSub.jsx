@@ -7,8 +7,8 @@ const GridFormSub = ({column,data,gridData,handleSave}) => {
   const FormDatRed = useSelector((state)=>state.FormDatRed)
 
 
-  console.log('GridFormSub',data)
-  console.log('GridFormSub',FormDatRed)
+  // console.log('GridFormSub',data)
+  // console.log('GridFormSub',FormDatRed)
 
   return (
     <div>

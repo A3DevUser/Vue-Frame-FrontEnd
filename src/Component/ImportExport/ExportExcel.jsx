@@ -31,7 +31,7 @@ const ExportExcel = ({ griData, columnData }) => {
   };
 
   const handleClick = async () => {
-    console.log('exported')
+    // console.log('exported')
 
     const workbook = new ExcelJS.Workbook();
   

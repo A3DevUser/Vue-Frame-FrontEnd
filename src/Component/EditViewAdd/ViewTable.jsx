@@ -9,7 +9,7 @@ import GridFormSub from '../../Component/GridFormSub'
 import { FetchGetData } from '../../Store/Actions/GetDataAct'
 import { ResetFormState } from '../../Store/Actions/GeneralStates'
 
-const EditTable = () => {
+const ViewTable = () => {
     const dispatch = useDispatch()
 
 
@@ -34,7 +34,7 @@ const EditTable = () => {
     const handleSave = () =>{
         // console.log('FormDatRed',Object.values(FormDatRed).filter((fil)=>{return fil.length > 0})) 
         // console.log('FormDatRed',ExcelDataRed)
-       console.log(FormDatRed)
+      //  console.log(FormDatRed)
           // dispatch(PostFormExcelData(res)) 
           Object.values(FormDatRed).forEach((res)=>{
             dispatch(PostFormExcelData(res,AuthRed.val)) 
@@ -63,8 +63,8 @@ const EditTable = () => {
           ColumnRed.val.filter((fil)=>{return fil.gridId == res.gridId}).forEach((fres)=>{
             dataObj[fres.accessor] = ''
           })
-          console.log('dataObj',GetDataRed.val.length)
-          console.log('dataObj',dataObj)
+          // console.log('dataObj',GetDataRed.val.length)
+          // console.log('dataObj',dataObj)
           let gridIdArr = ['GID-575','GID-576','GID-641']
          return <GridFormSub column={ColumnRed.val.sort((a,b)=>{return a.number-b.number})} data=
         //  {[]}
@@ -79,4 +79,4 @@ const EditTable = () => {
   )
 }
 
-export default EditTable
+export default ViewTable

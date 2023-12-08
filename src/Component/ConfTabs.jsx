@@ -9,7 +9,7 @@ function ConfTabsBar({accordionVal,gridData,columnData,data,defaultVal,setdefaul
         setdefaultVal([e.secId])
     }
     // console.log('columnData',columnData)
-    console.log('Confdata',data)
+    // console.log('Confdata',data)
 
 
     return <Tabs activeKey={defaultVal ? defaultVal[0] : ''} id="fill-tab-example" className="mb-3 m-2 bg-gray" fill>
@@ -21,7 +21,7 @@ function ConfTabsBar({accordionVal,gridData,columnData,data,defaultVal,setdefaul
                 gridData.filter((fil)=>{
                     return fil.secId == res.secId
                 }).map((subRes)=>{
-                    console.log('confdata24',subRes.gridId, data.filter((fil)=>{return fil.GRID_ID == subRes.gridId}))
+                    // console.log('confdata24',subRes.gridId, data.filter((fil)=>{return fil.GRID_ID == subRes.gridId}))
                     let dataObj ={}
                     // columnData.filter((fil)=>{return fil.gridId == subRes.gridId}).
                     columnData.forEach((fe)=>{

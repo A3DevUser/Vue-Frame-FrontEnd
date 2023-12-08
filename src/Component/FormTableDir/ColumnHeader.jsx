@@ -4,14 +4,14 @@ import { EditableActionCell, EditableActionPopCell, EditableAnaCell, EditableAtt
 export const ColumnHeader = (colData, updateMyData, dropDown, addAndDeleteRow, gridData, data, handleOnfocus, dropDownData) => {
 
   return colData.filter((fil) => { return fil.gridId == gridData.gridId }).map((res) => {
-    console.log('colData',res)
+    // console.log('colData',res)
     if (res.cellType === 'textArea') {
       return {
         Header: res.fieldName,
         accessor: res.accessor,
         Cell: ({ cell, row }) => {
-          console.log('theCellData', row.getRowProps())
-          console.log('theCellData', cell)
+          // console.log('theCellData', row.getRowProps())
+          // console.log('theCellData', cell)
 
           return <EditableCell column={cell.column.id} row={cell.row.id} updateMyData={updateMyData} value={cell.value} colObj={cell.column} parentId={cell} rowObj={cell.row} valWidth={res.subSecWidth} type={res.cellType} />
         },
@@ -81,7 +81,7 @@ export const ColumnHeader = (colData, updateMyData, dropDown, addAndDeleteRow, g
         Header: res.fieldName,
         accessor: res.accessor,
         Cell: ({ cell }) => {
-          console.log(cell)
+          // console.log(cell)
           return <EditableDdIe column={cell.column.id} row={cell.row.id} updateMyData={updateMyData} value={cell.value} dropDown={dropDownData} rowObj={cell.row} colObj={cell.column} parentId={{ formIdVal, gridIdVal, colIdVal, json: cell.row }} handleOnfocus={handleOnfocus} />
         },
         width: res.width,
@@ -117,7 +117,7 @@ export const ColumnHeader = (colData, updateMyData, dropDown, addAndDeleteRow, g
         Header: res.fieldName,
         accessor: res.accessor,
         Cell : ({cell})=>{
-          console.log('cell.row',cell.row)
+          // console.log('cell.row',cell.row)
           return<EditableLink lable={gridIdVal== 'GID-576' ? 'Edit Form' : 'Edit WorkFlow'} to={'/confform'} rowObj={cell.row} gridIdVal={gridIdVal} />
         },
         width: res.width,

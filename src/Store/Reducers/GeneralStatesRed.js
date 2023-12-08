@@ -56,3 +56,10 @@ export const ResetFormRed = (state=false, action) =>{
         default : return state
     }
 }
+
+export const MainObjIdRed = (state=false, action) =>{
+    switch (action.type) {
+        case 'MainObjId' : return action.payload
+        default : return state
+    }
+}

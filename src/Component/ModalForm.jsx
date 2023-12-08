@@ -19,7 +19,7 @@ const ModalForm = () => {
   const AuthRed = useSelector((state)=>state.AuthRed)
   const GetDataRed = useSelector((state)=> state.GetDataRed)
   const EmdRed = useSelector((state)=>state.EmdRed)
-
+  const MainObjIdRed = useSelector((state)=>state.MainObjIdRed)
 
 
 
@@ -74,9 +74,9 @@ const ModalForm = () => {
 
   }, [FormDatRed])
 
-  useEffect(()=>{
-    console.log('ModalGridRed',ModalGridRed)
-  },[ModalGridRed])
+  // useEffect(()=>{
+  //   console.log('ModalGridRed',ModalGridRed)
+  // },[ModalGridRed])
   // console.log('finalObj', [[FormDatRed[0]], ...Object.values(obj)])
   // console.log('finalObj', JSON.stringify(Object.values(obj)))
 
@@ -94,7 +94,7 @@ const ModalForm = () => {
           {
             ModalSectionRed.loading ? MainObject.loader() : ModalGridRed.loading ? MainObject.loader() :
               ModalColumnRed.loading ? MainObject.loader() :
-                defaultVal && MainObject.tabs(ModalSectionRed.val, ModalGridRed.val, ModalColumnRed.val, GetDataRed.val, defaultVal, setdefaultVal)
+                defaultVal && MainObject.tabs(ModalSectionRed.val, ModalGridRed.val, ModalColumnRed.val, GetDataRed.val , defaultVal, setdefaultVal)
             //  MainObject.accordion(ModalSectionRed.val,SubSectionRed.val,ModalColumnRed.val,[],width,defaultVal,setdefaultVal) 
           }
         </div>

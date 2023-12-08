@@ -55,9 +55,9 @@ const FormConf = () => {
         dispatch(FetchFormEditData(location.state !== null ? location.state.formId : '' ,AuthRed.val))
     },[FormIdRed])
 
-    useEffect(()=>{
-      console.log('location',FormEditRed)
-    },[FormEditRed])
+    // useEffect(()=>{
+    //   console.log('location',FormEditRed)
+    // },[FormEditRed])
 
     // useEffect(()=>{
     //   console.log('FormDatRed',Object.values(FormDatRed).filter((fil)=>{return fil.length > 0}))

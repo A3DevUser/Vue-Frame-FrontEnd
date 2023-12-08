@@ -58,3 +58,16 @@ export const ResetFormState = (val) =>{
         type : 'ResetFormState'
     }
 }
+
+export const ResetObjId = () =>{
+    return {
+        type :'ResetObjId'
+    }
+}
+
+export const MainObjId = (val) =>{
+    return {
+        type :'MainObjId',
+        payload : val
+    }
+}

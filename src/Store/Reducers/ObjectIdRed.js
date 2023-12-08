@@ -7,7 +7,7 @@ const initialFieldVal = {
 export const SendObjectIdRed = (state=initialFieldVal,action) => {
 
     switch(action.type){
-        case 'ObjectIdReq' : return {...state,loading :true}
+        case 'ObjectIdReq' : return {...state,val:[],loading :true}
 
         case 'ObjectIdSuccess' : return{
             loading:false, val:action.payload, error:''
@@ -20,7 +20,9 @@ export const SendObjectIdRed = (state=initialFieldVal,action) => {
         case 'ResetAct' : return {
             ...initialFieldVal
         }
-
+        case 'ResetObjId' : return {
+            loading : true, val:[], error : ''
+        }
         default :return state
     }
 
