@@ -54,14 +54,12 @@ const FilterData = () => {
   }
 
   return (
-    <div className='main-compo'>
-      <div>
+    <div>
     {
       GridRed.loading ? MainObject.loader() : ColumnRed.loading ? MainObject.loader() : 
       GridRed.val.filter((fil)=>{return fil.isMain }).map((res,i)=>{
       return <GridFormSub column={ColumnRed.val.sort((a,b)=>{return a.number-b.number})} data={[]} gridData={res} key={i} handleSave={handleSave}/>})
     }
-      </div>
   </div>
   );
 }

@@ -27,7 +27,7 @@ const TableStruc = ({getTableProps,getTableBodyProps,headerGroups,prepareRow,row
         ><i class="bi bi-plus-lg"></i> Add</button>
         <Button variant='success' style={{display : (gridData.isMrow =='true'&& !removeDupl.includes(window.location.pathname)) || (window.location.pathname.includes('confform')&&gridData.isMrow =='true') ? 'block' : 'none'}} onClick={handleRemove}><i class="bi bi-trash"> </i>Remove</Button>
         <Button variant='success' style={{display : (gridData.isMrow =='true'&& !removeDupl.includes(window.location.pathname)) || (window.location.pathname.includes('confform')&&gridData.isMrow =='true') ? 'block' : 'none'}} className='mx-2' onClick={handleCopy}><i class="bi bi-copy"> </i>Duplicate</Button>
-        {(gridData.isMain == 'true') || (window.location.pathname.includes('confform')) ? MainObject.button({classNameVal:'btn btn-success', widthVal:'', heightVal:'',btnName: <><i class="bi bi-floppy"></i> Submit</>},()=>{handleSave(gridData)}) : <></>}   
+        {(gridData.isMain == 'true') || (window.location.pathname.includes('confform')) || (window.location.pathname.includes('report')) ? MainObject.button({classNameVal:'btn btn-success', widthVal:'', heightVal:'',btnName: <><i class="bi bi-floppy"></i> Submit</>},()=>{handleSave(gridData)}) : <></>}   
   </div>
   </div>
       <div {...getTableProps()} className="table sticky mx-3 my-1 tableCont "  style={{maxHeight :gridData.height, maxWidth:gridData.width , overflow:'scroll', border:'none' }} >
