@@ -10,9 +10,9 @@ const TableStruc = ({getTableProps,getTableBodyProps,headerGroups,prepareRow,row
     const EmdRed = useSelector((state)=>state.EmdRed)
     const { pageIndex } = state
 
-    const save = ['/viewTable']
-    const add = ['/viewTable','/editTable']
-    const removeDupl = ['/viewTable','/editTable']
+    const save = ['/viewTable','/report']
+    const add = ['/viewTable','/editTable','/report']
+    const removeDupl = ['/viewTable','/editTable','/report']
 
   return (
     <div>
