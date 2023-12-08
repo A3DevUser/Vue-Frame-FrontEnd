@@ -17,6 +17,8 @@ import ViewTable from './Component/EditViewAdd/ViewTable'
 import {Offline,Online} from 'react-detect-offline'
 import { Modal } from 'react-bootstrap'
 import ReportForm from './Component/Report/ReportForm'
+import ConfEdit from './Component/EditViewAdd/ConfEdit'
+
 const App = () => {
 
   const [show, setshow] = useState(false)
@@ -68,6 +70,7 @@ const App = () => {
           <Route path='/addTable' element={<AddTable/>} />
           <Route path='/editTable' element={<EditTable/>} />
           <Route path='/viewTable' element={<ViewTable/>} />
+          <Route path='/confEdit' element={<ConfEdit/>}/>
           <Route path='/homepage' element={<Home  />} />
           <Route path='/forms' element={<Form />} />
           <Route path='/GridForm' element={<GridForm />} />
