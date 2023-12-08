@@ -18,6 +18,7 @@ import {Offline,Online} from 'react-detect-offline'
 import { Modal } from 'react-bootstrap'
 import ReportForm from './Component/Report/ReportForm'
 import ConfEdit from './Component/EditViewAdd/ConfEdit'
+import Tp from './Component/NavBarLeft/ReportCont'
 
 const App = () => {
 
@@ -75,7 +76,7 @@ const App = () => {
           <Route path='/forms' element={<Form />} />
           <Route path='/GridForm' element={<GridForm />} />
           <Route path='/confform' element={<FormConf />} />
-          <Route path='/report' element={<ReportForm />} />
+          <Route path='/report' element={<Tp />} />
         </Route>
       // </Routes>
       </Online>
