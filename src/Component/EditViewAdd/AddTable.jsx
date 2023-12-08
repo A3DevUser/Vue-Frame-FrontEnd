@@ -63,8 +63,8 @@ const AddTable = () => {
           }).forEach((fe)=>{dataObj[fe.accessor]=''})
           // console.log('GridFormSubobj',Object.keys(FormDatRed).includes(res.gridId),res.gridId,Object.keys(FormDatRed).includes(res.gridId) ? FormDatRed[res.gridId] : dataObj)
          return FormDatRed&&<GridFormSub column={ColumnRed.val.sort((a,b)=>{return a.number-b.number})} data=
-        //  {[]}
-         {Object.keys(FormDatRed).includes(res.gridId) ? FormDatRed[res.gridId] : [dataObj]} 
+         {[]}
+        //  {Object.keys(FormDatRed).includes(res.gridId) ? FormDatRed[res.gridId] : [dataObj]} 
          gridData={res} key={i} handleSave={handleSave}/>
         })
       }
