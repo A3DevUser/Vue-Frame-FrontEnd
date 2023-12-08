@@ -20,8 +20,6 @@ const FormTable = ({col,dData,gridData,handleSave}) => {
     const [chngRow,setchngRow]=useState({})
     const [finalArr, setfinalArr] =useState([])
     const prevDData = useRef(dData);
-
-    
   
     const FormDatRed = useSelector((state) => state.FormDatRed)
     const EmdRed = useSelector((state)=>state.EmdRed)
@@ -30,6 +28,7 @@ const FormTable = ({col,dData,gridData,handleSave}) => {
     const AuthRed = useSelector((state)=>state.AuthRed)
     const SendConfDataRed = useSelector((state)=> state.SendConfDataRed)
     const SendObjectIdRed = useSelector((state) => state.SendObjectIdRed)
+    const MainObjIdRed = useSelector((state)=>state.MainObjIdRed)
 
     // useEffect(()=>{
     //   console.log('SendConfDataRed',SendConfDataRed.val)
@@ -39,7 +38,17 @@ const FormTable = ({col,dData,gridData,handleSave}) => {
     useEffect(()=>{
       if(EmdRed=='add'&&window.location.pathname.includes('Table')){
         if(Object.keys(FormDatRed).includes(gridData.gridId)){
-          setdata([...FormDatRed[gridData.gridId]])
+          if(gridData.isMain=='true'){
+            setdata([...FormDatRed[gridData.gridId]])
+          }else{
+            // console.log('VF_MAIN_OBJ_ID_new',FormDatRed)
+            if(Object.keys(FormDatRed[gridData.gridId]).includes(MainObjIdRed)){
+            setdata([...FormDatRed[gridData.gridId][MainObjIdRed]
+            //   .filter((fil) => {
+            //   return fil.VF_MAIN_OBJ_ID == MainObjIdRed
+            //  })
+            ])}
+          }
         }else{
           let dataObj = {}
           col.filter((fil)=>{return fil.gridId == gridData.gridId}).forEach((fe)=>{dataObj[fe.accessor]=''})
@@ -76,13 +85,24 @@ const FormTable = ({col,dData,gridData,handleSave}) => {
       )
     }
   
-    const addAndDeleteRow =  (index,obj,action) => {
+    const addAndDeleteRow = (index,obj,action) => {
       if(action=='add'){
-        if(gridData.isMain=='true'){
-          setdata((old)=>{return [...old,{...obj,VF_MAIN_OBJ_ID:SendObjectIdRed.val}]})
-        }else{
-          setdata((old)=>{return [...old,{...obj,VF_OBJ_ID:SendObjectIdRed.val}]})
-        }
+      // setdata((old)=>{
+      //   return old.map((res,i)=>{
+      //     if(i == index){
+      //       return [{...res},{...obj}]
+      //     }else{
+      //       return res
+      //     }
+      //   }).flat()
+      // })
+      if(gridData.isMain == 'true'){
+        setdata((old)=>{return [...old,{...obj,VF_MAIN_OBJ_ID:index}]})
+      }else{
+        setdata((old)=>{return [...old,{...obj,VF_OBJ_ID:index,VF_MAIN_OBJ_ID:MainObjIdRed}]})
+
+      }
+
     }else{
           setdata((old)=>{
             return old.filter((fil,i)=>{
@@ -94,7 +114,7 @@ const FormTable = ({col,dData,gridData,handleSave}) => {
 
 
     const handleOnfocus = (fid,gid,cid,rData,oData,rowInd) =>{
-      console.log('dropvaldata',rData)
+      // console.log('dropvaldata',rData)
       // console.log('dropvaldata',encodeURI(JSON.stringify(rData)))
       let rowData = encodeURI(JSON.stringify(rData))
       dispatch(FetchDropValData(fid,gid,cid,rowData,oData,rowInd,AuthRed.val))
@@ -133,13 +153,23 @@ const FormTable = ({col,dData,gridData,handleSave}) => {
       //     setdata([...dData])   
       //   }
       // },[dData])
+
+      // useEffect(()=>{
+      //   console.log('FormDatRed',FormDatRed)
+      // },[FormDatRed])
   
         useEffect(()=>{
-          console.log('opData',data)
+          // console.log('opData',data)
           if(window.location.pathname == '/confform'){
             dispatch(FormDataAct({...FormDatRed,[gridData.gridId] : data}) )   
           }else{
-            dispatch(FormDataAct({...FormDatRed,[gridData.gridId] : data.map((res)=>{return {...res,GRID_ID:gridData.gridId, formId :FormIdRed }})}) )  
+            if(gridData.isMain !=='true'){
+              dispatch(FormDataAct({...FormDatRed,[gridData.gridId] : {...FormDatRed[gridData.gridId],
+                [MainObjIdRed] : data.map((res)=>{return {...res,GRID_ID:gridData.gridId, formId :FormIdRed }})}
+            }) )  
+            }else{
+              dispatch(FormDataAct({...FormDatRed,[gridData.gridId] : data.map((res)=>{return {...res,GRID_ID:gridData.gridId, formId :FormIdRed }})}) ) 
+            }
           }
 
        //   if(data.length > 0){
@@ -175,27 +205,17 @@ const FormTable = ({col,dData,gridData,handleSave}) => {
           //   console.log(finalArr)
           // },[finalArr])
 
-          useEffect(()=>{
-            console.log('datadata',typeof SendObjectIdRed.val)
-            if((typeof SendObjectIdRed.val == 'string')&&(!SendObjectIdRed.loading)){
-              let obj ={}
-              columns.forEach((res)=> obj[res.accessor]='')
-              addAndDeleteRow('',obj,'add')
-            }
-          },[SendObjectIdRed])
 
         
           const handleAddRow = ()=>{
-            dispatch(FetchObjectIdData(FormIdRed,AuthRed.val))
-            // let obj ={}
-            
-            // columns.forEach((res)=> obj[res.accessor]='')
-            // console.log('GridFormSub',obj)
-            // addAndDeleteRow('',obj,'add')
+            let obj ={}
+            const rowInd = data.length
+            columns.forEach((res)=> obj[res.accessor]='')
+            addAndDeleteRow(rowInd,obj,'add')
           }
 
           const handleRemove = () =>{
-            console.log('selectedFlatRows',selectedFlatRows)
+            // console.log('selectedFlatRows',selectedFlatRows)
 
             setdata(old =>{
               return old.filter((fil,i)=>{
@@ -221,7 +241,7 @@ const FormTable = ({col,dData,gridData,handleSave}) => {
 
           const initialState = { hiddenColumns : col.filter((fil)=>{return fil.hideShow=='true' && gridData.gridId==fil.gridId }).map((res)=>{return res.accessor})}
 
-          console.log(`initialState ${gridData.gridId}`,col.filter((fil)=>{return fil.hideShow=='true'}))
+          // console.log(`initialState ${gridData.gridId}`,col.filter((fil)=>{return fil.hideShow=='true'}))
   
       const tableInstance = useTable({
           columns,

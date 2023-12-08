@@ -24,16 +24,16 @@ const AuthError = (val) => {
 export const AuthToken = (user) => {
     return (dispatch) => {
         dispatch(AuthReq())
-        console.log('user',user)
+        // console.log('user',user)
         axios.post('http://localhost:8080/auth/generateToken',user)
             .then((response) => {
                 sessionStorage.setItem('userData', response.data.replace('"',''))
                 dispatch(AuthSucess(response.data))
-                console.log("userDataAuth ",response.data)
+                // console.log("userDataAuth ",response.data)
             dispatch(LogInState(true))
             }).catch((err) => {
                 dispatch(AuthError(err))
-                console.log("error", err)
+                // console.log("error", err)
             })
     }
 }

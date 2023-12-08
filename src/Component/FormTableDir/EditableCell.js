@@ -5,7 +5,7 @@ import { MainObject } from "../Elements/commonFun"
 import Form from "../Form"
 import ModalForm from "../ModalForm"
 import { useDispatch, useSelector } from "react-redux"
-import { DropDownVal, FormDataAct, FormIdAct } from "../../Store/Actions/GeneralStates"
+import { DropDownVal, FormDataAct, FormIdAct, MainObjId, ResetObjId } from "../../Store/Actions/GeneralStates"
 import { FetchDropValData } from "../../Store/Actions/DropVal"
 import { FetchDropValSecData } from "../../Store/Actions/DropValSec"
 import DownloadOpt from "../ImportExport/DownloadOpt"
@@ -122,7 +122,7 @@ export const EditableCell = ({
     const DropValRed = useSelector((state) => state.DropValRed)
     const DropDownValRed = useSelector((state)=> state.DropDownValRed)
     const ColumnRed = useSelector((state)=>state.ConfColumnRed)
-    console.log('DropValRed',DropValRed)
+    // console.log('DropValRed',DropValRed)
 
   return <select name={id} value={value} onFocus={()=>{handleOnfocus(parentId.formIdVal,parentId.gridIdVal,parentId.colIdVal,parentId.json.original,DropValRed.val,index)}} onChange={onChange} onBlur={onBlur} className='form-control' style={{width:colObj.width,height:'7vh', border:'none'}} disabled={rowObj.original.isDisable}>
       <option value="">Select One</option>
@@ -446,8 +446,11 @@ if(dropDown.filter((fil,i)=>{return i==index})[0].mixVal){
 
 
     const handleFunc = () => {
+      // console.log('SendObjectIdRed',rowObj.original.VF_MAIN_OBJ_ID)
       setshow(!show)
       // console.log(gridData)
+      dispatch(MainObjId(index))
+      dispatch(ResetObjId())
       dispatch(FormDataAct(FormDatRed))
     }
     
@@ -479,11 +482,11 @@ const ImportGridRed = useSelector((state)=>state.ImportGridRed)
     const ImportGridRed = useSelector((state)=>state.ImportGridRed)
 
 
-    useEffect(()=>{
-      console.log('ImportGridRed',ImportGridRed)
-      console.log('ImportColumnRed',ImportColumnRed)
+    // useEffect(()=>{
+    //   console.log('ImportGridRed',ImportGridRed)
+    //   console.log('ImportColumnRed',ImportColumnRed)
     
-    },[ImportColumnRed,ImportGridRed])
+    // },[ImportColumnRed,ImportGridRed])
 
     return<div className="container">     
       <ExcelReader gridData={ImportGridRed.val} columnData={ImportColumnRed.val}/>
@@ -506,7 +509,7 @@ const ImportGridRed = useSelector((state)=>state.ImportGridRed)
       }else if(gridIdVal == 'GID-641'){
           dispatch(FormIdAct('FORM-106'))
       }else{
-        console.log('FormDataNewVal',gridIdVal)        
+        // console.log('FormDataNewVal',gridIdVal)        
       }
 
     }
@@ -538,7 +541,7 @@ const ImportGridRed = useSelector((state)=>state.ImportGridRed)
       setValue(e.target.value)
       dispatch(FetchImportColumnData(e.target.value,AuthRed.val))
       dispatch(FetchImportGridData(e.target.value,AuthRed.val))
-      console.log('rowObj')
+      // console.log('rowObj')
       // if(e.target.value == 'textArea'){
       //   freez = false
       // }else{
@@ -572,7 +575,7 @@ const ImportGridRed = useSelector((state)=>state.ImportGridRed)
     const DropValRed = useSelector((state) => state.DropValRed)
     // const DropDownValRed = useSelector((state)=> state.DropDownValRed)
     // const ColumnRed = useSelector((state)=>state.ConfColumnRed)
-    console.log('DropValRed',DropValRed)
+    // console.log('DropValRed',DropValRed)
 
   return <select name={id} value={value} onFocus={()=>{handleOnfocus(parentId.formIdVal,parentId.gridIdVal,parentId.colIdVal,parentId.json.original,DropValRed.val,index)}} onChange={onChange} onBlur={onBlur} className='form-control' style={{width:colObj.width,height:'7vh', border:'none'}} disabled={rowObj.original.isDisable}>
       <option value="">Select One</option>
@@ -611,7 +614,7 @@ const ImportGridRed = useSelector((state)=>state.ImportGridRed)
   <>
   {/* <Button variant="primary" onClick={handleModal}>  <i class="bi bi-file-earmark-richtext"></i>  {colObj.Header}</Button> */}
   <InputGroup>
-  <textarea maxLength='5' style={{width:colObj.width}} className='form-control' onClick={handleModal} value={displayTxt} readOnly/>
+  <textarea maxLength='5' style={{width:colObj.width}} className='form-control' onClick={handleModal} value={displayTxt} readOnly />
   <InputGroup.Text id="btnGroupAddon">
   <span style={{fontSize:'25px'}} class="bi bi-file-earmark-text"></span>
     </InputGroup.Text>

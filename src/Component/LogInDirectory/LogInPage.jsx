@@ -49,7 +49,7 @@ const LogInPage = () => {
         const fullName = `${data.username} ${data.password}`;
         setUserData([...userData, fullName]);
         setSelectedName(fullName);
-        console.log("User Data is " + data.username + " " + data.password)
+        // console.log("User Data is " + data.username + " " + data.password)
         // dispatch(AuthToken())
         // sessionStorage.setItem('username', data.username);
         // sessionStorage.setItem('password', data.password);
@@ -68,7 +68,7 @@ const LogInPage = () => {
         } else if (!data.password) {
             alert('Paasword is empty.');
         } else {
-            console.log(data)
+            // console.log(data)
             dispatch(AuthToken({username:data.username, password:data.password}))
             dispatch(UserDataState(data.username))
 
@@ -82,7 +82,7 @@ const LogInPage = () => {
             // dispatch(LogInState(true))
             navigate('/homepage')
         }else if(AuthRed.error !==''){
-            console.log('AuthRed',AuthRed)
+            // console.log('AuthRed',AuthRed)
             alert('Inavlid Username or password')
         }
     },[AuthRed])

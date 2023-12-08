@@ -3,7 +3,7 @@ import { SectionRed } from "./SectionRed";
 import { ColumnRed } from "./ColumnRed";
 import { SubSectionRed } from "./SubSectionRed";
 import {NavBarRed}  from "./NavBarRed"
-import { FormIdRed,FormDatRed,EmdRed,DropDownValRed,ExcelDataRed } from "./GeneralStatesRed";
+import { FormIdRed,FormDatRed,EmdRed,DropDownValRed,ExcelDataRed,MainObjIdRed } from "./GeneralStatesRed";
 import { GridRed } from "./GridRed";
 import { ConfSectionRed } from "./ConfSectionRed";
 import { ConfColumnRed } from "./ConfColumnRed";
@@ -60,7 +60,8 @@ const rootReducers = combineReducers({
     ImportGridRed,
     ImportColumnRed,
     SendObjectIdRed,
-    FormEditRed
+    FormEditRed,
+    MainObjIdRed
     });
 
 export default rootReducers

@@ -28,7 +28,7 @@ const AddTable = () => {
     const handleSave = () =>{
         // console.log('FormDatRed',Object.values(FormDatRed).filter((fil)=>{return fil.length > 0})) 
         // console.log('FormDatRed',ExcelDataRed)
-       console.log('GridFormrowData',FormDatRed)
+      //  console.log('GridFormrowData',FormDatRed)
           // dispatch(PostFormExcelData(res)) 
 
 
@@ -41,9 +41,9 @@ const AddTable = () => {
           // })
 
       }
-      useEffect(()=>{
-        console.log('FormDatRedData',FormDatRed)
-      },[FormDatRed])
+      // useEffect(()=>{
+      //   console.log('FormDatRedData',JSON.stringify(FormDatRed))
+      // },[FormDatRed])
 
   return (
 <div style={{marginTop:'5vh'}}>
