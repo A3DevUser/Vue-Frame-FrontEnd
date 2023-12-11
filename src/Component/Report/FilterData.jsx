@@ -45,8 +45,8 @@ const FilterData = () => {
   };
 
   useEffect(() => {
-    dispatch(FetchGridData('FORM-394',AuthRed.val))
-    dispatch(FetchColumnData('FORM-394','no',AuthRed.val))
+    dispatch(FetchGridData('FORM-627',AuthRed.val))
+    dispatch(FetchColumnData('FORM-627','no',AuthRed.val))
   }, [FormIdRed])
 
   const handleSave = ()=>{

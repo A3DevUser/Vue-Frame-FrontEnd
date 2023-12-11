@@ -1,5 +1,5 @@
 import  { useEffect, useMemo, useRef, useState } from 'react'
-import { useBlockLayout, useResizeColumns, useTable,useRowSelect, usePagination } from 'react-table'
+import { useBlockLayout, useResizeColumns, useTable,useRowSelect, usePagination, useGlobalFilter } from 'react-table'
 import './TableStyle.css'
 import { Styles,VerticalTableStyles, VertStyles } from './TableStyles'
 import { ColumnHeader } from './ColumnHeader'
@@ -248,7 +248,7 @@ const FormTable = ({col,dData,gridData,handleSave}) => {
           data,
           initialState
           
-      },useBlockLayout,usePagination,useResizeColumns,useSticky,useRowSelect,(hooks)=>{
+      },useBlockLayout,useGlobalFilter,usePagination,useResizeColumns,useSticky,useRowSelect,(hooks)=>{
         hooks.visibleColumns.push((columns)=>{
           return [{
             id :'selection',
@@ -265,7 +265,7 @@ const FormTable = ({col,dData,gridData,handleSave}) => {
         })
       })
   
-  const {getTableProps,getTableBodyProps,headerGroups,prepareRow,page,selectedFlatRows,previousPage,canPreviousPage,nextPage,canNextPage,pageOptions,state,gotoPage,pageCount} = tableInstance
+  const {getTableProps,getTableBodyProps,headerGroups,prepareRow,page,selectedFlatRows,previousPage,canPreviousPage,nextPage,canNextPage,pageOptions,state,gotoPage,pageCount,setGlobalFilter} = tableInstance
 
     return (
       <div >
@@ -288,7 +288,7 @@ const FormTable = ({col,dData,gridData,handleSave}) => {
   </div>
                 </div> */}
           </div>
-        <TableStruc getTableBodyProps={getTableBodyProps} getTableProps={getTableProps}  headerGroups={headerGroups} prepareRow={prepareRow} rows={page} handleSave={handleSave} handleAddRow={handleAddRow} gridData={gridData} handleRemove={handleRemove} handleCopy={handleCopy} previousPage={previousPage} canPreviousPage={canPreviousPage} nextPage={nextPage} canNextPage={canNextPage} pageOptions={pageOptions} state={state} gotoPage={gotoPage} pageCount={pageCount}/>
+        <TableStruc getTableBodyProps={getTableBodyProps} getTableProps={getTableProps}  headerGroups={headerGroups} prepareRow={prepareRow} rows={page} handleSave={handleSave} handleAddRow={handleAddRow} gridData={gridData} handleRemove={handleRemove} handleCopy={handleCopy} previousPage={previousPage} canPreviousPage={canPreviousPage} nextPage={nextPage} canNextPage={canNextPage} pageOptions={pageOptions} state={state} gotoPage={gotoPage} pageCount={pageCount} setGlobalFilter={setGlobalFilter}/>
         </Styles>
     </div>
   )
