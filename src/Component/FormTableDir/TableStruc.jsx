@@ -29,7 +29,7 @@ const TableStruc = ({getTableProps,getTableBodyProps,headerGroups,prepareRow,row
     <h6 className="mx-5 my-2" id={gridData.gridId}>{gridData.gridName}</h6>
     </div>
     <div style={{display:'flex', flexDirection:'row'}}>
-        <ReportImpExp  gridData ={GridRed.val} columnData={ColumnRed.val} data={[]} />
+    {(window.location.pathname.includes('report')) ? <ReportImpExp  gridData ={GridRed.val} columnData={ColumnRed.val} data={[]} /> : <></>}
         <button className='btn btn-success mx-2' style={{display : (gridData.isMrow =='true'&& !add.includes(window.location.pathname)) || (window.location.pathname.includes('confform')&&gridData.isMrow =='true')  ? 'block' : 'none', }}
         // disabled={EmdRed == 'yes'}
         onClick={handleAddRow}
