@@ -5,6 +5,7 @@ import  {ModalCompo, SimpleModalCompo } from "../ModalCompo"
 import TabsBar from "../Tabs"
 import './CommonFunc.css'
 import ConfTabsBar from "../../Component/ConfTabs"
+import Example from "./OffCanva"
 
 export const MainObject = {
     alert : (alertVal) => {
@@ -125,7 +126,7 @@ export const MainObject = {
         }
 
         return <Alert variant="success" dismissible onClose={handleClose}>Alert</Alert>
-    }
+    },
 
     // AlertData : (Msg,Data,Popup) =>{
     //     console.log('AterDataNew',Popup)
@@ -133,5 +134,9 @@ export const MainObject = {
     //     // return <Alert severity={Msg} dismissible onClose={Popup}>{Data}</Alert>
     //     return AlertVal
     // }
+
+    reactOffCan : ()=>{
+        return <Example/>
+    }
 
 } 
