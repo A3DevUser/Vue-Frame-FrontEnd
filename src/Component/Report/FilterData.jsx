@@ -60,7 +60,7 @@ const FilterData = () => {
     {
       GridRed.loading ? MainObject.loader() : ColumnRed.loading ? MainObject.loader() : 
       GridRed.val.filter((fil)=>{return fil.isMain }).map((res,i)=>{
-      return <GridFormSub column={ColumnRed.val.sort((a,b)=>{return a.number-b.number})} data={[]} gridData={res} key={i} handleSave={handleSave}/>})
+      return <GridFormSub column={ColumnRed.val.sort((a,b)=>{return a.number-b.number})} data={DummyData} gridData={res} key={i} handleSave={handleSave}/>})
     }
   </div>
   );
