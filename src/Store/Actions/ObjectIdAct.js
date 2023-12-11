@@ -21,7 +21,8 @@ const ObjectIdErr = (val) =>{
     }
 };
 
-export const FetchObjectIdData = (FormId,token) =>{
+export const FetchObjectIdData = (FormId,token,rowId) =>{
+    console.log('SendObjectIdRed',FormId)
     const headers = {
         'Content-Type': 'application/json', 
         'Authorization': `Bearer ${token}` , 
@@ -30,7 +31,7 @@ export const FetchObjectIdData = (FormId,token) =>{
         dispatch(ObjectIdReq());
         axios.get(`http://localhost:8080/VF/generateObjId?formId=${FormId}`, {headers})
         .then((res)=>{
-            dispatch(ObjectIdSuccess(res.data))
+            dispatch(ObjectIdSuccess({objId:res.data,rowId:rowId}))
         })
         .catch((err)=>{
             dispatch(ObjectIdErr(err))

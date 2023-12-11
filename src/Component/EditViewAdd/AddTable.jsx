@@ -31,6 +31,7 @@ const AddTable = () => {
       //  console.log('GridFormrowData',FormDatRed)
           // dispatch(PostFormExcelData(res)) 
 
+          console.log('FormDatRedData',FormDatRed)
 
           // Object.values(FormDatRed).forEach((res)=>{
           //   dispatch(PostFormExcelData(res,AuthRed.val)) 
@@ -39,10 +40,22 @@ const AddTable = () => {
           // Object.keys(FormDatRed).forEach((res)=>{
           //   dispatch(FetchWFCommonData(res,AuthRed.val))
           // })
+          Object.keys(FormDatRed).forEach((res)=>{
+            // console.log('main',FormDatRed[res])
+            if(Array.isArray(FormDatRed[res])){
+              dispatch(PostFormExcelData(FormDatRed[res],AuthRed.val)) 
+              // console.log('FormDatRedDatanew',FormDatRed[res])
+            }else{
+              Object.values(FormDatRed[res]).forEach((fres)=>{
+                dispatch(PostFormExcelData(fres,AuthRed.val)) 
+              })
+
+            }
+          })
 
       }
       // useEffect(()=>{
-      //   console.log('FormDatRedData',JSON.stringify(FormDatRed))
+      //   console.log('FormDatRedData',FormDatRed)
       // },[FormDatRed])
 
   return (

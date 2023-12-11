@@ -448,8 +448,8 @@ if(dropDown.filter((fil,i)=>{return i==index})[0].mixVal){
     const handleFunc = () => {
       // console.log('SendObjectIdRed',rowObj.original.VF_MAIN_OBJ_ID)
       setshow(!show)
-      // console.log(gridData)
-      dispatch(MainObjId(index))
+      console.log('rowObj',rowObj)
+      dispatch(MainObjId(rowObj.original.VF_MAIN_OBJ_ID))
       dispatch(ResetObjId())
       dispatch(FormDataAct(FormDatRed))
     }

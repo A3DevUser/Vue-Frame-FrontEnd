@@ -30,9 +30,7 @@ const FormTable = ({col,dData,gridData,handleSave}) => {
     const SendObjectIdRed = useSelector((state) => state.SendObjectIdRed)
     const MainObjIdRed = useSelector((state)=>state.MainObjIdRed)
 
-    // useEffect(()=>{
-    //   console.log('SendConfDataRed',SendConfDataRed.val)
-    // },[SendConfDataRed])
+
 
 
     useEffect(()=>{
@@ -69,7 +67,11 @@ const FormTable = ({col,dData,gridData,handleSave}) => {
     formData.append('file',fileData)
     // formData is the final variable for fileData
   }
-  
+  if(value.length !==0){
+  dispatch(FetchObjectIdData(FormIdRed,AuthRed.val,rowIndex))
+  }
+
+
       setchngRow({rowIndex})
       setdata(old =>
         old.map((row, index) => {
@@ -97,7 +99,7 @@ const FormTable = ({col,dData,gridData,handleSave}) => {
       //   }).flat()
       // })
       if(gridData.isMain == 'true'){
-        setdata((old)=>{return [...old,{...obj,VF_MAIN_OBJ_ID:index}]})
+        setdata((old)=>{return [...old,{...obj}]})
       }else{
         setdata((old)=>{return [...old,{...obj,VF_OBJ_ID:index,VF_MAIN_OBJ_ID:MainObjIdRed}]})
 
@@ -159,7 +161,7 @@ const FormTable = ({col,dData,gridData,handleSave}) => {
       // },[FormDatRed])
   
         useEffect(()=>{
-          // console.log('opData',data)
+          console.log('opData',data)
           if(window.location.pathname == '/confform'){
             dispatch(FormDataAct({...FormDatRed,[gridData.gridId] : data}) )   
           }else{
@@ -204,8 +206,6 @@ const FormTable = ({col,dData,gridData,handleSave}) => {
           // useEffect(()=>{
           //   console.log(finalArr)
           // },[finalArr])
-
-
         
           const handleAddRow = ()=>{
             let obj ={}
@@ -228,6 +228,25 @@ const FormTable = ({col,dData,gridData,handleSave}) => {
             setdata(old=>{return [...old,...selectedFlatRows.map((res)=>{return res.original})]})
           }
 
+          useEffect(()=>{
+            if(data.length > 0 && !SendObjectIdRed.loading){
+              console.log('opData',data,data[SendObjectIdRed.val.rowId]['VF_MAIN_OBJ_ID'].length)
+            if(data[SendObjectIdRed.val.rowId]['VF_MAIN_OBJ_ID'].length ==0 ){
+              setdata(old =>
+                old.map((row, index) => {
+                  if (index == SendObjectIdRed.val.rowId) {
+                    return {
+                      ...old[SendObjectIdRed.val.rowId],
+                      ['VF_MAIN_OBJ_ID']: SendObjectIdRed.val.objId
+                      // ['auditId'] : 'auditId'
+                    }
+                  }
+                  return row
+                })
+              )
+              // data[SendObjectIdRed.val.rowId]['VF_MAIN_OBJ_ID']==SendObjectIdRed.val.objId
+            }}
+          },[SendObjectIdRed])
           // useEffect(() => {
           //   // Check if dData has changed since the last render
           //   if (prevDData.current !== dData) {
