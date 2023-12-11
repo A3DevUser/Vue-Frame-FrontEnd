@@ -11,7 +11,6 @@ const ReportForm = () => {
         <div className='main-compo' >
             <div><LeftSidebar /></div>
             <div className='right-compo'> <FilterData /> </div>
-
         </div>
         </>
     )

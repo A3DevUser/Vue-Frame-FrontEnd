@@ -5,15 +5,17 @@ import TableCell from './TableCell'
 import { useSelector } from 'react-redux'
 import ReportImpExp from '../ReportExp/ReportImpExp'
 
+import GlobalFilter from './GlobalFilter'
 
 
-const TableStruc = ({getTableProps,getTableBodyProps,headerGroups,prepareRow,rows,gridData,handleAddRow,handleSave,handleRemove,handleCopy,previousPage,canPreviousPage,nextPage,canNextPage,pageOptions,state,pageCount,gotoPage}) => {
+const TableStruc = ({getTableProps,getTableBodyProps,headerGroups,prepareRow,rows,gridData,handleAddRow,handleSave,handleRemove,handleCopy,previousPage,canPreviousPage,nextPage,canNextPage,pageOptions,state,pageCount,gotoPage,setGlobalFilter}) => {
 
     const EmdRed = useSelector((state)=>state.EmdRed)
     const ColumnRed = useSelector((state) => state.ColumnRed)
     const GridRed = useSelector((state) => state.GridRed)
 
 
+    const { globalFilter } = state
     const { pageIndex } = state
 
     const save = ['/viewTable','/report']
@@ -34,7 +36,8 @@ const TableStruc = ({getTableProps,getTableBodyProps,headerGroups,prepareRow,row
         ><i class="bi bi-plus-lg"></i> Add</button>
         <Button variant='success' style={{display : (gridData.isMrow =='true'&& !removeDupl.includes(window.location.pathname)) || (window.location.pathname.includes('confform')&&gridData.isMrow =='true') ? 'block' : 'none'}} onClick={handleRemove}><i class="bi bi-trash"> </i>Remove</Button>
         <Button variant='success' style={{display : (gridData.isMrow =='true'&& !removeDupl.includes(window.location.pathname)) || (window.location.pathname.includes('confform')&&gridData.isMrow =='true') ? 'block' : 'none'}} className='mx-2' onClick={handleCopy}><i class="bi bi-copy"> </i>Duplicate</Button>
-        {(gridData.isMain == 'true') || (window.location.pathname.includes('confform')) || (window.location.pathname.includes('report')) ? MainObject.button({classNameVal:'btn btn-success', widthVal:'', heightVal:'',btnName: <><i class="bi bi-floppy"></i> Submit</>},()=>{handleSave(gridData)}) : <></>}   
+        {(gridData.isMain == 'true') || (window.location.pathname.includes('confform')) ? MainObject.button({classNameVal:'btn btn-success', widthVal:'', heightVal:'',btnName: <><i class="bi bi-floppy"></i> Submit</>},()=>{handleSave(gridData)}) : <></>}
+        {(window.location.pathname.includes('report')) ? <GlobalFilter filter={globalFilter} setfilter={setGlobalFilter}/> : <></>}
   </div>
   </div>
       <div {...getTableProps()} className="table sticky mx-3 my-1 tableCont "  style={{maxHeight :gridData.height, maxWidth:gridData.width , overflow:'scroll', border:'none' }} >
