@@ -16,10 +16,11 @@ const LeftSidebar = () => {
             <div className={`left-sidebar ${isExpanded ? 'expanded' : 'collapsed'}`}>
                 <div className="sidebar-header" onClick={toggleSidebar}>
                     {isExpanded ? (
-                        <>
-                            <h3 style={{ paddingLeft: '10x' }}>Filter <IoReorderThreeOutline className='line-icon' /></h3>
-                            <hr />
-                        </>
+                        <div  >
+                            <h3 style={{display:'inline-block'}} >Filter</h3> 
+                            <IoReorderThreeOutline  style={{ fontSize: '2.5em', marginLeft:'5vw' }} />
+                            <hr/>
+                        </div>
                     ) : (
                         <IoReorderThreeOutline style={{ fontSize: '2.5em' }} />
                     )}
@@ -33,6 +34,7 @@ const LeftSidebar = () => {
                 </div>
             </div>
             <div className="sidebar-footer" style={{ display: isExpanded ? 'block' : 'none' }}>
+            <hr/>
                 <button className="btn btn-secondary" style={{ marginLeft: '2em' }} >Apply Filter</button>
             </div>
         </>

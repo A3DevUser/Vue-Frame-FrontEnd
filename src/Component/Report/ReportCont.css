@@ -17,4 +17,6 @@
 }
 .right-compo{
     max-width: 90vw;
+    overflow-x: hidden;
+    margin-top: 1vh;
 }
