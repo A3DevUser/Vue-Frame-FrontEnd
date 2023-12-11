@@ -3,11 +3,17 @@ import React from 'react'
 import { Button, Tooltip } from 'react-bootstrap'
 import TableCell from './TableCell'
 import { useSelector } from 'react-redux'
+import ReportImpExp from '../ReportExp/ReportImpExp'
+
 
 
 const TableStruc = ({getTableProps,getTableBodyProps,headerGroups,prepareRow,rows,gridData,handleAddRow,handleSave,handleRemove,handleCopy,previousPage,canPreviousPage,nextPage,canNextPage,pageOptions,state,pageCount,gotoPage}) => {
 
     const EmdRed = useSelector((state)=>state.EmdRed)
+    const ColumnRed = useSelector((state) => state.ColumnRed)
+    const GridRed = useSelector((state) => state.GridRed)
+
+
     const { pageIndex } = state
 
     const save = ['/viewTable','/report']
@@ -21,6 +27,7 @@ const TableStruc = ({getTableProps,getTableBodyProps,headerGroups,prepareRow,row
     <h6 className="mx-5 my-2" id={gridData.gridId}>{gridData.gridName}</h6>
     </div>
     <div style={{display:'flex', flexDirection:'row'}}>
+        <ReportImpExp  gridData ={GridRed.val} columnData={ColumnRed.val} data={[]} />
         <button className='btn btn-success mx-2' style={{display : (gridData.isMrow =='true'&& !add.includes(window.location.pathname)) || (window.location.pathname.includes('confform')&&gridData.isMrow =='true')  ? 'block' : 'none', }}
         // disabled={EmdRed == 'yes'}
         onClick={handleAddRow}
