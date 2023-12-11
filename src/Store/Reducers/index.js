@@ -26,6 +26,9 @@ import { ImportGridRed } from "./ImportGridRed";
 import { ImportColumnRed } from "./ImportColumnRed";
 import { SendObjectIdRed } from "./ObjectIdRed";
 import { FormEditRed } from "./FormEditRed";
+import { ReportConfSectionRed } from "./ReportConfSectionRed";
+import { ReportConfGridRed } from "./ReportConfGridRed";
+import { ReportConfColumnRed } from "./ReportConfColumnRed";
 
 
 const rootReducers = combineReducers({
@@ -61,7 +64,10 @@ const rootReducers = combineReducers({
     ImportColumnRed,
     SendObjectIdRed,
     FormEditRed,
-    MainObjIdRed
+    MainObjIdRed,
+    ReportConfSectionRed,
+    ReportConfGridRed,
+    ReportConfColumnRed,
     });
 
 export default rootReducers
