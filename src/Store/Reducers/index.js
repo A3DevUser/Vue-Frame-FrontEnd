@@ -29,6 +29,9 @@ import { FormEditRed } from "./FormEditRed";
 import { ReportConfSectionRed } from "./ReportConfSectionRed";
 import { ReportConfGridRed } from "./ReportConfGridRed";
 import { ReportConfColumnRed } from "./ReportConfColumnRed";
+import { DataSouConfColumnRed } from "./DataSouConfColumnRed";
+import { DataSouConfGridRed } from "./DataSouConfGridRed";
+import { DataSouConfSectionRed } from "./DataSouConfSectionRed";
 
 
 const rootReducers = combineReducers({
@@ -68,6 +71,9 @@ const rootReducers = combineReducers({
     ReportConfSectionRed,
     ReportConfGridRed,
     ReportConfColumnRed,
+    DataSouConfSectionRed,
+    DataSouConfGridRed,
+    DataSouConfColumnRed,
     });
 
 export default rootReducers

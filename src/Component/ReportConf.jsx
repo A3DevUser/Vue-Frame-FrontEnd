@@ -11,21 +11,27 @@ import './CSS/FormConf.css'
 import { Alert } from 'react-bootstrap';
 import swal from 'sweetalert';
 import { FetchFormEditData } from '../Store/Actions/FormEditAct';
+import { FetchDataSouConfSectionData } from '../Store/Actions/DataSouConfSection';
+import { FetchDataSouConfGridActData } from '../Store/Actions/DataSouConfGridAct';
+import { FetchDataSouConfColumnData } from '../Store/Actions/DataSouConfColumn';
 
 const ReportConf = () => {
     const dispatch = useDispatch();
     const location = useLocation();
     const navigate = useNavigate()
-    const SectionRed = useSelector((state)=>state.ConfSectionRed)
-    const ColumnRed = useSelector((state)=>state.ConfColumnRed)
-    const GridRed = useSelector((state)=>state.ConfGridRed)
+    const SectionRed = useSelector((state)=>state.DataSouConfSectionRed)
+    const ColumnRed = useSelector((state)=>state.DataSouConfColumnRed)
+    const GridRed = useSelector((state)=>state.DataSouConfGridRed)
     const FormIdRed = useSelector((state)=>state.FormIdRed)
     const FormDatRed = useSelector((state) => state.FormDatRed)
     const SendConfDataRed = useSelector((state) => state.SendConfDataRed)    
     const AuthRed = useSelector((state)=>state.AuthRed)
     const FormEditRed = useSelector((state)=>state.FormEditRed)
 
-
+    // console.log('FormIdRed',FormIdRed);
+    console.log('FormIdRed',SectionRed);
+    console.log('FormIdRed',ColumnRed);
+    console.log('FormIdRed',GridRed);
 
     const [defaultVal,setdefaultVal] =useState([])
     const [obj, setObj] = useState({});
@@ -35,9 +41,9 @@ const ReportConf = () => {
     }
 
     useEffect(()=>{
-        dispatch(FetchConfSectionData(FormIdRed,AuthRed.val))
-        dispatch(FetchConfGridData(FormIdRed,AuthRed.val))
-        dispatch(FetchConfColumnData(FormIdRed,AuthRed.val))
+        dispatch(FetchDataSouConfSectionData(FormIdRed,AuthRed.val))
+        dispatch(FetchDataSouConfGridActData(FormIdRed,AuthRed.val))
+        dispatch(FetchDataSouConfColumnData(FormIdRed,AuthRed.val))
         dispatch(FetchFormEditData(location.state !== null ? location.state.formId : '' ,AuthRed.val))
     },[FormIdRed])
 

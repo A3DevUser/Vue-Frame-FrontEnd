@@ -55,6 +55,10 @@ const FormConf = () => {
         dispatch(FetchFormEditData(location.state !== null ? location.state.formId : '' ,AuthRed.val))
     },[FormIdRed])
 
+    console.log('FormIdRed',SectionRed);
+    console.log('FormIdRed',ColumnRed);
+    console.log('FormIdRed',GridRed);
+
     // useEffect(()=>{
     //   console.log('location',FormEditRed)
     // },[FormEditRed])
