@@ -12,7 +12,7 @@ import VertTableStruc from './VertTableStruc'
 import { FetchDropValData } from '../../Store/Actions/DropVal'
 import { MainObject } from '../Elements/commonFun'
 import { Checkbox } from './Checkbox'
-import { Button } from 'react-bootstrap'
+import { Button, Col } from 'react-bootstrap'
 import { FetchObjectIdData } from '../../Store/Actions/ObjectIdAct'
 
 const FormTable = ({col,dData,gridData,handleSave}) => {
@@ -29,7 +29,6 @@ const FormTable = ({col,dData,gridData,handleSave}) => {
     const SendConfDataRed = useSelector((state)=> state.SendConfDataRed)
     const SendObjectIdRed = useSelector((state) => state.SendObjectIdRed)
     const MainObjIdRed = useSelector((state)=>state.MainObjIdRed)
-
 
 
 
@@ -54,6 +53,7 @@ const FormTable = ({col,dData,gridData,handleSave}) => {
         }
       }
     },[gridData])
+
 
     // const mySelRowState = useSelector((state)=>state.selectedRowState)
     // const AreaSchemeDateSetRed = useSelector((state)=>state.AreaSchemeDateSetRed)
@@ -88,7 +88,7 @@ const FormTable = ({col,dData,gridData,handleSave}) => {
     }
   
     const addAndDeleteRow = (index,obj,action) => {
-      if(action=='add'){
+      if(action=='add' || action == 'Useradd'){
       // setdata((old)=>{
       //   return old.map((res,i)=>{
       //     if(i == index){
@@ -99,7 +99,8 @@ const FormTable = ({col,dData,gridData,handleSave}) => {
       //   }).flat()
       // })
       if(gridData.isMain == 'true'){
-        setdata((old)=>{return [...old,{...obj}]})
+        setdata((old)=>
+        {return [...old,{...obj}]})
       }else{
         setdata((old)=>{return [...old,{...obj,VF_OBJ_ID:index,VF_MAIN_OBJ_ID:MainObjIdRed}]})
 
@@ -161,7 +162,7 @@ const FormTable = ({col,dData,gridData,handleSave}) => {
       // },[FormDatRed])
   
         useEffect(()=>{
-          console.log('opData',data)
+          // console.log('opData',data)
           if(window.location.pathname == '/confform'){
             dispatch(FormDataAct({...FormDatRed,[gridData.gridId] : data}) )   
           }else{
@@ -211,7 +212,7 @@ const FormTable = ({col,dData,gridData,handleSave}) => {
             let obj ={}
             const rowInd = data.length
             columns.forEach((res)=> obj[res.accessor]='')
-            addAndDeleteRow(rowInd,obj,'add')
+            addAndDeleteRow(rowInd,obj,(gridData.gridId == 'GID-290') ? 'Useradd' : 'add')
           }
 
           const handleRemove = () =>{

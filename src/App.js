@@ -19,6 +19,9 @@ import { Modal } from 'react-bootstrap'
 import ReportForm from './Component/Report/ReportForm'
 import ConfEdit from './Component/EditViewAdd/ConfEdit'
 import ReportConf from './Component/ReportConf'
+import UserAddTable from './Component/UserEditViewAdd/UserAddTable'
+import UserEditTable from './Component/UserEditViewAdd/UserEditTable'
+import UserViewTable from './Component/UserEditViewAdd/UserViewTable'
 
 const App = () => {
 
@@ -77,6 +80,9 @@ const App = () => {
           <Route path='/GridForm' element={<GridForm />} />
           <Route path='/confform' element={<FormConf />} />
           <Route path='/confreport' element={<ReportConf />} />
+          <Route path='/useraddTable' element={<UserAddTable/>} />
+          <Route path='/usereditTable' element={<UserEditTable/>} />
+          <Route path='/userviewTable' element={<UserViewTable/>} />
         </Route>
       // </Routes>
       </Online>

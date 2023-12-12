@@ -7,6 +7,7 @@ import { FetchGridData } from '../../Store/Actions/GridAct'
 import { MainObject } from '../../Component/Elements/commonFun'
 import GridFormSub from '../../Component/GridFormSub'
 import { FormDataAct } from '../../Store/Actions/GeneralStates'
+import GridUserSub from '../../Component/GridUserSub'
 
 const UserAddTable = () => {
     const dispatch = useDispatch()
@@ -75,7 +76,7 @@ const UserAddTable = () => {
             return fil.gridId == res.gridId
           }).forEach((fe)=>{dataObj[fe.accessor]=''})
           // console.log('GridFormSubobj',Object.keys(FormDatRed).includes(res.gridId),res.gridId,Object.keys(FormDatRed).includes(res.gridId) ? FormDatRed[res.gridId] : dataObj)
-         return FormDatRed&&<GridFormSub column={ColumnRed.val.sort((a,b)=>{return a.number-b.number})} data=
+         return FormDatRed&&<GridUserSub column={ColumnRed.val.sort((a,b)=>{return a.number-b.number})} data=
          {[]}
         //  {Object.keys(FormDatRed).includes(res.gridId) ? FormDatRed[res.gridId] : [dataObj]} 
          gridData={res} key={i} handleSave={handleSave}/>

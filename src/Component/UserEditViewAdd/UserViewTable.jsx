@@ -8,6 +8,7 @@ import { MainObject } from '../../Component/Elements/commonFun'
 import GridFormSub from '../../Component/GridFormSub'
 import { FetchGetData } from '../../Store/Actions/GetDataAct'
 import { ResetFormState } from '../../Store/Actions/GeneralStates'
+import GridUserSub from '../../Component/GridUserSub'
 
 const UserViewTable = () => {
     const dispatch = useDispatch()
@@ -66,7 +67,7 @@ const UserViewTable = () => {
           // console.log('dataObj',GetDataRed.val.length)
           // console.log('dataObj',dataObj)
           let gridIdArr = ['GID-575','GID-576','GID-641']
-         return <GridFormSub column={ColumnRed.val.sort((a,b)=>{return a.number-b.number})} data=
+         return <GridUserSub column={ColumnRed.val.sort((a,b)=>{return a.number-b.number})} data=
         //  {[]}
          {
           gridIdArr.includes(res.gridId)  ?  [dataObj] :

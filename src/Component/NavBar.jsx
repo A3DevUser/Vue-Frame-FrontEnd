@@ -41,15 +41,40 @@ const Navbar = () => {
         if(res.emd){
             dispatch(EmdAct(res.emd))
         }
-        if(res.emd=='add'){
-            navigate('/addTable')
-        }else if(res.emd=='yes'){
-            navigate('/editTable')
-        }else if(res.emd=='no'){
-            navigate('/viewTable')
+        if (res.formId == 'FORM-309'){
+            if(res.emd=='add'){
+                navigate('/useraddTable')
+            }else if(res.emd=='yes'){
+                navigate('/usereditTable')
+            }else if(res.emd=='no'){
+                navigate('/userviewTable')
+            }
         }else{
-            navigate(res.navigate)
+            if(res.emd=='add'){
+                navigate('/addTable')
+            }else if(res.emd=='yes'){
+                navigate('/editTable')
+            }else if(res.emd=='no'){
+                navigate('/viewTable')
+            }else{
+                navigate(res.navigate)
+            }            
         }
+        // if(res.emd=='add'){
+        //     navigate('/addTable')
+        // }else if(res.emd=='yes'){
+        //     navigate('/editTable')
+        // }else if(res.emd=='no'){
+        //     navigate('/viewTable')
+        // }else if(res.emd=='Useradd'){
+        //     navigate('/useraddTable')
+        // }else if(res.emd=='Useryes'){
+        //     navigate('/usereditTable')
+        // }else if(res.emd=='Userno'){
+        //     navigate('/userviewTable')
+        // }else{
+        //     navigate(res.navigate)
+        // }
 
     }
 
@@ -132,13 +157,14 @@ className='navbar-background'
         return <Dropdown title={res} className='multiDrop' position='right'>
             {
                 NavBarRed.val.filter((fil)=>{return fil.cat == res}).map((nres)=>{
+                    console.log('Nav Bar Details',nres)
                     return <Dropdown.Item>
                         {nres.navName}
-                        <Dropdown.Submenu position='right'>
+                        {<Dropdown.Submenu position='right'>
             <Dropdown.Item onClick={()=>{handleNavigate({formId : nres.formId,navigate:nres.navigate,emd :'no'})}} >{`View ${nres.navName}`}</Dropdown.Item>
             <Dropdown.Item onClick={()=>{handleNavigate({formId : nres.formId,navigate:nres.navigate,emd :'yes'})}}>{`Edit ${nres.navName}`}</Dropdown.Item>
             <Dropdown.Item onClick={()=>{handleNavigate({formId : nres.formId,navigate:nres.navigate,emd:'add'})}}>{`Add ${nres.navName}`}</Dropdown.Item>
-        </Dropdown.Submenu>
+        </Dropdown.Submenu> }
                     </Dropdown.Item>
                 })
             }

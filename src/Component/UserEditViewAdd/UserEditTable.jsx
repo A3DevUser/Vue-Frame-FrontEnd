@@ -9,6 +9,7 @@ import GridFormSub from '../../Component/GridFormSub'
 import { FetchGetData } from '../../Store/Actions/GetDataAct'
 import { ResetFormState } from '../../Store/Actions/GeneralStates'
 import ImpExp from '../../Component/ImportExport/ImpExp'
+import GridUserSub from '../../Component/GridUserSub'
 
 const UserEditTable = () => {
     const dispatch = useDispatch()
@@ -60,7 +61,7 @@ const UserEditTable = () => {
         ColumnRed.loading ? MainObject.loader() :
         GetDataRed.loading ? MainObject.loader() :
         GridRed.val.filter((fil)=>{return fil.isMain }).map((res,i)=>{
-         return <GridFormSub column={ColumnRed.val.sort((a,b)=>{return a.number-b.number})} data=
+         return <GridUserSub column={ColumnRed.val.sort((a,b)=>{return a.number-b.number})} data=
         //  {[]}x
          {
           GetDataRed.val.filter((fil)=>{return fil.GRID_ID == res.gridId})[0].DATA 
