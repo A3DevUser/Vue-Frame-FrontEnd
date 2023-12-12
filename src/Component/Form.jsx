@@ -25,6 +25,7 @@ const Form = () => {
 
 
     useEffect(()=>{
+      console.log('Inside Form.jsx')
         dispatch(FetchSectionData( window.location.pathname === '/GridForm' ? 'FORM-101' :  FormIdRed))
         dispatch(FetchGridData(window.location.pathname === '/GridForm' ? 'FORM-101' : FormIdRed))
         dispatch(FetchColumnData(window.location.pathname === '/GridForm' ? 'FORM-101' : FormIdRed))
