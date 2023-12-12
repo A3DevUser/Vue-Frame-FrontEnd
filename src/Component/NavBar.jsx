@@ -29,7 +29,7 @@ const Navbar = () => {
         dispatch(FetchNavbarData(AuthRed.val))
     },[AuthRed])
 
-    console.log('NavBarRed',[...new Set(NavBarRed.val.filter((fil)=>{return fil.cat !== null}).map((nres)=>{return nres.cat}))])
+    // console.log('NavBarRed',[...new Set(NavBarRed.val.filter((fil)=>{return fil.cat !== null}).map((nres)=>{return nres.cat}))])
 
 
     const handleNavigate = (res) =>{
@@ -157,7 +157,7 @@ className='navbar-background'
         return <Dropdown title={res} className='multiDrop' position='right'>
             {
                 NavBarRed.val.filter((fil)=>{return fil.cat == res}).map((nres)=>{
-                    console.log('Nav Bar Details',nres)
+                    // console.log('Nav Bar Details',nres)
                     return <Dropdown.Item>
                         {nres.navName}
                         {<Dropdown.Submenu position='right'>

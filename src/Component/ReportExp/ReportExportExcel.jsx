@@ -23,8 +23,8 @@ const border = {
 
 
 const ReportExportExcel = ({ griData, columnData }) => {
-  console.log('griData',columnData);
-  console.log('griData',griData);
+  // console.log('griData',columnData);
+  // console.log('griData',griData);
   const [exporting, setExporting] = useState(false);
   const [exportError, setExportError] = useState(null);
   const range = {

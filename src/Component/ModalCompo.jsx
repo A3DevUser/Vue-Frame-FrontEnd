@@ -8,7 +8,7 @@ export const ModalCompo = ({title,bodyDetails,show,showFunc}) => {
   const NavBarRed = useSelector((state)=>state.NavBarRed)
   const FormIdRed = useSelector((state)=>state.FormIdRed)
 
-  console.log('modalcomp')
+  // console.log('modalcomp')
   return (
     <div>
       <Modal show={show} fullscreen={true} scrollable={true} onHide={showFunc}>

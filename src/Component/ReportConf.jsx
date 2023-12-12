@@ -29,9 +29,9 @@ const ReportConf = () => {
     const FormEditRed = useSelector((state)=>state.FormEditRed)
 
     // console.log('FormIdRed',FormIdRed);
-    console.log('FormIdRed',SectionRed);
-    console.log('FormIdRed',ColumnRed);
-    console.log('FormIdRed',GridRed);
+    // console.log('FormIdRed',SectionRed);
+    // console.log('FormIdRed',ColumnRed);
+    // console.log('FormIdRed',GridRed);
 
     const [defaultVal,setdefaultVal] =useState([])
     const [obj, setObj] = useState({});

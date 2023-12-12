@@ -5,7 +5,7 @@ import { Button } from 'react-bootstrap';
 
 
 const ReportExportPdf = ({Data}) => {
-  console.log("data",Data);
+  // console.log("data",Data);
 const handleClick = () =>{
 const doc = new jspdf({
   orientation: "landscape",

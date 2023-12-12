@@ -31,7 +31,7 @@ const AddTable = () => {
       //  console.log('GridFormrowData',FormDatRed)
           // dispatch(PostFormExcelData(res)) 
 
-          console.log('FormDatRedData',FormDatRed)
+          // console.log('FormDatRedData',FormDatRed)
 
           // Object.values(FormDatRed).forEach((res)=>{
           //   dispatch(PostFormExcelData(res,AuthRed.val)) 

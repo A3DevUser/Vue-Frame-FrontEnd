@@ -23,7 +23,7 @@ const RichText = ({setvalue,value,setDisplayTxt}) => {
     ]
         }
         const handleChange = (content, delta, source, editor) =>{
-            console.log('content',content)
+            // console.log('content',content)
             setvalue(editor.getHTML())
             setDisplayTxt(editor.getText())
         }

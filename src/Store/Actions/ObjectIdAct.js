@@ -22,7 +22,7 @@ const ObjectIdErr = (val) =>{
 };
 
 export const FetchObjectIdData = (FormId,token,rowId) =>{
-    console.log('SendObjectIdRed',FormId)
+    // console.log('SendObjectIdRed',FormId)
     const headers = {
         'Content-Type': 'application/json', 
         'Authorization': `Bearer ${token}` , 

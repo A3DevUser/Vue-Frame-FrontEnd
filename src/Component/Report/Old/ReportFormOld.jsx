@@ -25,8 +25,8 @@ const ReportFormOld = () => {
     dispatch(FetchColumnData('FORM-394','no',AuthRed.val))
   }, [FormIdRed])
 
-  console.log('FormDataNew',GridRed)
-  console.log('FormDataNew',ColumnRed)
+  // console.log('FormDataNew',GridRed)
+  // console.log('FormDataNew',ColumnRed)
 
   const handleSave = ()=>{
     
