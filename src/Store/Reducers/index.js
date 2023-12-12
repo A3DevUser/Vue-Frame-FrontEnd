@@ -33,6 +33,7 @@ import { DataSouConfColumnRed } from "./DataSouConfColumnRed";
 import { DataSouConfGridRed } from "./DataSouConfGridRed";
 import { DataSouConfSectionRed } from "./DataSouConfSectionRed";
 import { SendUserDataInfoRed } from "./UserDataRed";
+import { SendReportConfDataRed } from "./SendReportConfDataRed";
 
 
 const rootReducers = combineReducers({
@@ -76,6 +77,7 @@ const rootReducers = combineReducers({
     DataSouConfGridRed,
     DataSouConfColumnRed,
     SendUserDataInfoRed,
+    SendReportConfDataRed,
     });
 
 export default rootReducers

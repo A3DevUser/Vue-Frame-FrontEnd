@@ -7,7 +7,7 @@ export const FormIdRed = (state=null,action) =>{
 
 export const FormDatRed = (state=[],action) =>{
     switch(action.type){
-        case 'FormDataAct' : return action.payload
+        case 'FormDataAct' : return action
         default : return state
     }
 }

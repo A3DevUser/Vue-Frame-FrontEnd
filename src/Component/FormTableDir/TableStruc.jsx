@@ -19,8 +19,8 @@ const TableStruc = ({getTableProps,getTableBodyProps,headerGroups,prepareRow,row
     const { pageIndex } = state
 
     const save = ['/viewTable','/report']
-    const add = ['/viewTable','/editTable','/report','/usereditTable','/userviewTable']
-    const removeDupl = ['/viewTable','/editTable','/report','/usereditTable','/userviewTable']
+    const add = ['/viewTable','/editTable','/report','/usereditTable','/userviewTable','/useraddTable']
+    const removeDupl = ['/viewTable','/editTable','/report','/usereditTable','/userviewTable','/useraddTable']
 
   return (
     <div>

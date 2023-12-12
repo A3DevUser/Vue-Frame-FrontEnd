@@ -25,6 +25,7 @@ const ReportConf = () => {
     const FormIdRed = useSelector((state)=>state.FormIdRed)
     const FormDatRed = useSelector((state) => state.FormDatRed)
     const SendConfDataRed = useSelector((state) => state.SendConfDataRed)    
+    const SendReportConfDataRed = useSelector((state) => state.SendReportConfDataRed)
     const AuthRed = useSelector((state)=>state.AuthRed)
     const FormEditRed = useSelector((state)=>state.FormEditRed)
 
@@ -54,11 +55,12 @@ const ReportConf = () => {
     const width = '75vw'
 
     const handleSave = (val) =>{
+      console.log('Submit Report Conf',FormDatRed)
       if(Object.keys(FormDatRed).includes(val.gridId)){
-        // console.log('mainGrid Val',val.gridId)
-        const FormData = FormDatRed[val.gridId].map((res) => {return {...res, ...SendConfDataRed.val, targetId: val.gridId}})
-        // console.log('FormDataNewVal',JSON.stringify(FormData))
-        dispatch(FormConfData(val.api,FormData,AuthRed.val))
+        // console.log('Submit Report Conf',FormDatRed)
+        // const FormData = FormDatRed[val.gridId].map((res) => {return {...res, ...SendReportConfDataRed.val, targetId: val.gridId}})
+        console.log('FormDataNewVal',JSON.stringify(FormData))
+        // dispatch(FormConfData(val.api,FormData,AuthRed.val))
         }
     }
 
