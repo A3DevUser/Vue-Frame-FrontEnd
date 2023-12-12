@@ -76,7 +76,7 @@ const App = () => {
           <Route path='/forms' element={<Form />} />
           <Route path='/GridForm' element={<GridForm />} />
           <Route path='/confform' element={<FormConf />} />
-          <Route path='/report' element={<ReportConf />} />
+          <Route path='/confreport' element={<ReportConf />} />
         </Route>
       // </Routes>
       </Online>
