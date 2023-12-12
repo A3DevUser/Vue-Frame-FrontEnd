@@ -8,6 +8,7 @@ import { MainObject } from '../../Component/Elements/commonFun'
 import GridFormSub from '../../Component/GridFormSub'
 import { FormDataAct } from '../../Store/Actions/GeneralStates'
 import GridUserSub from '../../Component/GridUserSub'
+import { FormUserDataInfo } from '../../Store/Actions/UserDataAct'
 
 const UserAddTable = () => {
     const dispatch = useDispatch()
@@ -20,6 +21,7 @@ const UserAddTable = () => {
     const EmdRed = useSelector((state)=>state.EmdRed)
     const ExcelDataRed = useSelector((state)=>state.ExcelDataRed)
     const AuthRed = useSelector((state)=>state.AuthRed)
+    const SendUserDataInfoRed = useSelector((state)=> state.SendUserDataInfoRed)
 
     useEffect(()=>{
     dispatch(FetchGridData(FormIdRed,AuthRed.val))
@@ -27,37 +29,9 @@ const UserAddTable = () => {
     },[FormIdRed])
 
     const handleSave = () =>{
-        // console.log('FormDatRed',Object.values(FormDatRed).filter((fil)=>{return fil.length > 0})) 
-        // console.log('FormDatRed',ExcelDataRed)
-      //  console.log('GridFormrowData',FormDatRed)
-          // dispatch(PostFormExcelData(res)) 
-
-          // console.log('FormDatRedData',FormDatRed)
-
-          // Object.values(FormDatRed).forEach((res)=>{
-          //   dispatch(PostFormExcelData(res,AuthRed.val)) 
-          // })
-
-          // Object.keys(FormDatRed).forEach((res)=>{
-          //   dispatch(FetchWFCommonData(res,AuthRed.val))
-          // })
-          Object.keys(FormDatRed).forEach((res)=>{
-            // console.log('main',FormDatRed[res])
-            if(Array.isArray(FormDatRed[res])){
-              dispatch(PostFormExcelData(FormDatRed[res],AuthRed.val)) 
-              // console.log('FormDatRedDatanew',FormDatRed[res])
-            }else{
-              Object.values(FormDatRed[res]).forEach((fres)=>{
-                dispatch(PostFormExcelData(fres,AuthRed.val)) 
-              })
-
-            }
-          })
-
+      dispatch(FormUserDataInfo(FormDatRed))
       }
-      // useEffect(()=>{
-      //   console.log('FormDatRedData',FormDatRed)
-      // },[FormDatRed])
+
 
   return (
 <div style={{marginTop:'5vh'}}>

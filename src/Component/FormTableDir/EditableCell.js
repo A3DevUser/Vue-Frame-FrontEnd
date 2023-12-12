@@ -47,6 +47,12 @@ export const EditableCell = ({
       }else if (id =='wfId'){
         updateMyData(index, id, SendConfDataRed.val.wfId,null)
         setFreeze(true)
+      }else if (id =='dsId'){
+        updateMyData(index, id, SendConfDataRed.val.dsId,null)
+        setFreeze(true)
+      }else if (id =='expId'){
+        updateMyData(index, id, SendConfDataRed.val.expId,null)
+        setFreeze(true)
       }
     },[SendConfDataRed])
     const onBlur = () => {
