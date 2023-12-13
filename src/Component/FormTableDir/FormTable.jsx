@@ -30,7 +30,9 @@ const FormTable = ({col,dData,gridData,handleSave}) => {
     const SendObjectIdRed = useSelector((state) => state.SendObjectIdRed)
     const MainObjIdRed = useSelector((state)=>state.MainObjIdRed)
 
-
+    useEffect(()=>{
+      console.log('SendReportConfDataRed',data)
+    },[data])
 
     useEffect(()=>{
       if(EmdRed=='add'&&window.location.pathname.includes('Table')){
@@ -67,9 +69,13 @@ const FormTable = ({col,dData,gridData,handleSave}) => {
     formData.append('file',fileData)
     // formData is the final variable for fileData
   }
-  if(value.length !==0){
-  dispatch(FetchObjectIdData(FormIdRed,AuthRed.val,rowIndex))
+  
+  if(window.location.pathname=='/addTable'){
+    if(value.length !==0){
+      dispatch(FetchObjectIdData(FormIdRed,AuthRed.val,rowIndex))
+      }
   }
+
 
 
       setchngRow({rowIndex})
@@ -165,7 +171,11 @@ const FormTable = ({col,dData,gridData,handleSave}) => {
           // console.log('opData',data)
           if(window.location.pathname == '/confform'){
             dispatch(FormDataAct({...FormDatRed,[gridData.gridId] : data}) )   
-          }else{
+          }else if(window.location.pathname == '/confreport'){
+            console.log('Submit Report Conf',FormDatRed)
+            dispatch(FormDataAct({...FormDatRed,[gridData.gridId] : data}) )   
+          }
+          else{
             if(gridData.isMain !=='true'){
               dispatch(FormDataAct({...FormDatRed,[gridData.gridId] : {...FormDatRed[gridData.gridId],
                 [MainObjIdRed] : data.map((res)=>{return {...res,GRID_ID:gridData.gridId, formId :FormIdRed }})}

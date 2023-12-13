@@ -14,6 +14,7 @@ import { FetchFormEditData } from '../Store/Actions/FormEditAct';
 import { FetchDataSouConfSectionData } from '../Store/Actions/DataSouConfSection';
 import { FetchDataSouConfGridActData } from '../Store/Actions/DataSouConfGridAct';
 import { FetchDataSouConfColumnData } from '../Store/Actions/DataSouConfColumn';
+import { FormReportConfData } from '../Store/Actions/SendReportConfData';
 
 const ReportConf = () => {
     const dispatch = useDispatch();
@@ -55,12 +56,9 @@ const ReportConf = () => {
     const width = '75vw'
 
     const handleSave = (val) =>{
-      console.log('Submit Report Conf',FormDatRed)
       if(Object.keys(FormDatRed).includes(val.gridId)){
-        // console.log('Submit Report Conf',FormDatRed)
-        // const FormData = FormDatRed[val.gridId].map((res) => {return {...res, ...SendReportConfDataRed.val, targetId: val.gridId}})
-        console.log('FormDataNewVal',JSON.stringify(FormData))
-        // dispatch(FormConfData(val.api,FormData,AuthRed.val))
+        const FormData = FormDatRed[val.gridId].map((res) => {return {...res, ...SendReportConfDataRed.val, targetId: val.gridId}})
+        dispatch(FormReportConfData(val.api,FormData,AuthRed.val))
         }
     }
 

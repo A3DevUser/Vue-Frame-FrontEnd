@@ -116,6 +116,7 @@ const FormConf = () => {
 
 
       if(Object.keys(FormDatRed).includes(val.gridId)){
+        // console.log('Submit Report Conf',FormDatRed)
         // console.log('mainGrid Val',val.gridId)
         const FormData = FormDatRed[val.gridId].map((res) => {return {...res, ...SendConfDataRed.val, targetId: val.gridId}})
         // console.log('FormDataNewVal',JSON.stringify(FormData))

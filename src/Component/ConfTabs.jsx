@@ -1,8 +1,11 @@
 import { Tab, Tabs } from "react-bootstrap"
 import { MainObject } from "./Elements/commonFun"
 import './CSS/Tabs.css'
+import { useSelector } from "react-redux"
 
 function ConfTabsBar({accordionVal,gridData,columnData,data,defaultVal,setdefaultVal,handleSave}) {
+
+    const SendReportConfDataRed = useSelector((state) => state.SendReportConfDataRed)
 
     const handleChangeSec = (e) =>{
         // console.log(e)
@@ -35,6 +38,20 @@ function ConfTabsBar({accordionVal,gridData,columnData,data,defaultVal,setdefaul
                         {
                         columnData&&data&&
                         MainObject.table(columnData,
+                            subRes.gridId == 'GID-015'&&SendReportConfDataRed.val.length >= 1 ? 
+                            SendReportConfDataRed.val :
+                            // [
+                            //     {
+                            //         "EXP_ID": "EXP-8",
+                            //         "DS_ID": "DS-18",
+                            //         "COLUMN_NAME": "USERNAME"
+                            //     },
+                            //     {
+                            //         "EXP_ID": "EXP-8",
+                            //         "DS_ID": "DS-18",
+                            //         "COLUMN_NAME": "FIRSTNAME"
+                            //     }
+                            // ] :
                             (data.filter((fil)=>{return fil.GRID_ID == subRes.gridId}).length == 1) ? data.filter((fil)=>{return fil.GRID_ID==subRes.gridId})[0].DATA :
                             [dataObj]
                             ,subRes,handleSave)

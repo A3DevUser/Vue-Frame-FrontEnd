@@ -29,6 +29,7 @@ export const EditableCell = ({
     parentId
   }) => {
     const SendConfDataRed = useSelector((state) => state.SendConfDataRed)    
+    const SendReportConfDataRed = useSelector((state) => state.SendReportConfDataRed)
 
     const [value, setValue] = React.useState(initialValue)
     const [freeze,setFreeze] = useState()
@@ -39,7 +40,7 @@ export const EditableCell = ({
   
     // console.log('colId',id)
     useEffect(()=>{
-      // console.log('fieldTypeVal',colObj)
+      // console.log('SendConfDataRed',SendConfDataRed)
       if(id=='formId'){
         // setValue(SendConfDataRed.val.formId)
         updateMyData(index, id, SendConfDataRed.val.formId,null)
@@ -47,14 +48,20 @@ export const EditableCell = ({
       }else if (id =='wfId'){
         updateMyData(index, id, SendConfDataRed.val.wfId,null)
         setFreeze(true)
-      }else if (id =='dsId'){
-        updateMyData(index, id, SendConfDataRed.val.dsId,null)
-        setFreeze(true)
-      }else if (id =='expId'){
-        updateMyData(index, id, SendConfDataRed.val.expId,null)
-        setFreeze(true)
       }
     },[SendConfDataRed])
+
+    useEffect(()=>{
+      console.log('SendReportConfDataRed',SendReportConfDataRed.val.length)
+      if (id =='dsId'){
+        updateMyData(index, id, SendReportConfDataRed.val.dsId,null)
+        setFreeze(true)
+      }else if (id =='expId'){
+        updateMyData(index, id, SendReportConfDataRed.val.expId,null)
+        setFreeze(true)
+      }
+    },[SendReportConfDataRed])
+
     const onBlur = () => {
       updateMyData(index, id, value,null)
       // console.log('maxlengthpro',colObj)
