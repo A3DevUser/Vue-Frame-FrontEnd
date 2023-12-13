@@ -112,7 +112,8 @@ className='navbar-background'
                 <NavDropdown.Item className='click' onClick={()=>{handleNavigate({formId : 'FORM-528',navigate:'/confEdit'})}}>Import & Export</NavDropdown.Item>
                 <NavDropdown.Item className='click' onClick={()=>{handleNavigate({formId : 'FORM-529',navigate:'/confEdit'})}}>Form Edit</NavDropdown.Item>
                 <NavDropdown.Item className='click' onClick={()=>{handleNavigate({formId : 'FORM-601',navigate:'/confEdit'})}}>WorkFlow Edit</NavDropdown.Item>
-                <NavDropdown.Item className='click' onClick={()=>{handleNavigate({formId : 'FORM-202',navigate:'/confreport'})}}>Report Confg</NavDropdown.Item>
+                <NavDropdown.Item className='click' onClick={()=>{handleNavigate({formId : 'FORM-202',navigate:'/confreport'})}}>Data Source</NavDropdown.Item>
+                <NavDropdown.Item className='click' onClick={()=>{handleNavigate({formId : 'FORM-203',navigate:'/confreport'})}}>Report Confg</NavDropdown.Item>
             </NavDropdown>
             // <button onClick={()=>{handleNavigate(res)}} key={i} 
             // className=' btn btn-sm my-1 mx-2 p-2' 

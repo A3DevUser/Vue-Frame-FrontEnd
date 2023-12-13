@@ -6,6 +6,7 @@ export const ColumnHeader = (colData, updateMyData, dropDown, addAndDeleteRow, g
   return colData.filter((fil) => { return fil.gridId == gridData.gridId }).map((res) => {
     // console.log('colData',res)
     if (res.cellType === 'textArea') {
+      let gridIdVal = res.gridId
       return {
         Header: res.fieldName,
         accessor: res.accessor,
@@ -13,7 +14,7 @@ export const ColumnHeader = (colData, updateMyData, dropDown, addAndDeleteRow, g
           // console.log('theCellData', row.getRowProps())
           console.log('theCellData', cell.column.id)
 
-          return <EditableCell column={cell.column.id} row={cell.row.id} updateMyData={updateMyData} value={cell.value} colObj={cell.column} parentId={cell} rowObj={cell.row} valWidth={res.subSecWidth} type={res.cellType} />
+          return <EditableCell column={cell.column.id} row={cell.row.id} updateMyData={updateMyData} value={cell.value} colObj={cell.column} parentId={cell} rowObj={cell.row} valWidth={res.subSecWidth} type={res.cellType} gridIdVal={gridIdVal} />
         },
         width: res.width,
         sticky: res.sticky,

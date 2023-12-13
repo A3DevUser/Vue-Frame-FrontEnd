@@ -31,10 +31,6 @@ const FormTable = ({col,dData,gridData,handleSave}) => {
     const MainObjIdRed = useSelector((state)=>state.MainObjIdRed)
 
     useEffect(()=>{
-      console.log('SendReportConfDataRed',data)
-    },[data])
-
-    useEffect(()=>{
       if(EmdRed=='add'&&window.location.pathname.includes('Table')){
         if(Object.keys(FormDatRed).includes(gridData.gridId)){
           if(gridData.isMain=='true'){
