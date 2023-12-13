@@ -24,8 +24,8 @@ function ConfTabsBar({accordionVal,gridData,columnData,data,defaultVal,setdefaul
     }
 
     const handleGetCol = () => {
-        console.log('New col localData',localData)
-        MainObject.table('',localData,'','')
+        // console.log('New col localData',localData)
+        // MainObject.table('',localData,'','')
     }
 
     useEffect(()=>{
@@ -65,7 +65,7 @@ function ConfTabsBar({accordionVal,gridData,columnData,data,defaultVal,setdefaul
                             ,subRes,handleSave)
                     }
 <span className='mx-5 my-2' style={{float:'right',display:window.location.pathname.includes('confreport') ? 'block' : 'none'}}>
-    <Button className="btn btn-success" onClick={handleGetCol} >Get Columns </Button>
+    {/* <Button className="btn btn-success" onClick={handleGetCol} >Get Columns </Button> */}
 {/* {MainObject.button({classNameVal:'btn btn-success', widthVal:'', heightVal:'',btnName:'Get Columns'},()=>{handleGetCol()},'')} */}
 </span>
   <br/><br/><br/><br/>

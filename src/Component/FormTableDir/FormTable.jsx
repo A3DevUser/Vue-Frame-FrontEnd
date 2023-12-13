@@ -30,6 +30,13 @@ const FormTable = ({col,dData,gridData,handleSave}) => {
     const SendObjectIdRed = useSelector((state) => state.SendObjectIdRed)
     const MainObjIdRed = useSelector((state)=>state.MainObjIdRed)
 
+    const SendReportConfDataRed = useSelector((state) => state.SendReportConfDataRed)
+    const [localData,setLocalData] = useState([])
+
+    useEffect(()=>{
+      setLocalData(SendReportConfDataRed.val)
+  },[SendReportConfDataRed])
+
     useEffect(()=>{
       if(EmdRed=='add'&&window.location.pathname.includes('Table')){
         if(Object.keys(FormDatRed).includes(gridData.gridId)){
@@ -215,10 +222,17 @@ const FormTable = ({col,dData,gridData,handleSave}) => {
           // },[finalArr])
         
           const handleAddRow = ()=>{
-            let obj ={}
-            const rowInd = data.length
-            columns.forEach((res)=> obj[res.accessor]='')
-            addAndDeleteRow(rowInd,obj,(gridData.gridId == 'GID-290') ? 'Useradd' : 'add')
+            const rowInd = localData.length
+            if (gridData.gridId == 'GID-015'){
+              localData.map((res)=>{
+                addAndDeleteRow(rowInd,res,'add') 
+              })
+            }else{
+              let obj ={}
+              const rowInd = data.length
+              columns.forEach((res)=> obj[res.accessor]='')
+              addAndDeleteRow(rowInd,obj,(gridData.gridId == 'GID-290') ? 'Useradd' : 'add')
+            }
           }
 
           const handleRemove = () =>{

@@ -34,6 +34,10 @@ const TableStruc = ({getTableProps,getTableBodyProps,headerGroups,prepareRow,row
         // disabled={EmdRed == 'yes'}
         onClick={handleAddRow}
         ><i class="bi bi-plus-lg"></i> Add</button>
+        <button className='btn btn-success mx-2' style={{display : (gridData.isMrow =='true'&& !add.includes(window.location.pathname)) || (window.location.pathname.includes('confreport')&&gridData.isMrow =='true')  ? 'block' : 'none'}}
+        // disabled={EmdRed == 'yes'}
+        onClick={handleAddRow}
+        ><i class="bi bi-plus-lg"></i> Get Data </button>
         <Button variant='success' style={{display : (gridData.isMrow =='true'&& !removeDupl.includes(window.location.pathname)) || (window.location.pathname.includes('confform')&&gridData.isMrow =='true') ? 'block' : 'none'}} onClick={handleRemove}><i class="bi bi-trash"> </i>Remove</Button>
         <Button variant='success' style={{display : (gridData.isMrow =='true'&& !removeDupl.includes(window.location.pathname)) || (window.location.pathname.includes('confform')&&gridData.isMrow =='true') ? 'block' : 'none'}} className='mx-2' onClick={handleCopy}><i class="bi bi-copy"> </i>Duplicate</Button>
         {(gridData.isMain == 'true') || (window.location.pathname.includes('confform')) || (window.location.pathname.includes('confreport')) ? MainObject.button({classNameVal:'btn btn-success', widthVal:'', heightVal:'',btnName: <><i class="bi bi-floppy"></i> Submit</>},()=>{handleSave(gridData)}) : <></>}
