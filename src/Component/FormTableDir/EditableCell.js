@@ -40,15 +40,16 @@ export const EditableCell = ({
     }
   
 
-    useEffect(()=>{
-      if(id=='formId'){
-        updateMyData(index, id, SendConfDataRed.val.formId,null)
-        setFreeze(true)
-      }else if (id =='wfId'){
-        updateMyData(index, id, SendConfDataRed.val.wfId,null)
-        setFreeze(true)
-      }
-    },[SendConfDataRed])
+    // useEffect(()=>{
+    //   if(id=='formId'){
+    //     console.log('NEWSendReportConfDataRed',SendConfDataRed.val.formId)
+    //     updateMyData(index, id, SendConfDataRed.val.formId,null)
+    //     setFreeze(true)
+    //   }else if (id =='wfId'){
+    //     updateMyData(index, id, SendConfDataRed.val.wfId,null)
+    //     setFreeze(true)
+    //   }
+    // },[SendConfDataRed])
 
     useEffect(()=>{
       if (gridIdVal = 'GID-015'){
@@ -58,10 +59,14 @@ export const EditableCell = ({
       }
 
       if (id =='dsId'){
+        console.log('NEWSendReportConfDataRed',SendReportConfDataRed.val)
         updateMyData(index, id, SendReportConfDataRed.val.dsId,null)
         // setFreeze(true)
       }else if (id =='expId'){
         updateMyData(index, id, SendReportConfDataRed.val.expId,null)
+        // setFreeze(true)
+      }else if (id =='rptId'){
+        updateMyData(index, id, SendReportConfDataRed.val.rptId,null)
         // setFreeze(true)
       }
       
@@ -103,6 +108,7 @@ export const EditableCell = ({
     const [dataValdd,setdataValdd] = useState()
     
     const SendConfDataRed = useSelector((state)=> state.SendConfDataRed)
+    const SendReportConfDataRed = useSelector((state) => state.SendReportConfDataRed)
     const AuthRed = useSelector((state)=>state.AuthRed)
 
     const onChange = e => {
@@ -133,6 +139,14 @@ export const EditableCell = ({
       })
 
     },[SendConfDataRed])
+
+    useEffect(() => {
+      if (parentId.gridIdVal != 'GID-015'){
+        Object.keys(SendReportConfDataRed.val).forEach((res)=>{
+          return updateMyData(index, res, SendReportConfDataRed.val[res],null,'')
+        })
+      }
+    },[SendReportConfDataRed])
 
     // useEffect(()=>{console.log('dropDownec',dataValdd)},[dataValdd])
 

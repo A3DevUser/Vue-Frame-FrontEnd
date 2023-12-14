@@ -34,6 +34,10 @@ import { DataSouConfGridRed } from "./DataSouConfGridRed";
 import { DataSouConfSectionRed } from "./DataSouConfSectionRed";
 import { SendUserDataInfoRed } from "./UserDataRed";
 import { SendReportConfDataRed } from "./SendReportConfDataRed";
+import { ReportTitleColumnRed } from "./ReportTitleColumnRed";
+import { ReportTitleGridRed } from "./ReportTitleGridRed";
+import { ReportTitleFilterRed } from "./ReportTitleFilterRed";
+import { ReportTitleDataRed } from "./ReportTitleDataRed";
 
 
 const rootReducers = combineReducers({
@@ -78,6 +82,10 @@ const rootReducers = combineReducers({
     DataSouConfColumnRed,
     SendUserDataInfoRed,
     SendReportConfDataRed,
+    ReportTitleColumnRed,
+    ReportTitleGridRed,
+    ReportTitleFilterRed,
+    ReportTitleDataRed,
     });
 
 export default rootReducers

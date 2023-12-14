@@ -1,22 +1,22 @@
-/* .main-compo{
+.main-compo{
     display: grid;
     grid-template-columns: 1fr 20fr;
-    padding-top: 1em;
     grid-template-rows: 90vh;
-    width: 70vw;
+    /* width: 70vw; */
 }
-
+/* 
 .right-compo{
     padding: 1rem;
 } */    
 
-.main-compo{
+/* .main-compo{
     display: flex;
     flex-direction: row;
-    height: 50vh;
-}
+} */
 .right-compo{
-    max-width: 90vw;
+    /* max-width: 80vw !important; */
+    /* max-height: 100vh !important; */
+    /* max-width: 90vw; */
     overflow-x: hidden;
     margin-top: 1vh;
 }

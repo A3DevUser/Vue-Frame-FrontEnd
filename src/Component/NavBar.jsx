@@ -163,7 +163,7 @@ className='navbar-background'
                         return <Dropdown.Item>
                         {nres.navName}
                         {<Dropdown.Submenu position='right'>
-            <Dropdown.Item onClick={()=>{handleNavigate({formId : 'FORM-627',navigate:'/reportForm'})}} >{`View ${nres.navName}`}</Dropdown.Item>
+            <Dropdown.Item onClick={()=>{handleNavigate({formId : nres.formId,navigate:'/reportForm'})}} >{`View ${nres.navName}`}</Dropdown.Item>
         </Dropdown.Submenu> }
                     </Dropdown.Item>
                     }else{
