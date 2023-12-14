@@ -41,9 +41,7 @@ export const EditableCell = ({
   
 
     useEffect(()=>{
-      // console.log('SendConfDataRed',SendConfDataRed)
       if(id=='formId'){
-        // setValue(SendConfDataRed.val.formId)
         updateMyData(index, id, SendConfDataRed.val.formId,null)
         setFreeze(true)
       }else if (id =='wfId'){
@@ -52,6 +50,22 @@ export const EditableCell = ({
       }
     },[SendConfDataRed])
 
+    useEffect(()=>{
+      if (gridIdVal = 'GID-015'){
+        if (id == 'columnName'){
+          setFreeze(true)
+        }
+      }
+
+      if (id =='dsId'){
+        updateMyData(index, id, SendReportConfDataRed.val.dsId,null)
+        // setFreeze(true)
+      }else if (id =='expId'){
+        updateMyData(index, id, SendReportConfDataRed.val.expId,null)
+        // setFreeze(true)
+      }
+      
+    },[SendReportConfDataRed])
 
     const onBlur = () => {
       updateMyData(index, id, value,null)

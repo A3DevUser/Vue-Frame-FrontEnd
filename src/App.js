@@ -80,6 +80,7 @@ const App = () => {
           <Route path='/GridForm' element={<GridForm />} />
           <Route path='/confform' element={<FormConf />} />
           <Route path='/confreport' element={<ReportConf />} />
+          <Route path='/reportForm' element={<ReportForm />} />
           <Route path='/useraddTable' element={<UserAddTable/>} />
           <Route path='/usereditTable' element={<UserEditTable/>} />
           <Route path='/userviewTable' element={<UserViewTable/>} />

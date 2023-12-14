@@ -159,6 +159,14 @@ className='navbar-background'
             {
                 NavBarRed.val.filter((fil)=>{return fil.cat == res}).map((nres)=>{
                     // console.log('Nav Bar Details',nres)
+                    if (nres.navigate == '/confreport'){
+                        return <Dropdown.Item>
+                        {nres.navName}
+                        {<Dropdown.Submenu position='right'>
+            <Dropdown.Item onClick={()=>{handleNavigate({formId : 'FORM-627',navigate:'/reportForm'})}} >{`View ${nres.navName}`}</Dropdown.Item>
+        </Dropdown.Submenu> }
+                    </Dropdown.Item>
+                    }else{
                     return <Dropdown.Item>
                         {nres.navName}
                         {<Dropdown.Submenu position='right'>
@@ -166,7 +174,7 @@ className='navbar-background'
             <Dropdown.Item onClick={()=>{handleNavigate({formId : nres.formId,navigate:nres.navigate,emd :'yes'})}}>{`Edit ${nres.navName}`}</Dropdown.Item>
             <Dropdown.Item onClick={()=>{handleNavigate({formId : nres.formId,navigate:nres.navigate,emd:'add'})}}>{`Add ${nres.navName}`}</Dropdown.Item>
         </Dropdown.Submenu> }
-                    </Dropdown.Item>
+                    </Dropdown.Item>}
                 })
             }
         </Dropdown>

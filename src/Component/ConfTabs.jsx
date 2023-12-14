@@ -59,7 +59,7 @@ function ConfTabsBar({accordionVal,gridData,columnData,data,defaultVal,setdefaul
                         {
                         columnData&&data&&
                         MainObject.table(columnData,
-                            subRes.gridId == 'GID-015' ? localData :
+                            // subRes.gridId == 'GID-015' ? localData :
                             (data.filter((fil)=>{return fil.GRID_ID == subRes.gridId}).length == 1) ? data.filter((fil)=>{return fil.GRID_ID==subRes.gridId})[0].DATA :
                             [dataObj]
                             ,subRes,handleSave)

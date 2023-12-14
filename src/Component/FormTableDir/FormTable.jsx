@@ -32,6 +32,8 @@ const FormTable = ({col,dData,gridData,handleSave}) => {
 
     const SendReportConfDataRed = useSelector((state) => state.SendReportConfDataRed)
     const [localData,setLocalData] = useState([])
+    const [hide,setHide] = useState(false)
+    const [localVal,setLocalVal] = useState([])
 
     useEffect(()=>{
       setLocalData(SendReportConfDataRed.val)
@@ -110,7 +112,10 @@ const FormTable = ({col,dData,gridData,handleSave}) => {
       if(gridData.isMain == 'true'){
         setdata((old)=>
         {return [...old,{...obj}]})
-      }else{
+      }else if(gridData.gridId == 'GID-015'){
+        setdata(localData)
+      }
+      else{
         setdata((old)=>{return [...old,{...obj,VF_OBJ_ID:index,VF_MAIN_OBJ_ID:MainObjIdRed}]})
 
       }
@@ -222,15 +227,18 @@ const FormTable = ({col,dData,gridData,handleSave}) => {
           // },[finalArr])
         
           const handleAddRow = ()=>{
-            const rowInd = localData.length
             if (gridData.gridId == 'GID-015'){
-              localData.map((res)=>{
-                addAndDeleteRow(rowInd,res,'add') 
+              // const rowInd = localData.length
+              localData.map((res,index)=>{
+                // console.log('addAndDeleteRow',res)
+                addAndDeleteRow(index,res,'add') 
               })
+              setHide(true)
             }else{
               let obj ={}
               const rowInd = data.length
               columns.forEach((res)=> obj[res.accessor]='')
+              console.log('addAndDeleteRow',obj)
               addAndDeleteRow(rowInd,obj,(gridData.gridId == 'GID-290') ? 'Useradd' : 'add')
             }
           }
@@ -328,7 +336,7 @@ const FormTable = ({col,dData,gridData,handleSave}) => {
   </div>
                 </div> */}
           </div>
-        <TableStruc getTableBodyProps={getTableBodyProps} getTableProps={getTableProps}  headerGroups={headerGroups} prepareRow={prepareRow} rows={page} handleSave={handleSave} handleAddRow={handleAddRow} gridData={gridData} handleRemove={handleRemove} handleCopy={handleCopy} previousPage={previousPage} canPreviousPage={canPreviousPage} nextPage={nextPage} canNextPage={canNextPage} pageOptions={pageOptions} state={state} gotoPage={gotoPage} pageCount={pageCount} setGlobalFilter={setGlobalFilter}/>
+        <TableStruc getTableBodyProps={getTableBodyProps} getTableProps={getTableProps}  headerGroups={headerGroups} prepareRow={prepareRow} rows={page} handleSave={handleSave} handleAddRow={handleAddRow} gridData={gridData} handleRemove={handleRemove} handleCopy={handleCopy} previousPage={previousPage} canPreviousPage={canPreviousPage} nextPage={nextPage} canNextPage={canNextPage} pageOptions={pageOptions} state={state} gotoPage={gotoPage} pageCount={pageCount} setGlobalFilter={setGlobalFilter} hide={hide}/>
         </Styles>
     </div>
   )

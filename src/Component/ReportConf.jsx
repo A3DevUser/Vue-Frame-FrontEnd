@@ -54,11 +54,16 @@ const ReportConf = () => {
     // },[FormEditRed])
 
     const width = '75vw'
-
+    // ...SendReportConfDataRed.val, , targetId: val.gridId
     const handleSave = (val) =>{
       if(Object.keys(FormDatRed).includes(val.gridId)){
-        const FormData = FormDatRed[val.gridId].map((res) => {return {...res, ...SendReportConfDataRed.val, targetId: val.gridId}})
-        dispatch(FormReportConfData(val.api,FormData,AuthRed.val))
+        if (val.gridId == 'GID-015'){
+          const FormData = FormDatRed[val.gridId].map((res) => {return {...res}})
+          dispatch(FormReportConfData(val.api,FormData,AuthRed.val))
+        }else{
+          const FormData = FormDatRed[val.gridId].map((res) => {return {...res, ...SendReportConfDataRed.val}})
+          dispatch(FormReportConfData(val.api,FormData,AuthRed.val))
+        }
         }
     }
 
