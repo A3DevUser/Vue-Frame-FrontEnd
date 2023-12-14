@@ -9,7 +9,6 @@ import { MainObject } from '../Elements/commonFun';
 
 const LeftSidebar = () => {
     const [isExpanded, setExpanded] = useState(true);
-    const [filterData,setFilterData] = useState()
     const [filval,setFilval] = useState()
     const [filData,setfilData]=useState({})
     
@@ -29,22 +28,14 @@ const LeftSidebar = () => {
             setfilData({...filData,[event.target.name]: {columnName :event.target.name, value : event.target.value }})
     }
 
-    useEffect(()=>{
+    function funApplyFil() {
         console.log('filData',Object.values(filData))
-    },[filData])
+    }
 
     useEffect(()=>{
         dispatch(FetchReportTitleFilterData(FormIdRed,AuthRed.val))
+        setfilData()
     },[FormIdRed])
-    
-    useEffect(()=>{
-            console.log('LNav FormIdRed',ReportTitleFilterRed.val)
-            setFilterData(ReportTitleFilterRed.val.map(item => ({ columnName: item.columnName, value: "" })))
-        },[ReportTitleFilterRed])
-
-    useEffect(() => {
-        console.log('console for Filter Data',filterData)
-    },[filterData])
 
     return (
         <>
@@ -74,7 +65,7 @@ const LeftSidebar = () => {
                             </div>
                             <div className="sidebar-footer" style={{ display: isExpanded ? 'block' : 'none' }}>
                                 <hr />
-                                <button className="btn btn-secondary" style={{ marginLeft: '2em' }} >Apply Filter</button>
+                                <button className="btn btn-secondary" style={{ marginLeft: '2em' }} onClick={funApplyFil} >Apply Filter</button>
                             </div>        
         </>
 
