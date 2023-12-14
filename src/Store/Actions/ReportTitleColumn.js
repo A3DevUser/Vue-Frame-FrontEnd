@@ -21,7 +21,7 @@ const ReportTitleColumnErr = (val) =>{
     }
 };
 
-export const FetchReportTitleColumnData = (id,emd,token) =>{
+export const FetchReportTitleColumnData = (id,token) =>{
     const headers = {
         'Content-Type': 'application/json', 
         'Authorization': `Bearer ${token}` , 

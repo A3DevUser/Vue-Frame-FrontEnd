@@ -23,8 +23,11 @@ const FilterData = () => {
   const [filteredData, setFilteredData] = useState(DummyData);
   const dispatch = useDispatch();
   const SectionRed = useSelector((state)=>state.SectionRed)
-  const ColumnRed = useSelector((state) => state.ColumnRed)
-  const GridRed = useSelector((state) => state.GridRed)
+  const ColumnRed = [{"columnId":"RPTC-9","gridId":"RPT-9","accessor":"USERID","fieldName":"User ID","cellType":"textArea","rptColTooltip":"zzzz","width":"200","number":"1","formId":"DS-58"},
+  {"columnId":"RPTC-10","gridId":"RPT-9","accessor":"USERNAME","fieldName":"User Name","cellType":"textArea","rptColTooltip":"zzzzz","width":"200","number":"2","formId":"DS-58"}]
+  // useSelector((state) => state.ColumnRed)
+  const GridRed = [{"gridId":"RPT-9","dbTableName":"Login Report","gridName":"Login Details Report","formId":"DS-58","rptPkg":"vf","isMain":"Report","rptType":"tabular"}]
+  // useSelector((state) => state.GridRed)
   const FormIdRed = useSelector((state) => state.FormIdRed)
   const FormDatRed = useSelector((state) => state.FormDatRed)
   const AuthRed = useSelector((state)=>state.AuthRed)
@@ -51,17 +54,17 @@ const FilterData = () => {
 
   useEffect(() => {
     console.log('FormIdRed',FormIdRed)
-    dispatch(FetchGridData('FORM-627',AuthRed.val))
-    dispatch(FetchColumnData('FORM-627','no',AuthRed.val))
+    // dispatch(FetchGridData('FORM-627',AuthRed.val))
+    // dispatch(FetchColumnData('FORM-627','no',AuthRed.val))
     dispatch(FetchReportTitleGridData(FormIdRed,AuthRed.val))
     dispatch(FetchReportTitleColumnData(FormIdRed,AuthRed.val))
   }, [FormIdRed])
 
   useEffect(()=>{
-    // console.log('NewReport Data',ReportTitleColumnRed)
-    // console.log('NewReport Data',ReportTitleGridRed)
-    console.log('NewReport Data',GridRed)
-    console.log('NewReport Data',ColumnRed)
+    // console.log('NewReport Data',JSON.stringify(ReportTitleColumnRed.val))
+    // console.log('NewReport Data',JSON.stringify(ReportTitleGridRed.val))
+    console.log('NewReport Data',JSON.stringify(GridRed))
+    console.log('NewReport Data',JSON.stringify(ColumnRed))
   },[ColumnRed,GridRed])
 
 
@@ -71,11 +74,15 @@ const FilterData = () => {
 
   return (
     <div>
-      
-    {
+    {/* {
       GridRed.loading ? MainObject.loader() : ColumnRed.loading ? MainObject.loader() : 
       GridRed.val.filter((fil)=>{return fil.isMain }).map((res,i)=>{
       return <GridFormSub column={ColumnRed.val.sort((a,b)=>{return a.number-b.number})} data={DummyData} gridData={res} key={i} handleSave={handleSave}/>})
+    } */}
+    {
+      GridRed.loading ? MainObject.loader() : ColumnRed.loading ? MainObject.loader() : 
+      GridRed.filter((fil)=>{return fil.isMain }).map((res,i)=>{
+      return <GridFormSub column={ColumnRed.sort((a,b)=>{return a.number-b.number})} data={DummyData} gridData={res} key={i} handleSave={handleSave}/>})
     }
   </div>
   );
