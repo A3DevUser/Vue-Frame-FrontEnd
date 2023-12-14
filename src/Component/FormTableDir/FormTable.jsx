@@ -177,7 +177,7 @@ const FormTable = ({col,dData,gridData,handleSave}) => {
       // },[FormDatRed])
   
         useEffect(()=>{
-          // console.log('opData',data)
+          console.log('opData',data)
           if(window.location.pathname == '/confform'){
             dispatch(FormDataAct({...FormDatRed,[gridData.gridId] : data}) )   
           }else if(window.location.pathname == '/confreport'){

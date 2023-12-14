@@ -9,6 +9,7 @@ import { MainObject } from '../../Component/Elements/commonFun';
 import ImpExp from '../ReportExp/ReportImpExp';
 import { FetchReportTitleGridData } from '../../Store/Actions/ReportTitleGrid';
 import { FetchReportTitleColumnData } from '../../Store/Actions/ReportTitleColumn';
+import { FetchReportTitleData } from '../../Store/Actions/ReportTitleData';
 
 const DummyData = [
   { id: 1, name: 'John Doe', roleNumber: '001', phoneNumber: '123-456-7890', email: 'john.doe@example.com' },
@@ -33,6 +34,7 @@ const FilterData = () => {
   const AuthRed = useSelector((state)=>state.AuthRed)
   const ReportTitleColumnRed = useSelector((state)=> state.ReportTitleColumnRed)
   const ReportTitleGridRed = useSelector((state)=> state.ReportTitleGridRed)
+  const ReportTitleDataRed = useSelector((state) => state.ReportTitleDataRed)
 
   const [defaultVal,setdefaultVal] =useState([])
 
@@ -58,6 +60,7 @@ const FilterData = () => {
     // dispatch(FetchColumnData('FORM-627','no',AuthRed.val))
     dispatch(FetchReportTitleGridData(FormIdRed,AuthRed.val))
     dispatch(FetchReportTitleColumnData(FormIdRed,AuthRed.val))
+    dispatch(FetchReportTitleData(FormIdRed,AuthRed.val))
   }, [FormIdRed])
 
   useEffect(()=>{
@@ -80,8 +83,8 @@ const FilterData = () => {
       return <GridFormSub column={ColumnRed.val.sort((a,b)=>{return a.number-b.number})} data={DummyData} gridData={res} key={i} handleSave={handleSave}/>})
     } */}
     {
-      ReportTitleGridRed.loading ? MainObject.loader() : ReportTitleColumnRed.loading ? MainObject.loader() : 
-      MainObject.reportTable(ReportTitleGridRed.val,ReportTitleColumnRed.val)
+      ReportTitleGridRed.loading ? MainObject.loader() : ReportTitleColumnRed.loading ? MainObject.loader() : ReportTitleDataRed.loading ? MainObject.loader() :
+      MainObject.reportTable(ReportTitleGridRed.val,ReportTitleColumnRed.val,ReportTitleDataRed.val)
       // GridRed.filter((fil)=>{return fil.isMain }).map((res,i)=>{
       // return <GridFormSub column={ColumnRed.sort((a,b)=>{return a.number-b.number})} data={DummyData} gridData={res} key={i} handleSave={handleSave}/>})
     }

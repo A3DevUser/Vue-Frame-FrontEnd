@@ -140,8 +140,8 @@ export const MainObject = {
         return <Example/>
     },
 
-    reportTable : (gridData,columnData) =>{
-        return <BassicTab gridData={gridData} columnData={columnData} />
+    reportTable : (gridData,columnData,reportData) =>{
+        return <BassicTab gridData={gridData} columnData={columnData} reportData={reportData}/>
     }
 
 } 

@@ -40,15 +40,16 @@ export const EditableCell = ({
     }
   
 
-    useEffect(()=>{
-      if(id=='formId'){
-        updateMyData(index, id, SendConfDataRed.val.formId,null)
-        setFreeze(true)
-      }else if (id =='wfId'){
-        updateMyData(index, id, SendConfDataRed.val.wfId,null)
-        setFreeze(true)
-      }
-    },[SendConfDataRed])
+    // useEffect(()=>{
+    //   if(id=='formId'){
+    //     console.log('NEWSendReportConfDataRed',SendConfDataRed.val.formId)
+    //     updateMyData(index, id, SendConfDataRed.val.formId,null)
+    //     setFreeze(true)
+    //   }else if (id =='wfId'){
+    //     updateMyData(index, id, SendConfDataRed.val.wfId,null)
+    //     setFreeze(true)
+    //   }
+    // },[SendConfDataRed])
 
     useEffect(()=>{
       if (gridIdVal = 'GID-015'){
@@ -58,6 +59,7 @@ export const EditableCell = ({
       }
 
       if (id =='dsId'){
+        console.log('NEWSendReportConfDataRed',SendReportConfDataRed.val)
         updateMyData(index, id, SendReportConfDataRed.val.dsId,null)
         // setFreeze(true)
       }else if (id =='expId'){

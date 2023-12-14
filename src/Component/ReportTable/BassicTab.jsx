@@ -7,15 +7,15 @@ import '../FormTableDir/TableStyle.css'
 import Mock_data from './MOCK_DATA_TAB.json'
 import { Columns } from './Columns'
 
-const BassicTab = ({gridData,columnData}) => {
+const BassicTab = ({gridData,columnData,reportData}) => {
 
     
     const [columns,setcolumns] = useState(
-        Columns
-        // [...columnData.map((res)=>{return {Header :res.rptColLabel, accessor:res.rptColName}})]
+        // Columns
+        [...columnData.map((res)=>{return {Header :res.rptColLabel, accessor:res.rptColName}})]
         );
     
-    const [data,setdata] = useState([...Mock_data])
+    const [data,setdata] = useState([...reportData])
     
     console.log('columnData',columns)
 
