@@ -46,6 +46,7 @@ const FilterData = () => {
   };
 
   useEffect(() => {
+    console.log('FormIdRed',FormIdRed)
     dispatch(FetchGridData('FORM-627',AuthRed.val))
     dispatch(FetchColumnData('FORM-627','no',AuthRed.val))
   }, [FormIdRed])

@@ -63,6 +63,9 @@ export const EditableCell = ({
       }else if (id =='expId'){
         updateMyData(index, id, SendReportConfDataRed.val.expId,null)
         // setFreeze(true)
+      }else if (id =='rptId'){
+        updateMyData(index, id, SendReportConfDataRed.val.rptId,null)
+        // setFreeze(true)
       }
       
     },[SendReportConfDataRed])
