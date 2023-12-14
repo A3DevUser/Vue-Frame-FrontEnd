@@ -9,11 +9,11 @@ import { MainObject } from '../Elements/commonFun';
 
 const LeftSidebar = () => {
     const [isExpanded, setExpanded] = useState(true);
-
-    const toggleSidebar = () => {
-        setExpanded(!isExpanded);
-    };
-        const dispatch = useDispatch()
+    const [filterData,setFilterData] = useState()
+    const [filval,setFilval] = useState()
+    const [filData,setfilData]=useState({})
+    
+    const dispatch = useDispatch()
     const FormIdRed = useSelector((state) => state.FormIdRed)
     const GridRed = useSelector((state) => state.GridRed)
     const ColumnRed = useSelector((state) => state.ColumnRed)
@@ -21,13 +21,30 @@ const LeftSidebar = () => {
     const FormDatRed = useSelector((state) => state.FormDatRed)
     const ReportTitleFilterRed = useSelector((state) => state.ReportTitleFilterRed)
 
+    const toggleSidebar = () => {
+        setExpanded(!isExpanded);
+    };
+
+    const funValFil = (event,fildata) =>{
+            setfilData({...filData,[event.target.name]: {columnName :event.target.name, value : event.target.value }})
+    }
+
+    useEffect(()=>{
+        console.log('filData',Object.values(filData))
+    },[filData])
+
     useEffect(()=>{
         dispatch(FetchReportTitleFilterData(FormIdRed,AuthRed.val))
     },[FormIdRed])
     
     useEffect(()=>{
             console.log('LNav FormIdRed',ReportTitleFilterRed.val)
+            setFilterData(ReportTitleFilterRed.val.map(item => ({ columnName: item.columnName, value: "" })))
         },[ReportTitleFilterRed])
+
+    useEffect(() => {
+        console.log('console for Filter Data',filterData)
+    },[filterData])
 
     return (
         <>
@@ -51,7 +68,7 @@ const LeftSidebar = () => {
 
                 </div>
                 <div className="sidebar-content" style={{ display: isExpanded ? 'block' : 'none', overflowY: 'auto', maxHeight: '65vh', overflowX: 'hidden' }}>
-                    <input className='form-control' type={res.colFilTyp} placeholder="Enter filter..." />
+                    <input className='form-control' type={res.colFilTyp} name={res.columnName} placeholder="Enter filter..." onBlur={(event) => funValFil(event,res)} value={filval} />
                 </div>                
                 </>})}
                             </div>
