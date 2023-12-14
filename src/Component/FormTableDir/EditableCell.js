@@ -108,6 +108,7 @@ export const EditableCell = ({
     const [dataValdd,setdataValdd] = useState()
     
     const SendConfDataRed = useSelector((state)=> state.SendConfDataRed)
+    const SendReportConfDataRed = useSelector((state) => state.SendReportConfDataRed)
     const AuthRed = useSelector((state)=>state.AuthRed)
 
     const onChange = e => {
@@ -138,6 +139,14 @@ export const EditableCell = ({
       })
 
     },[SendConfDataRed])
+
+    useEffect(() => {
+      if (parentId.gridIdVal != 'GID-015'){
+        Object.keys(SendReportConfDataRed.val).forEach((res)=>{
+          return updateMyData(index, res, SendReportConfDataRed.val[res],null,'')
+        })
+      }
+    },[SendReportConfDataRed])
 
     // useEffect(()=>{console.log('dropDownec',dataValdd)},[dataValdd])
 

@@ -47,7 +47,8 @@ const BassicTab = ({gridData,columnData,reportData}) => {
          const { pageIndex } = state
   return (
     <>
-    <div style={{display:'flex', justifyContent:'end', maxWidth:'90vw'}}>
+    <div style={{display:'flex', justifyContent:'space-between', maxWidth:'90vw'}}>
+        {gridData.map((res) => {return <h3>{res.rptTitle}</h3>})}
     <GlobalFilter filter={globalFilter} setfilter={setGlobalFilter}/>
     </div>
     <Styles>
