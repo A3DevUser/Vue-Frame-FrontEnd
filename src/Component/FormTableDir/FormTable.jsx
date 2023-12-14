@@ -110,6 +110,7 @@ const FormTable = ({col,dData,gridData,handleSave}) => {
       //   }).flat()
       // })
       if(gridData.isMain == 'true'){
+        console.log('gridData',gridData);
         setdata((old)=>
         {return [...old,{...obj}]})
       }else if(gridData.gridId == 'GID-015'){
