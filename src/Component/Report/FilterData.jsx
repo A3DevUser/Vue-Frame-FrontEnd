@@ -7,6 +7,8 @@ import { FetchColumnData } from '../../Store/Actions/Column';
 import GridFormSub from '../../Component/GridFormSub';
 import { MainObject } from '../../Component/Elements/commonFun';
 import ImpExp from '../ReportExp/ReportImpExp';
+import { FetchReportTitleGridData } from '../../Store/Actions/ReportTitleGrid';
+import { FetchReportTitleColumnData } from '../../Store/Actions/ReportTitleColumn';
 
 const DummyData = [
   { id: 1, name: 'John Doe', roleNumber: '001', phoneNumber: '123-456-7890', email: 'john.doe@example.com' },
@@ -26,6 +28,8 @@ const FilterData = () => {
   const FormIdRed = useSelector((state) => state.FormIdRed)
   const FormDatRed = useSelector((state) => state.FormDatRed)
   const AuthRed = useSelector((state)=>state.AuthRed)
+  const ReportTitleColumnRed = useSelector((state)=> state.ReportTitleColumnRed)
+  const ReportTitleGridRed = useSelector((state)=> state.ReportTitleGridRed)
 
   const [defaultVal,setdefaultVal] =useState([])
 
@@ -49,7 +53,17 @@ const FilterData = () => {
     console.log('FormIdRed',FormIdRed)
     dispatch(FetchGridData('FORM-627',AuthRed.val))
     dispatch(FetchColumnData('FORM-627','no',AuthRed.val))
+    dispatch(FetchReportTitleGridData(FormIdRed,AuthRed.val))
+    dispatch(FetchReportTitleColumnData(FormIdRed,AuthRed.val))
   }, [FormIdRed])
+
+  useEffect(()=>{
+    // console.log('NewReport Data',ReportTitleColumnRed)
+    // console.log('NewReport Data',ReportTitleGridRed)
+    console.log('NewReport Data',GridRed)
+    console.log('NewReport Data',ColumnRed)
+  },[ColumnRed,GridRed])
+
 
   const handleSave = ()=>{
     
