@@ -22,6 +22,7 @@ import ReportConf from './Component/ReportConf'
 import UserAddTable from './Component/UserEditViewAdd/UserAddTable'
 import UserEditTable from './Component/UserEditViewAdd/UserEditTable'
 import UserViewTable from './Component/UserEditViewAdd/UserViewTable'
+import BassicTab from './Component/ReportTable/BassicTab'
 
 const App = () => {
 
@@ -81,6 +82,7 @@ const App = () => {
           <Route path='/confform' element={<FormConf />} />
           <Route path='/confreport' element={<ReportConf />} />
           <Route path='/reportForm' element={<ReportForm />} />
+          {/* <Route path='/reportForm' element={<BassicTab />} /> */}
           <Route path='/useraddTable' element={<UserAddTable/>} />
           <Route path='/usereditTable' element={<UserEditTable/>} />
           <Route path='/userviewTable' element={<UserViewTable/>} />

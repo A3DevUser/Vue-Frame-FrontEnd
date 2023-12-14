@@ -6,6 +6,7 @@ import TabsBar from "../Tabs"
 import './CommonFunc.css'
 import ConfTabsBar from "../../Component/ConfTabs"
 import Example from "./OffCanva"
+import BassicTab from "../ReportTable/BassicTab"
 
 export const MainObject = {
     alert : (alertVal) => {
@@ -137,6 +138,10 @@ export const MainObject = {
 
     reactOffCan : ()=>{
         return <Example/>
+    },
+
+    reportTable : (gridData,columnData) =>{
+        return <BassicTab gridData={gridData} columnData={columnData} />
     }
 
 } 
