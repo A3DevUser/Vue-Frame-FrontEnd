@@ -55,7 +55,7 @@ const BassicTab = ({ gridData, columnData, reportData }) => {
         <>
             <div style={{ padding: 'auto 1px' }} >
 
-                <div style={{ display: 'flex', justifyContent: 'space-between', maxWidth: '90vw', paddingLeft: '18px', marginTop: '-3px', marginBottom: '9px' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems:'center', maxWidth: '90vw', paddingLeft: '18px', marginTop: '-3px', marginBottom: '9px' }}>
                     {gridData.map((res) => { return <h4 style={{ fontFamily: 'Palatino Linotype' }} >{res.rptTitle}</h4> })}
                     <div style={{ paddingTop: '5px' }}>
                         <GlobalFilter filter={globalFilter} setfilter={setGlobalFilter} />
