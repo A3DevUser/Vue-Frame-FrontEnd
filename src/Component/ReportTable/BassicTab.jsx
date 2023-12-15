@@ -8,7 +8,8 @@ import Mock_data from './MOCK_DATA_TAB.json'
 import { Columns } from './Columns'
 import { useSelector } from 'react-redux'
 import { useEffect } from 'react'
-import { TbPlayerTrackNextFilled } from "react-icons/tb";
+import Pagination from 'react-bootstrap/Pagination';
+
 
 const BassicTab = ({ gridData, columnData, reportData }) => {
     const ReportTitleDataRed = useSelector((state) => state.ReportTitleDataRed)
@@ -109,7 +110,8 @@ const BassicTab = ({ gridData, columnData, reportData }) => {
                         {/* <button onClick={() => previousPage()} disabled={!canPreviousPage}><TbPlayerTrackNextFilled /> Previous</button>
                         <button onClick={() => nextPage()} disabled={!canNextPage}>Next </button> */}
                         <button className='btn btn-secondary btn-sm mx-2' title='Previous page' onClick={() => previousPage()} disabled={!canPreviousPage}>Previous</button>
-                        <button className='btn btn-secondary btn-sm' title='Next page' onClick={() => nextPage()} disabled={!canNextPage}>Next</button>
+                        <button className='btn btn-secondary btn-sm' title='Next page' onClick={() => nextPage()} disabled={!canNextPage}>Next</button> 
+                        {/* <Pagination><Pagination.Next /></Pagination> */}
                     </div>
                     <div>
                         <strong>Total Records {ReportTitleDataRed.val.length}</strong>

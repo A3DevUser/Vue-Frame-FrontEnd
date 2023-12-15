@@ -48,7 +48,7 @@ const EditTable = () => {
       }
 
   return (
-<div style={{marginTop:'5vh'}}>
+<div style={{marginTop:'3vh'}}>
       <div style={{ display:'none', justifyContent : 'flex-end'}} className='mx-5 my-2'>
         <ImpExp columnData={ColumnRed.val} gridData={GridRed.val}/>
         <div>
