@@ -14,7 +14,7 @@ const GlobalFilter = ({filter, setfilter}) => {
       <span>
         Search: {' '} 
         </span>
-        <input placeholder='search...' className='form-control' value={value || ''} onChange={(e) => {
+        <input placeholder='search...' className='form-control form-control-sm' value={value || ''} onChange={(e) => {
           setvalue(e.target.value)
           Onchange(e.target.value)
           }}/>
