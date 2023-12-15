@@ -13,7 +13,7 @@ const DownloadOpt = ({griData,columnData}) => {
   <option>Select One</option>
   <option> */}
   <span className='btn btn-primary'>
-    <ExportExcel  griData={griData} columnData={columnData}/>
+    <ExportExcel  griData={griData} columnData={columnData.filter((fil)=>{return fil.hideShow !=='true'})}/>
   </span>
     {/* </option> */}
 {/* // </select> */}

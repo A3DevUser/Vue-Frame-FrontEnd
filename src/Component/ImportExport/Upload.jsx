@@ -3,6 +3,9 @@ import ExcelJS from 'exceljs';
 import { useDispatch, useSelector } from 'react-redux';
 import { ExcelDataAct } from '../../Store/Actions/GeneralStates';
 import { PostExportData } from '../../Store/Actions/ExportAct';
+import { Button } from 'react-bootstrap';
+import swal from "sweetalert"
+
 
 function ExcelReader({columnData, gridData}) {
 
@@ -45,8 +48,15 @@ function ExcelReader({columnData, gridData}) {
           });
         });
         dispatch(ExcelDataAct(result)); 
-        dispatch(PostExportData(result,AuthRed.val)) // You can set the result in the component state or perform any other necessary operations
+        console.log('resultUpload',JSON.stringify(result))
+        // dispatch(PostExportData(result,AuthRed.val)) // You can set the result in the component state or perform any other necessary operations
       } catch (error) {
+        swal({
+          title :'Alert',
+          text : 'Error loading the Excel file:',
+          icon: "warning",
+          dangerMode: true
+      })
         console.error('Error loading the Excel file:', error);
       }
     };
@@ -61,7 +71,9 @@ function ExcelReader({columnData, gridData}) {
       {/* <input type="file"  accept=".xlsx" onChange={handleFileUpload} /> */}
       <div>
         <input type="file" accept=".xlsx"  id="uploadBtn" onChange={handleFileUpload} />
-        <label htmlFor="uploadBtn" className='uploadLabel'><i className='bi bi-upload'> Upload file</i></label>
+        <label htmlFor="uploadBtn" className='uploadLabel' style={{padding:'10px', fontFamily:'cursive'}}>
+        <i className='bi bi-upload'> Upload file</i>
+        </label>
       </div>
     </div>
   );
