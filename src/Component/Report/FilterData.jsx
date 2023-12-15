@@ -76,7 +76,7 @@ const FilterData = () => {
   }
 
   return (
-    <div>
+    <div >
     {/* {
       GridRed.loading ? MainObject.loader() : ColumnRed.loading ? MainObject.loader() : 
       GridRed.val.filter((fil)=>{return fil.isMain }).map((res,i)=>{

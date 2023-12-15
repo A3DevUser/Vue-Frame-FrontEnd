@@ -9,67 +9,67 @@ import { MainObject } from '../Elements/commonFun';
 
 const LeftSidebar = () => {
     const [isExpanded, setExpanded] = useState(true);
-    const [filval,setFilval] = useState()
-    const [filData,setfilData]=useState({})
-    
-    const dispatch = useDispatch()
-    const FormIdRed = useSelector((state) => state.FormIdRed)
-    const GridRed = useSelector((state) => state.GridRed)
-    const ColumnRed = useSelector((state) => state.ColumnRed)
-    const AuthRed = useSelector((state)=>state.AuthRed)
-    const FormDatRed = useSelector((state) => state.FormDatRed)
-    const ReportTitleFilterRed = useSelector((state) => state.ReportTitleFilterRed)
 
     const toggleSidebar = () => {
         setExpanded(!isExpanded);
     };
+    const dispatch = useDispatch()
+    const FormIdRed = useSelector((state) => state.FormIdRed)
+    const GridRed = useSelector((state) => state.GridRed)
+    const ColumnRed = useSelector((state) => state.ColumnRed)
+    const AuthRed = useSelector((state) => state.AuthRed)
+    const FormDatRed = useSelector((state) => state.FormDatRed)
+    const ReportTitleFilterRed = useSelector((state) => state.ReportTitleFilterRed)
+    const ReportTitleDataRed = useSelector((state) => state.ReportTitleDataRed)
 
-    const funValFil = (event,fildata) =>{
-            setfilData({...filData,[event.target.name]: {columnName :event.target.name, value : event.target.value }})
-    }
+    useEffect(() => {
+        dispatch(FetchReportTitleFilterData(FormIdRed, AuthRed.val))
+    }, [FormIdRed])
 
-    function funApplyFil() {
-        console.log('filData',Object.values(filData))
-    }
-
-    useEffect(()=>{
-        dispatch(FetchReportTitleFilterData(FormIdRed,AuthRed.val))
-        setfilData()
-    },[FormIdRed])
+    useEffect(() => {
+        console.log('LNav FormIdRed', ReportTitleFilterRed.val)
+        console.log('LNav FormIdRed', ReportTitleDataRed.val)
+    }, [ReportTitleDataRed])
 
     return (
         <>
-        {ReportTitleFilterRed.loading ? MainObject.loader() : <>
-            <div className={`left-sidebar ${isExpanded ? 'expanded' : 'collapsed'}`}>
-                <div className="sidebar-header" onClick={toggleSidebar}>
-                    {isExpanded ? (
-                        <div  >
-                            <h3 style={{ display: 'inline-block' }} >Filter</h3>
-                            <IoReorderThreeOutline style={{ fontSize: '2.5em', marginLeft: '5vw' }} />
-                            <hr />
-                        </div>
-                    ) : (
-                        <IoReorderThreeOutline style={{ fontSize: '2.5em' }} />
-                    )}
-                </div>
-            {ReportTitleFilterRed.val.map((res,i) => {
-                return <>
-                <div style={{ display: isExpanded ? 'block' : 'none' }}>
-                    <h4 style={{ paddingLeft: '10px' }}>{res.colFilLabel}</h4>
-
-                </div>
-                <div className="sidebar-content" style={{ display: isExpanded ? 'block' : 'none', overflowY: 'auto', maxHeight: '65vh', overflowX: 'hidden' }}>
-                    <input className='form-control' type={res.colFilTyp} name={res.columnName} placeholder="Enter filter..." onBlur={(event) => funValFil(event,res)} value={filval} />
-                </div>                
-                </>})}
+            {ReportTitleFilterRed.loading ? MainObject.loader() : <>
+                <div className={`left-sidebar ${isExpanded ? 'expanded' : 'collapsed'}`}>
+                    <div className="sidebar-header" onClick={toggleSidebar}>
+                        {isExpanded ? (
+                            <div  >
+                                <h4 className='FilterHeader' style={{ display: 'inline-block', fontFamily:'Palatino Linotype' }} >Filter</h4>
+                                <IoReorderThreeOutline style={{ fontSize: '2.5em', marginLeft: '4vw' }} />
+                                <hr style={{marginTop:'2px' }} />
                             </div>
-                            <div className="sidebar-footer" style={{ display: isExpanded ? 'block' : 'none' }}>
-                                <hr />
-                                <button className="btn btn-secondary" style={{ marginLeft: '2em' }} onClick={funApplyFil} >Apply Filter</button>
-                            </div>        
-        </>
+                        ) : (
+                            <IoReorderThreeOutline style={{ fontSize: '2.5em' }} />
+                        )}
+                    </div>
+                    {ReportTitleFilterRed.val.map((res, i) => {
+                        return <>
+                            <div style={{ display: isExpanded ? 'block' : 'none' }}>
+                                <h6 style={{ paddingLeft: '10px', fontFamily:'Palatino Linotype' }}>{res.colFilLabel}</h6>
 
-        }
+                            </div>
+                            <div className="sidebar-content" style={{ display: isExpanded ? 'block' : 'none', overflowY: 'auto', maxHeight: '65vh', overflowX: 'hidden' }}>
+                                <input list='list' className='form-control form-control-sm' style={{fontSize:'12px',fontFamily:'Palatino Linotype'}} type={res.colFilTyp} placeholder={`Enter ${res.colFilLabel}...`} />
+                                {/* <datalist id='list'>
+                                    {
+                                    ReportTitleDataRed.loading ? <option value={'loading'}/> : ReportTitleDataRed.val.map((rres)=>{console.log('NewNav FormIdRed',rres[res.colFilLabel]);})
+                                    }
+                                </datalist> */}
+                            </div>
+                        </>
+                    })}
+                </div>
+                <div className="sidebar-footer" style={{ display: isExpanded ? 'block' : 'none' }}>
+                    <hr />
+                    <button className="btn btn-secondary" style={{ marginLeft: '2em',fontFamily:'Palatino Linotype' }} >Apply Filter</button>
+                </div>
+            </>
+
+            }
 
         </>
     );
