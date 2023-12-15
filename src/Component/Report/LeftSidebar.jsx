@@ -5,10 +5,13 @@ import "rsuite/dist/rsuite.css";
 import { useDispatch, useSelector } from 'react-redux';
 import { FetchReportTitleFilterData } from '../../Store/Actions/ReportTitleFilter';
 import { MainObject } from '../Elements/commonFun';
+import { FetchReportTitleFilData } from '../../Store/Actions/ReportTitleFilData';
 
 
 const LeftSidebar = () => {
     const [isExpanded, setExpanded] = useState(true);
+    const [filVal,setFilVal] = useState()
+    const [filData,setfilData] = useState()
 
     const toggleSidebar = () => {
         setExpanded(!isExpanded);
@@ -22,14 +25,30 @@ const LeftSidebar = () => {
     const ReportTitleFilterRed = useSelector((state) => state.ReportTitleFilterRed)
     const ReportTitleDataRed = useSelector((state) => state.ReportTitleDataRed)
 
+    function funUpdateFil(event,res){
+        setfilData({...filData,[event.target.name]: {columnName: event.target.name, value: event.target.value}})
+    }
+
     useEffect(() => {
         dispatch(FetchReportTitleFilterData(FormIdRed, AuthRed.val))
+        setfilData()
     }, [FormIdRed])
 
     useEffect(() => {
         console.log('LNav FormIdRed', ReportTitleFilterRed.val)
         console.log('LNav FormIdRed', ReportTitleDataRed.val)
     }, [ReportTitleDataRed])
+
+    function funApplyFil() {
+        // console.log('filData',filData)
+        if (filData != undefined){
+            let rowData = encodeURI(JSON.stringify(Object.values(filData)))
+            dispatch(FetchReportTitleFilData(FormIdRed,rowData,AuthRed.val))
+            console.log('filData',FormIdRed)
+            console.log('filData',rowData)
+            console.log('filData',AuthRed.val)
+        }
+    }
 
     return (
         <>
@@ -53,7 +72,7 @@ const LeftSidebar = () => {
 
                             </div>
                             <div className="sidebar-content" style={{ display: isExpanded ? 'block' : 'none', overflowY: 'auto', maxHeight: '65vh', overflowX: 'hidden' }}>
-                                <input list='list' className='form-control form-control-sm' style={{fontSize:'12px',fontFamily:'Palatino Linotype'}} type={res.colFilTyp} placeholder={`Enter ${res.colFilLabel}...`} />
+                                <input list='list' className='form-control form-control-sm' style={{fontSize:'12px',fontFamily:'Palatino Linotype'}} type={res.colFilTyp} placeholder={`Enter ${res.colFilLabel}...`} onBlur={(event) => {funUpdateFil(event,res)}} name={res.columnName} value={filVal}/>
                                 {/* <datalist id='list'>
                                     {
                                     ReportTitleDataRed.loading ? <option value={'loading'}/> : ReportTitleDataRed.val.map((rres)=>{console.log('NewNav FormIdRed',rres[res.colFilLabel]);})
@@ -65,7 +84,7 @@ const LeftSidebar = () => {
                 </div>
                 <div className="sidebar-footer" style={{ display: isExpanded ? 'block' : 'none' }}>
                     <hr />
-                    <button className="btn btn-secondary" style={{ marginLeft: '2em',fontFamily:'Palatino Linotype' }} >Apply Filter</button>
+                    <button className="btn btn-secondary" style={{ marginLeft: '2em',fontFamily:'Palatino Linotype' }} onClick={funApplyFil}>Apply Filter</button>
                 </div>
             </>
 

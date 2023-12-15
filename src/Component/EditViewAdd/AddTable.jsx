@@ -59,7 +59,7 @@ const AddTable = () => {
       // },[FormDatRed])
 
   return (
-<div style={{marginTop:'5vh'}}>
+<div style={{marginTop:'3vh', paddingLeft:'1.3rem',paddingRight:'1rem'}}>
       {/* <div style={{ display:'none', justifyContent : 'flex-end'}} className='mx-5 my-2'>
         <ImpExp columnData={ColumnRed.val} gridData={GridRed.val}/>
         <div>

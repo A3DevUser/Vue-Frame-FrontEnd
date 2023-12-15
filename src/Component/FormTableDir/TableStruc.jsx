@@ -26,9 +26,9 @@ const TableStruc = ({getTableProps,getTableBodyProps,headerGroups,prepareRow,row
     <div>
  <div style={{display:'flex', flexDirection:'row',justifyContent:'space-between',maxWidth:gridData.width, maxHeight:gridData.height}}>
     <div >
-    <h6 className="mx-5 my-2" id={gridData.gridId}>{gridData.gridName}</h6>
+    <h5 className="mx-5 my-2" style={{fontFamily:'Palatino Linotype'}} id={gridData.gridId}>{gridData.gridName}</h5>
     </div>
-    <div style={{display:'flex', flexDirection:'row'}}>
+    <div style={{display:'flex', flexDirection:'row', marginBottom:'1em'}}>
     {/* {(window.location.pathname.includes('report')) ? <ReportImpExp  gridData ={GridRed.val} columnData={ColumnRed.val} data={[]} /> : <></>} */}
         <button className='btn btn-success mx-2' style={{display : (gridData.isMrow =='true'&& !add.includes(window.location.pathname)) || (window.location.pathname.includes('confform')&&gridData.isMrow =='true')  ? 'block' : 'none', }}
         // disabled={EmdRed == 'yes'}
