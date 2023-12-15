@@ -19,4 +19,6 @@
     /* max-width: 90vw; */
     overflow-x: hidden;
     margin-top: 1vh;
+    padding-left: 1em;
+    padding-right: 2.1em;
 }
