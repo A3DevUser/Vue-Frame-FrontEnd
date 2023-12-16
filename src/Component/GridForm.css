@@ -3,7 +3,7 @@ cursor: pointer;
 }
 
 .uploadLabel{
-    background-color: #0d6efd;
+    /* background-color: #0d6efd; */
     color: white;
     padding: 7px;
     cursor: pointer;

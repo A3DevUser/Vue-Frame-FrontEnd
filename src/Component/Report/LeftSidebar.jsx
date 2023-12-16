@@ -56,8 +56,8 @@ const LeftSidebar = () => {
                 <div className={`left-sidebar ${isExpanded ? 'expanded' : 'collapsed'}`}>
                     <div className="sidebar-header" onClick={toggleSidebar}>
                         {isExpanded ? (
-                            <div  >
-                                <h4 className='FilterHeader' style={{ display: 'inline-block', fontFamily:'Palatino Linotype' }} >Filter</h4>
+                            <div className='FilterHeader' >
+                                <h4  style={{ display: 'inline-block', fontFamily:'Palatino Linotype' }} >Filter</h4>
                                 <IoReorderThreeOutline style={{ fontSize: '2.5em', marginLeft: '4vw' }} />
                                 <hr style={{marginTop:'2px' }} />
                             </div>

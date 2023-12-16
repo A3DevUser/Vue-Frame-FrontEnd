@@ -19,6 +19,8 @@ margin: 15px;
     margin: 15px;
     margin-top: 2px;
     margin-bottom: 0px;
+    /* height: 2vh;
+    width: 3vw; */
 }
 
 .customIcon{
@@ -38,7 +40,10 @@ margin: 15px;
 }
 
 .navbar-background{
-    background-color: #091332;
+    /* background-color: #091332; */
+    background-color:  #008080;
+    /* background-color:  #F0122D; */
+    /* background-color: #4D94DB; */
     padding: 5px !important;
     /* margin-bottom: 1rem; */
     /* padding-left: 2rem;
@@ -47,6 +52,19 @@ margin: 15px;
 
 .multiDrop{
     background-color: transparent !important;
-    color: aliceblue;
-    margin-left: 1vw;
+    /* color: aliceblue; */
+    color: white;
+    font-size: 16px;
+    font-family: Trebuchet MS;
+    margin-left: 1.5vw;
+}
+
+/* .multiDrop:hover{
+    color: #03d6d6;
+} */
+
+.main-navBar{
+        display: flex;
+        align-items: center;
+
 }

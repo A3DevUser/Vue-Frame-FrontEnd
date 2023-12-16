@@ -82,15 +82,16 @@ const Navbar = () => {
         setshow(!show)
     }
 
-return (
-<div style={{display: window.location.pathname == '/' ? 'none' : 'block',position:'sticky', top :'0',zIndex:'5'}}>
+return (    
+<div className='main-navBar' style={{display: window.location.pathname == '/' ? 'none' : 'block',position:'sticky', top :'0',zIndex:'5'}}>
 <nav 
 // style={{backgroundColor:'#131D40'}}
 className='navbar-background'
 >
-
-<img src={'./User2.png'} alt="user" className='m-1' style={{float:'right',height:'6.5vh', width:'3.2vw', borderRadius:'30px'}} onClick={funProfile}/>
+<div style={{paddingRight:'8px'}}>
+<img src={'./User2.png'} alt="user" className='m-1' style={{float:'right',height:'6.5vh', width:'3.2vw', borderRadius:'30px', padding:'3.5px'}} onClick={funProfile}/>
 {MainObject.SimpleModal('User Details','',show,funProfile)}
+</div>
 {/* <Dropdown title='User Access' className='multiDrop'>
 {
     NavBarRed.val.filter((fil)=>{
@@ -106,7 +107,7 @@ className='navbar-background'
             return <img src={res.url} alt="logo" onClick={()=>{navigate('/homepage')}} style={{width:'10vw', height:'4vw', cursor:'pointer'}}  key={i}/>
 
         }else if(res.navType=='conf'){
-            return<NavDropdown className='ddClass' title={<span class="bi bi-gear customIcon"></span>} key={i}>
+            return<NavDropdown className='ddClass' title={<span style={{}} class="bi bi-gear customIcon"></span>} key={i}>
                 <NavDropdown.Item className='click' onClick={()=>{handleNavigate({formId : 'FORM-105',navigate:'/confform'})}}>Form Confg</NavDropdown.Item>
                 <NavDropdown.Item className='click' onClick={()=>{handleNavigate({formId : 'FORM-106',navigate:'/confform'})}}>WorkFlow Confg</NavDropdown.Item>
                 <NavDropdown.Item className='click' onClick={()=>{handleNavigate({formId : 'FORM-528',navigate:'/confEdit'})}}>Import & Export</NavDropdown.Item>

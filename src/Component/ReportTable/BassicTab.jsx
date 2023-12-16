@@ -56,8 +56,8 @@ const BassicTab = ({ gridData, columnData, reportData }) => {
             <div style={{ padding: 'auto 1px' }} >
 
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems:'center', maxWidth: '90vw', paddingLeft: '18px', marginTop: '-3px', marginBottom: '9px' }}>
-                    {gridData.map((res) => { return <h4 style={{ fontFamily: 'Palatino Linotype' }} >{res.rptTitle}</h4> })}
-                    <div style={{ paddingTop: '5px' }}>
+                    {gridData.map((res) => { return <h4 style={{ fontFamily: 'Trebuchet MS' }} >{res.rptTitle}</h4> })}
+                    <div style={{ paddingTop: '5px', marginTop:'20px' }}>
                         <GlobalFilter filter={globalFilter} setfilter={setGlobalFilter} />
                     </div>
                 </div>
@@ -109,8 +109,8 @@ const BassicTab = ({ gridData, columnData, reportData }) => {
                         </span>
                         {/* <button onClick={() => previousPage()} disabled={!canPreviousPage}><TbPlayerTrackNextFilled /> Previous</button>
                         <button onClick={() => nextPage()} disabled={!canNextPage}>Next </button> */}
-                        <button className='btn btn-secondary btn-sm mx-2' title='Previous page' onClick={() => previousPage()} disabled={!canPreviousPage}>Previous</button>
-                        <button className='btn btn-secondary btn-sm' title='Next page' onClick={() => nextPage()} disabled={!canNextPage}>Next</button> 
+                        <button className='btn btn-outline-secondary btn-sm mx-2' title='Previous page' onClick={() => previousPage()} disabled={!canPreviousPage}>Previous</button>
+                        <button className='btn btn-outline-secondary btn-sm' title='Next page' onClick={() => nextPage()} disabled={!canNextPage}>Next</button> 
                         {/* <Pagination><Pagination.Next /></Pagination> */}
                     </div>
                     <div>

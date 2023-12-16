@@ -42,8 +42,8 @@ export const Styles = styled.div`
       padding: 5px !important;
       border-bottom: 1px solid #ddd !important;
       border-right: 1px solid #ddd !important;
-      background-color: #d4d4e2 !important;
-      color: black !important;
+      background-color: #60b3b3fa !important;
+      color: white !important;
       
       text-align: center !important;
       overflow: hidden !important;

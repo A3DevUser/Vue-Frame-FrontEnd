@@ -456,7 +456,7 @@ if(dropDown.filter((fil,i)=>{return i==index})[0].mixVal){
       // console.log(Obj)
       addAndDeleteRow(index,Obj,act)
     }
-    return <div className="container">
+    return <div className="container" style={{display:'flex', justifyContent:'center', alignItems:'center'}}>
       {/* <button className="btn btn-success mx-1" onClick={()=>{handleClick('add')}}>Add</button> */}
       <button className="btn btn-danger" onClick={()=>{handleClick('remove')}}>
         <i class="bi bi-trash"></i>
