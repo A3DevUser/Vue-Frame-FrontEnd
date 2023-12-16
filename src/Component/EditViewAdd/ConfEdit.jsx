@@ -7,13 +7,14 @@ import { FetchGridData } from '../../Store/Actions/GridAct'
 import { MainObject } from '../Elements/commonFun'
 import GridFormSub from '../GridFormSub'
 import { FetchGetData } from '../../Store/Actions/GetDataAct'
-import { ResetFormState } from '../../Store/Actions/GeneralStates'
+import { FormIdAct, ResetFormState } from '../../Store/Actions/GeneralStates'
 import { FetchConfGridData } from '../../Store/Actions/ConfGridAct'
 import { FetchConfColumnData } from '../../Store/Actions/ConfColumn'
+import { useNavigate } from 'react-router'
 
 const ConfEdit = () => {
     const dispatch = useDispatch()
-
+    const navigate = useNavigate()
 
     const ColumnRed = useSelector((state)=>state.ConfColumnRed)
     const FormIdRed = useSelector((state)=>state.FormIdRed)
@@ -51,6 +52,19 @@ const ConfEdit = () => {
 
       }
 
+      let FormConfig = 'GID-576'
+      let WorkFlowConfig = 'GID-641'
+
+      const funNavConf = (gridIdVal) => {
+          if(gridIdVal == FormConfig){
+              dispatch(FormIdAct('FORM-105'))
+              navigate('/confform')
+          }else if(gridIdVal == WorkFlowConfig){
+              dispatch(FormIdAct('FORM-106'))
+              navigate('/confform')
+          }
+      }
+
   return (
 <div style={{marginTop:'5vh'}}>
       {/* <div style={{ display:'none', justifyContent : 'flex-end'}} className='mx-5 my-2'>
@@ -77,7 +91,7 @@ const ConfEdit = () => {
           gridIdArr.includes(res.gridId)  ?  [dataObj] :
           GetDataRed.val.filter((fil)=>{return fil.GRID_ID == res.gridId})[0].DATA 
         }
-          gridData={res} key={i} handleSave={handleSave}/>
+          gridData={res} key={i} handleSave={handleSave} funNavConf={funNavConf}/>
         })
       }
     </div>
