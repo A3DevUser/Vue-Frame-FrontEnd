@@ -69,9 +69,9 @@ function ExcelReader({columnData, gridData}) {
   return (
     <div>
       {/* <input type="file"  accept=".xlsx" onChange={handleFileUpload} /> */}
-      <div>
+      <div style={{display:'flex', justifyContent:'center', alignItems:'center'}}>
         <input type="file" accept=".xlsx"  id="uploadBtn" onChange={handleFileUpload} />
-        <label htmlFor="uploadBtn" className='uploadLabel' style={{padding:'10px', fontFamily:'cursive'}}>
+        <label htmlFor="uploadBtn" className='uploadLabel btn btn-primary' style={{padding:'6px', fontFamily:'cursive'}}>
         <i className='bi bi-upload'> Upload file</i>
         </label>
       </div>

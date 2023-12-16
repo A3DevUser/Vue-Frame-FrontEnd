@@ -7,7 +7,7 @@ const DownloadOpt = ({griData,columnData}) => {
 
 
   return (
-    <div>
+    <div style={{display:'flex', justifyContent:'center', alignItems:'center'}}>
 
 {/* <select className='form-control'>
   <option>Select One</option>

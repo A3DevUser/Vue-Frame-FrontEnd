@@ -84,7 +84,7 @@ const ExportExcel = ({ griData, columnData }) => {
   
 
   return (
-    <div>
+    <div >
       <span variant="primary" onClick={handleClick} disabled={exporting}>
         {exporting ? 'Exporting...' : 'Export to Excel'}
       </span>
