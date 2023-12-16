@@ -82,15 +82,16 @@ const Navbar = () => {
         setshow(!show)
     }
 
-return (
-<div style={{display: window.location.pathname == '/' ? 'none' : 'block',position:'sticky', top :'0',zIndex:'5'}}>
+return (    
+<div className='main-navBar' style={{display: window.location.pathname == '/' ? 'none' : 'block',position:'sticky', top :'0',zIndex:'5'}}>
 <nav 
 // style={{backgroundColor:'#131D40'}}
 className='navbar-background'
 >
-
-<img src={'./User2.png'} alt="user" className='m-1' style={{float:'right',height:'6.5vh', width:'3.2vw', borderRadius:'30px'}} onClick={funProfile}/>
+<div style={{paddingRight:'8px'}}>
+<img src={'./User2.png'} alt="user" className='m-1' style={{float:'right',height:'6.5vh', width:'3.2vw', borderRadius:'30px', padding:'3.5px'}} onClick={funProfile}/>
 {MainObject.SimpleModal('User Details','',show,funProfile)}
+</div>
 {/* <Dropdown title='User Access' className='multiDrop'>
 {
     NavBarRed.val.filter((fil)=>{

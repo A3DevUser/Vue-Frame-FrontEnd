@@ -90,8 +90,8 @@ export const Styles = styled.div`
       padding: 5px;
       border-bottom: 1px solid #ddd;
       border-right: 1px solid #ddd;
-      background-color: #d4d4e2;
-      color: black;
+      background-color: #60b3b3fa;
+      color: white;
       
       text-align: center;
       overflow: hidden;

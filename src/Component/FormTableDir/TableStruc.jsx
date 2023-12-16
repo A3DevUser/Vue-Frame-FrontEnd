@@ -26,17 +26,17 @@ const TableStruc = ({getTableProps,getTableBodyProps,headerGroups,prepareRow,row
     <div>
  <div style={{display:'flex', flexDirection:'row',justifyContent:'space-between',maxWidth:gridData.width, maxHeight:gridData.height}}>
     <div >
-    <h5 className="mx-5 my-2" style={{fontFamily:'Palatino Linotype'}} id={gridData.gridId}>{gridData.gridName}</h5>
+    <h6 style={{fontFamily: 'Trebuchet MS'}} className="mx-5 my-2" id={gridData.gridId}>{gridData.gridName}</h6>
     </div>
     <div style={{display:'flex', flexDirection:'row', marginBottom:'1em'}}>
     {/* {(window.location.pathname.includes('report')) ? <ReportImpExp  gridData ={GridRed.val} columnData={ColumnRed.val} data={[]} /> : <></>} */}
     {(gridData.gridId == 'GID-576')||(gridData.gridId == 'GID-641') ? MainObject.CrtButton({classNameVal:'btn btn-success', widthVal:'', heightVal:'',btnName: <>{gridData.gridId == 'GID-576' ?<><i class="bi bi-plus-lg"></i> Create New Form</> : <><i class="bi bi-plus-lg"></i> Create New WorkFlow</>}</>,navForm: ''}, 
     ()=>{funNavConf(gridData.gridId)}
     ) : <></>}
-        <button className='btn btn-success mx-2' style={{display : (gridData.isMrow =='true'&& !add.includes(window.location.pathname)) || (window.location.pathname.includes('confform')&&gridData.isMrow =='true')  ? 'block' : 'none', }}
+        <button className='btn btn-outline-info mx-2' title="Add" style={{display : (gridData.isMrow =='true'&& !add.includes(window.location.pathname)) || (window.location.pathname.includes('confform')&&gridData.isMrow =='true')  ? 'block' : 'none', }}
         // disabled={EmdRed == 'yes'}
         onClick={handleAddRow}
-        ><i class="bi bi-plus-lg"></i> Add</button>
+        ><i class="bi bi-plus-lg"></i> </button>
         {!hide ? <button className='btn btn-success mx-2' style={{display : (window.location.pathname.includes('confreport')&&gridData.isMrow =='getdata') ? 'block' : 'none'}}
         // disabled={EmdRed == 'yes'}
         onClick={handleAddRow}
@@ -44,9 +44,9 @@ const TableStruc = ({getTableProps,getTableBodyProps,headerGroups,prepareRow,row
         // disabled={EmdRed == 'yes'}
         onClick={handleAddRow}
         ><i class="bi bi-plus-lg"></i> Get Data </button>}
-        <Button variant='success' style={{display : (gridData.isMrow =='true'&& !removeDupl.includes(window.location.pathname)) || (window.location.pathname.includes('confform')&&gridData.isMrow =='true') ? 'block' : 'none'}} onClick={handleRemove}><i class="bi bi-trash"> </i>Remove</Button>
-        <Button variant='success' style={{display : (gridData.isMrow =='true'&& !removeDupl.includes(window.location.pathname)) || (window.location.pathname.includes('confform')&&gridData.isMrow =='true') ? 'block' : 'none'}} className='mx-2' onClick={handleCopy}><i class="bi bi-copy"> </i>Duplicate</Button>
-        {(gridData.isMain == 'true') || (window.location.pathname.includes('confform')) || (window.location.pathname.includes('confreport')) ? MainObject.button({classNameVal:'btn btn-success', widthVal:'', heightVal:'',btnName: <><i class="bi bi-floppy"></i> Submit</>},()=>{handleSave(gridData)}) : <></>}
+        <Button variant='btn btn-outline-danger'  title="Remove" style={{display : (gridData.isMrow =='true'&& !removeDupl.includes(window.location.pathname)) || (window.location.pathname.includes('confform')&&gridData.isMrow =='true') ? 'block' : 'none'}} onClick={handleRemove}><i class="bi bi-trash"> </i></Button>
+        <Button variant='btn btn-outline-secondary' title="Duplicate" style={{display : (gridData.isMrow =='true'&& !removeDupl.includes(window.location.pathname)) || (window.location.pathname.includes('confform')&&gridData.isMrow =='true') ? 'block' : 'none'}} className='mx-2' onClick={handleCopy}><i class="bi bi-copy"> </i></Button>
+        {(gridData.isMain == 'true') || (window.location.pathname.includes('confform')) || (window.location.pathname.includes('confreport')) ? MainObject.button({classNameVal:'btn btn-outline-success' , widthVal:'', heightVal:'',btnName: <><i title='Save' class="bi bi-floppy" ></i> </>},()=>{handleSave(gridData)}) : <></>}
         {/* {(window.location.pathname.includes('report')) ? <><GlobalFilter filter={globalFilter} setfilter={setGlobalFilter}/></> : <></>} */}
   </div>
   </div>
@@ -69,7 +69,7 @@ const TableStruc = ({getTableProps,getTableBodyProps,headerGroups,prepareRow,row
                 ))
             }
         </div>
-        <div className='body' {...getTableBodyProps()}>
+        <div className='body'  {...getTableBodyProps()}>
             {
                 rows.map((row)=>{
                     prepareRow(row)
@@ -86,7 +86,7 @@ const TableStruc = ({getTableProps,getTableBodyProps,headerGroups,prepareRow,row
             }
         </div>
       </div>
-        <div style={{display:'flex', justifyContent:'center', marginTop:'1vw', gap:'10px',alignItems:'center'}} >
+        <div style={{display:'flex', justifyContent:'center', marginTop:'1vw', gap:'10px',alignItems:'center' }} >
         <span >
             page: {' '}
             <strong>
@@ -99,10 +99,10 @@ const TableStruc = ({getTableProps,getTableBodyProps,headerGroups,prepareRow,row
                 }
             }></input>
         </span>
-        <button className='btn btn-secondary btn-sm ' title='First page' onClick={() => gotoPage(0)} disabled={!canPreviousPage}>{'<<'}</button>
-        <button className='btn btn-secondary btn-sm ' title='Previous page' onClick={() => previousPage()} disabled={!canPreviousPage}>Previous</button>
-        <button className='btn btn-secondary btn-sm' title='Next page' onClick={() => nextPage()} disabled={!canNextPage}>Next</button>
-        <button className='btn btn-secondary btn-sm' title='Last page' onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>{'>>'}</button>
+        <button className='btn btn-outline-secondary btn-sm ' title='First page' onClick={() => gotoPage(0)} disabled={!canPreviousPage}>{'<<'}</button>
+        <button className='btn btn-outline-secondary btn-sm ' title='Previous page' onClick={() => previousPage()} disabled={!canPreviousPage}>Previous</button>
+        <button className='btn btn-outline-secondary btn-sm' title='Next page' onClick={() => nextPage()} disabled={!canNextPage}>Next</button>
+        <button className='btn btn-outline-secondary btn-sm' title='Last page' onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>{'>>'}</button>
     </div>
     </div>
   )
