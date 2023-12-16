@@ -30,7 +30,7 @@ const TableStruc = ({getTableProps,getTableBodyProps,headerGroups,prepareRow,row
     </div>
     <div style={{display:'flex', flexDirection:'row', marginBottom:'1em'}}>
     {/* {(window.location.pathname.includes('report')) ? <ReportImpExp  gridData ={GridRed.val} columnData={ColumnRed.val} data={[]} /> : <></>} */}
-    {(gridData.gridId == 'GID-576')||(gridData.gridId == 'GID-641') ? MainObject.CrtButton({classNameVal:'btn btn-success', widthVal:'', heightVal:'',btnName: <>{gridData.gridId == 'GID-576' ?<><i class="bi bi-plus-lg"></i> Create New Form</> : <><i class="bi bi-plus-lg"></i> Create New WorkFlow</>}</>,navForm: ''}, 
+    {(gridData.gridId == 'GID-576')||(gridData.gridId == 'GID-641') ? MainObject.CrtButton({classNameVal:'btn btn-outline-success', widthVal:'', heightVal:'',btnName: <>{gridData.gridId == 'GID-576' ?<><i class="bi bi-plus-lg"></i> Create New Form</> : <><i class="bi bi-plus-lg"></i> Create New WorkFlow</>}</>,navForm: ''}, 
     ()=>{funNavConf(gridData.gridId)}
     ) : <></>}
         <button className='btn btn-outline-info mx-2' title="Add" style={{display : (gridData.isMrow =='true'&& !add.includes(window.location.pathname)) || (window.location.pathname.includes('confform')&&gridData.isMrow =='true')  ? 'block' : 'none', }}
