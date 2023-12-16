@@ -14,9 +14,13 @@ import Pagination from 'react-bootstrap/Pagination';
 const BassicTab = ({ gridData, columnData, reportData }) => {
     const ReportTitleDataRed = useSelector((state) => state.ReportTitleDataRed)
 
+    const calculateColumnWidth = (tableWidth, totalColumns) => {
+        return Math.floor(tableWidth / totalColumns);
+      };
+
     const [columns, setcolumns] = useState(
         // Columns
-        [...columnData.map((res) => { return { Header: res.rptColLabel, accessor: res.rptColName, Filter : ColumnFilter } })]
+        [...columnData.map((res) => { return { Header: res.rptColLabel, accessor: res.rptColName, Filter : ColumnFilter, width : calculateColumnWidth(0.828 * window.innerWidth, columnData.length) } })]
     );
 
     // useEffect(()=>{console.log('NewNav FormIdRed',ReportTitleDataRed.val.length)})
@@ -70,7 +74,7 @@ const BassicTab = ({ gridData, columnData, reportData }) => {
                                     <div className='tr' {...headerGroup.getHeaderGroupProps()}>
                                         {
                                             headerGroup.headers.map((column) => (
-                                                <div className='th' {...column.getHeaderProps()}>{column.render('Header')}
+                                                <div  className='th' {...column.getHeaderProps()}>{column.render('Header')}
                                                 <div>{column.canFilter ? column.render('Filter'):null}</div>
                                                 </div>
                                             ))
