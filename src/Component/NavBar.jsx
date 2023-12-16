@@ -107,14 +107,14 @@ className='navbar-background'
             return <img src={res.url} alt="logo" onClick={()=>{navigate('/homepage')}} style={{width:'10vw', height:'4vw', cursor:'pointer'}}  key={i}/>
 
         }else if(res.navType=='conf'){
-            return<NavDropdown className='ddClass' title={<span style={{}} class="bi bi-gear customIcon"></span>} key={i}>
-                <NavDropdown.Item className='click' onClick={()=>{handleNavigate({formId : 'FORM-105',navigate:'/confform'})}}>Form Confg</NavDropdown.Item>
-                <NavDropdown.Item className='click' onClick={()=>{handleNavigate({formId : 'FORM-106',navigate:'/confform'})}}>WorkFlow Confg</NavDropdown.Item>
-                <NavDropdown.Item className='click' onClick={()=>{handleNavigate({formId : 'FORM-528',navigate:'/confEdit'})}}>Import & Export</NavDropdown.Item>
-                <NavDropdown.Item className='click' onClick={()=>{handleNavigate({formId : 'FORM-529',navigate:'/confEdit'})}}>Form Edit</NavDropdown.Item>
-                <NavDropdown.Item className='click' onClick={()=>{handleNavigate({formId : 'FORM-601',navigate:'/confEdit'})}}>WorkFlow Edit</NavDropdown.Item>
+            return<NavDropdown className='ddClass' title={<span class="bi bi-gear customIcon"></span>} key={i}>
+                {/* <NavDropdown.Item className='click' onClick={()=>{handleNavigate({formId : 'FORM-105',navigate:'/confform'})}}>Form Confg</NavDropdown.Item> */}
+                {/* <NavDropdown.Item className='click' onClick={()=>{handleNavigate({formId : 'FORM-106',navigate:'/confform'})}}>WorkFlow Confg</NavDropdown.Item> */}
+                <NavDropdown.Item className='click' onClick={()=>{handleNavigate({formId : 'FORM-529',navigate:'/confEdit'})}}>Form</NavDropdown.Item>
+                <NavDropdown.Item className='click' onClick={()=>{handleNavigate({formId : 'FORM-601',navigate:'/confEdit'})}}>WorkFlow</NavDropdown.Item>
+                <NavDropdown.Item className='click' onClick={()=>{handleNavigate({formId : 'FORM-203',navigate:'/confreport'})}}>Report</NavDropdown.Item>
                 <NavDropdown.Item className='click' onClick={()=>{handleNavigate({formId : 'FORM-202',navigate:'/confreport'})}}>Data Source</NavDropdown.Item>
-                <NavDropdown.Item className='click' onClick={()=>{handleNavigate({formId : 'FORM-203',navigate:'/confreport'})}}>Report Confg</NavDropdown.Item>
+                <NavDropdown.Item className='click' onClick={()=>{handleNavigate({formId : 'FORM-528',navigate:'/confEdit'})}}>Import & Export</NavDropdown.Item>
             </NavDropdown>
             // <button onClick={()=>{handleNavigate(res)}} key={i} 
             // className=' btn btn-sm my-1 mx-2 p-2' 

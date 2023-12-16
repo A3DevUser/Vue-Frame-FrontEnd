@@ -16,7 +16,7 @@ const BassicTab = ({ gridData, columnData, reportData }) => {
 
     const [columns, setcolumns] = useState(
         // Columns
-        [...columnData.map((res) => { return { Header: res.rptColLabel, accessor: res.rptColName } })]
+        [...columnData.map((res) => { return { Header: res.rptColLabel, accessor: res.rptColName, Filter : ColumnFilter } })]
     );
 
     // useEffect(()=>{console.log('NewNav FormIdRed',ReportTitleDataRed.val.length)})
@@ -66,18 +66,17 @@ const BassicTab = ({ gridData, columnData, reportData }) => {
                         <div className='header'>
                             {
                                 headerGroups.map((headerGroup) => (
+                                    <>
                                     <div className='tr' {...headerGroup.getHeaderGroupProps()}>
                                         {
                                             headerGroup.headers.map((column) => (
                                                 <div className='th' {...column.getHeaderProps()}>{column.render('Header')}
-                                                    {/* <div
-                      {...column.getResizerProps()}
-                      className={`resizer`}
-                    /> */}
+                                                <div>{column.canFilter ? column.render('Filter'):null}</div>
                                                 </div>
                                             ))
                                         }
                                     </div>
+                                    </>
                                 ))
                             }
                         </div>

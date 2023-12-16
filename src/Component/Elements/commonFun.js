@@ -7,6 +7,9 @@ import './CommonFunc.css'
 import ConfTabsBar from "../../Component/ConfTabs"
 import Example from "./OffCanva"
 import BassicTab from "../ReportTable/BassicTab"
+import { useDispatch } from "react-redux"
+import { FormIdAct } from "../../Store/Actions/GeneralStates"
+import { Link } from "react-router-dom"
 
 export const MainObject = {
     alert : (alertVal) => {
@@ -29,10 +32,10 @@ export const MainObject = {
         }
     },
 
-    table : (col,data,gridData,handleSave) =>{
+    table : (col,data,gridData,handleSave,funNavConf) =>{
 //   console.log('gridData',data)
 
-         return <FormTable col={col} dData={data} gridData={gridData} handleSave={handleSave}/> },
+         return <FormTable col={col} dData={data} gridData={gridData} handleSave={handleSave} funNavConf={funNavConf}/> },
 
     accordion : (accordionVal,subsAccordianVal,col,data,width,defaultVal,setdefaultVal) => {
         return <Accordion className="m-5" 
@@ -142,6 +145,16 @@ export const MainObject = {
 
     reportTable : (gridData,columnData,reportData) =>{
         return <BassicTab gridData={gridData} columnData={columnData} reportData={reportData}/>
+    },
+
+    CrtButton : (btnInfo,funNavConf,i) => {
+        return <button key={i} className={btnInfo.classNameVal} style={{width: btnInfo.widthVal, height: btnInfo.heightVal, display:window.location.pathname.includes('viewTable') ?'none' :'block' }} onClick={funNavConf}>{btnInfo.btnName}
+            {/* {MainObject.CrtLink('/confform',btnInfo.navForm,btnInfo.btnName)} */}
+            </button>
+    },
+
+    CrtLink : (path,formId,lable) => {
+        return <Link to={{pathname : path}} state={{formId : formId}} >{lable}</Link>
     }
 
 } 
