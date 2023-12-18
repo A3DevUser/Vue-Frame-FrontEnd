@@ -13,7 +13,11 @@ import ReportDownloadOpt from '../ReportExp/ReportDownloadOpt'
 
 
 const BassicTab = ({ gridData, columnData, reportData }) => {
+    // const ReportTitleDataRed = useSelector((state) => state.ReportTitleDataRed)
+    const ReportTitleColumnRed = useSelector((state) => state.ReportTitleColumnRed)
+    const ReportTitleGridRed = useSelector((state) => state.ReportTitleGridRed)
     const ReportTitleDataRed = useSelector((state) => state.ReportTitleDataRed)
+
 
     const calculateColumnWidth = (tableWidth, totalColumns) => {
         return Math.floor(tableWidth / totalColumns);
@@ -62,15 +66,17 @@ const BassicTab = ({ gridData, columnData, reportData }) => {
 
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', maxWidth: '90vw', paddingLeft: '18px', marginTop: '-3px', marginBottom: '9px' }}>
                     {gridData.map((res) => { return <h4 style={{ fontFamily: 'Trebuchet MS' }} >{res.rptTitle}</h4> })}
-                    <div style={{  paddingTop: '-5px', marginTop: '-4px', marginRight: '-32em', }}>
-                            <div>
-                                <ReportDownloadOpt />
-                            </div>
+                    <div style={{ paddingTop: '-5px', marginTop: '-4px', marginRight: '-32em', }}>
+                        <div>
+                            <ReportDownloadOpt repoData = {ReportTitleDataRed.val} repoColunm = {ReportTitleColumnRed.val} 
+                                    repoGrid = {ReportTitleGridRed.val}
+                            />
                         </div>
+                    </div>
                     <div style={{ paddingTop: '5px', marginTop: '20px' }}>
-                        
+
                         {/* <div style={{ display: 'inline-block' }}> */}
-                            <GlobalFilter filter={globalFilter} setfilter={setGlobalFilter} />
+                        <GlobalFilter filter={globalFilter} setfilter={setGlobalFilter} />
                         {/* </div> */}
                     </div>
                 </div>

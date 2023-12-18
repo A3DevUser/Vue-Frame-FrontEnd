@@ -67,17 +67,19 @@ const LeftSidebar = () => {
                     </div>
                     {ReportTitleFilterRed.val.map((res, i) => {
                         return <>
+                        <div key={i} style={{overflowY: 'scroll',height: '7vh', overflowX: 'hidden'}} >
                             <div style={{ display: isExpanded ? 'block' : 'none' }}>
                                 <h6 style={{ paddingLeft: '10px', fontFamily:'Palatino Linotype' }}>{res.colFilLabel}</h6>
 
                             </div>
-                            <div className="sidebar-content" style={{ display: isExpanded ? 'block' : 'none', overflowY: 'auto', maxHeight: '65vh', overflowX: 'hidden' }}>
+                            <div className="sidebar-content" style={{ display: isExpanded ? 'block' : 'none', overflowY: 'scroll', overflowX: 'hidden' }}>
                                 <input list='list' className='form-control form-control-sm' style={{fontSize:'12px',fontFamily:'Palatino Linotype'}} type={res.colFilTyp} placeholder={`Enter ${res.colFilLabel}...`} onBlur={(event) => {funUpdateFil(event,res)}} name={res.columnName} value={filVal}/>
                                 {/* <datalist id='list'>
                                     {
                                     ReportTitleDataRed.loading ? <option value={'loading'}/> : ReportTitleDataRed.val.map((rres)=>{console.log('NewNav FormIdRed',rres[res.colFilLabel]);})
                                     }
                                 </datalist> */}
+                            </div>
                             </div>
                         </>
                     })}
