@@ -9,6 +9,7 @@ import { Columns } from './Columns'
 import { useSelector } from 'react-redux'
 import { useEffect } from 'react'
 import Pagination from 'react-bootstrap/Pagination';
+import ReportDownloadOpt from '../ReportExp/ReportDownloadOpt'
 
 
 const BassicTab = ({ gridData, columnData, reportData }) => {
@@ -16,11 +17,11 @@ const BassicTab = ({ gridData, columnData, reportData }) => {
 
     const calculateColumnWidth = (tableWidth, totalColumns) => {
         return Math.floor(tableWidth / totalColumns);
-      };
+    };
 
     const [columns, setcolumns] = useState(
         // Columns
-        [...columnData.map((res) => { return { Header: res.rptColLabel, accessor: res.rptColName, Filter : ColumnFilter, width : calculateColumnWidth(0.828 * window.innerWidth, columnData.length) } })]
+        [...columnData.map((res) => { return { Header: res.rptColLabel, accessor: res.rptColName, Filter: ColumnFilter, width: calculateColumnWidth(0.828 * window.innerWidth, columnData.length) } })]
     );
 
     // useEffect(()=>{console.log('NewNav FormIdRed',ReportTitleDataRed.val.length)})
@@ -59,10 +60,18 @@ const BassicTab = ({ gridData, columnData, reportData }) => {
         <>
             <div style={{ padding: 'auto 1px' }} >
 
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems:'center', maxWidth: '90vw', paddingLeft: '18px', marginTop: '-3px', marginBottom: '9px' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', maxWidth: '90vw', paddingLeft: '18px', marginTop: '-3px', marginBottom: '9px' }}>
                     {gridData.map((res) => { return <h4 style={{ fontFamily: 'Trebuchet MS' }} >{res.rptTitle}</h4> })}
-                    <div style={{ paddingTop: '5px', marginTop:'20px' }}>
-                        <GlobalFilter filter={globalFilter} setfilter={setGlobalFilter} />
+                    <div style={{  paddingTop: '-5px', marginTop: '-4px', marginRight: '-32em', }}>
+                            <div>
+                                <ReportDownloadOpt />
+                            </div>
+                        </div>
+                    <div style={{ paddingTop: '5px', marginTop: '20px' }}>
+                        
+                        {/* <div style={{ display: 'inline-block' }}> */}
+                            <GlobalFilter filter={globalFilter} setfilter={setGlobalFilter} />
+                        {/* </div> */}
                     </div>
                 </div>
                 <Styles>
@@ -71,15 +80,15 @@ const BassicTab = ({ gridData, columnData, reportData }) => {
                             {
                                 headerGroups.map((headerGroup) => (
                                     <>
-                                    <div className='tr' {...headerGroup.getHeaderGroupProps()}>
-                                        {
-                                            headerGroup.headers.map((column) => (
-                                                <div  className='th' {...column.getHeaderProps()}>{column.render('Header')}
-                                                <div>{column.canFilter ? column.render('Filter'):null}</div>
-                                                </div>
-                                            ))
-                                        }
-                                    </div>
+                                        <div className='tr' {...headerGroup.getHeaderGroupProps()}>
+                                            {
+                                                headerGroup.headers.map((column) => (
+                                                    <div className='th' {...column.getHeaderProps()}>{column.render('Header')}
+                                                        <div>{column.canFilter ? column.render('Filter') : null}</div>
+                                                    </div>
+                                                ))
+                                            }
+                                        </div>
                                     </>
                                 ))
                             }
@@ -113,7 +122,7 @@ const BassicTab = ({ gridData, columnData, reportData }) => {
                         {/* <button onClick={() => previousPage()} disabled={!canPreviousPage}><TbPlayerTrackNextFilled /> Previous</button>
                         <button onClick={() => nextPage()} disabled={!canNextPage}>Next </button> */}
                         <button className='btn btn-outline-secondary btn-sm mx-2' title='Previous page' onClick={() => previousPage()} disabled={!canPreviousPage}>Previous</button>
-                        <button className='btn btn-outline-secondary btn-sm' title='Next page' onClick={() => nextPage()} disabled={!canNextPage}>Next</button> 
+                        <button className='btn btn-outline-secondary btn-sm' title='Next page' onClick={() => nextPage()} disabled={!canNextPage}>Next</button>
                         {/* <Pagination><Pagination.Next /></Pagination> */}
                     </div>
                     <div>

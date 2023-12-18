@@ -19,9 +19,8 @@ const ReportDownloadOpt = ({griData,columnData , data}) => {
   </span> */}
     {/* </option> */}
 {/* // </select> */}
-
       <Dropdown>
-        <Dropdown.Toggle>Export</Dropdown.Toggle>
+        <Dropdown.Toggle className='btn-sm'>Export</Dropdown.Toggle>
         <Dropdown.Menu>
             <Dropdown.Item>
                 <ReportExportExcel griData={griData} columnData={columnData}/>
