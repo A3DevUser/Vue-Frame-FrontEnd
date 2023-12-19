@@ -18,18 +18,10 @@ const ReportExportPdf = ({ Data, repoData, repoColunm }) => {
     const rows = [];
     const rowData = [];
 
-<<<<<<< HEAD
-// Extract the column headers from JSON keys
-Object.keys(Data[0]).forEach(key => {
-  console.log('objkey',key)
-  columns.push(key);
-});
-=======
     // Extract the column headers from JSON keys
     repoColunm.map((res) => res.rptColLabel).forEach(key => {
       columns.push(key);
     });
->>>>>>> befcedfa8c3e02f4c703a29f2be1862b24e98d86
 
 
     // console.log('repoData',repoColunm.map((res)=>res.rptColLabel))

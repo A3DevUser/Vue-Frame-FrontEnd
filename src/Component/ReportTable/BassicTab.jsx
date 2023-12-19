@@ -66,18 +66,11 @@ const BassicTab = ({ gridData, columnData, reportData }) => {
 
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', maxWidth: '90vw', paddingLeft: '18px', marginTop: '-3px', marginBottom: '9px' }}>
                     {gridData.map((res) => { return <h4 style={{ fontFamily: 'Trebuchet MS' }} >{res.rptTitle}</h4> })}
-<<<<<<< HEAD
-                    <div style={{  paddingTop: '-5px', marginTop: '-4px', marginRight: '-32em', }}>
-                            <div>
-                                <ReportDownloadOpt data={reportData} />
-                            </div>
-=======
                     <div style={{ paddingTop: '-5px', marginTop: '-4px', marginRight: '-32em' }}>
                         <div>
                             <ReportDownloadOpt repoData = {ReportTitleDataRed.val} repoColunm = {ReportTitleColumnRed.val} 
                                     repoGrid = {ReportTitleGridRed.val}
                             />
->>>>>>> befcedfa8c3e02f4c703a29f2be1862b24e98d86
                         </div>
                     </div>
                     <div style={{ paddingTop: '5px', marginTop: '20px' }}>
