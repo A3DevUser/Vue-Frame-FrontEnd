@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import ExcelJS from 'exceljs';
 import { ReportDataValidation } from './ReportDataValidation';
+import { useSelector } from 'react-redux';
 
 // Function to convert Excel column letters to index
 function getColumnLetter(columnNumber) {
@@ -22,11 +23,22 @@ const border = {
 }
 
 
-const ReportExportExcel = ({ griData, columnData }) => {
+const ReportExportExcel = ({ repoGrid, repoColunm, repoData }) => {
   // console.log('griData',columnData);
   // console.log('griData',griData);
   const [exporting, setExporting] = useState(false);
   const [exportError, setExportError] = useState(null);
+  const ReportTitleColumnRed = useSelector((state)=> state.ReportTitleColumnRed)
+  const ReportTitleGridRed = useSelector((state)=> state.ReportTitleGridRed)
+  const ReportTitleDataRed = useSelector((state) => state.ReportTitleDataRed)
+
+  // useEffect(()=>{
+  //   console.log("jsonData",FormIdRed);
+    // console.log("jsonData",ReportTitleColumnRed.val);
+    // console.log("jsonData",ReportTitleGridRed.val);
+    // console.log("jsonData",ReportTitleDataRed.val);
+  // },[])
+
   const range = {
     formula1: 0,
     formula2: Number.MAX_VALUE,
@@ -34,38 +46,22 @@ const ReportExportExcel = ({ griData, columnData }) => {
 
   const handleClick = async () => {
     // console.log('exported')
-
+    
     const workbook = new ExcelJS.Workbook();
-  
-    griData.forEach((fe, i) => {
-      const currentSheet = workbook.addWorksheet(fe.gridName);
-  
-      const columnGrid = columnData.filter((fil) => fil.gridId === fe.gridId);
-      const flattenedArray = columnGrid.map((res) => ({ header: res.fieldName, key: res.columnId }));
+    let worksheet = workbook.addWorksheet(repoGrid[0].rptTitle);
 
-      workbook.worksheets[i].columns = flattenedArray
-  
-      columnGrid.forEach((gres,i) => {
-        const validationType = gres.cellType;
-      
-          const columnInd = currentSheet.getColumn(gres.columnId)
-          const columnAlpha =   getColumnLetter(columnInd._number)
-          currentSheet.getCell(columnAlpha+1).border=border
+    const column = repoColunm.map((res)=>res.rptColLabel)
+    const colAccessor = repoColunm.map((res)=>res.rptColName)
+    // console.log('jsonData',ReportTitleDataRed.val);
+    //  console.log('jsonData',Object.keys(ReportTitleColumnRed.val.map((res)=>res.rptColLabel)));
+    // console.log('jsonData',column);
+    worksheet.addRow(column)
 
-          if(validationType=='number'){
-            for (let i = 2; i <= 1000; i++) {
-              currentSheet.getCell(columnAlpha +i).dataValidation = ReportDataValidation.numberDataValid;
-            }
-          }else if(validationType=='date'){
-            for (let i = 2; i <= 1000; i++) {
-              currentSheet.getCell(columnAlpha +i).dataValidation = ReportDataValidation.dateDataValid;
-            }
-          }
-
-          
-      });
-      
-    });
+    repoData.forEach((fres)=>{
+      // console.log('jsonData',colAccessor.map((res)=>res));
+      const newRow = colAccessor.map((res)=>fres[res])
+            worksheet.addRow(newRow)
+     })
   
     try {
       // Save the template to a blob

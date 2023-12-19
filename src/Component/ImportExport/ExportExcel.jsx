@@ -41,7 +41,8 @@ const ExportExcel = ({ griData, columnData }) => {
       const columnGrid = columnData.filter((fil) => fil.gridId === fe.gridId);
       const flattenedArray = columnGrid.map((res) => ({ header: res.fieldName, key: res.columnId }));
 
-      workbook.worksheets[i].columns = flattenedArray
+      console.log('flattenedArray',flattenedArray)
+      workbook.worksheets[i].columns = [{header : 'MAIN OBJ ID'},...flattenedArray]
   
       columnGrid.forEach((gres,i) => {
         const validationType = gres.cellType;

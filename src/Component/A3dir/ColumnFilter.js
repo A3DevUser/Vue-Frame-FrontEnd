@@ -1,7 +1,7 @@
 import React from 'react'
 
 export const ColumnFilter = ({column}) => {
-  // console.log('columnNew',column)
+  console.log('columnNew',column)
     const { filterValue, setFilter,Header } = column
   return (
     <span>

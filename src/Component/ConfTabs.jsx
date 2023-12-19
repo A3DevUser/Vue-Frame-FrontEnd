@@ -16,7 +16,7 @@ function ConfTabsBar({accordionVal,gridData,columnData,data,defaultVal,setdefaul
     },[SendReportConfDataRed])
 
     const handleChangeSec = (e) =>{
-        console.log('setLocalData',e.secId)
+        // console.log('setLocalData',e.secId)
         setdefaultVal([e.secId])
         if (e.secId == 'DS-03'&&loading == 'true'){
             setLoading(false)
@@ -29,7 +29,7 @@ function ConfTabsBar({accordionVal,gridData,columnData,data,defaultVal,setdefaul
     }
 
     useEffect(()=>{
-        console.log('setLocalData',localData)
+        // console.log('setLocalData',localData)
     },[localData])
 
     // console.log('columnData',columnData)

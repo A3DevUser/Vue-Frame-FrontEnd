@@ -1,45 +1,61 @@
 import React from 'react'
-import jspdf  from 'jspdf'
+import jspdf from 'jspdf'
 import 'jspdf-autotable';
 import { Button } from 'react-bootstrap';
 
 
-const ReportExportPdf = ({Data}) => {
+const ReportExportPdf = ({ Data, repoData, repoColunm }) => {
   // console.log("data",Data);
-const handleClick = () =>{
-const doc = new jspdf({
-  orientation: "landscape",
+  const handleClick = () => {
+    const doc = new jspdf({
+      orientation: "landscape",
 
-});
+    });
 
-// Define the columns and rows
-const columns = [];
-const rows = [];
+    // console.log('repoData',repoData)
+    // Define the columns and rows
+    const columns = [];
+    const rows = [];
+    const rowData = [];
 
+<<<<<<< HEAD
 // Extract the column headers from JSON keys
 Object.keys(Data[0]).forEach(key => {
   console.log('objkey',key)
   columns.push(key);
 });
+=======
+    // Extract the column headers from JSON keys
+    repoColunm.map((res) => res.rptColLabel).forEach(key => {
+      columns.push(key);
+    });
+>>>>>>> befcedfa8c3e02f4c703a29f2be1862b24e98d86
 
-// Extract the data rows
-Data.forEach(data => {
-  const row = [];
-  columns.forEach(column => {
-    row.push(data[column]);
-  });
-  rows.push(row);
-});
 
-// Add the data to the PDF
-doc.autoTable({
-  head: [columns],
-  body: rows,
-});
+    // console.log('repoData',repoColunm.map((res)=>res.rptColLabel))
+    repoColunm.map((res) => res.rptColName).forEach(fre => {
+            // console.log('repoData',fre);
+            rowData.push(fre)
+    })
 
-// Save or download the PDF
-doc.save('data.pdf');
-}
+    // Extract the data rows
+    repoData.forEach(data => {
+      const row = [];
+      rowData.forEach(column => {
+        row.push(data[column]);
+      });
+      rows.push(row);
+    });
+
+    // Add the data to the PDF
+    doc.autoTable({
+      head: [columns],
+      body: rows,
+    });
+
+    // Save or download the PDF
+    doc.save('data.pdf');
+  }
 
   return (
     <div>
