@@ -49,7 +49,7 @@ function ExcelReader({columnData, gridData}) {
         });
         dispatch(ExcelDataAct(result)); 
         console.log('resultUpload',JSON.stringify(result))
-        // dispatch(PostExportData(result,AuthRed.val)) // You can set the result in the component state or perform any other necessary operations
+        dispatch(PostExportData(result,AuthRed.val)) // You can set the result in the component state or perform any other necessary operations
       } catch (error) {
         swal({
           title :'Alert',

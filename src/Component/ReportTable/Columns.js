@@ -4,7 +4,7 @@ export const Columns = [
         Footer: 'Id',
         accessor: 'id',
         // Filter: ColumnFilter
-        disableFilters: true
+        // disableFilters: true
     },
     {
         Header: 'First Name',
@@ -20,31 +20,31 @@ export const Columns = [
         Header: 'Email',
         Footer: 'Email',
         accessor: 'email',
-        disableFilters: true
+        // disableFilters: true
     },
     {
         Header: 'Date of Birth',
         Footer: 'Date of Birth',
         accessor: 'date_of_birth',
-        disableFilters: true
+        // disableFilters: true
     },
     {
         Header: 'Age',
         Footer: 'Age',
         accessor: 'age',
-        disableFilters: true
+        // disableFilters: true
     },
     {
         Header: 'Country',
         Footer: 'Country',
         accessor: 'country',
-        disableFilters: true
+        // disableFilters: true
     },
     {
         Header: 'Phone',
         Footer: 'Phone',
         accessor: 'phone',
-        disableFilters: true
+        // disableFilters: true
     }
 ]
 

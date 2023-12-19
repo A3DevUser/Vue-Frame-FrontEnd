@@ -260,7 +260,7 @@ const FormTable = ({col,dData,gridData,handleSave,funNavConf}) => {
 
           useEffect(()=>{
             if(data.length > 0 && !SendObjectIdRed.loading){
-              // console.log('opData',data,data[SendObjectIdRed.val.rowId]['VF_MAIN_OBJ_ID'].length)
+              console.log('opData',SendObjectIdRed.val.rowId)
             if(data[SendObjectIdRed.val.rowId]['VF_MAIN_OBJ_ID'].length ==0 ){
               setdata(old =>
                 old.map((row, index) => {

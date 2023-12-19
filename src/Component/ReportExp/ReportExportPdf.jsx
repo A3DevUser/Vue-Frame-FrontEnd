@@ -18,6 +18,7 @@ const rows = [];
 
 // Extract the column headers from JSON keys
 Object.keys(Data[0]).forEach(key => {
+  console.log('objkey',key)
   columns.push(key);
 });
 

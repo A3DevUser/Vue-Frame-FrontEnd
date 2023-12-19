@@ -64,7 +64,7 @@ const BassicTab = ({ gridData, columnData, reportData }) => {
                     {gridData.map((res) => { return <h4 style={{ fontFamily: 'Trebuchet MS' }} >{res.rptTitle}</h4> })}
                     <div style={{  paddingTop: '-5px', marginTop: '-4px', marginRight: '-32em', }}>
                             <div>
-                                <ReportDownloadOpt />
+                                <ReportDownloadOpt data={reportData} />
                             </div>
                         </div>
                     <div style={{ paddingTop: '5px', marginTop: '20px' }}>

@@ -23,6 +23,9 @@ import UserAddTable from './Component/UserEditViewAdd/UserAddTable'
 import UserEditTable from './Component/UserEditViewAdd/UserEditTable'
 import UserViewTable from './Component/UserEditViewAdd/UserViewTable'
 import BassicTab from './Component/ReportTable/BassicTab'
+import AssesmentTable from './Component/A3dir/AssesmentTable'
+import { Columns } from './Component/ReportTable/Columns'
+import Mock_data from './Component/ReportTable/MOCK_DATA_TAB'
 
 const App = () => {
 
@@ -87,6 +90,7 @@ const App = () => {
           <Route path='/usereditTable' element={<UserEditTable/>} />
           <Route path='/userviewTable' element={<UserViewTable/>} />
         </Route>
+          <Route path='/partysheet'  element={<AssesmentTable col={Columns} data={Mock_data} />}/>
       // </Routes>
       </Online>
     </div>
