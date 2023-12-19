@@ -37,10 +37,16 @@ function ExcelReader({columnData, gridData}) {
                 const filValue = worksheet.getRow(1).getCell(colNumber).value
                 const sheetName = worksheet._name;
                 const gridId = gridData.filter((fil)=>{return fil.gridName == sheetName})[0].gridId
-                const columnName = columnData.filter((fil)=>{
-                  return (fil.fieldName == filValue)&&(fil.gridId == gridId)
-                })[0].accessor
-                rowData[columnName] = cell.value;
+                let columnName =''
+                if(filValue=='MAIN OBJ ID'){
+                  columnName = 'MAIN OBJ ID'
+                }else{
+                  columnName = columnData.filter((fil)=>{
+                   return (fil.fieldName == filValue)&&(fil.gridId == gridId)
+                 })[0].accessor
+                }
+
+                rowData[columnName] = JSON.stringify(cell.value);
                 rowData['GRID_ID'] = gridId
               });
               result.push(rowData);
@@ -49,7 +55,7 @@ function ExcelReader({columnData, gridData}) {
         });
         dispatch(ExcelDataAct(result)); 
         console.log('resultUpload',JSON.stringify(result))
-        // dispatch(PostExportData(result,AuthRed.val)) // You can set the result in the component state or perform any other necessary operations
+        dispatch(PostExportData(result,AuthRed.val)) // You can set the result in the component state or perform any other necessary operations
       } catch (error) {
         swal({
           title :'Alert',

@@ -55,7 +55,7 @@ const FilterData = () => {
   };
 
   useEffect(() => {
-    console.log('FormIdRed',FormIdRed)
+    // console.log('FormIdRed',FormIdRed)
     // dispatch(FetchGridData('FORM-627',AuthRed.val))
     // dispatch(FetchColumnData('FORM-627','no',AuthRed.val))
     dispatch(FetchReportTitleGridData(FormIdRed,AuthRed.val))
@@ -64,8 +64,8 @@ const FilterData = () => {
   }, [FormIdRed])
 
   useEffect(()=>{
-    console.log('NewReport Data',ReportTitleColumnRed)
-    console.log('NewReport Data',ReportTitleGridRed)
+    // console.log('NewReport Data',ReportTitleColumnRed)
+    // console.log('NewReport Data',ReportTitleGridRed)
     // console.log('NewReport Data',JSON.stringify(GridRed))
     // console.log('NewReport Data',JSON.stringify(ColumnRed))
   },[ReportTitleColumnRed,ReportTitleGridRed])

@@ -35,7 +35,7 @@ const ConfEdit = () => {
     dispatch(FetchGetData(FormIdRed,AuthRed.val,UserDataStateRed))
     },[FormIdRed])
 
-    console.log('GridRedNew',GridRed)
+    // console.log('GridRedNew',GridRed)
 
     const handleSave = () =>{
         // console.log('FormDatRed',Object.values(FormDatRed).filter((fil)=>{return fil.length > 0})) 

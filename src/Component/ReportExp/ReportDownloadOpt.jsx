@@ -20,7 +20,7 @@ const ReportDownloadOpt = ({repoData,repoColunm , repoGrid}) => {
     {/* </option> */}
 {/* // </select> */}
       <Dropdown>
-        <Dropdown.Toggle className='btn-sm'>Export</Dropdown.Toggle>
+        <Dropdown.Toggle className='btn-sm' style={{height:'4.5vh', width:'6vw', backgroundColor:'grey'}}>Export</Dropdown.Toggle>
         <Dropdown.Menu>
             <Dropdown.Item>
                 <ReportExportExcel repoGrid={repoGrid} repoColunm={repoColunm} repoData={repoData} />

@@ -31,7 +31,7 @@ const UserAddTable = () => {
     const handleSave = () =>{
       if(Object.keys(FormDatRed).includes('GID-290')){
         const FormData = FormDatRed['GID-290'].map((res) => {return {...res}})
-        console.log('FormDatRed Data',...FormData)
+        // console.log('FormDatRed Data',...FormData)
               dispatch(FormUserDataInfo(...FormData))
       }
       }
@@ -53,7 +53,7 @@ const UserAddTable = () => {
           ColumnRed.val.filter((fil)=>{
             return fil.gridId == res.gridId
           }).forEach((fe)=>{dataObj[fe.accessor]=''})
-          console.log('dataObj new key',dataObj)
+          // console.log('dataObj new key',dataObj)
           // console.log('GridFormSubobj',Object.keys(FormDatRed).includes(res.gridId),res.gridId,Object.keys(FormDatRed).includes(res.gridId) ? FormDatRed[res.gridId] : dataObj)
          return FormDatRed&&<GridUserSub column={ColumnRed.val.sort((a,b)=>{return a.number-b.number})} data=
         //  {[]}

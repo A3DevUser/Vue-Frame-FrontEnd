@@ -12,7 +12,7 @@ export const ColumnHeader = (colData, updateMyData, dropDown, addAndDeleteRow, g
         accessor: res.accessor,
         Cell: ({ cell, row }) => {
           // console.log('theCellData', row.getRowProps())
-          console.log('theCellData', cell.column.id)
+          // console.log('theCellData', cell.column.id)
 
           return <EditableCell column={cell.column.id} row={cell.row.id} updateMyData={updateMyData} value={cell.value} colObj={cell.column} parentId={cell} rowObj={cell.row} valWidth={res.subSecWidth} type={res.cellType} gridIdVal={gridIdVal} />
         },

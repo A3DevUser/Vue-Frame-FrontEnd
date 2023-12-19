@@ -32,7 +32,7 @@ const BassicTab = ({ gridData, columnData, reportData }) => {
 
     const [data, setdata] = useState([...reportData])
 
-    console.log('columnData', columns)
+    // console.log('columnData', columns)
 
     const defaultColumn = useMemo(() => {
         return {
@@ -66,7 +66,7 @@ const BassicTab = ({ gridData, columnData, reportData }) => {
 
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', maxWidth: '90vw', paddingLeft: '18px', marginTop: '-3px', marginBottom: '9px' }}>
                     {gridData.map((res) => { return <h4 style={{ fontFamily: 'Trebuchet MS' }} >{res.rptTitle}</h4> })}
-                    <div style={{ paddingTop: '-5px', marginTop: '-4px', marginRight: '-32em', }}>
+                    <div style={{ paddingTop: '-5px', marginTop: '-4px', marginRight: '-32em' }}>
                         <div>
                             <ReportDownloadOpt repoData = {ReportTitleDataRed.val} repoColunm = {ReportTitleColumnRed.val} 
                                     repoGrid = {ReportTitleGridRed.val}

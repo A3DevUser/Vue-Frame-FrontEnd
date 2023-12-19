@@ -29,7 +29,7 @@ export const PostExportData = (data,token) =>{
       };
     return(dispatch)=>{
         dispatch(ExportReq())
-        axios.post(`http://localhost:8080/VF/callWorkflowProcedure`,data,{headers})
+        axios.post(`http://localhost:8080/VF/importExportAddData`,data,{headers})
         .then((res)=>{
             dispatch(ExportSuccess(res.data))
             return swal({

@@ -110,7 +110,7 @@ const FormTable = ({col,dData,gridData,handleSave,funNavConf}) => {
       //   }).flat()
       // })
       if(gridData.isMain == 'true'){
-        console.log('gridData',gridData);
+        // console.log('gridData',gridData);
         setdata((old)=>
         {return [...old,{...obj}]})
       }else if(gridData.gridId == 'GID-015'){
@@ -177,11 +177,11 @@ const FormTable = ({col,dData,gridData,handleSave,funNavConf}) => {
       // },[FormDatRed])
   
         useEffect(()=>{
-          console.log('opData',data)
+          // console.log('opData',data)
           if(window.location.pathname == '/confform'){
             dispatch(FormDataAct({...FormDatRed,[gridData.gridId] : data}) )   
           }else if(window.location.pathname == '/confreport'){
-            console.log('Submit Report Conf',FormDatRed)
+            // console.log('Submit Report Conf',FormDatRed)
             dispatch(FormDataAct({...FormDatRed,[gridData.gridId] : data}) )   
           }
           else{
@@ -239,7 +239,7 @@ const FormTable = ({col,dData,gridData,handleSave,funNavConf}) => {
               let obj ={}
               const rowInd = data.length
               columns.forEach((res)=> obj[res.accessor]='')
-              console.log('addAndDeleteRow',obj)
+              // console.log('addAndDeleteRow',obj)
               addAndDeleteRow(rowInd,obj,(gridData.gridId == 'GID-290') ? 'Useradd' : 'add')
             }
           }

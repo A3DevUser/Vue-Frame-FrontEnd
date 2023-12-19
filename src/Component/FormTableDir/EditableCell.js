@@ -59,7 +59,7 @@ export const EditableCell = ({
       }
 
       if (id =='dsId'){
-        console.log('NEWSendReportConfDataRed',SendReportConfDataRed.val)
+        // console.log('NEWSendReportConfDataRed',SendReportConfDataRed.val)
         updateMyData(index, id, SendReportConfDataRed.val.dsId,null)
         // setFreeze(true)
       }else if (id =='expId'){

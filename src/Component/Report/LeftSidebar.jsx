@@ -35,8 +35,8 @@ const LeftSidebar = () => {
     }, [FormIdRed])
 
     useEffect(() => {
-        console.log('LNav FormIdRed', ReportTitleFilterRed.val)
-        console.log('LNav FormIdRed', ReportTitleDataRed.val)
+        // console.log('LNav FormIdRed', ReportTitleFilterRed.val)
+        // console.log('LNav FormIdRed', ReportTitleDataRed.val)
     }, [ReportTitleDataRed])
 
     function funApplyFil() {
@@ -44,9 +44,9 @@ const LeftSidebar = () => {
         if (filData != undefined){
             let rowData = encodeURI(JSON.stringify(Object.values(filData)))
             dispatch(FetchReportTitleFilData(FormIdRed,rowData,AuthRed.val))
-            console.log('filData',FormIdRed)
-            console.log('filData',rowData)
-            console.log('filData',AuthRed.val)
+            // console.log('filData',FormIdRed)
+            // console.log('filData',rowData)
+            // console.log('filData',AuthRed.val)
         }
     }
 
@@ -65,14 +65,15 @@ const LeftSidebar = () => {
                             <IoReorderThreeOutline style={{ fontSize: '2.5em' }} />
                         )}
                     </div>
+                    <div style={{overflowY: 'scroll',height: '66vh', overflowX: 'hidden'}} >
                     {ReportTitleFilterRed.val.map((res, i) => {
                         return <>
-                        <div key={i} style={{overflowY: 'scroll',height: '7vh', overflowX: 'hidden'}} >
+                        {/* <div key={i} style={{overflowY: 'scroll',height: '7vh', overflowX: 'hidden'}} > */}
                             <div style={{ display: isExpanded ? 'block' : 'none' }}>
                                 <h6 style={{ paddingLeft: '10px', fontFamily:'Palatino Linotype' }}>{res.colFilLabel}</h6>
 
                             </div>
-                            <div className="sidebar-content" style={{ display: isExpanded ? 'block' : 'none', overflowY: 'scroll', overflowX: 'hidden' }}>
+                            <div className="sidebar-content" style={{ display: isExpanded ? 'block' : 'none', }}>
                                 <input list='list' className='form-control form-control-sm' style={{fontSize:'12px',fontFamily:'Palatino Linotype'}} type={res.colFilTyp} placeholder={`Enter ${res.colFilLabel}...`} onBlur={(event) => {funUpdateFil(event,res)}} name={res.columnName} value={filVal}/>
                                 {/* <datalist id='list'>
                                     {
@@ -80,9 +81,10 @@ const LeftSidebar = () => {
                                     }
                                 </datalist> */}
                             </div>
-                            </div>
+                            {/* </div> */}
                         </>
                     })}
+                    </div>
                 </div>
                 <div className="sidebar-footer" style={{ display: isExpanded ? 'block' : 'none' }}>
                     <hr />
