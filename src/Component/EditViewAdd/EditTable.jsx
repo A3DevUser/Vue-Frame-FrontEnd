@@ -28,7 +28,7 @@ const EditTable = () => {
     useEffect(()=>{
     dispatch(FetchGridData(FormIdRed,AuthRed.val))
     dispatch(FetchColumnData(FormIdRed,EmdRed,AuthRed.val))   
-    dispatch(FetchGetData(FormIdRed,AuthRed.val,UserDataStateRed))  
+    // dispatch(FetchGetData(FormIdRed,AuthRed.val,UserDataStateRed,'NO_VALUE'))
     },[FormIdRed])
 
 

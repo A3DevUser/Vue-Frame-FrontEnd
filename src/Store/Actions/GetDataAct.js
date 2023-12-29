@@ -21,14 +21,14 @@ const GetDataErr = (val) =>{
     }
 };
 
-export const FetchGetData = (formId,token,userId) =>{
+export const FetchGetData = (formId,token,userId,flagData) =>{
     const headers = {
         'Content-Type': 'application/json', 
         'Authorization': `Bearer ${token}` , 
       };
     return (dispatch)=>{
         dispatch(GetDataReq());
-        axios.get(`http://localhost:8080/VF/getTableData?formId=${formId}&VF_CURRENT_USER=${userId}`, {headers})
+        axios.get(`http://localhost:8080/VF/getTableData?formId=${formId}&VF_CURRENT_USER=${userId}&daysFlag=${flagData}`, {headers})
         .then((res)=>{
             dispatch(GetDataSuccess(res.data))
         })

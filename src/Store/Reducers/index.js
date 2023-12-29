@@ -38,7 +38,8 @@ import { ReportTitleColumnRed } from "./ReportTitleColumnRed";
 import { ReportTitleGridRed } from "./ReportTitleGridRed";
 import { ReportTitleFilterRed } from "./ReportTitleFilterRed";
 import { ReportTitleDataRed } from "./ReportTitleDataRed";
-
+import { PendencyColRed } from "./PendencyColRed";
+import { PendencyDataRed } from "./PendencyDataRed";
 
 const rootReducers = combineReducers({
     SectionRed,  
@@ -86,6 +87,8 @@ const rootReducers = combineReducers({
     ReportTitleGridRed,
     ReportTitleFilterRed,
     ReportTitleDataRed,
+    PendencyColRed,
+    PendencyDataRed
     });
 
 export default rootReducers

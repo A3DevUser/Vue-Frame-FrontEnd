@@ -6,34 +6,46 @@ import { Styles } from './ReportStyles'
 import '../FormTableDir/TableStyle.css'
 import Mock_data from './MOCK_DATA_TAB.json'
 import { Columns } from './Columns'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
 import Pagination from 'react-bootstrap/Pagination';
 import ReportDownloadOpt from '../ReportExp/ReportDownloadOpt'
+import TableCell from '../../Component/FormTableDir/TableCell'
+import { Link } from 'react-router-dom'
 
 
-const BassicTab = ({ gridData, columnData, reportData }) => {
-    console.log('NewRptDataChk',JSON.stringify(gridData))
-    console.log('NewRptDataChk',JSON.stringify(columnData))
-    console.log('NewRptDataChk',JSON.stringify(reportData))
-    // const ReportTitleDataRed = useSelector((state) => state.ReportTitleDataRed)
-    const ReportTitleColumnRed = useSelector((state) => state.ReportTitleColumnRed)
-    const ReportTitleGridRed = useSelector((state) => state.ReportTitleGridRed)
-    const ReportTitleDataRed = useSelector((state) => state.ReportTitleDataRed)
 
+const PendencyTab = ({ titleData, columnData, pendencyData, handleFormId }) => {
 
     const calculateColumnWidth = (tableWidth, totalColumns) => {
         return Math.floor(tableWidth / totalColumns);
     };
 
+    console.log('columnDataHeaderNew',columnData)
+
     const [columns, setcolumns] = useState(
         // Columns
-        [...columnData.map((res) => { return { Header: res.rptColLabel, accessor: res.rptColName, Filter: ColumnFilter, width: calculateColumnWidth(0.828 * window.innerWidth, columnData.length) } })]
+        [...columnData.map((res) => {
+            if(res.cellType == 'link'){
+                return { Header: res.fieldName, 
+                    accessor: res.accessor, 
+                    Cell : ({cell}) =>{
+                        console.log('CellDataVal',cell)
+                        return <Link to={{pathname : '/editTable'}} state={{formId: cell.row.original.formId}} onClick={() => handleFormId(cell.row.original.formId, res.accessor)}>{cell.value}</Link>
+                    },
+                    width: calculateColumnWidth(0.828 * window.innerWidth, columnData.length) } 
+            }else{
+                return { Header: res.fieldName, 
+                   accessor: res.accessor, 
+                   width: calculateColumnWidth(0.828 * window.innerWidth, columnData.length) } 
+            }
+            
+            })]
     );
 
     // useEffect(()=>{console.log('NewNav FormIdRed',ReportTitleDataRed.val.length)})
 
-    const [data, setdata] = useState([...reportData])
+    const [data, setdata] = useState([...pendencyData])
 
     // console.log('columnData', columns)
 
@@ -63,19 +75,20 @@ const BassicTab = ({ gridData, columnData, reportData }) => {
 
     const { globalFilter } = state
     const { pageIndex } = state
+    console.log('pageNewData',page)
     return (
         <>
             <div style={{ padding: 'auto 1px' }} >
 
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', maxWidth: '90vw', paddingLeft: '18px', marginTop: '-3px', marginBottom: '9px' }}>
-                    {gridData.map((res) => { return <h4 style={{ fontFamily: 'Trebuchet MS' }} >{res.rptTitle}</h4> })}
-                    <div style={{ paddingTop: '-5px', marginTop: '-4px', marginRight: '-32em' }}>
+                    {titleData.map((res) => { return <h4 style={{ fontFamily: 'Trebuchet MS' }} >{res.Title}</h4> })}
+                    {/* <div style={{ paddingTop: '-5px', marginTop: '-4px', marginRight: '-32em' }}>
                         <div>
                             <ReportDownloadOpt repoData = {ReportTitleDataRed.val} repoColunm = {ReportTitleColumnRed.val} 
                                     repoGrid = {ReportTitleGridRed.val}
                             />
                         </div>
-                    </div>
+                    </div> */}
                     <div style={{ paddingTop: '5px', marginTop: '20px' }}>
 
                         {/* <div style={{ display: 'inline-block' }}> */}
@@ -110,7 +123,8 @@ const BassicTab = ({ gridData, columnData, reportData }) => {
                                         {
                                             row.cells.map((cell) => (
                                                 <div className='td' {...cell.getCellProps()}>
-                                                    {cell.render('Cell')}
+                                                    <TableCell cell={cell}/>
+                                                    {/* {cell.render('Cell')} */}
                                                 </div>
                                             ))
                                         }
@@ -134,9 +148,9 @@ const BassicTab = ({ gridData, columnData, reportData }) => {
                         <button className='btn btn-outline-secondary btn-sm' title='Next page' onClick={() => nextPage()} disabled={!canNextPage}>Next</button>
                         {/* <Pagination><Pagination.Next /></Pagination> */}
                     </div>
-                    <div>
+                    {/* <div>
                         <strong>Total Records {ReportTitleDataRed.val.length}</strong>
-                    </div>
+                    </div> */}
                 </div>
             </div>
 
@@ -144,4 +158,4 @@ const BassicTab = ({ gridData, columnData, reportData }) => {
     )
 }
 
-export default BassicTab
+export default PendencyTab

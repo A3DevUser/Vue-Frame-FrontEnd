@@ -154,10 +154,20 @@ export const EditableCell = ({
     const DropValRed = useSelector((state) => state.DropValRed)
     const DropDownValRed = useSelector((state)=> state.DropDownValRed)
     const ColumnRed = useSelector((state)=>state.ConfColumnRed)
-    // console.log('DropValRed',DropValRed)
+    const [dropdownArray,setDropdownArray] = useState([]);
+
+    // var dropdownArray = []
+
+    useEffect(() => {
+      if (value != null){
+        setDropdownArray(value.split('$#')); 
+        // console.log('valueDropValRed',value.split('$#'))
+      }
+    },[])
 
   return <select name={id} value={value} onFocus={()=>{handleOnfocus(parentId.formIdVal,parentId.gridIdVal,parentId.colIdVal,parentId.json.original,DropValRed.val,index)}} onChange={onChange} onBlur={onBlur} className='form-control' style={{width:colObj.width,height:'7vh', border:'none'}} disabled={rowObj.original.isDisable}>
-      <option value="">Select One</option>
+    {value != null ? <><option value={dropdownArray[0]}>{dropdownArray[1]}</option></> : <><option value="">Select One</option></>}
+      {/* <option value="">Select One</option> */}
       {
        DropValRed.loading ? <option>loading...</option> : 
        DropValRed.val.filter((fil)=>{return (fil.ColId == parentId.colIdVal)&&(fil.rowInd == index)}).map((res,i)=>{
@@ -545,6 +555,7 @@ const ImportGridRed = useSelector((state)=>state.ImportGridRed)
       }
 
     }
+    console.log('FormDataNewVal',rowObj)
     return <Link to={{pathname : path}} state={{formId : rowObj.original.form_id}} onClick={handleClick}  >{lable}</Link>
   }
 
@@ -620,6 +631,20 @@ const ImportGridRed = useSelector((state)=>state.ImportGridRed)
            </select>
   }
 
+  export const PendencyLink = ({
+    to: path,
+    lable: lable,
+  }) => {
+
+    const dispatch = useDispatch()
+    
+    const handleClick = () =>{
+          dispatch(FormIdAct('FORM-106'))
+    }
+
+    return <Link to={{pathname : path}} >{lable}</Link>
+  }
+
  export const EditableRtf = ({
     value: initialValue,
     row:  index ,
@@ -658,4 +683,5 @@ const ImportGridRed = useSelector((state)=>state.ImportGridRed)
   </Modal>
   </>
   )
+
  }

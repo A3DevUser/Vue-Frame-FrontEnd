@@ -9,7 +9,7 @@ import GlobalFilter from './GlobalFilter'
 
 
 const TableStruc = ({getTableProps,getTableBodyProps,headerGroups,prepareRow,rows,gridData,handleAddRow,handleSave,handleRemove,handleCopy,previousPage,canPreviousPage,nextPage,canNextPage,pageOptions,state,pageCount,gotoPage,setGlobalFilter,hide,funNavConf}) => {
-
+console.log('pageNewDataRows',rows)
     const EmdRed = useSelector((state)=>state.EmdRed)
     const ColumnRed = useSelector((state) => state.ColumnRed)
     const GridRed = useSelector((state) => state.GridRed)
