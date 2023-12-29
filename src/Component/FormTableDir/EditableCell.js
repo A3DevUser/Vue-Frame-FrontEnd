@@ -166,7 +166,7 @@ export const EditableCell = ({
     },[])
 
   return <select name={id} value={value} onFocus={()=>{handleOnfocus(parentId.formIdVal,parentId.gridIdVal,parentId.colIdVal,parentId.json.original,DropValRed.val,index)}} onChange={onChange} onBlur={onBlur} className='form-control' style={{width:colObj.width,height:'7vh', border:'none'}} disabled={rowObj.original.isDisable}>
-    {value != null ? <><option value={dropdownArray[0]}>{dropdownArray[1]}</option></> : <><option value="">Select One</option></>}
+    {value != null&&window.location.pathname == '/editTable' ? <><option value={dropdownArray[0]}>{dropdownArray[1]}</option></> : <><option value="">Select One</option></>}
       {/* <option value="">Select One</option> */}
       {
        DropValRed.loading ? <option>loading...</option> : 

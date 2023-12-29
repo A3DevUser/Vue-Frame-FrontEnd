@@ -30,7 +30,6 @@ const PendencyTab = ({ titleData, columnData, pendencyData, handleFormId }) => {
                 return { Header: res.fieldName, 
                     accessor: res.accessor, 
                     Cell : ({cell}) =>{
-                        console.log('CellDataVal',cell)
                         return <Link to={{pathname : '/editTable'}} state={{formId: cell.row.original.formId}} onClick={() => handleFormId(cell.row.original.formId, res.accessor)}>{cell.value}</Link>
                     },
                     width: calculateColumnWidth(0.828 * window.innerWidth, columnData.length) } 
