@@ -7,6 +7,7 @@ import { FetchGridData } from '../../Store/Actions/GridAct'
 import { MainObject } from '../../Component/Elements/commonFun'
 import GridFormSub from '../../Component/GridFormSub'
 import { FormDataAct } from '../../Store/Actions/GeneralStates'
+import swal from 'sweetalert'
 
 const AddTable = () => {
     const dispatch = useDispatch()
@@ -22,13 +23,14 @@ const AddTable = () => {
 
     const [disBtn,setDisBtn] = useState(false)
     const [dataObj,setDataObj] = useState({})
+    const [dataValidation,setDataValidation] = useState(false)
 
     useEffect(()=>{
     dispatch(FetchGridData(FormIdRed,AuthRed.val))
     dispatch(FetchColumnData(FormIdRed,EmdRed,AuthRed.val))  
     },[FormIdRed])
 
-    const handleSave = (gridData,setdata) =>{
+    const handleSave = (gridData,setdata,data) =>{
         // console.log('FormDatRed',Object.values(FormDatRed).filter((fil)=>{return fil.length > 0})) 
         // console.log('FormDatRed',ExcelDataRed)
        console.log('newFormDataRed',FormDatRed)
@@ -43,19 +45,33 @@ const AddTable = () => {
           // Object.keys(FormDatRed).forEach((res)=>{
           //   dispatch(FetchWFCommonData(res,AuthRed.val))
           // })
-          Object.keys(FormDatRed).forEach((res)=>{
-            // console.log('main',FormDatRed[res])
-            if(Array.isArray(FormDatRed[res])){
-              dispatch(PostFormExcelData(FormDatRed[res],AuthRed.val,setdata)) 
-              // console.log('FormDatRedDatanew',FormDatRed[res])
+
+            if(data.some(res => (res.VF_ACTION == '' || res.VF_ACTION == null || res.VF_ORGANISATION_ID == '' || res.VF_ORGANISATION_ID == null))){
+              swal({
+                title :'Alert',
+                text : 'Action OR Organization Field cant be empty, Kindly select one!',
+                icon: "warning",
+            })
             }else{
-              Object.values(FormDatRed[res]).forEach((fres)=>{
-                dispatch(PostFormExcelData(fres,AuthRed.val,setdata)) 
-              })
-
+                setDataValidation(true)
             }
-          })
 
+          if(dataValidation == true){
+            Object.keys(FormDatRed).forEach((res)=>{
+              // console.log('main',FormDatRed[res])
+              if(Array.isArray(FormDatRed[res])){
+                dispatch(PostFormExcelData(FormDatRed[res],AuthRed.val,setdata)) 
+                setDataValidation(false)
+                // console.log('FormDatRedDatanew',FormDatRed[res])
+              }else{
+                Object.values(FormDatRed[res]).forEach((fres)=>{
+                  dispatch(PostFormExcelData(fres,AuthRed.val,setdata)) 
+                  setDataValidation(false)
+                })
+  
+              }
+            })
+          }
       }
       // useEffect(()=>{
       //   console.log('FormDatRedData',FormDatRed)
@@ -78,8 +94,7 @@ const AddTable = () => {
             return fil.gridId == res.gridId
           }).forEach((fe)=>{setDataObj[fe.accessor]=''})
           // console.log('GridFormSubobj',Object.keys(FormDatRed).includes(res.gridId),res.gridId,Object.keys(FormDatRed).includes(res.gridId) ? FormDatRed[res.gridId] : dataObj)
-         return FormDatRed&&<GridFormSub column={ColumnRed.val.sort((a,b)=>{return a.number-b.number})} data=
-         {[]}
+         return FormDatRed&&<GridFormSub column={ColumnRed.val.sort((a,b)=>{return a.number-b.number})} data={[]}
         //  {Object.keys(FormDatRed).includes(res.gridId) ? FormDatRed[res.gridId] : [dataObj]} 
          gridData={res} key={i} handleSave={handleSave} disBtn={disBtn}/>
         })

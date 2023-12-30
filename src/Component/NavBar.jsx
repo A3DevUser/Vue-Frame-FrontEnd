@@ -157,7 +157,7 @@ className='navbar-background'
 }
 {
     [...new Set(NavBarRed.val.filter((fil)=>{return fil.cat !== null}).map((nres)=>{return nres.cat}))].map((res,i)=>{
-        return<NavDropdown className='ddClass' title={res} key={i}>
+        return<NavDropdown className='ddClassEle' title={res} key={i}>
                 {NavBarRed.val.filter((fil)=>{return fil.cat == res}).map((nres)=>{
                     if (nres.navigate == '/confreport'){
                         return <NavDropdown.Item className='click' onClick={()=>{handleNavigate({formId : nres.formId,navigate:'/reportForm'})}}>{nres.navName}</NavDropdown.Item>

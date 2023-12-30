@@ -8,7 +8,7 @@ import ReportImpExp from '../ReportExp/ReportImpExp'
 import GlobalFilter from './GlobalFilter'
 
 
-const TableStruc = ({getTableProps,getTableBodyProps,headerGroups,prepareRow,rows,gridData,handleAddRow,handleSave,handleRemove,handleCopy,previousPage,canPreviousPage,nextPage,canNextPage,pageOptions,state,pageCount,gotoPage,setGlobalFilter,hide,funNavConf,disBtn,setdata}) => {
+const TableStruc = ({getTableProps,getTableBodyProps,headerGroups,prepareRow,rows,gridData,handleAddRow,handleSave,handleRemove,handleCopy,previousPage,canPreviousPage,nextPage,canNextPage,pageOptions,state,pageCount,gotoPage,setGlobalFilter,hide,funNavConf,disBtn,setdata,data}) => {
 console.log('pageNewDataRows',rows)
     const EmdRed = useSelector((state)=>state.EmdRed)
     const ColumnRed = useSelector((state) => state.ColumnRed)
@@ -46,7 +46,7 @@ console.log('pageNewDataRows',rows)
         ><i class="bi bi-plus-lg"></i> Get Data </button>}
         <Button variant='btn btn-outline-danger'  title="Remove" style={{display : (gridData.isMrow =='true'&& !removeDupl.includes(window.location.pathname)) || (window.location.pathname.includes('confform')&&gridData.isMrow =='true') ? 'block' : 'none'}} onClick={handleRemove}><i class="bi bi-trash"> </i></Button>
         <Button variant='btn btn-outline-secondary' title="Duplicate" style={{display : (gridData.isMrow =='true'&& !removeDupl.includes(window.location.pathname)) || (window.location.pathname.includes('confform')&&gridData.isMrow =='true') ? 'block' : 'none'}} className='mx-2' onClick={handleCopy}><i class="bi bi-copy"> </i></Button>
-        {(gridData.isMain == 'true') || (window.location.pathname.includes('confform')) || (window.location.pathname.includes('confreport')) ? <button className='btn btn-outline-success' style={{width: '', height: '', display:window.location.pathname.includes('viewTable') ?'none' :'block' }} onClick={()=>{handleSave(gridData,setdata)}} disabled={disBtn}><i title='Save' class="bi bi-floppy" ></i></button> : <></>}
+        {(gridData.isMain == 'true') || (window.location.pathname.includes('confform')) || (window.location.pathname.includes('confreport')) ? <button className='btn btn-outline-success' style={{width: '', height: '', display:window.location.pathname.includes('viewTable') ?'none' :'block' }} onClick={()=>{handleSave(gridData,setdata,data)}} disabled={disBtn}><i title='Save' class="bi bi-floppy" ></i></button> : <></>}
         {/* {(window.location.pathname.includes('report')) ? <><GlobalFilter filter={globalFilter} setfilter={setGlobalFilter}/></> : <></>} */}
   </div>
   </div>
