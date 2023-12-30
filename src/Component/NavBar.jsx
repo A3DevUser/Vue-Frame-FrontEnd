@@ -156,30 +156,39 @@ className='navbar-background'
     })
 }
 {
-    [...new Set(NavBarRed.val.filter((fil)=>{return fil.cat !== null}).map((nres)=>{return nres.cat}))].map((res)=>{
-        return <Dropdown title={res} className='multiDrop' position='right'>
-            {
-                NavBarRed.val.filter((fil)=>{return fil.cat == res}).map((nres)=>{
-                    // console.log('Nav Bar Details',nres)
+    [...new Set(NavBarRed.val.filter((fil)=>{return fil.cat !== null}).map((nres)=>{return nres.cat}))].map((res,i)=>{
+        return<NavDropdown className='ddClass' title={res} key={i}>
+                {NavBarRed.val.filter((fil)=>{return fil.cat == res}).map((nres)=>{
                     if (nres.navigate == '/confreport'){
-                        return <Dropdown.Item>
-                        {nres.navName}
-                        {<Dropdown.Submenu position='right'>
-            <Dropdown.Item onClick={()=>{handleNavigate({formId : nres.formId,navigate:'/reportForm'})}} >{`View ${nres.navName}`}</Dropdown.Item>
-        </Dropdown.Submenu> }
-                    </Dropdown.Item>
+                        return <NavDropdown.Item className='click' onClick={()=>{handleNavigate({formId : nres.formId,navigate:'/reportForm'})}}>{nres.navName}</NavDropdown.Item>
                     }else{
-                    return <Dropdown.Item>
-                        {nres.navName}
-                        {<Dropdown.Submenu position='right'>
-            <Dropdown.Item onClick={()=>{handleNavigate({formId : nres.formId,navigate:nres.navigate,emd :'no'})}} >{`View ${nres.navName}`}</Dropdown.Item>
-            <Dropdown.Item onClick={()=>{handleNavigate({formId : nres.formId,navigate:nres.navigate,emd :'yes'})}}>{`Edit ${nres.navName}`}</Dropdown.Item>
-            <Dropdown.Item onClick={()=>{handleNavigate({formId : nres.formId,navigate:nres.navigate,emd:'add'})}}>{`Add ${nres.navName}`}</Dropdown.Item>
-        </Dropdown.Submenu> }
-                    </Dropdown.Item>}
-                })
-            }
-        </Dropdown>
+                        return <NavDropdown.Item className='click' onClick={()=>{handleNavigate({formId : nres.formId,navigate:nres.navigate,emd:'add'})}}>{nres.navName}</NavDropdown.Item>
+                    }
+                })}
+            </NavDropdown>
+        // return <Dropdown title={res} className='multiDrop' position='right'>
+        //     {
+        //         NavBarRed.val.filter((fil)=>{return fil.cat == res}).map((nres)=>{
+        //             // console.log('Nav Bar Details',nres)
+        //             if (nres.navigate == '/confreport'){
+        //                 return <Dropdown.Item>
+        //                 {nres.navName}
+        //                 {<Dropdown.Submenu position='right'>
+        //     <Dropdown.Item onClick={()=>{handleNavigate({formId : nres.formId,navigate:'/reportForm'})}} >{`View ${nres.navName}`}</Dropdown.Item>
+        // </Dropdown.Submenu> }
+        //             </Dropdown.Item>
+        //             }else{
+        //             return <Dropdown.Item>
+        //                 {nres.navName}
+        //                 {<Dropdown.Submenu position='right'>
+        //     {/* <Dropdown.Item onClick={()=>{handleNavigate({formId : nres.formId,navigate:nres.navigate,emd :'no'})}} >{`View ${nres.navName}`}</Dropdown.Item>
+        //     <Dropdown.Item onClick={()=>{handleNavigate({formId : nres.formId,navigate:nres.navigate,emd :'yes'})}}>{`Edit ${nres.navName}`}</Dropdown.Item> */}
+        //     <Dropdown.Item onClick={()=>{handleNavigate({formId : nres.formId,navigate:nres.navigate,emd:'add'})}}>{`Add ${nres.navName}`}</Dropdown.Item>
+        // </Dropdown.Submenu> }
+        //             </Dropdown.Item>}
+        //         })
+        //     }
+        // </Dropdown>
     })
 }
 {/* <Dropdown title='User Access' className='multiDrop' position='right'>

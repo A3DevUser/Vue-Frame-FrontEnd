@@ -22,7 +22,9 @@ const FormExcelErr = (val) =>{
     }
 };
 
-export const PostFormExcelData = (data,token) =>{
+export const PostFormExcelData = (data,token,setdata) =>{
+
+
     const headers = {
         'Content-Type': 'application/json', 
         'Authorization': `Bearer ${token}` , 
@@ -32,6 +34,11 @@ export const PostFormExcelData = (data,token) =>{
         axios.post(`http://localhost:8080/VF/callWorkflowProcedure`,data,{headers})
         .then((res)=>{
             dispatch(FormExcelSuccess(res.data))
+            if(window.location.pathname == '/addTable'){
+                setdata([])
+            }else if(window.location.pathname == '/editTable'){
+                setdata([])
+            }
             return swal({
                 title :'Alert',
                 text : 'Data Save Successfully',

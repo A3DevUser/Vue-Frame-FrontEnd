@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { PostFormExcelData } from '../../Store/Actions/FormExcelPostAct'
 import { FetchWFCommonData } from '../../Store/Actions/WorkFlowCommon'
@@ -25,6 +25,8 @@ const EditTable = () => {
     const ResetFormRed = useSelector((state)=>state.ResetFormRed)
     const UserDataStateRed = useSelector((state)=>state.UserDataStateRed)
 
+    const [disBtn,setDisBtn] = useState(false)
+
     useEffect(()=>{
     dispatch(FetchGridData(FormIdRed,AuthRed.val))
     dispatch(FetchColumnData(FormIdRed,'yes',AuthRed.val))   
@@ -32,19 +34,32 @@ const EditTable = () => {
     },[FormIdRed])
 
 
-    const handleSave = () =>{
-        // console.log('FormDatRed',Object.values(FormDatRed).filter((fil)=>{return fil.length > 0})) 
-        // console.log('FormDatRed',ExcelDataRed)
-      //  console.log(FormDatRed)
-          // dispatch(PostFormExcelData(res)) 
-          Object.values(FormDatRed).forEach((res)=>{
-            dispatch(PostFormExcelData(res,AuthRed.val)) 
-          })
+    const handleSave = (gridData,setdata) =>{
+      console.log('newFormDataRed','inside save')
+      if ((FormDatRed[GridRed.val.filter((fil) => {return fil.isMain == 'true'})[0].gridId].filter((fil) => {return fil.VF_ACTION != '' || fil.VF_ACTION != null})).length >= 1){
+        console.log('newFormDataRed','inside parent if')
+        Object.keys(FormDatRed).forEach((res)=>{
+          if(Array.isArray(FormDatRed[res])){
+            console.log('newFormDataRed',FormDatRed[res])
+            // console.log('newFormDataRed',FormDatRed[res].filter((fil) => {return  fil.VF_ACTION != null && fil.VF_ACTION != ''}))
+            let newObj = FormDatRed[res].filter((fil) => {
+              return  fil.VF_ACTION != null && fil.VF_ACTION != ''
+            }) 
+              if(newObj.length >= 0){
+                console.log('newFormDataRed',newObj)
+                dispatch(PostFormExcelData(newObj,AuthRed.val,setdata))
+              }
+            }})
+      }else{
+        console.log('newFormDataRed',FormDatRed)
+        Object.values(FormDatRed).forEach((res)=>{
+          dispatch(PostFormExcelData(res,AuthRed.val)) 
+        })
 
-          Object.keys(FormDatRed).forEach((res)=>{
-            dispatch(FetchWFCommonData(res,AuthRed.val))
-          })
-
+        Object.keys(FormDatRed).forEach((res)=>{
+          dispatch(FetchWFCommonData(res,AuthRed.val))
+        })
+      }
       }
 
   return (
@@ -65,7 +80,7 @@ const EditTable = () => {
          {
           GetDataRed.val.filter((fil)=>{return fil.GRID_ID == res.gridId})[0].DATA 
         }
-          gridData={res} key={i} handleSave={handleSave}/>
+          gridData={res} key={i} handleSave={handleSave} disBtn={disBtn}/>
         })
       }
     </div>

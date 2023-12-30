@@ -32,7 +32,7 @@ const PendencyTab = ({ titleData, columnData, pendencyData, handleFormId }) => {
                     Cell : ({cell}) =>{
                         return <Link to={{pathname : '/editTable'}} state={{formId: cell.row.original.formId}} onClick={() => handleFormId(cell.row.original.formId, res.accessor)}>{cell.value}</Link>
                     },
-                    width: calculateColumnWidth(0.828 * window.innerWidth, columnData.length) } 
+                    width: calculateColumnWidth(1 * window.innerWidth, columnData.length) } 
             }else{
                 return { Header: res.fieldName, 
                    accessor: res.accessor, 
@@ -96,7 +96,7 @@ const PendencyTab = ({ titleData, columnData, pendencyData, handleFormId }) => {
                     </div>
                 </div>
                 <Styles>
-                    <div {...getTableProps()} className="table sticky mx-3 my-1 tableCont " style={{ maxHeight: '80vh', maxWidth: '90vw', overflow: 'scroll', border: 'none' }} >
+                    <div {...getTableProps()} className="table sticky mx-3 my-1 tableCont " style={{ maxHeight: '80vh', maxWidth: '97.3vw', overflow: 'scroll', border: 'none' }} >
                         <div className='header'>
                             {
                                 headerGroups.map((headerGroup) => (

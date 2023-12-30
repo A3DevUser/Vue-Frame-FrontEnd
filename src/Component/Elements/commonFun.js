@@ -32,10 +32,10 @@ export const MainObject = {
         }
     },
 
-    table : (col,data,gridData,handleSave,funNavConf) =>{
+    table : (col,data,gridData,handleSave,funNavConf,disBtn) =>{
 //   console.log('gridData',data)
 
-         return <FormTable col={col} dData={data} gridData={gridData} handleSave={handleSave} funNavConf={funNavConf}/> },
+         return <FormTable col={col} dData={data} gridData={gridData} handleSave={handleSave} funNavConf={funNavConf} disBtn={disBtn}/> },
 
     accordion : (accordionVal,subsAccordianVal,col,data,width,defaultVal,setdefaultVal) => {
         return <Accordion className="m-5" 

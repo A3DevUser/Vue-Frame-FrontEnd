@@ -15,7 +15,7 @@ import { Checkbox } from './Checkbox'
 import { Button, Col } from 'react-bootstrap'
 import { FetchObjectIdData } from '../../Store/Actions/ObjectIdAct'
 
-const FormTable = ({col,dData,gridData,handleSave,funNavConf}) => {
+const FormTable = ({col,dData,gridData,handleSave,funNavConf,disBtn}) => {
     const [data,setdata]=useState([...dData])
     const [chngRow,setchngRow]=useState({})
     const [finalArr, setfinalArr] =useState([])
@@ -337,7 +337,7 @@ const FormTable = ({col,dData,gridData,handleSave,funNavConf}) => {
   </div>
                 </div> */}
           </div>
-        <TableStruc getTableBodyProps={getTableBodyProps} getTableProps={getTableProps}  headerGroups={headerGroups} prepareRow={prepareRow} rows={page} handleSave={handleSave} handleAddRow={handleAddRow} gridData={gridData} handleRemove={handleRemove} handleCopy={handleCopy} previousPage={previousPage} canPreviousPage={canPreviousPage} nextPage={nextPage} canNextPage={canNextPage} pageOptions={pageOptions} state={state} gotoPage={gotoPage} pageCount={pageCount} setGlobalFilter={setGlobalFilter} hide={hide} funNavConf={funNavConf}/>
+        <TableStruc getTableBodyProps={getTableBodyProps} getTableProps={getTableProps}  headerGroups={headerGroups} prepareRow={prepareRow} rows={page} handleSave={handleSave} handleAddRow={handleAddRow} gridData={gridData} handleRemove={handleRemove} handleCopy={handleCopy} previousPage={previousPage} canPreviousPage={canPreviousPage} nextPage={nextPage} canNextPage={canNextPage} pageOptions={pageOptions} state={state} gotoPage={gotoPage} pageCount={pageCount} setGlobalFilter={setGlobalFilter} hide={hide} funNavConf={funNavConf} disBtn={disBtn} setdata={setdata}/>
         </Styles>
     </div>
   )

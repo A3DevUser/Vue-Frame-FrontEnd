@@ -84,7 +84,7 @@ const BassicTab = ({ gridData, columnData, reportData }) => {
                     </div>
                 </div>
                 <Styles>
-                    <div {...getTableProps()} className="table sticky mx-3 my-1 tableCont " style={{ maxHeight: '80vh', maxWidth: '90vw', overflow: 'scroll', border: 'none' }} >
+                    <div {...getTableProps()} className="table sticky mx-3 my-1 tableCont " style={{ maxHeight: '80vh', maxWidth: '97.3vw', overflow: 'scroll', border: 'none' }} >
                         <div className='header'>
                             {
                                 headerGroups.map((headerGroup) => (
