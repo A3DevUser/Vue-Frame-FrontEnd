@@ -15,7 +15,7 @@ import { Checkbox } from './Checkbox'
 import { Button, Col } from 'react-bootstrap'
 import { FetchObjectIdData } from '../../Store/Actions/ObjectIdAct'
 
-const FormTable = ({col,dData,gridData,handleSave,funNavConf,disBtn}) => {
+const FormTable = ({col,dData,gridData,handleSave,funNavConf,disBtn,setDisBtn}) => {
     const [data,setdata]=useState([...dData])
     const [chngRow,setchngRow]=useState({})
     const [finalArr, setfinalArr] =useState([])
@@ -99,6 +99,7 @@ const FormTable = ({col,dData,gridData,handleSave,funNavConf,disBtn}) => {
     }
   
     const addAndDeleteRow = (index,obj,action) => {
+      setDisBtn(false)
       if(action=='add' || action == 'Useradd'){
       // setdata((old)=>{
       //   return old.map((res,i)=>{
@@ -144,7 +145,7 @@ const FormTable = ({col,dData,gridData,handleSave,funNavConf,disBtn}) => {
         {Header : "Remove",
         accessor : 'remove',
         sticky : 'right',
-        Cell : ({cell}) =>{return <EditableActionCell colObj={cell.column} column={cell.column.id} row={cell.row.id} rowObj={cell.row} addAndDeleteRow={addAndDeleteRow}/> },
+        Cell : ({cell}) =>{return <EditableActionCell colObj={cell.column} column={cell.column.id} row={cell.row.id} rowObj={cell.row} addAndDeleteRow={addAndDeleteRow} /> },
       }]
        :
        ColumnHeader(col,updateMyData,'',addAndDeleteRow,gridData,data,handleOnfocus,DropValRed.val)
@@ -159,7 +160,7 @@ const FormTable = ({col,dData,gridData,handleSave,funNavConf,disBtn}) => {
         {Header : "Remove",
         accessor : 'remove',
         sticky : 'right',
-        Cell : ({cell}) =>{return <EditableActionCell colObj={cell.column} column={cell.column.id} row={cell.row.id} rowObj={cell.row} addAndDeleteRow={addAndDeleteRow} data={data.length}/>},
+        Cell : ({cell}) =>{return <EditableActionCell colObj={cell.column} column={cell.column.id} row={cell.row.id} rowObj={cell.row} addAndDeleteRow={addAndDeleteRow} data={data.length} />},
       }]
        :
        ColumnHeader(col,updateMyData,'',addAndDeleteRow,gridData,data,handleOnfocus,DropValRed.val)
@@ -242,16 +243,21 @@ const FormTable = ({col,dData,gridData,handleSave,funNavConf,disBtn}) => {
               // console.log('addAndDeleteRow',obj)
               addAndDeleteRow(rowInd,obj,(gridData.gridId == 'GID-290') ? 'Useradd' : 'add')
             }
+
+            setDisBtn(true)
+
           }
 
           const handleRemove = () =>{
-            // console.log('selectedFlatRows',selectedFlatRows)
+
+            console.log('handleRemove','inside handelRemove')
 
             setdata(old =>{
               return old.filter((fil,i)=>{
                 return !selectedFlatRows.some(row=> i==row.id)
               })
             })
+
           }
 
           const handleCopy = () =>{

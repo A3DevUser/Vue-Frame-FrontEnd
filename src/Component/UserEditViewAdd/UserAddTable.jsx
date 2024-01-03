@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { PostFormExcelData } from '../../Store/Actions/FormExcelPostAct'
 import { FetchWFCommonData } from '../../Store/Actions/WorkFlowCommon'
@@ -22,6 +22,8 @@ const UserAddTable = () => {
     const ExcelDataRed = useSelector((state)=>state.ExcelDataRed)
     const AuthRed = useSelector((state)=>state.AuthRed)
     const SendUserDataInfoRed = useSelector((state)=> state.SendUserDataInfoRed)
+
+    const [disBtn,setDisBtn] = useState(false)
 
     useEffect(()=>{
     dispatch(FetchGridData(FormIdRed,AuthRed.val))
@@ -58,7 +60,7 @@ const UserAddTable = () => {
          return FormDatRed&&<GridUserSub column={ColumnRed.val.sort((a,b)=>{return a.number-b.number})} data=
         //  {[]}
          {Object.keys(FormDatRed).includes(res.gridId) ? FormDatRed[res.gridId] : [dataObj]} 
-         gridData={res} key={i} handleSave={handleSave}/>
+         gridData={res} key={i} handleSave={handleSave} disBtn={disBtn} setDisBtn={setDisBtn}/>
         })
       }
     </div>

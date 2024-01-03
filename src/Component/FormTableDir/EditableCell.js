@@ -453,7 +453,7 @@ if(dropDown.filter((fil,i)=>{return i==index})[0].mixVal){
     column:  id ,
     addAndDeleteRow, 
     colObj:colObj,
-    rowObj : rowObj,
+    rowObj : rowObj
   }) => {
 
     

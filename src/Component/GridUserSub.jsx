@@ -2,7 +2,7 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import { MainObject } from './Elements/commonFun'
 
-const GridUserSub = ({column,data,gridData,handleSave}) => {
+const GridUserSub = ({column,data,gridData,handleSave,disBtn,setDisBtn}) => {
 
   const FormDatRed = useSelector((state)=>state.FormDatRed)
 
@@ -13,7 +13,7 @@ const GridUserSub = ({column,data,gridData,handleSave}) => {
   return (
     <div>
       {
-         <div>{ MainObject.table(column,data,gridData,handleSave) }</div>
+         <div>{ MainObject.table(column,data,gridData,handleSave,disBtn,setDisBtn) }</div>
         // <FormTable col={ColumnRed.val} dData={[]}/>
       }
     </div>

@@ -60,12 +60,12 @@ const AddTable = () => {
                     // console.log('UPDATEUSERDATA',FormDatRed[res].forEach(obj => obj["VF_CREATED_BY"] = UserDataStateRed))
                     // let finData = FormDatRed[res].forEach(obj => obj["VF_CREATED_BY"] = UserDataStateRed)
                     // console.log('UPDATEUSERDATA',finData)
-                    dispatch(PostFormExcelData(FormDatRed[res],AuthRed.val,setdata)) 
+                    dispatch(PostFormExcelData(UserDataStateRed,FormDatRed[res],AuthRed.val,setdata)) 
                     // setDataValidation(false)
                     // console.log('FormDatRedDatanew',FormDatRed[res])
                   }else{
                     Object.values(FormDatRed[res]).forEach((fres)=>{
-                      dispatch(PostFormExcelData(fres,AuthRed.val,setdata))
+                      dispatch(PostFormExcelData(UserDataStateRed,fres,AuthRed.val,setdata))
                       // setDataValidation(false)
                     })
       
@@ -89,24 +89,24 @@ const AddTable = () => {
         GridRed.loading&&GridRed.val.length == 0 ? MainObject.loader() :
         ColumnRed.loading&&GridRed.val.length == 0  ? MainObject.loader() :
         GridRed.val.filter((fil)=>{return fil.isMain }).map((res,i)=>{
-          let dataObj = {}
-          ColumnRed.val.filter((fil)=>{return fil.gridId == res.gridId}).forEach((fres)=>{
-            return dataObj[fres.accessor] = ''
-          })
           // let dataObj = {}
-          // ColumnRed.val.filter((fil)=>{
-          //   return fil.gridId == res.gridId
-          // }).forEach((fe)=>{return dataObj[fe.accessor]=''})
+          // ColumnRed.val.filter((fil)=>{return fil.gridId == res.gridId}).forEach((fres)=>{
+          //   return dataObj[fres.accessor] = ''
+          // })
+          let dataObj = {}
+          ColumnRed.val.filter((fil)=>{
+            return fil.gridId == res.gridId
+          }).forEach((fe)=>{return dataObj[fe.accessor]=''})
           // console.log('GridFormSubobj',Object.keys(FormDatRed).includes(res.gridId),res.gridId,Object.keys(FormDatRed).includes(res.gridId) ? FormDatRed[res.gridId] : dataObj)   
-          console.log('dataObjGridID',res.gridId)
-          let gridIdArr = ['GID-902','GID-752']
+          // console.log('dataObjGridID',res.gridId)
+          // let gridIdArr = ['GID-902','GID-752']
          return FormDatRed&&ColumnRed&&<GridFormSub column={ColumnRed.val.sort((a,b)=>{return a.number-b.number})} data=
-        {gridIdArr.includes(res.gridId)  ?  [dataObj] :  []}
+        // {gridIdArr.includes(res.gridId)  ?  [dataObj] :  []}
         //  {res.gridId == 'GID-902' ? (Object.keys(FormDatRed).includes(res.gridId) ? FormDatRed[res.gridId] : [dataObj]) : []}
         //  {window.location.pathname == '/addTable' ? [dataObj] : [] }
-        //  {[]}
+         {[]}
         //  {Object.keys(FormDatRed).includes(res.gridId) ? FormDatRed[res.gridId] : [dataObj]} 
-         gridData={res} key={i} handleSave={handleSave} disBtn={disBtn}/>
+         gridData={res} key={i} handleSave={handleSave} disBtn={disBtn} setDisBtn={setDisBtn}/>
         })
       }
     </div>
