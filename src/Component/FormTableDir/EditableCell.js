@@ -685,3 +685,20 @@ const ImportGridRed = useSelector((state)=>state.ImportGridRed)
   )
 
  }
+
+ export const EditablePartyLink = ({}) =>{
+
+  return <div style={{display:'flex', justifyContent:'center', alignItems:'center'}}>
+  <Link to={'/partysheet'} >Assesment Form</Link>
+  </div>
+ }
+
+
+ export const EditableHomeLink = ({}) =>{
+
+  return (
+  <div style={{display:'flex', justifyContent:'center', alignItems:'center'}}>
+  <Link to={'/homesheet'}>Assesment Form</Link>
+  </div>)
+
+ }

@@ -28,6 +28,9 @@ import { Columns } from './Component/ReportTable/Columns'
 import Mock_data from './Component/ReportTable/MOCK_DATA_TAB'
 import PendencyTab from './Component/PendencyDashboard/PendencyTab'
 import PendencyDashboard from './Component/PendencyDashboard/PendencyDashboard'
+import Partysheet from './Component/A3dir/Partysheet/Partysheet'
+import A3HomeSheet from './Component/A3dir/A3HomeSheet'
+import HomePartySheet from './Component/A3dir/Partysheet/HomePartySheet'
 
 const App = () => {
 
@@ -91,10 +94,12 @@ const App = () => {
           <Route path='/useraddTable' element={<UserAddTable/>} />
           <Route path='/usereditTable' element={<UserEditTable/>} />
           <Route path='/userviewTable' element={<UserViewTable/>} />
+          <Route path='/partysheet' element={<Partysheet/>} />
+          <Route path='/homesheet' element={<A3HomeSheet/>} />
+          <Route path='/homePartySheet' element={<HomePartySheet/>} />
           <Route path='/pendencyDashboard' element={<PendencyDashboard/>} />
         </Route>
-          <Route path='/partysheet'  element={<AssesmentTable col={Columns} data={Mock_data} />}/>
-      // </Routes>
+      </Routes>
       </Online>
     </div>
   )

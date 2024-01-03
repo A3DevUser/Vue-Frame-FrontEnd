@@ -20,9 +20,10 @@ const AddTable = () => {
     const EmdRed = useSelector((state)=>state.EmdRed)
     const ExcelDataRed = useSelector((state)=>state.ExcelDataRed)
     const AuthRed = useSelector((state)=>state.AuthRed)
+    const UserDataStateRed = useSelector((state)=>state.UserDataStateRed)
 
     const [disBtn,setDisBtn] = useState(false)
-    const [dataObj,setDataObj] = useState({})
+    // const [dataObj,setDataObj] = useState({})
     const [dataValidation,setDataValidation] = useState(false)
 
     useEffect(()=>{
@@ -53,25 +54,24 @@ const AddTable = () => {
                 icon: "warning",
             })
             }else{
-                setDataValidation(true)
-            }
-
-          if(dataValidation == true){
-            Object.keys(FormDatRed).forEach((res)=>{
-              // console.log('main',FormDatRed[res])
-              if(Array.isArray(FormDatRed[res])){
-                dispatch(PostFormExcelData(FormDatRed[res],AuthRed.val,setdata)) 
-                setDataValidation(false)
-                // console.log('FormDatRedDatanew',FormDatRed[res])
-              }else{
-                Object.values(FormDatRed[res]).forEach((fres)=>{
-                  dispatch(PostFormExcelData(fres,AuthRed.val,setdata)) 
-                  setDataValidation(false)
+                // setDataValidation(true)
+                Object.keys(FormDatRed).forEach((res)=>{
+                  if(Array.isArray(FormDatRed[res])){
+                    // console.log('UPDATEUSERDATA',FormDatRed[res].forEach(obj => obj["VF_CREATED_BY"] = UserDataStateRed))
+                    // let finData = FormDatRed[res].forEach(obj => obj["VF_CREATED_BY"] = UserDataStateRed)
+                    // console.log('UPDATEUSERDATA',finData)
+                    dispatch(PostFormExcelData(FormDatRed[res],AuthRed.val,setdata)) 
+                    // setDataValidation(false)
+                    // console.log('FormDatRedDatanew',FormDatRed[res])
+                  }else{
+                    Object.values(FormDatRed[res]).forEach((fres)=>{
+                      dispatch(PostFormExcelData(fres,AuthRed.val,setdata))
+                      // setDataValidation(false)
+                    })
+      
+                  }
                 })
-  
-              }
-            })
-          }
+            }
       }
       // useEffect(()=>{
       //   console.log('FormDatRedData',FormDatRed)
@@ -89,12 +89,22 @@ const AddTable = () => {
         GridRed.loading&&GridRed.val.length == 0 ? MainObject.loader() :
         ColumnRed.loading&&GridRed.val.length == 0  ? MainObject.loader() :
         GridRed.val.filter((fil)=>{return fil.isMain }).map((res,i)=>{
+          let dataObj = {}
+          ColumnRed.val.filter((fil)=>{return fil.gridId == res.gridId}).forEach((fres)=>{
+            return dataObj[fres.accessor] = ''
+          })
           // let dataObj = {}
-          ColumnRed.val.filter((fil)=>{
-            return fil.gridId == res.gridId
-          }).forEach((fe)=>{setDataObj[fe.accessor]=''})
-          // console.log('GridFormSubobj',Object.keys(FormDatRed).includes(res.gridId),res.gridId,Object.keys(FormDatRed).includes(res.gridId) ? FormDatRed[res.gridId] : dataObj)
-         return FormDatRed&&<GridFormSub column={ColumnRed.val.sort((a,b)=>{return a.number-b.number})} data={[]}
+          // ColumnRed.val.filter((fil)=>{
+          //   return fil.gridId == res.gridId
+          // }).forEach((fe)=>{return dataObj[fe.accessor]=''})
+          // console.log('GridFormSubobj',Object.keys(FormDatRed).includes(res.gridId),res.gridId,Object.keys(FormDatRed).includes(res.gridId) ? FormDatRed[res.gridId] : dataObj)   
+          console.log('dataObjGridID',res.gridId)
+          let gridIdArr = ['GID-902','GID-752']
+         return FormDatRed&&ColumnRed&&<GridFormSub column={ColumnRed.val.sort((a,b)=>{return a.number-b.number})} data=
+        {gridIdArr.includes(res.gridId)  ?  [dataObj] :  []}
+        //  {res.gridId == 'GID-902' ? (Object.keys(FormDatRed).includes(res.gridId) ? FormDatRed[res.gridId] : [dataObj]) : []}
+        //  {window.location.pathname == '/addTable' ? [dataObj] : [] }
+        //  {[]}
         //  {Object.keys(FormDatRed).includes(res.gridId) ? FormDatRed[res.gridId] : [dataObj]} 
          gridData={res} key={i} handleSave={handleSave} disBtn={disBtn}/>
         })

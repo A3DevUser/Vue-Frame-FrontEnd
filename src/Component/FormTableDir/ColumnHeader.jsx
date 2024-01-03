@@ -1,5 +1,5 @@
 import { useEffect } from "react"
-import { EditableActionCell, EditableActionPopCell, EditableAnaCell, EditableAttachCell, EditableCell, EditableDateCell, EditableDdCell, EditableDdIe, EditableImporter, EditableLink, EditableLogicCell, EditableMixCell, EditableMksCell, EditableNumCell, EditableRtf, EditableStaticCell, EditableUploader, } from "./EditableCell"
+import { EditableActionCell, EditableActionPopCell, EditableAnaCell, EditableAttachCell, EditableCell, EditableDateCell, EditableDdCell, EditableDdIe, EditableHomeLink, EditableImporter, EditableLink, EditableLogicCell, EditableMixCell, EditableMksCell, EditableNumCell, EditablePartyLink, EditableRtf, EditableStaticCell, EditableUploader, } from "./EditableCell"
 
 export const ColumnHeader = (colData, updateMyData, dropDown, addAndDeleteRow, gridData, data, handleOnfocus, dropDownData) => {
 
@@ -130,6 +130,26 @@ export const ColumnHeader = (colData, updateMyData, dropDown, addAndDeleteRow, g
         accessor : res.accessor,
         Cell : ({cell}) =>{
           return <EditableRtf colObj={cell.column} column={cell.column.id} row={cell.row.id} updateMyData={updateMyData} value={cell.value} />
+        },
+        width: res.width,
+        sticky: res.sticky
+      }
+    }else if(res.cellType == 'partyLink'){
+      return {
+        Header : res.fieldName,
+        accessor : res.accessor,
+        Cell : ({cell}) =>{
+          return <EditablePartyLink/>
+        },
+        width: res.width,
+        sticky: res.sticky
+      }
+    } else if(res.cellType =='homeLink'){
+      return {
+        Header : res.fieldName,
+        accessor : res.accessor,
+        Cell : ({cell}) =>{
+          return <EditableHomeLink/>
         },
         width: res.width,
         sticky: res.sticky

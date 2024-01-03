@@ -1,0 +1,224 @@
+import { daysToWeeks } from 'date-fns'
+import React, { useEffect, useState } from 'react'
+import { useMemo } from 'react'
+import { useTable, useGlobalFilter, useRowSelect, useBlockLayout,useSortBy,useFilters,usePagination } from 'react-table'
+import { ColumnFilter } from '../ColumnFilter'
+import { Checkbox } from '../Checkbox'
+import { useSticky } from 'react-table-sticky'
+import { useDispatch, useSelector } from 'react-redux'
+import { Styles } from '../AssesmentTableStyles'
+import { PartysheetColumns } from './PartySheetColumns'
+import { Button, Dropdown, DropdownButton, InputGroup, Modal } from 'react-bootstrap'
+import { PostA3SaveData } from '../../../Store/Actions/A3DataSaveAct'
+import A3OverviewModal from './A3OverviewModal'
+import DividePartySheet from './DividePartySheet'
+import swal from 'sweetalert'
+
+
+
+
+const PartySheetTable = ({col,dData,userName,accData}) => {
+  const dispatch = useDispatch()
+
+
+
+  console.log(col)
+  const [data,setdata]=useState([...dData]);
+  const [accountData,setaccountData] = useState([...accData.slice(0,10)])
+  const [columns,setcolumns]=useState([...PartysheetColumns(col,accData.slice(0,10).map((res)=>{return res.id}),updateMyData)])
+  const [finalData,setfinalData] = useState({})
+  const [fileArr,setfileArr] =useState()
+  const [show,setShow] = useState(false)
+  const [globalSearchVal,setglobalSearchVal] = useState('')
+
+  const mainObjDataRed = useSelector((state)=>state.mainObjDataRed)
+  const AuthRed = useSelector((state)=>state.AuthRed)
+
+    let userId = userName
+    const accList = accData.map((res)=>{return res.id})
+
+    const defaultColumn = React.useMemo(
+        () => ({
+          Filter: ColumnFilter
+        }),
+        []
+      )
+
+      const formData = new FormData()
+      function updateMyData(rowIndex, columnId, value, fileData){
+
+        if(fileData){
+            formData.append('file',fileData)
+            setfileArr(formData)
+          }
+
+        const colName = columnId.slice(0,columnId.indexOf('#'));
+        const accNum = columnId.slice(columnId.indexOf('#')+1,columnId.length);
+        // need to spread account data while setting final data
+        setfinalData((old)=>( {...old,[accNum+rowIndex]:{...dData[rowIndex],...old[accNum+rowIndex],[colName]:value,...mainObjDataRed,...accountData.filter((fil)=>{return fil.id==accNum})[0]}}))
+
+          setdata(old =>
+            old.map((row, index) => {
+                if (index === Number(rowIndex)) {
+              return {
+                ...old[rowIndex],
+                [columnId]: value,
+              }
+            }
+            return row
+          })
+        )   
+      }
+
+      useEffect(()=>{
+        console.log('opFinalData',finalData)
+      },[finalData])
+
+
+      function handleSave(){
+        const dataList = Object.values(finalData);
+
+        dispatch(PostA3SaveData(dataList,AuthRed.val))
+      }
+
+      function handleChange(e){
+        const rangeLowCount = (((e.target.value)-1)*10);
+        const rangeHighCount = ((e.target.value)*10)
+        // setaccountData(()=>{return accData.slice(rangeLowCount,rangeHighCount)})
+
+        setcolumns([...PartysheetColumns(col,accData.slice(rangeLowCount,rangeHighCount).map((res)=>{return res.id}),updateMyData)])
+
+        // console.log('DividePartySheet',accData.slice(rangeLowCount,rangeHighCount))
+
+    }
+
+    function handleSearchChange(e){
+      setglobalSearchVal(e.target.value)
+    }
+
+    function handleSearch(){
+     if(accList.indexOf(globalSearchVal) == -1){
+      return swal({
+        title :'Alert',
+        text : 'No data found for '+globalSearchVal,
+        icon: "warning",
+        dangerMode: true
+    })
+     }else{
+       const sheetNum = Math.ceil( accList.indexOf(globalSearchVal)==0 ? 0.1 : accList.indexOf(globalSearchVal)/10)
+       handleChange({target:{value:sheetNum}})
+     }
+      
+    }
+  
+      const{
+          getTableProps,
+          getTableBodyProps,
+          headerGroups,
+          page,
+          nextPage,
+          previousPage,
+          canPreviousPage,
+          canNextPage,
+          pageOptions,
+          gotoPage,
+          pageCount,
+          setPageSize,
+          prepareRow,
+          state,
+          preGlobalFilteredRows,
+          setGlobalFilter,
+          selectedFlatRows
+      } = useTable({
+          columns,
+          data,
+          defaultColumn
+      },
+      useBlockLayout,
+      useSticky,
+      useFilters,
+      useGlobalFilter,
+      useSortBy,
+      usePagination,
+      useRowSelect)
+
+
+      const { globalFilter } = state
+      const { pageIndex, pageSize } = state
+
+
+  return (
+    <>
+    <A3OverviewModal show={show} setShow={setShow} />
+    <div style={{display:'flex', flexDirection:'column'}}>
+      <div className='my-2' style={{display:'flex',justifyContent:'flex-end',width: '97%', gap:10}}>
+        <div style={{display:'flex', justifyContent:'center', alignItems:'center'}}>
+        <DividePartySheet dataLength={accData.length} handleChange={handleChange}/>
+        </div>
+        <DropdownButton variant='success' title='Overview'>
+          <Dropdown.Item onClick={()=>setShow(true)}>Sheet Summary</Dropdown.Item>
+          <Dropdown.Item onClick={()=>setShow(true)}>Assesment Summary</Dropdown.Item>
+        </DropdownButton>
+        <InputGroup style={{width:'15vw'}}>
+        <input type="search" list='acc' onChange={handleSearchChange} className='form-control'  placeholder='Search...' />
+        <datalist id='acc'>
+          {
+            accData.map((res)=>{
+              return <option>{res.id}</option>
+            })
+          }
+        </datalist>
+        <InputGroup.Text style={{cursor:'pointer'}} onClick={handleSearch}>
+        <i class="bi bi-search"></i>
+        </InputGroup.Text>
+        </InputGroup>
+        <button onClick={handleSave} className='btn btn-outline-success'><i class="bi bi-floppy"></i></button>
+      </div>
+      <div>
+    <Styles>
+        <div {...getTableProps()} className="table sticky table-hover table-striped mx-3" style={{ width: '97%', height:'75vh' }}>
+        <div className="header">
+          {headerGroups.map((headerGroup) => (
+            <div className='tr' {...headerGroup.getHeaderGroupProps()}>
+            {
+                headerGroup.headers.map((column) => (
+                    <div {...column.getHeaderProps(column.getSortByToggleProps())} className="th">
+                  <div ></div>
+                  {column.render('Header')}
+                  <span>
+                    {column.isSorted
+                      ? column.isSortedDesc
+                        ? ' 🔽'
+                        : ' 🔼'
+                      : ''}
+                  </span>
+                        <div>{column.canFilter ? column.render('Filter') : null}</div>
+                </div>
+                ))
+            }
+        </div>
+          ))}
+        </div>
+        <div {...getTableBodyProps()} className="body">
+          {page.map((row) => {
+            prepareRow(row);
+            return (
+              <div {...row.getRowProps()} className="tr">
+                {row.cells.map((cell) => (
+                  <div {...cell.getCellProps()} className="td">
+                    {cell.render('Cell')}
+                  </div>
+                ))}
+              </div>
+            );
+          })}
+        </div>
+      </div>
+      </Styles>
+      </div>
+      </div>
+    </>
+  )
+}
+
+export default PartySheetTable

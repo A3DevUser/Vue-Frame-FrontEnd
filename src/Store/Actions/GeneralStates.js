@@ -71,3 +71,10 @@ export const MainObjId = (val) =>{
         payload : val
     }
 }
+
+export const mainObjData = (val) =>{
+    return {
+        type :'mainObjData',
+        payload : val
+    }
+}

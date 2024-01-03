@@ -63,3 +63,10 @@ export const MainObjIdRed = (state=false, action) =>{
         default : return state
     }
 }
+
+export const mainObjDataRed = (state=false, action) =>{
+    switch (action.type) {
+        case 'mainObjData' : return action.payload
+        default : return state
+    }
+}

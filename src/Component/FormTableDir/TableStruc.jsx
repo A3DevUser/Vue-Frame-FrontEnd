@@ -1,5 +1,5 @@
 import { MainObject } from '../../Component/Elements/commonFun'
-import React from 'react'
+import React, { useState } from 'react'
 import { Button, Tooltip } from 'react-bootstrap'
 import TableCell from './TableCell'
 import { useSelector } from 'react-redux'
@@ -17,6 +17,9 @@ console.log('pageNewDataRows',rows)
 
     const { globalFilter } = state
     const { pageIndex } = state
+
+    // const [vrmPath,setVrmPath] = useState(gridData.gridId == 'GID-902' ? '/addTable' : '')
+    const vrmPath = gridData.gridId == 'GID-902' ? '/addTable' : ''
 
     const save = ['/viewTable','/report']
     const add = ['/viewTable','/editTable','/report','/usereditTable','/userviewTable']

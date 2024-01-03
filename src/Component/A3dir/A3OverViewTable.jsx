@@ -8,23 +8,18 @@ import { useSticky } from 'react-table-sticky'
 import { useDispatch, useSelector } from 'react-redux'
 import { Styles } from './AssesmentTableStyles'
 import { NumberRangeColumnFilter } from './NumberRangeColumnFilter'
-import ReportDownloadOpt from '../../Component/ReportExp/ReportDownloadOpt'
-import { useNavigate } from 'react-router'
 
 
 
 
-const RTable = ({col,dData}) => {
+const OverViewTable = ({col,data}) => {
   const dispatch = useDispatch()
-  const navigate = useNavigate()
-
 
     const columns = useMemo(()=>[...col.map((res)=>{return {
       Header:res.fieldName,
-      accessor : res.accessor
+      accessor : res.accessor,
+      width : res.width
     }})],[])
-
-    const [data,setdata] = useState([...dData])
 
     const defaultColumn = React.useMemo(
         () => ({
@@ -32,14 +27,6 @@ const RTable = ({col,dData}) => {
         }),
         []
       )
-
-      function handleGenerate(){
-        const accArr = selectedFlatRows.map((res)=>{return res.original})
-        navigate('/homePartySheet',{
-          state :{accArr}
-        })
-      }
-
 
   
       const{
@@ -67,22 +54,6 @@ const RTable = ({col,dData}) => {
       },
       useBlockLayout,
       useSticky,
-      (hooks)=>{
-        hooks.visibleColumns.push((columns)=>{
-          return [{
-            id :'selection',
-            Header : ({getToggleAllRowsSelectedProps})=>{
-              return <Checkbox {...getToggleAllRowsSelectedProps()}/>
-            },
-            Cell : ({row}) =>{
-              return <Checkbox {...row.getToggleRowSelectedProps()}/>
-            },
-            width:'50',
-            sticky : 'left'
-          },
-          ...columns]
-        })
-      },
       useFilters,
       useGlobalFilter,
       useSortBy,
@@ -96,9 +67,6 @@ const RTable = ({col,dData}) => {
 
   return (
     <>
-    <div style={{display:'flex', flexDirection:'row', justifyContent:'flex-end', gap:10}} className='mx-3'>
-      <button className='btn btn-success' onClick={handleGenerate}>Generate</button>
-    </div>
     <Styles>
         <div {...getTableProps()} className="table sticky table-hover table-striped mx-3 my-3" style={{ width: '97%', height: '65vh' }}>
         <div className="header">
@@ -184,4 +152,4 @@ const RTable = ({col,dData}) => {
   )
 }
 
-export default RTable
+export default OverViewTable

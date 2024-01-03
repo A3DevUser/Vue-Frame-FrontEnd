@@ -3,7 +3,7 @@ import { SectionRed } from "./SectionRed";
 import { ColumnRed } from "./ColumnRed";
 import { SubSectionRed } from "./SubSectionRed";
 import {NavBarRed}  from "./NavBarRed"
-import { FormIdRed,FormDatRed,EmdRed,DropDownValRed,ExcelDataRed,MainObjIdRed } from "./GeneralStatesRed";
+import { FormIdRed,FormDatRed,EmdRed,DropDownValRed,ExcelDataRed,MainObjIdRed, mainObjDataRed } from "./GeneralStatesRed";
 import { GridRed } from "./GridRed";
 import { ConfSectionRed } from "./ConfSectionRed";
 import { ConfColumnRed } from "./ConfColumnRed";
@@ -40,6 +40,15 @@ import { ReportTitleFilterRed } from "./ReportTitleFilterRed";
 import { ReportTitleDataRed } from "./ReportTitleDataRed";
 import { PendencyColRed } from "./PendencyColRed";
 import { PendencyDataRed } from "./PendencyDataRed";
+import { A3ColumnRed } from "./A3ColumnRed";
+import { A3PartyColumnRed } from "./A3PartyColumnRed"; 
+import { A3TestRed } from "./A3TestRed";
+import { A3SaveRed } from "./A3DataSaveRed";
+import { A3OverviewColumnRed } from "./A3OverviewColumnRed";
+import { A3OverviewDataRed } from "./A3OverviewDataRed";
+import { A3AreaDataRed } from "./A3AreaDataRed";
+import { A3ProductDataRed } from "./A3ProductDataRed";
+import { A3HomeDataRed } from "./A3HomeDataRed";
 
 const rootReducers = combineReducers({
     SectionRed,  
@@ -88,7 +97,17 @@ const rootReducers = combineReducers({
     ReportTitleFilterRed,
     ReportTitleDataRed,
     PendencyColRed,
-    PendencyDataRed
+    PendencyDataRed,
+    A3ColumnRed,
+    A3PartyColumnRed,
+    A3TestRed,
+    mainObjDataRed,
+    A3SaveRed,
+    A3OverviewColumnRed,
+    A3OverviewDataRed,
+    A3AreaDataRed,
+    A3ProductDataRed,
+    A3HomeDataRed
     });
 
 export default rootReducers
