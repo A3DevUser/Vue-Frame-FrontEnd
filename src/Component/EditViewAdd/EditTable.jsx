@@ -76,10 +76,10 @@ const EditTable = () => {
         GetDataRed.loading ? MainObject.loader() :
         GridRed.val.filter((fil)=>{return fil.isMain }).map((res,i)=>{
          return <GridFormSub column={ColumnRed.val.sort((a,b)=>{return a.number-b.number})} data=
-         {[]}
-        //  {
-        //   GetDataRed.val.filter((fil)=>{return fil.GRID_ID == res.gridId})[0].DATA 
-        // }
+        //  {[]}
+         {
+          GetDataRed.val.filter((fil)=>{return fil.GRID_ID == res.gridId})[0].DATA 
+        }
           gridData={res} key={i} handleSave={handleSave} disBtn={disBtn}/>
         })
       }
