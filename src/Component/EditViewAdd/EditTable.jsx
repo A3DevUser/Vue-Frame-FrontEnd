@@ -47,17 +47,17 @@ const EditTable = () => {
             }) 
               if(newObj.length >= 0){
                 console.log('newFormDataRed',newObj)
-                dispatch(PostFormExcelData(newObj,AuthRed.val,setdata))
+                dispatch(PostFormExcelData(UserDataStateRed,newObj,AuthRed.val,setdata))
               }
             }})
       }else{
         console.log('newFormDataRed',FormDatRed)
         Object.values(FormDatRed).forEach((res)=>{
-          dispatch(PostFormExcelData(res,AuthRed.val)) 
+          dispatch(PostFormExcelData(UserDataStateRed,res,AuthRed.val,setdata)) 
         })
 
         Object.keys(FormDatRed).forEach((res)=>{
-          dispatch(FetchWFCommonData(res,AuthRed.val))
+          dispatch(FetchWFCommonData(UserDataStateRed,res,AuthRed.val,setdata))
         })
       }
       }
