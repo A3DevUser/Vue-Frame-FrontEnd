@@ -22,7 +22,7 @@ const FormExcelErr = (val) =>{
     }
 };
 
-export const PostFormExcelData = (userId,data,token,setdata) =>{
+export const PostFormExcelData = (userId,data,token,setdata,setDisBtn) =>{
 
 
     const headers = {
@@ -36,8 +36,10 @@ export const PostFormExcelData = (userId,data,token,setdata) =>{
             dispatch(FormExcelSuccess(res.data))
             if(window.location.pathname == '/addTable'){
                 setdata([])
+                setDisBtn(false)
             }else if(window.location.pathname == '/editTable'){
                 setdata([])
+                setDisBtn(false)
             }
             return swal({
                 title :'Alert',

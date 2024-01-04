@@ -20,6 +20,7 @@ const FormTable = ({col,dData,gridData,handleSave,funNavConf,disBtn,setDisBtn}) 
     const [chngRow,setchngRow]=useState({})
     const [finalArr, setfinalArr] =useState([])
     const prevDData = useRef(dData);
+    const [userDisBtn,setUserDisBtn] = useState(false)
   
     const FormDatRed = useSelector((state) => state.FormDatRed)
     const EmdRed = useSelector((state)=>state.EmdRed)
@@ -39,11 +40,22 @@ const FormTable = ({col,dData,gridData,handleSave,funNavConf,disBtn,setDisBtn}) 
       setLocalData(SendReportConfDataRed.val)
   },[SendReportConfDataRed])
 
+
     useEffect(()=>{
       if(EmdRed=='add'&&window.location.pathname.includes('Table')){
         if(Object.keys(FormDatRed).includes(gridData.gridId)){
           if(gridData.isMain=='true'){
             setdata([...FormDatRed[gridData.gridId]])
+            console.log('CheckFormData',[...FormDatRed[gridData.gridId]].length)
+              
+              if([...FormDatRed[gridData.gridId]].length >= 1 && gridData.gridId == 'GID-902'){
+                setDisBtn(true)
+              }
+
+              // if([...FormDatRed[gridData.gridId]].length >= 1 && gridData.gridId == 'GID-290'){
+              //   setUserDisBtn(true)
+              // }
+
           }else{
             // console.log('VF_MAIN_OBJ_ID_new',FormDatRed)
             if(Object.keys(FormDatRed[gridData.gridId]).includes(MainObjIdRed)){
@@ -99,7 +111,7 @@ const FormTable = ({col,dData,gridData,handleSave,funNavConf,disBtn,setDisBtn}) 
     }
   
     const addAndDeleteRow = (index,obj,action) => {
-      setDisBtn(false)
+      
       if(action=='add' || action == 'Useradd'){
       // setdata((old)=>{
       //   return old.map((res,i)=>{
@@ -127,6 +139,13 @@ const FormTable = ({col,dData,gridData,handleSave,funNavConf,disBtn,setDisBtn}) 
             return old.filter((fil,i)=>{
               return i !== Number(index)})
           })
+      }
+
+      if (gridData.gridId == 'GID-902'){
+        setDisBtn(false)              
+      }
+      if (gridData.gridId == 'GID-290'){
+        setUserDisBtn(false)
       }
     }
 
@@ -239,12 +258,16 @@ const FormTable = ({col,dData,gridData,handleSave,funNavConf,disBtn,setDisBtn}) 
             }else{
               let obj ={}
               const rowInd = data.length
-              columns.forEach((res)=> obj[res.accessor]='')
+              columns.forEach((res)=> {return obj[res.accessor]=''})
               // console.log('addAndDeleteRow',obj)
               addAndDeleteRow(rowInd,obj,(gridData.gridId == 'GID-290') ? 'Useradd' : 'add')
             }
-
-            setDisBtn(true)
+            if (gridData.gridId == 'GID-902'){
+              setDisBtn(true)              
+            }
+            if (gridData.gridId == 'GID-290'){
+              setUserDisBtn(true)
+            }
 
           }
 
@@ -343,7 +366,7 @@ const FormTable = ({col,dData,gridData,handleSave,funNavConf,disBtn,setDisBtn}) 
   </div>
                 </div> */}
           </div>
-        <TableStruc getTableBodyProps={getTableBodyProps} getTableProps={getTableProps}  headerGroups={headerGroups} prepareRow={prepareRow} rows={page} handleSave={handleSave} handleAddRow={handleAddRow} gridData={gridData} handleRemove={handleRemove} handleCopy={handleCopy} previousPage={previousPage} canPreviousPage={canPreviousPage} nextPage={nextPage} canNextPage={canNextPage} pageOptions={pageOptions} state={state} gotoPage={gotoPage} pageCount={pageCount} setGlobalFilter={setGlobalFilter} hide={hide} funNavConf={funNavConf} disBtn={disBtn} setdata={setdata} data={data}/>
+        <TableStruc getTableBodyProps={getTableBodyProps} getTableProps={getTableProps}  headerGroups={headerGroups} prepareRow={prepareRow} rows={page} handleSave={handleSave} handleAddRow={handleAddRow} gridData={gridData} handleRemove={handleRemove} handleCopy={handleCopy} previousPage={previousPage} canPreviousPage={canPreviousPage} nextPage={nextPage} canNextPage={canNextPage} pageOptions={pageOptions} state={state} gotoPage={gotoPage} pageCount={pageCount} setGlobalFilter={setGlobalFilter} hide={hide} funNavConf={funNavConf} disBtn={disBtn} setdata={setdata} data={data} userDisBtn={userDisBtn}/>
         </Styles>
     </div>
   )

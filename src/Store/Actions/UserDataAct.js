@@ -25,12 +25,13 @@ export const UserDataError = (getUserDataData)=>{
 }
 
 
-export const FormUserDataInfo = (UserData)=>{  
+export const FormUserDataInfo = (UserData,setdata)=>{  
     return function(dispatch){
         dispatch(UserDataReq())
         axios.post(`http://localhost:8080/auth/addNewUser`,UserData)
         .then((res)=>{
             dispatch(UserDataSuccess(res.data))
+            setdata([])
             return swal({
                 title :'Alert',
                 text : 'Data Save Successfully',

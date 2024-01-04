@@ -23,18 +23,16 @@ const UserAddTable = () => {
     const AuthRed = useSelector((state)=>state.AuthRed)
     const SendUserDataInfoRed = useSelector((state)=> state.SendUserDataInfoRed)
 
-    const [disBtn,setDisBtn] = useState(false)
-
     useEffect(()=>{
     dispatch(FetchGridData(FormIdRed,AuthRed.val))
     dispatch(FetchColumnData(FormIdRed,EmdRed,AuthRed.val))  
     },[FormIdRed])
 
-    const handleSave = () =>{
+    const handleSave = (gridData,setdata,data) =>{
       if(Object.keys(FormDatRed).includes('GID-290')){
         const FormData = FormDatRed['GID-290'].map((res) => {return {...res}})
         // console.log('FormDatRed Data',...FormData)
-              dispatch(FormUserDataInfo(...FormData))
+              dispatch(FormUserDataInfo(...FormData,setdata))
       }
       }
 
@@ -58,9 +56,9 @@ const UserAddTable = () => {
           // console.log('dataObj new key',dataObj)
           // console.log('GridFormSubobj',Object.keys(FormDatRed).includes(res.gridId),res.gridId,Object.keys(FormDatRed).includes(res.gridId) ? FormDatRed[res.gridId] : dataObj)
          return FormDatRed&&<GridUserSub column={ColumnRed.val.sort((a,b)=>{return a.number-b.number})} data=
-        //  {[]}
-         {Object.keys(FormDatRed).includes(res.gridId) ? FormDatRed[res.gridId] : [dataObj]} 
-         gridData={res} key={i} handleSave={handleSave} disBtn={disBtn} setDisBtn={setDisBtn}/>
+         {[]}
+        //  {Object.keys(FormDatRed).includes(res.gridId) ? FormDatRed[res.gridId] : [dataObj]} 
+         gridData={res} key={i} handleSave={handleSave}/>
         })
       }
     </div>
