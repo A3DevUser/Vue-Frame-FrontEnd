@@ -16,7 +16,7 @@ const A3OverviewModal = ({show,setShow}) => {
 
     useEffect(()=>{
         if(show){
-            dispatch(FetchA3OverviewColumnData('FORM-003',AuthRed.val))
+            dispatch(FetchA3OverviewColumnData('FORM-003','party',AuthRed.val))
             dispatch(FetchA3OverviewDataData('',AuthRed.val))
         }
     },[show])

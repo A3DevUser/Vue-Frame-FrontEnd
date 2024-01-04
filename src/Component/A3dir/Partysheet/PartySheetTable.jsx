@@ -25,7 +25,7 @@ const PartySheetTable = ({col,dData,userName,accData}) => {
   console.log(col)
   const [data,setdata]=useState([...dData]);
   const [accountData,setaccountData] = useState([...accData.slice(0,10)])
-  const [columns,setcolumns]=useState([...PartysheetColumns(col,accData.slice(0,10).map((res)=>{return res.id}),updateMyData)])
+  const [columns,setcolumns]=useState([...PartysheetColumns(col,accData.slice(0,10).map((res)=>{return res.Associate_Vend}),updateMyData)])
   const [finalData,setfinalData] = useState({})
   const [fileArr,setfileArr] =useState()
   const [show,setShow] = useState(false)
@@ -35,7 +35,7 @@ const PartySheetTable = ({col,dData,userName,accData}) => {
   const AuthRed = useSelector((state)=>state.AuthRed)
 
     let userId = userName
-    const accList = accData.map((res)=>{return res.id})
+    const accList = accData.map((res)=>{return res.Associate_Vend})
 
     const defaultColumn = React.useMemo(
         () => ({
@@ -55,7 +55,7 @@ const PartySheetTable = ({col,dData,userName,accData}) => {
         const colName = columnId.slice(0,columnId.indexOf('#'));
         const accNum = columnId.slice(columnId.indexOf('#')+1,columnId.length);
         // need to spread account data while setting final data
-        setfinalData((old)=>( {...old,[accNum+rowIndex]:{...dData[rowIndex],...old[accNum+rowIndex],[colName]:value,...mainObjDataRed,...accountData.filter((fil)=>{return fil.id==accNum})[0]}}))
+        setfinalData((old)=>( {...old,[accNum+rowIndex]:{id:accNum,...dData[rowIndex],...old[accNum+rowIndex],[colName]:value,...mainObjDataRed,...accountData.filter((fil)=>{return fil.Associate_Vend==accNum})[0]}}))
 
           setdata(old =>
             old.map((row, index) => {
@@ -86,7 +86,7 @@ const PartySheetTable = ({col,dData,userName,accData}) => {
         const rangeHighCount = ((e.target.value)*10)
         // setaccountData(()=>{return accData.slice(rangeLowCount,rangeHighCount)})
 
-        setcolumns([...PartysheetColumns(col,accData.slice(rangeLowCount,rangeHighCount).map((res)=>{return res.id}),updateMyData)])
+        setcolumns([...PartysheetColumns(col,accData.slice(rangeLowCount,rangeHighCount).map((res)=>{return res.Associate_Vend}),updateMyData)])
 
         // console.log('DividePartySheet',accData.slice(rangeLowCount,rangeHighCount))
 
@@ -155,16 +155,18 @@ const PartySheetTable = ({col,dData,userName,accData}) => {
         <div style={{display:'flex', justifyContent:'center', alignItems:'center'}}>
         <DividePartySheet dataLength={accData.length} handleChange={handleChange}/>
         </div>
+        <div>
         <DropdownButton variant='success' title='Overview'>
           <Dropdown.Item onClick={()=>setShow(true)}>Sheet Summary</Dropdown.Item>
           <Dropdown.Item onClick={()=>setShow(true)}>Assesment Summary</Dropdown.Item>
         </DropdownButton>
+        </div>
         <InputGroup style={{width:'15vw'}}>
         <input type="search" list='acc' onChange={handleSearchChange} className='form-control'  placeholder='Search...' />
         <datalist id='acc'>
           {
             accData.map((res)=>{
-              return <option>{res.id}</option>
+              return <option>{res.Associate_Vend}</option>
             })
           }
         </datalist>

@@ -139,7 +139,7 @@ export const ColumnHeader = (colData, updateMyData, dropDown, addAndDeleteRow, g
         Header : res.fieldName,
         accessor : res.accessor,
         Cell : ({cell}) =>{
-          return <EditablePartyLink/>
+          return <EditablePartyLink rowObj={cell.row}/>
         },
         width: res.width,
         sticky: res.sticky

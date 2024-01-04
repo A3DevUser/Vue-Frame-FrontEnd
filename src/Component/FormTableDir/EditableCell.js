@@ -350,7 +350,6 @@ if(dropDown.filter((fil,i)=>{return i==index})[0].mixVal){
     }
 
 
-
     return <div>
       { value==='' || value===null || value === undefined ?
         <input type={'file'}  className='form-control' style={{width:colObj.width, border:'none'}} onChange={onChange}  placeholder='Enter Remark...' disabled={rowObj.original.isDisable} /> :
@@ -686,10 +685,12 @@ const ImportGridRed = useSelector((state)=>state.ImportGridRed)
 
  }
 
- export const EditablePartyLink = ({}) =>{
+ export const EditablePartyLink = ({
+  rowObj : rowObj,
+ }) =>{
 
   return <div style={{display:'flex', justifyContent:'center', alignItems:'center'}}>
-  <Link to={'/partysheet'} >Assesment Form</Link>
+  <Link to={'/partysheet'} state={{rowData :rowObj.original}} >Assesment Form</Link>
   </div>
  }
 

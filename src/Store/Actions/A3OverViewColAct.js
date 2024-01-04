@@ -21,14 +21,14 @@ const A3OverviewColumnErr = (val) =>{
     }
 };
 
-export const FetchA3OverviewColumnData = (id,token) =>{
+export const FetchA3OverviewColumnData = (id,isPageType,token) =>{
     const headers = {
         'Content-Type': 'application/json', 
         'Authorization': `Bearer ${token}` , 
       };
     return (dispatch)=>{
         dispatch(A3OverviewColumnReq());
-        axios.get(`http://localhost:8080/VF/getVfA3ConfColumnHeader?formId=${id}`,{headers})
+        axios.get(`http://localhost:8080/VF/getVfA3ConfColumnHeader?formId=${id}&isPageType=${isPageType}`,{headers})
         .then((res)=>{
             dispatch(A3OverviewColumnSuccess(res.data))
         })
