@@ -15,11 +15,12 @@ import { Checkbox } from './Checkbox'
 import { Button, Col } from 'react-bootstrap'
 import { FetchObjectIdData } from '../../Store/Actions/ObjectIdAct'
 
-const FormTable = ({col,dData,gridData,handleSave,funNavConf,disBtn}) => {
+const FormTable = ({col,dData,gridData,handleSave,funNavConf,disBtn,setDisBtn}) => {
     const [data,setdata]=useState([...dData])
     const [chngRow,setchngRow]=useState({})
     const [finalArr, setfinalArr] =useState([])
     const prevDData = useRef(dData);
+    const [userDisBtn,setUserDisBtn] = useState(false)
   
     const FormDatRed = useSelector((state) => state.FormDatRed)
     const EmdRed = useSelector((state)=>state.EmdRed)
@@ -39,11 +40,22 @@ const FormTable = ({col,dData,gridData,handleSave,funNavConf,disBtn}) => {
       setLocalData(SendReportConfDataRed.val)
   },[SendReportConfDataRed])
 
+
     useEffect(()=>{
       if(EmdRed=='add'&&window.location.pathname.includes('Table')){
         if(Object.keys(FormDatRed).includes(gridData.gridId)){
           if(gridData.isMain=='true'){
             setdata([...FormDatRed[gridData.gridId]])
+            console.log('CheckFormData',[...FormDatRed[gridData.gridId]].length)
+              
+              if([...FormDatRed[gridData.gridId]].length >= 1 && gridData.gridId == 'GID-902'){
+                setDisBtn(true)
+              }
+
+              // if([...FormDatRed[gridData.gridId]].length >= 1 && gridData.gridId == 'GID-290'){
+              //   setUserDisBtn(true)
+              // }
+
           }else{
             // console.log('VF_MAIN_OBJ_ID_new',FormDatRed)
             if(Object.keys(FormDatRed[gridData.gridId]).includes(MainObjIdRed)){
@@ -99,6 +111,7 @@ const FormTable = ({col,dData,gridData,handleSave,funNavConf,disBtn}) => {
     }
   
     const addAndDeleteRow = (index,obj,action) => {
+      
       if(action=='add' || action == 'Useradd'){
       // setdata((old)=>{
       //   return old.map((res,i)=>{
@@ -127,6 +140,13 @@ const FormTable = ({col,dData,gridData,handleSave,funNavConf,disBtn}) => {
               return i !== Number(index)})
           })
       }
+
+      if (gridData.gridId == 'GID-902'){
+        setDisBtn(false)              
+      }
+      if (gridData.gridId == 'GID-290'){
+        setUserDisBtn(false)
+      }
     }
 
 
@@ -144,7 +164,7 @@ const FormTable = ({col,dData,gridData,handleSave,funNavConf,disBtn}) => {
         {Header : "Remove",
         accessor : 'remove',
         sticky : 'right',
-        Cell : ({cell}) =>{return <EditableActionCell colObj={cell.column} column={cell.column.id} row={cell.row.id} rowObj={cell.row} addAndDeleteRow={addAndDeleteRow}/> },
+        Cell : ({cell}) =>{return <EditableActionCell colObj={cell.column} column={cell.column.id} row={cell.row.id} rowObj={cell.row} addAndDeleteRow={addAndDeleteRow} /> },
       }]
        :
        ColumnHeader(col,updateMyData,'',addAndDeleteRow,gridData,data,handleOnfocus,DropValRed.val)
@@ -159,7 +179,7 @@ const FormTable = ({col,dData,gridData,handleSave,funNavConf,disBtn}) => {
         {Header : "Remove",
         accessor : 'remove',
         sticky : 'right',
-        Cell : ({cell}) =>{return <EditableActionCell colObj={cell.column} column={cell.column.id} row={cell.row.id} rowObj={cell.row} addAndDeleteRow={addAndDeleteRow} data={data.length}/>},
+        Cell : ({cell}) =>{return <EditableActionCell colObj={cell.column} column={cell.column.id} row={cell.row.id} rowObj={cell.row} addAndDeleteRow={addAndDeleteRow} data={data.length} />},
       }]
        :
        ColumnHeader(col,updateMyData,'',addAndDeleteRow,gridData,data,handleOnfocus,DropValRed.val)
@@ -238,20 +258,29 @@ const FormTable = ({col,dData,gridData,handleSave,funNavConf,disBtn}) => {
             }else{
               let obj ={}
               const rowInd = data.length
-              columns.forEach((res)=> obj[res.accessor]='')
+              columns.forEach((res)=> {return obj[res.accessor]=''})
               // console.log('addAndDeleteRow',obj)
               addAndDeleteRow(rowInd,obj,(gridData.gridId == 'GID-290') ? 'Useradd' : 'add')
             }
+            if (gridData.gridId == 'GID-902'){
+              setDisBtn(true)              
+            }
+            if (gridData.gridId == 'GID-290'){
+              setUserDisBtn(true)
+            }
+
           }
 
           const handleRemove = () =>{
-            // console.log('selectedFlatRows',selectedFlatRows)
+
+            console.log('handleRemove','inside handelRemove')
 
             setdata(old =>{
               return old.filter((fil,i)=>{
                 return !selectedFlatRows.some(row=> i==row.id)
               })
             })
+
           }
 
           const handleCopy = () =>{
@@ -337,7 +366,7 @@ const FormTable = ({col,dData,gridData,handleSave,funNavConf,disBtn}) => {
   </div>
                 </div> */}
           </div>
-        <TableStruc getTableBodyProps={getTableBodyProps} getTableProps={getTableProps}  headerGroups={headerGroups} prepareRow={prepareRow} rows={page} handleSave={handleSave} handleAddRow={handleAddRow} gridData={gridData} handleRemove={handleRemove} handleCopy={handleCopy} previousPage={previousPage} canPreviousPage={canPreviousPage} nextPage={nextPage} canNextPage={canNextPage} pageOptions={pageOptions} state={state} gotoPage={gotoPage} pageCount={pageCount} setGlobalFilter={setGlobalFilter} hide={hide} funNavConf={funNavConf} disBtn={disBtn} setdata={setdata} data={data}/>
+        <TableStruc getTableBodyProps={getTableBodyProps} getTableProps={getTableProps}  headerGroups={headerGroups} prepareRow={prepareRow} rows={page} handleSave={handleSave} handleAddRow={handleAddRow} gridData={gridData} handleRemove={handleRemove} handleCopy={handleCopy} previousPage={previousPage} canPreviousPage={canPreviousPage} nextPage={nextPage} canNextPage={canNextPage} pageOptions={pageOptions} state={state} gotoPage={gotoPage} pageCount={pageCount} setGlobalFilter={setGlobalFilter} hide={hide} funNavConf={funNavConf} disBtn={disBtn} setdata={setdata} data={data} userDisBtn={userDisBtn}/>
         </Styles>
     </div>
   )

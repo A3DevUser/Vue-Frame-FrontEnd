@@ -22,7 +22,7 @@ const FormExcelErr = (val) =>{
     }
 };
 
-export const PostFormExcelData = (data,token,setdata) =>{
+export const PostFormExcelData = (userId,data,token,setdata,setDisBtn) =>{
 
 
     const headers = {
@@ -31,13 +31,15 @@ export const PostFormExcelData = (data,token,setdata) =>{
       };
     return (dispatch)=>{
         dispatch(FormExcelReq());
-        axios.post(`http://localhost:8080/VF/callWorkflowProcedure`,data,{headers})
+        axios.post(`http://localhost:8080/VF/callWorkflowProcedure?currLoggedInUser=${userId}`,data,{headers})
         .then((res)=>{
             dispatch(FormExcelSuccess(res.data))
             if(window.location.pathname == '/addTable'){
                 setdata([])
+                setDisBtn(false)
             }else if(window.location.pathname == '/editTable'){
                 setdata([])
+                setDisBtn(false)
             }
             return swal({
                 title :'Alert',

@@ -28,7 +28,7 @@ const BassicTab = ({ gridData, columnData, reportData }) => {
 
     const [columns, setcolumns] = useState(
         // Columns
-        [...columnData.map((res) => { return { Header: res.rptColLabel, accessor: res.rptColName, Filter: ColumnFilter, width: calculateColumnWidth(0.828 * window.innerWidth, columnData.length) } })]
+        [...columnData.map((res) => { return { Header: res.rptColLabel, accessor: res.rptColName, Filter: ColumnFilter, width: calculateColumnWidth(1.0 * window.innerWidth, columnData.length) } })]
     );
 
     // useEffect(()=>{console.log('NewNav FormIdRed',ReportTitleDataRed.val.length)})
