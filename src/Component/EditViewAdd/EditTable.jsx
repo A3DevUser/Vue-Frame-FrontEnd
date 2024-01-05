@@ -7,8 +7,9 @@ import { FetchGridData } from '../../Store/Actions/GridAct'
 import { MainObject } from '../../Component/Elements/commonFun'
 import GridFormSub from '../../Component/GridFormSub'
 import { FetchGetData } from '../../Store/Actions/GetDataAct'
-import { ResetFormState } from '../../Store/Actions/GeneralStates'
+import { ResetFormState, mainObjData } from '../../Store/Actions/GeneralStates'
 import ImpExp from '../../Component/ImportExport/ImpExp'
+import { FetchColumnEditActData } from '../../Store/Actions/ColumnEditAct'
 
 const EditTable = () => {
     const dispatch = useDispatch()
@@ -24,12 +25,15 @@ const EditTable = () => {
     const GetDataRed = useSelector((state)=> state.GetDataRed)
     const ResetFormRed = useSelector((state)=>state.ResetFormRed)
     const UserDataStateRed = useSelector((state)=>state.UserDataStateRed)
+    const ColumnEditActRed = useSelector((state)=> state.ColumnEditActRed)
 
     const [disBtn,setDisBtn] = useState(false)
 
+
     useEffect(()=>{
     dispatch(FetchGridData(FormIdRed,AuthRed.val))
-    dispatch(FetchColumnData(FormIdRed,'yes',AuthRed.val))   
+    // dispatch(FetchColumnData(FormIdRed,'yes',AuthRed.val))   
+    dispatch(FetchColumnEditActData(FormIdRed,UserDataStateRed,AuthRed.val))
     // dispatch(FetchGetData(FormIdRed,AuthRed.val,UserDataStateRed,'NO_VALUE'))
     },[FormIdRed])
 
@@ -47,17 +51,17 @@ const EditTable = () => {
             }) 
               if(newObj.length >= 0){
                 console.log('newFormDataRed',newObj)
-                dispatch(PostFormExcelData(UserDataStateRed,newObj,AuthRed.val,setdata))
+                dispatch(PostFormExcelData(UserDataStateRed,newObj,AuthRed.val,setdata,setDisBtn))
               }
             }})
       }else{
         console.log('newFormDataRed',FormDatRed)
         Object.values(FormDatRed).forEach((res)=>{
-          dispatch(PostFormExcelData(UserDataStateRed,res,AuthRed.val,setdata)) 
+          dispatch(PostFormExcelData(UserDataStateRed,res,AuthRed.val,setdata,setDisBtn)) 
         })
 
         Object.keys(FormDatRed).forEach((res)=>{
-          dispatch(FetchWFCommonData(UserDataStateRed,res,AuthRed.val,setdata))
+          dispatch(FetchWFCommonData(UserDataStateRed,res,AuthRed.val,setdata,setDisBtn))
         })
       }
       }
@@ -65,22 +69,23 @@ const EditTable = () => {
   return (
 <div style={{marginTop:'3vh', paddingLeft:'1.3rem',paddingRight:'1rem'}}>
       <div style={{ display:'none', justifyContent : 'flex-end'}} className='mx-5 my-2'>
-        <ImpExp columnData={ColumnRed.val} gridData={GridRed.val}/>
+        <ImpExp columnData={ColumnEditActRed.val} gridData={GridRed.val}/>
         <div>
       {MainObject.button({classNameVal:'btn btn-primary', widthVal:'', heightVal:'',btnName:'Submit'},handleSave)}
       </div>
       </div>
       {
         GridRed.loading ? MainObject.loader() :
-        ColumnRed.loading ? MainObject.loader() :
+        // ColumnRed.loading ? MainObject.loader() :
         GetDataRed.loading ? MainObject.loader() :
+        ColumnEditActRed.loading ? MainObject.loader() :
         GridRed.val.filter((fil)=>{return fil.isMain }).map((res,i)=>{
-         return <GridFormSub column={ColumnRed.val.sort((a,b)=>{return a.number-b.number})} data=
+         return <GridFormSub column={ColumnEditActRed.val.sort((a,b)=>{return a.orderNo-b.orderNo})} data=
         //  {[]}
          {
           GetDataRed.val.filter((fil)=>{return fil.GRID_ID == res.gridId})[0].DATA 
         }
-          gridData={res} key={i} handleSave={handleSave} disBtn={disBtn}/>
+          gridData={res} key={i} handleSave={handleSave}/>
         })
       }
     </div>

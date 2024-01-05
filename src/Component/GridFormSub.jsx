@@ -3,7 +3,6 @@ import { useSelector } from 'react-redux'
 import { MainObject } from './Elements/commonFun'
 
 const GridFormSub = ({column,data,gridData,handleSave,funNavConf,disBtn,setDisBtn}) => {
-
   const FormDatRed = useSelector((state)=>state.FormDatRed)
 
 
