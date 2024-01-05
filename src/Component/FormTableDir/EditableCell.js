@@ -703,3 +703,89 @@ const ImportGridRed = useSelector((state)=>state.ImportGridRed)
   </div>)
 
  }
+
+
+ export const EditableDisableDdCell = ({
+  value: initialValue,
+  row:  index ,
+  column:  id ,
+  updateMyData,
+  dropDown : dropDown ,
+  colObj:colObj,
+  rowObj : rowObj,
+  parentId,
+  handleOnfocus,
+  dropDownData : dropDownData
+}) => {
+  const [value, setValue] = React.useState(initialValue)
+  const [dataValdd,setdataValdd] = useState()
+  
+  const SendConfDataRed = useSelector((state)=> state.SendConfDataRed)
+  const SendReportConfDataRed = useSelector((state) => state.SendReportConfDataRed)
+  const AuthRed = useSelector((state)=>state.AuthRed)
+
+  const onChange = e => {
+    setValue(e.target.value)
+    if(e.target.value == 'textArea'){
+      freez = false
+    }else{
+      freez = true
+    }
+  }
+
+  const onBlur = () => {
+      updateMyData(index, id, value,null,'')
+  }
+
+  // const updatedArray = Object.values(dataValdd.reduce((acc, curr) => {
+  //   acc[curr.formId] = curr;
+  //   return acc;
+  //   }, {}));
+
+  React.useEffect(() => {
+    setValue(initialValue)
+  }, [initialValue])
+
+  useEffect(()=>{
+    Object.keys(SendConfDataRed.val).forEach((res)=>{
+      return updateMyData(index, res, SendConfDataRed.val[res],null,'')
+    })
+
+  },[SendConfDataRed])
+
+  useEffect(() => {
+    if (parentId.gridIdVal != 'GID-015'){
+      Object.keys(SendReportConfDataRed.val).forEach((res)=>{
+        return updateMyData(index, res, SendReportConfDataRed.val[res],null,'')
+      })
+    }
+  },[SendReportConfDataRed])
+
+  // useEffect(()=>{console.log('dropDownec',dataValdd)},[dataValdd])
+
+  const dispatch = useDispatch()
+  const DropValRed = useSelector((state) => state.DropValRed)
+  const DropDownValRed = useSelector((state)=> state.DropDownValRed)
+  const ColumnRed = useSelector((state)=>state.ConfColumnRed)
+  const [dropdownArray,setDropdownArray] = useState([]);
+
+  // var dropdownArray = []
+
+  useEffect(() => {
+    if (value != null){
+      setDropdownArray(value.split('$$')); 
+      // console.log('valueDropValRed',value.split('$#'))
+    }
+  },[])
+
+return <select name={id} value={value} onFocus={()=>{handleOnfocus(parentId.formIdVal,parentId.gridIdVal,parentId.colIdVal,parentId.json.original,DropValRed.val,index)}} onChange={onChange} onBlur={onBlur} className='form-control' style={{width:colObj.width,height:'7vh', border:'none'}} disabled='true'>
+  {value != null&&window.location.pathname == '/editTable' ? <><option value={dropdownArray[0]}>{dropdownArray[1]}</option></> : <><option value="">Select One</option></>}
+    {/* <option value="">Select One</option> */}
+    {
+     DropValRed.loading ? <option>loading...</option> : 
+     DropValRed.val.filter((fil)=>{return (fil.ColId == parentId.colIdVal)&&(fil.rowInd == index)}).map((res,i)=>{
+          return <option key={i} value={res.storedValue}>{res.displayValue}</option>
+    })
+    }
+         </select>
+}
