@@ -47,10 +47,10 @@ const AddTable = () => {
           //   dispatch(FetchWFCommonData(res,AuthRed.val))
           // })
 
-            if(data.some(res => (res.VF_ACTION == '' || res.VF_ACTION == null || res.VF_ORGANISATION_ID == '' || res.VF_ORGANISATION_ID == null))){
+            if(data.some(res => (FormIdRed == 'FORM-722' ? res.VF_ACTION == '' || res.VF_ACTION == null || res.VF_ORGANISATION_ID == '' || res.VF_ORGANISATION_ID == null || res.Cost_Code == '' || res.Cost_Code_Name == '' || res.Department_Name == '' || res.Process == '' || res.Process == null : FormIdRed == 'FORM-704' ? res.VF_ACTION == '' || res.VF_ACTION == null || res.VF_ORGANISATION_ID == '' || res.VF_ORGANISATION_ID == null || res.Vendor_Name == '' || res.Vendor_Code == '' || res.Vendor_Pan_No == '' || res.Vendor_Email == '' || res.Vendor_Type == '' || res.Vendor_Type == null : FormIdRed == 'FORM-703' ? res.VF_ACTION == '' || res.VF_ACTION == null || res.VF_ORGANISATION_ID == '' || res.VF_ORGANISATION_ID == null || res.Critical == '' || res.act_classific == '' || res.Act_desc == '' || res.Act_Name == '' || res.Act_No == '' || res.Activity_Type == '' || res.Risk_level == '' || res.Sensitivity == '' || res.Process == '' || res.Cost_Code == '' : FormIdRed == 'FORM-842' ? res.VF_ACTION == '' || res.VF_ACTION == null || res.VF_ORGANISATION_ID == '' || res.VF_ORGANISATION_ID == null || res.Assessment_Type == '' || res.Review_Year == '' || res.Activity_name == '' || res.Cost_Code == '' || res.State == '' || res.City == '' || res.Associate_Vend == '' || res.Business_Unit == '' || res.Vendor_Status == '' || res.onboarding_date == '' || res.Review_Freq == '' || res.review_cycle == '' : FormIdRed == 'FORM-885' ? res.VF_ACTION == '' || res.VF_ACTION == null || res.VF_ORGANISATION_ID == '' || res.VF_ORGANISATION_ID == null || res.Review_Type == '' || res.Review_Freq == '' || res.Sub_Frequency == '' || res.Associate_Act == '' || res.Associate_Ven == '' || res.Business_Unit == '' || res.Vendor_Name == '' || res.Vendor_Status == '' || res.Vendor_OnB_Date == '' || res.Assessment_Type == '' : ''))){
               swal({
                 title :'Alert',
-                text : 'Action OR Organization Field cant be empty, Kindly select one!',
+                text : 'Field cant be Empty, Kindly Fill All the Details!',
                 icon: "warning",
             })
             }else{

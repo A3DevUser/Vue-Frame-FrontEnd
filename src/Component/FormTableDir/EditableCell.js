@@ -789,3 +789,43 @@ return <select name={id} value={value} onFocus={()=>{handleOnfocus(parentId.form
     }
          </select>
 }
+
+
+export const DisableCell = ({
+  value: initialValue,
+  row:  index ,
+  column:  id ,
+  updateMyData, 
+  colObj:colObj,
+  rowObj : rowObj,
+  valWidth : valWidth,
+  type : type,
+  gridIdVal: gridIdVal,
+  parentId
+}) => {
+  const SendConfDataRed = useSelector((state) => state.SendConfDataRed)    
+  const SendReportConfDataRed = useSelector((state) => state.SendReportConfDataRed)
+
+  const [value, setValue] = React.useState(initialValue)
+  const [freeze,setFreeze] = useState()
+
+  const onChange = e => {
+    setValue(e.target.value)
+  }
+
+  const onBlur = () => {
+    updateMyData(index, id, value,null)
+    // console.log('maxlengthpro',colObj)
+  }
+
+  React.useEffect(() => {
+    setValue(initialValue)
+  }, [initialValue])
+  
+  return <div>
+    <textarea value={value} className='form-control' style={{width:colObj.width,border:'none'
+    // , background : value ? '#28a745' : 'white', color : 'white', 
+    }} onChange={onChange} onBlur={onBlur} placeholder='Type here...' maxLength={valWidth} disabled='true'/>
+    {/* xyz */}
+  </div>
+}
