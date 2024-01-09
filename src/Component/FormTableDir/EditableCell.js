@@ -148,6 +148,19 @@ export const EditableCell = ({
       }
     },[SendReportConfDataRed])
 
+    // useEffect(()=>{
+    //   if(colObj.id == 'Review_Freq'){
+    //         if(rowObj.original.cellType == 'textArea' || rowObj.original.cellType == ''){
+    //           setFreeze(false)
+    //         }else{
+    //           setFreeze(true)
+    //           setValue('')
+    //         }
+    //       }else{
+    //         setFreeze(false)
+    //       }
+    // },[rowObj])
+
     // useEffect(()=>{console.log('dropDownec',dataValdd)},[dataValdd])
 
     const dispatch = useDispatch()

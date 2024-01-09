@@ -87,6 +87,7 @@ return (
 <nav 
 // style={{backgroundColor:'#131D40'}}
 className='navbar-background'
+// className="scrollable-dropdown"
 >
 <div style={{paddingRight:'8px'}}>
 <img src={'./User2.png'} alt="user" className='m-1' style={{float:'right',height:'6.5vh', width:'3.2vw', borderRadius:'30px', padding:'3.5px'}} onClick={funProfile}/>

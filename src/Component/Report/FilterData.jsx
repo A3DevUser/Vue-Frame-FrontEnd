@@ -64,7 +64,7 @@ const FilterData = () => {
   }, [FormIdRed])
 
   useEffect(()=>{
-    // console.log('NewReport Data',ReportTitleColumnRed)
+    console.log('NewReport Data',ReportTitleColumnRed)
     // console.log('NewReport Data',ReportTitleGridRed)
     // console.log('NewReport Data',JSON.stringify(GridRed))
     // console.log('NewReport Data',JSON.stringify(ColumnRed))
@@ -84,7 +84,7 @@ const FilterData = () => {
     } */}
     {
       ReportTitleGridRed.loading ? MainObject.loader() : ReportTitleColumnRed.loading ? MainObject.loader() : ReportTitleDataRed.loading ? MainObject.loader() :
-      MainObject.reportTable(ReportTitleGridRed.val,ReportTitleColumnRed.val,ReportTitleDataRed.val)
+      MainObject.reportTable(ReportTitleGridRed.val,ReportTitleColumnRed.val.sort((a,b)=>{return a.rptColSort-b.rptColSort}),ReportTitleDataRed.val)
       // GridRed.filter((fil)=>{return fil.isMain }).map((res,i)=>{
       // return <GridFormSub column={ColumnRed.sort((a,b)=>{return a.number-b.number})} data={DummyData} gridData={res} key={i} handleSave={handleSave}/>})
     }
