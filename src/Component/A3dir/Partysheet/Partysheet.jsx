@@ -29,7 +29,7 @@ const Partysheet = () => {
     if (location.state && A3TestRed.val.length > 0) {
       const accArray = location.state.rowData.Associate_Vend;
       const outputId = A3TestRed.val.map((res) => {
-        return 'OB-' + res.testId + accArray + location.state.rowData.VF_MAIN_OBJ_ID;
+        return 'OB-' + res.testId + location.state.rowData.VF_MAIN_OBJ_ID;
       });
       console.log('outputId',outputId)
       dispatch(FetchA3PsOpDataData(outputId, AuthRed.val));
@@ -39,15 +39,17 @@ const Partysheet = () => {
   useEffect(() => {
     console.log('A3PsOpDataRed', A3PsOpDataRed);
   }, [A3PsOpDataRed]);
+  
 
   return (
     <>
       {/* partysheet */}
-      {A3PartyColumnRed.loading || A3TestRed.loading ? (
-        MainObject.loader()
-      ) : (
-        <PartySheetTable accData={[location.state.rowData]} col={A3PartyColumnRed.val} dData={A3TestRed.val} />
-      )}
+      {A3PartyColumnRed.loading ? MainObject.loader() :
+       A3TestRed.loading ?  MainObject.loader() : 
+       A3PsOpDataRed.loading ? MainObject.loader() :
+
+        <PartySheetTable accData={[location.state.rowData]} col={A3PartyColumnRed.val} dData={A3TestRed.val} tableData={A3PsOpDataRed.val} />
+      }
     </>
   );
 };

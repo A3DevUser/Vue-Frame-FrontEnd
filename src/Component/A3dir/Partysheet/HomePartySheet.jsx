@@ -30,7 +30,7 @@ const HomePartySheet = () => {
     {
         A3PartyColumnRed.loading ? MainObject.loader() :
         A3TestRed.loading ? MainObject.loader() :
-    <PartySheetTable col={A3PartyColumnRed.val} dData={A3TestRed.val} accData ={location.state.accArr} />
+    <PartySheetTable col={A3PartyColumnRed.val} dData={A3TestRed.val} accData ={location.state.accArr} tableData={[]} />
     }
     </>
   )

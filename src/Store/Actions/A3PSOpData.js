@@ -28,7 +28,7 @@ export const FetchA3PsOpDataData = (opId,token) =>{
       };
     return (dispatch)=>{
         dispatch(A3PsOpDataReq());
-        axios.get(`http://localhost:8080/VF/getOBOutpuByIds?id=${encodeURIComponent(opId)}`,{headers})
+        axios.get(`http://localhost:8080/VF/getOBOutpuByIds?id=${opId}`,{headers})
         .then((res)=>{
             dispatch(A3PsOpDataSuccess(res.data))
         })

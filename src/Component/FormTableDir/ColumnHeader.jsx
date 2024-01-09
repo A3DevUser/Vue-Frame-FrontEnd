@@ -1,5 +1,5 @@
 import { useEffect } from "react"
-import { EditableActionCell, EditableActionPopCell, EditableAnaCell, EditableAttachCell, EditableCell, EditableDateCell, EditableDdCell, EditableDdIe, EditableHomeLink, EditableImporter, EditableLink, EditableLogicCell, EditableMixCell, EditableMksCell, EditableNumCell, EditablePartyLink, EditableRtf, EditableStaticCell, EditableUploader, } from "./EditableCell"
+import { DisableCell, EditableActionCell, EditableActionPopCell, EditableAnaCell, EditableAttachCell, EditableCell, EditableDateCell, EditableDdCell, EditableDdIe, EditableDisableDdCell, EditableHomeLink, EditableImporter, EditableLink, EditableLogicCell, EditableMixCell, EditableMksCell, EditableNumCell, EditablePartyLink, EditableRtf, EditableStaticCell, EditableUploader, } from "./EditableCell"
 
 export const ColumnHeader = (colData, updateMyData, dropDown, addAndDeleteRow, gridData, data, handleOnfocus, dropDownData) => {
 
@@ -153,6 +153,31 @@ export const ColumnHeader = (colData, updateMyData, dropDown, addAndDeleteRow, g
         },
         width: res.width,
         sticky: res.sticky
+      }
+    }else if (res.cellType === 'disableDropDown') {
+      let formIdVal = res.formId
+      let gridIdVal = res.gridId
+      let colIdVal = res.columnId
+      return {
+        Header: res.fieldName,
+        accessor: res.accessor,
+        Cell: ({ cell }) => { return <EditableDisableDdCell column={cell.column.id} row={cell.row.id} updateMyData={updateMyData} value={cell.value} dropDown={dropDownData} rowObj={cell.row} colObj={cell.column} parentId={{ formIdVal, gridIdVal, colIdVal, json: cell.row }} handleOnfocus={handleOnfocus} /> },
+        width: res.width,
+        sticky: res.sticky
+      }
+    }else if (res.cellType === 'disableTextCell') {
+      let gridIdVal = res.gridId
+      return {
+        Header: res.fieldName,
+        accessor: res.accessor,
+        Cell: ({ cell, row }) => {
+          // console.log('theCellData', row.getRowProps())
+          // console.log('theCellData', cell.column.id)
+
+          return <DisableCell column={cell.column.id} row={cell.row.id} updateMyData={updateMyData} value={cell.value} colObj={cell.column} parentId={cell} rowObj={cell.row} valWidth={res.subSecWidth} type={res.cellType} gridIdVal={gridIdVal} />
+        },
+        width: res.width,
+        sticky: res.sticky,
       }
     }
      else {
