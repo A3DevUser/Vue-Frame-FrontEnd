@@ -17,15 +17,80 @@ import swal from 'sweetalert'
 
 
 
-const PartySheetTable = ({col,dData,userName,accData}) => {
-  const dispatch = useDispatch()
+const PartySheetTable = ({col,dData,userName,accData,tableData}) => {
+const dispatch = useDispatch()
 
 
+const accColumn = col.filter((fil)=>{return fil.parentCell=='account'}).map((res)=>{return res.accessor});
+  
+  const combArr = []
 
-  console.log(col)
-  const [data,setdata]=useState([...dData]);
+  
+
+  // dData.forEach((res)=>{
+  //   tableData.forEach((fe)=>{
+  //     if(res.testId==fe.testId){
+  //       accColumn.forEach((fres)=>{
+  //         combArr.push({...res,[fres+'#'+fe.Associate_Vend] : fe[fres]})
+  //       })
+  //     }else{
+  //       combArr.push({...res})
+  //     }
+  //   })
+  // })
+
+  // console.log('tDataId',
+  // dData.map((res)=>{
+  //   return tableData.map((fres)=>{
+  //     if(res.testId==fres.testId){
+  //     return accColumn.map((tres)=>{
+  //       return {...res,[tres+'#'+fres.Associate_Vend]: fres[tres]}
+  //     })
+  //     }else{
+  //       return {...res}
+  //     }
+  //   })
+  // }).flat(2)
+  // )
+
+  
+
+
+  // console.log('tDataId',combArr)
+
+
+  // console.log( 'tDataId' ,dData.map((res)=>{
+  //  return tableData.map((fe)=>{
+  //     if(res.testId==fe.testId){
+  //       accColumn.map((fres)=>{
+  //        return combArr.push({...res,[fres+'#'+fe.Associate_Vend] : fe[fres]})
+  //       })
+  //     }else{
+  //      return combArr.push({...res})
+  //     }
+  //   })
+  // }))
+  
+  
   const [accountData,setaccountData] = useState([...accData.slice(0,10)])
   const [columns,setcolumns]=useState([...PartysheetColumns(col,accData.slice(0,10).map((res)=>{return res.Associate_Vend}),updateMyData)])
+  const [data,setdata]=useState(
+    tableData.length > 0 ?
+    [...dData
+    .map((res)=>{
+      return tableData.map((fres)=>{
+        if(res.testId==fres.testId){
+        return accColumn.map((tres)=>{
+          return {...res,[tres+'#'+fres.Associate_Vend]: fres[tres]}
+        })
+        }else{
+          return {...res}
+        }
+      })
+    }).flat(2)] : [...dData]
+  );
+
+  
   const [finalData,setfinalData] = useState({})
   const [fileArr,setfileArr] =useState()
   const [show,setShow] = useState(false)
@@ -71,7 +136,7 @@ const PartySheetTable = ({col,dData,userName,accData}) => {
       }
 
       useEffect(()=>{
-        console.log('opFinalData',finalData)
+        console.log('opFinalData',data)
       },[finalData])
 
 
