@@ -18,15 +18,15 @@ const PendencyDashboard = () => {
   const AuthRed = useSelector((state)=>state.AuthRed)
   const dispatch = useDispatch()
 
-   function handleFormId(formId,daysFlag) {
-    dispatch(FormIdAct(formId))
-    dispatch(FetchGetData(formId,AuthRed.val,UserDataStateRed,daysFlag))
-  }
+  //  function handleFormId(formId,daysFlag) {
+  //   dispatch(FormIdAct(formId))
+  //   // dispatch(FetchGetData(formId,AuthRed.val,UserDataStateRed,daysFlag))
+  // }
 
   useEffect(() => {
     dispatch(FetchPendencyColData(AuthRed.val))
     dispatch(FetchPendencyData(UserDataStateRed,AuthRed.val))
-  },[])
+  },[UserDataStateRed])
 
     let titleData = [{"Title":"Pendency Dashboard"}]
 
@@ -40,7 +40,7 @@ const PendencyDashboard = () => {
 
   return (<>{
     PendencyColRed.loading ? MainObject.loader() : PendencyDataRed.loading ? MainObject.loader() :
-    <PendencyTab titleData={titleData} columnData={PendencyColRed.val.sort((a,b) => parseInt(a.columnId) - parseInt(b.columnId))} pendencyData={PendencyDataRed.val} handleFormId={handleFormId}/>
+    <PendencyTab titleData={titleData} columnData={PendencyColRed.val.sort((a,b) => parseInt(a.columnId) - parseInt(b.columnId))} pendencyData={PendencyDataRed.val} />
     }</>
   )
 }

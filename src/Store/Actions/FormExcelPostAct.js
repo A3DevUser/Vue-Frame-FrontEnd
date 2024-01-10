@@ -38,7 +38,7 @@ export const PostFormExcelData = (userId,data,token,setdata,setDisBtn) =>{
                 setdata([])
                 setDisBtn(false)
             }else if(window.location.pathname == '/editTable'){
-                setdata([])
+                // setdata([])
                 setDisBtn(false)
             }
             return swal({
