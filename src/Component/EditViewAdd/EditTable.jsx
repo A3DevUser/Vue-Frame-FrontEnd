@@ -7,12 +7,14 @@ import { FetchGridData } from '../../Store/Actions/GridAct'
 import { MainObject } from '../../Component/Elements/commonFun'
 import GridFormSub from '../../Component/GridFormSub'
 import { FetchGetData } from '../../Store/Actions/GetDataAct'
-import { ResetFormState, mainObjData } from '../../Store/Actions/GeneralStates'
+import { FormIdAct, ResetFormState, mainObjData } from '../../Store/Actions/GeneralStates'
 import ImpExp from '../../Component/ImportExport/ImpExp'
 import { FetchColumnEditActData } from '../../Store/Actions/ColumnEditAct'
+import { useLocation } from 'react-router'
 
 const EditTable = () => {
     const dispatch = useDispatch()
+    const location = useLocation()
 
 
     const ColumnRed = useSelector((state)=>state.ColumnRed)
@@ -26,16 +28,25 @@ const EditTable = () => {
     const ResetFormRed = useSelector((state)=>state.ResetFormRed)
     const UserDataStateRed = useSelector((state)=>state.UserDataStateRed)
     const ColumnEditActRed = useSelector((state)=> state.ColumnEditActRed)
+    const FormExcelPostRed = useSelector((state)=>state.FormExcelPostRed)
 
     const [disBtn,setDisBtn] = useState(false)
 
 
     useEffect(()=>{
-    dispatch(FetchGridData(FormIdRed,AuthRed.val))
+    dispatch(FetchGridData(location.state.formId,AuthRed.val))
     // dispatch(FetchColumnData(FormIdRed,'yes',AuthRed.val))   
-    dispatch(FetchColumnEditActData(FormIdRed,UserDataStateRed,AuthRed.val))
+    dispatch(FetchColumnEditActData(location.state.formId,UserDataStateRed,AuthRed.val))
     // dispatch(FetchGetData(FormIdRed,AuthRed.val,UserDataStateRed,'NO_VALUE'))
-    },[FormIdRed])
+    dispatch(FetchGetData(location.state.formId,AuthRed.val,UserDataStateRed,location.state.daysFlag))
+    dispatch(FormIdAct(location.state.formId))
+    },[location])
+
+    useEffect(()=>{
+      if(!FormExcelPostRed.loading){
+        dispatch(FetchGetData(location.state.formId,AuthRed.val,UserDataStateRed,location.state.daysFlag))
+      }
+    },[FormExcelPostRed])
 
 
     const handleSave = (gridData,setdata) =>{
@@ -65,6 +76,12 @@ const EditTable = () => {
         })
       }
       }
+
+      useEffect(() => {
+        console.log('LoadersCheck Grid',GridRed.loading)
+        console.log('LoadersCheck Data Rows',GetDataRed.loading)
+        console.log('LoadersCheck Grid Columns',ColumnEditActRed.loading)
+      },[GridRed,GetDataRed,ColumnEditActRed])
 
   return (
 <div style={{marginTop:'3vh', paddingLeft:'1.3rem',paddingRight:'1rem'}}>

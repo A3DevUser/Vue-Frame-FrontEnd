@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Modal } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import '../Component/CSS/ModalComp.css'
-import { LogInState } from '../Store/Actions/GeneralStates'
+import { LogInState, ResetAct } from '../Store/Actions/GeneralStates'
 
 export const ModalCompo = ({ title, bodyDetails, show, showFunc }) => {
   const NavBarRed = useSelector((state) => state.NavBarRed)
@@ -34,6 +34,8 @@ export const SimpleModalCompo = ({ title, bodyDetails, show, showFunc }) => {
   const handleClick = () => {
     handleLogOut()
     showFunc()
+    dispatch(ResetAct())
+    window.location.reload()
   }
 
   const handleLogOut = () => {

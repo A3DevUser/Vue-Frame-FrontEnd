@@ -46,7 +46,7 @@ const FormTable = ({col,dData,gridData,handleSave,funNavConf,disBtn,setDisBtn}) 
         if(Object.keys(FormDatRed).includes(gridData.gridId)){
           if(gridData.isMain=='true'){
             setdata([...FormDatRed[gridData.gridId]])
-            console.log('CheckFormData',[...FormDatRed[gridData.gridId]].length)
+            // console.log('CheckFormData',[...FormDatRed[gridData.gridId]].length)
               
               if([...FormDatRed[gridData.gridId]].length >= 1 && gridData.gridId == 'GID-902'){
                 setDisBtn(true)

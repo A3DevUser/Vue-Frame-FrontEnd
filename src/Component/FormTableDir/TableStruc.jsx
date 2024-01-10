@@ -1,5 +1,5 @@
 import { MainObject } from '../../Component/Elements/commonFun'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Button, Tooltip } from 'react-bootstrap'
 import TableCell from './TableCell'
 import { useSelector } from 'react-redux'
@@ -9,7 +9,7 @@ import GlobalFilter from './GlobalFilter'
 
 
 const TableStruc = ({getTableProps,getTableBodyProps,headerGroups,prepareRow,rows,gridData,handleAddRow,handleSave,handleRemove,handleCopy,previousPage,canPreviousPage,nextPage,canNextPage,pageOptions,state,pageCount,gotoPage,setGlobalFilter,hide,funNavConf,disBtn,setdata,data,userDisBtn}) => {
-console.log('pageNewDataRows',rows)
+// console.log('pageNewDataRows',rows)
     const EmdRed = useSelector((state)=>state.EmdRed)
     const ColumnRed = useSelector((state) => state.ColumnRed)
     const GridRed = useSelector((state) => state.GridRed)
@@ -24,6 +24,10 @@ console.log('pageNewDataRows',rows)
     const save = ['/viewTable','/report']
     const add = ['/viewTable','/editTable','/report','/usereditTable','/userviewTable']
     const removeDupl = ['/viewTable','/editTable','/report','/usereditTable','/userviewTable','/useraddTable']
+
+    useEffect(() => {
+        console.log('pageNewDataRows',rows)
+    },[rows])
 
   return (
     <div>
