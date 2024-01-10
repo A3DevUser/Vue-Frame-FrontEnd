@@ -59,17 +59,7 @@ const accColumn = col.filter((fil)=>{return fil.parentCell=='account'}).map((res
   // console.log('tDataId',combArr)
 
 
-  // console.log( 'tDataId' ,dData.map((res)=>{
-  //  return tableData.map((fe)=>{
-  //     if(res.testId==fe.testId){
-  //       accColumn.map((fres)=>{
-  //        return combArr.push({...res,[fres+'#'+fe.Associate_Vend] : fe[fres]})
-  //       })
-  //     }else{
-  //      return combArr.push({...res})
-  //     }
-  //   })
-  // }))
+
   
   
   const [accountData,setaccountData] = useState([...accData.slice(0,10)])
@@ -109,6 +99,19 @@ const accColumn = col.filter((fil)=>{return fil.parentCell=='account'}).map((res
         []
       )
 
+      console.log( 'tDataId' ,dData.map((res)=>{
+        return tableData.map((fe)=>{
+           if(res.testId==fe.testId){
+             accColumn.map((fres)=>{
+              return combArr.push({...res,[fres+'#'+fe.Associate_Vend] : fe[fres]})
+             })
+           }else{
+            return combArr.push({...res})
+           }
+         })
+       }))
+
+       
       const formData = new FormData()
       function updateMyData(rowIndex, columnId, value, fileData){
 
@@ -218,6 +221,7 @@ const accColumn = col.filter((fil)=>{return fil.parentCell=='account'}).map((res
     <div style={{display:'flex', flexDirection:'column'}}>
       <div className='my-2' style={{display:'flex',justifyContent:'flex-end',width: '97%', gap:10}}>
         <div style={{display:'flex', justifyContent:'center', alignItems:'center'}}>
+        <span style={{fontSize:25}} class="bi bi-arrow-left-circle-fill"></span>
         <DividePartySheet dataLength={accData.length} handleChange={handleChange}/>
         </div>
         <div>
