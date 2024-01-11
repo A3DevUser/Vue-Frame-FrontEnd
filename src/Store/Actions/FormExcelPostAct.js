@@ -1,5 +1,7 @@
 import axios from "axios";
 import swal from "sweetalert"
+import { FetchGetData } from "./GetDataAct";
+import { useNavigate } from "react-router";
 
 const FormExcelReq = (val) =>{
     return {
@@ -22,8 +24,7 @@ const FormExcelErr = (val) =>{
     }
 };
 
-export const PostFormExcelData = (userId,data,token,setdata,setDisBtn) =>{
-
+export const PostFormExcelData = (userId,data,token,setdata,setDisBtn,formId,daysFlag,navigate) =>{
 
     const headers = {
         'Content-Type': 'application/json', 
@@ -38,7 +39,9 @@ export const PostFormExcelData = (userId,data,token,setdata,setDisBtn) =>{
                 setdata([])
                 setDisBtn(false)
             }else if(window.location.pathname == '/editTable'){
-                setdata([])
+                // dispatch(FetchGetData(formId,token,userId,daysFlag))
+                // setdata([])
+                navigate('/pendencyDashboard')
                 setDisBtn(false)
             }
             return swal({

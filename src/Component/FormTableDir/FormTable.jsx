@@ -44,12 +44,16 @@ const FormTable = ({ col, dData, gridData, handleSave, funNavConf, disBtn, setDi
   }, [SendReportConfDataRed])
 
 
-  useEffect(() => {
-    if (EmdRed == 'add' && window.location.pathname.includes('Table')) {
-      if (Object.keys(FormDatRed).includes(gridData.gridId)) {
-        if (gridData.isMain == 'true') {
-          setdata([...FormDatRed[gridData.gridId]])
-          console.log('CheckFormData', [...FormDatRed[gridData.gridId]].length)
+    useEffect(()=>{
+      if(EmdRed=='add'&&window.location.pathname.includes('Table')){
+        if(Object.keys(FormDatRed).includes(gridData.gridId)){
+          if(gridData.isMain=='true'){
+            setdata([...FormDatRed[gridData.gridId]])
+            // console.log('CheckFormData',[...FormDatRed[gridData.gridId]].length)
+              
+              if([...FormDatRed[gridData.gridId]].length >= 1 && gridData.gridId == 'GID-902'){
+                setDisBtn(true)
+              }
 
           if ([...FormDatRed[gridData.gridId]].length >= 1 && gridData.gridId == 'GID-902') {
             setDisBtn(true)
