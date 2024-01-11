@@ -10,11 +10,12 @@ import { FetchGetData } from '../../Store/Actions/GetDataAct'
 import { FormIdAct, ResetFormState, mainObjData } from '../../Store/Actions/GeneralStates'
 import ImpExp from '../../Component/ImportExport/ImpExp'
 import { FetchColumnEditActData } from '../../Store/Actions/ColumnEditAct'
-import { useLocation } from 'react-router'
+import { useLocation, useNavigate } from 'react-router'
 
 const EditTable = () => {
     const dispatch = useDispatch()
     const location = useLocation()
+    const navigate = useNavigate()
 
 
     const ColumnRed = useSelector((state)=>state.ColumnRed)
@@ -42,11 +43,6 @@ const EditTable = () => {
     dispatch(FormIdAct(location.state.formId))
     },[location])
 
-    useEffect(()=>{
-      if(!FormExcelPostRed.loading){
-        dispatch(FetchGetData(location.state.formId,AuthRed.val,UserDataStateRed,location.state.daysFlag))
-      }
-    },[FormExcelPostRed])
 
 
     const handleSave = (gridData,setdata) =>{
@@ -62,7 +58,7 @@ const EditTable = () => {
             }) 
               if(newObj.length >= 0){
                 console.log('newFormDataRed',newObj)
-                dispatch(PostFormExcelData(UserDataStateRed,newObj,AuthRed.val,setdata,setDisBtn))
+                dispatch(PostFormExcelData(UserDataStateRed,newObj,AuthRed.val,setdata,setDisBtn,location.state.formId,location.state.daysFlag,navigate))
               }
             }})
       }else{
@@ -77,11 +73,6 @@ const EditTable = () => {
       }
       }
 
-      useEffect(() => {
-        console.log('LoadersCheck Grid',GridRed.loading)
-        console.log('LoadersCheck Data Rows',GetDataRed.loading)
-        console.log('LoadersCheck Grid Columns',ColumnEditActRed.loading)
-      },[GridRed,GetDataRed,ColumnEditActRed])
 
   return (
 <div style={{marginTop:'3vh', paddingLeft:'1.3rem',paddingRight:'1rem'}}>
@@ -94,13 +85,14 @@ const EditTable = () => {
       {
         GridRed.loading ? MainObject.loader() :
         // ColumnRed.loading ? MainObject.loader() :
-        GetDataRed.loading ? MainObject.loader() :
         ColumnEditActRed.loading ? MainObject.loader() :
+        GetDataRed.loading ? MainObject.loader() :
+        FormExcelPostRed.loading ? MainObject.loader() :
         GridRed.val.filter((fil)=>{return fil.isMain }).map((res,i)=>{
          return <GridFormSub column={ColumnEditActRed.val.sort((a,b)=>{return a.orderNo-b.orderNo})} data=
         //  {[]}
          {
-          GetDataRed.val.filter((fil)=>{return fil.GRID_ID == res.gridId})[0].DATA 
+          GetDataRed.val.filter((fil)=>{return fil.GRID_ID == res.gridId})[0].DATA  
         }
           gridData={res} key={i} handleSave={handleSave}/>
         })
