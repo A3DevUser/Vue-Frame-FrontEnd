@@ -16,7 +16,7 @@ const DividePartySheet = ({dataLength,handleChange}) => {
   return (
     <>
     <span className='mx-2' style={{fontWeight:'bolder', fontSize:'15px'}}>Party Sheet :</span>
-    <select className='form-select' onChange={handleChange} style={{width:'15vw',marginRight:'43vw'}}>
+    <select className='form-select' onChange={handleChange} style={{width:'15vw',marginRight:'45vw'}}>
         <option value={1}>Select Sheet...</option>
         {
             options

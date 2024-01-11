@@ -58,6 +58,19 @@ const accColumn = col.filter((fil)=>{return fil.parentCell=='account'}).map((res
 
   // console.log('tDataId',combArr)
 
+  const opData = tableData.map((res)=>{
+    return accColumn.map((ares)=>{
+       return {...res,[`${ares}#${res.Associate_Vend}`] : res[ares]}
+     })
+   }).flat()
+
+   const finalOpData = dData.map((res)=>{
+    if(opData.some((sres)=>sres.testId==res.testId)){
+      return {...res,...opData.filter((fil)=>{return fil.testId==res.testId})[0]}
+    }else{
+      return {...res}
+    }
+  })
 
 
   
@@ -66,18 +79,7 @@ const accColumn = col.filter((fil)=>{return fil.parentCell=='account'}).map((res
   const [columns,setcolumns]=useState([...PartysheetColumns(col,accData.slice(0,10).map((res)=>{return res.Associate_Vend}),updateMyData)])
   const [data,setdata]=useState(
     tableData.length > 0 ?
-    [...dData
-    .map((res)=>{
-      return tableData.map((fres)=>{
-        if(res.testId==fres.testId){
-        return accColumn.map((tres)=>{
-          return {...res,[tres+'#'+fres.Associate_Vend]: fres[tres]}
-        })
-        }else{
-          return {...res}
-        }
-      })
-    }).flat(2)] : [...dData]
+    [...finalOpData] : [...dData]
   );
 
   
@@ -99,17 +101,6 @@ const accColumn = col.filter((fil)=>{return fil.parentCell=='account'}).map((res
         []
       )
 
-      console.log( 'tDataId' ,dData.map((res)=>{
-        return tableData.map((fe)=>{
-           if(res.testId==fe.testId){
-             accColumn.map((fres)=>{
-              return combArr.push({...res,[fres+'#'+fe.Associate_Vend] : fe[fres]})
-             })
-           }else{
-            return combArr.push({...res})
-           }
-         })
-       }))
 
        
       const formData = new FormData()
@@ -221,7 +212,7 @@ const accColumn = col.filter((fil)=>{return fil.parentCell=='account'}).map((res
     <div style={{display:'flex', flexDirection:'column'}}>
       <div className='my-2' style={{display:'flex',justifyContent:'flex-end',width: '97%', gap:10}}>
         <div style={{display:'flex', justifyContent:'center', alignItems:'center'}}>
-        <span style={{fontSize:25}} class="bi bi-arrow-left-circle-fill"></span>
+        {/* <span style={{fontSize:25}} class="bi bi-arrow-left-circle-fill"></span> */}
         <DividePartySheet dataLength={accData.length} handleChange={handleChange}/>
         </div>
         <div>
