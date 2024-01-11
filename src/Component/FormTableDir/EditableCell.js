@@ -651,7 +651,7 @@ const ImportGridRed = useSelector((state)=>state.ImportGridRed)
       {
        DropValRed.loading ? <option>loading...</option> : 
        DropValRed.val.filter((fil)=>{return (fil.ColId == parentId.colIdVal)&&(fil.rowInd == index)}).map((res,i)=>{
-            return <option key={i} value={res.storedValue}>{res.storedValue} {res.displayValue}</option>
+            return <option key={i} value={res.storedValue}>{res.displayValue}</option>
       })
       }
            </select>
