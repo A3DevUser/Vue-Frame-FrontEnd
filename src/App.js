@@ -31,6 +31,10 @@ import PendencyDashboard from './Component/PendencyDashboard/PendencyDashboard'
 import Partysheet from './Component/A3dir/Partysheet/Partysheet'
 import A3HomeSheet from './Component/A3dir/A3HomeSheet'
 import HomePartySheet from './Component/A3dir/Partysheet/HomePartySheet'
+import EditFormConf from './Component/EditFormComp/EditFormConf'
+import EditWorkFlowConf from './Component/EditFormComp/EditWorkFlowConf'
+import EditDataSource from './Component/EditFormComp/EditDataSource'
+import EditReport from './Component/EditFormComp/EditReport'
 
 const App = () => {
 
@@ -88,7 +92,11 @@ const App = () => {
           <Route path='/forms' element={<Form />} />
           <Route path='/GridForm' element={<GridForm />} />
           <Route path='/confform' element={<FormConf />} />
+          <Route path='/editConfForm' element={<EditFormConf />} />
+          <Route path='/editWorkFlowConf' element={<EditWorkFlowConf />} />
           <Route path='/confreport' element={<ReportConf />} />
+          <Route path='/editDataSource' element={<EditDataSource />} />
+          <Route path='/editReport' element={<EditReport />} />
           <Route path='/reportForm' element={<ReportForm />} />
           {/* <Route path='/reportForm' element={<BassicTab />} /> */}
           <Route path='/useraddTable' element={<UserAddTable/>} />

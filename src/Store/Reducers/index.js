@@ -51,6 +51,10 @@ import { A3ProductDataRed } from "./A3ProductDataRed";
 import { A3HomeDataRed } from "./A3HomeDataRed";
 import { A3PsOpDataRed } from "./A3PsOpDataRed";
 import { ColumnEditActRed } from "./ColumnEditRed";
+import { WorkFlowEditRed } from "./WorkFlowEditRed";
+import { DataSourceEditRed } from "./DataSourceEditRed";
+import { EditReportRed } from "./EditReportRed";
+
 
 const rootReducers = combineReducers({
     SectionRed,  
@@ -111,7 +115,10 @@ const rootReducers = combineReducers({
     A3ProductDataRed,
     A3HomeDataRed,
     A3PsOpDataRed,
-    ColumnEditActRed
+    ColumnEditActRed,
+    WorkFlowEditRed,
+    DataSourceEditRed,
+    EditReportRed
     });
 
 export default rootReducers

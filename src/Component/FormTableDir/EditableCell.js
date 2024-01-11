@@ -557,17 +557,31 @@ const ImportGridRed = useSelector((state)=>state.ImportGridRed)
 
     const dispatch = useDispatch()
     
-    const handleClick = () =>{
-      if(gridIdVal == 'GID-576'){
-          dispatch(FormIdAct('FORM-105'))
-      }else if(gridIdVal == 'GID-641'){
-          dispatch(FormIdAct('FORM-106'))
-      }else{
-        // console.log('FormDataNewVal',gridIdVal)        
-      }
+    // const handleClick = () =>{
+    //   if(gridIdVal == 'GID-576'){
+    //       dispatch(FormIdAct('FORM-105'))
+    //   }else if(gridIdVal == 'GID-641'){
+    //       dispatch(FormIdAct('FORM-106'))
+    //   }else{
+    //     // console.log('FormDataNewVal',gridIdVal)        
+    //   }
 
+    // }
+    const handleClick = () =>{
+      if (gridIdVal == 'GID-576') {
+        dispatch(FormIdAct('FORM-105'))
+      } else if (gridIdVal == 'GID-641') {
+        dispatch(FormIdAct('FORM-106'))
+      } else if (gridIdVal == 'GID-924') {
+        dispatch(FormIdAct('FORM-203'))
+        // console.log('FormDataNewVal',gridIdVal)        
+      }else if(gridIdVal == 'GID-925'){
+        dispatch(FormIdAct('FORM-202'))
+      }else{
+        // console.log('empty');
+      }
     }
-    console.log('FormDataNewVal',rowObj)
+    console.log('FormDataNewVal',{formId : rowObj.original.form_id},path)
     return <Link to={{pathname : path}} state={{formId : rowObj.original.form_id}} onClick={handleClick}  >{lable}</Link>
   }
 
@@ -637,7 +651,7 @@ const ImportGridRed = useSelector((state)=>state.ImportGridRed)
       {
        DropValRed.loading ? <option>loading...</option> : 
        DropValRed.val.filter((fil)=>{return (fil.ColId == parentId.colIdVal)&&(fil.rowInd == index)}).map((res,i)=>{
-            return <option key={i} value={res.storedValue}>{res.displayValue}</option>
+            return <option key={i} value={res.storedValue}>{res.storedValue} {res.displayValue}</option>
       })
       }
            </select>

@@ -52,8 +52,23 @@ const ConfEdit = () => {
 
       }
 
+      // let FormConfig = 'GID-576'
+      // let WorkFlowConfig = 'GID-641'
+
+      // const funNavConf = (gridIdVal) => {
+      //     if(gridIdVal == FormConfig){
+      //         dispatch(FormIdAct('FORM-105'))
+      //         navigate('/confform')
+      //     }else if(gridIdVal == WorkFlowConfig){
+      //         dispatch(FormIdAct('FORM-106'))
+      //         navigate('/confform')
+      //     }
+      // }
+
       let FormConfig = 'GID-576'
       let WorkFlowConfig = 'GID-641'
+      let reportEdit = 'GID-924'
+      let dataSource = 'GID-925'
 
       const funNavConf = (gridIdVal) => {
           if(gridIdVal == FormConfig){
@@ -62,8 +77,15 @@ const ConfEdit = () => {
           }else if(gridIdVal == WorkFlowConfig){
               dispatch(FormIdAct('FORM-106'))
               navigate('/confform')
+          }else if(gridIdVal == reportEdit){
+            dispatch(FormIdAct('FORM-203'))
+            navigate('/confreport')
+          }else if(gridIdVal == dataSource){
+            dispatch(FormIdAct('FORM-202'))
+            navigate('/confreport')
           }
       }
+
 
   return (
 <div style={{marginTop:'5vh', paddingLeft:'1.3rem',paddingRight:'1rem' }}>
@@ -82,14 +104,15 @@ const ConfEdit = () => {
           ColumnRed.val.filter((fil)=>{return fil.gridId == res.gridId}).forEach((fres)=>{
             dataObj[fres.accessor] = ''
           })
-          // console.log('dataObj',GetDataRed.val.length)
+          console.log('dataObj',GetDataRed.val)
           // console.log('dataObj',dataObj)
-          let gridIdArr = ['GID-575','GID-576','GID-641']
+          let gridIdArr = ['GID-575','GID-576','GID-641','GID-924','GID-925']
          return <GridFormSub column={ColumnRed.val.sort((a,b)=>{return a.number-b.number})} data=
         //  {[]}
          {
           gridIdArr.includes(res.gridId)  ?  [dataObj] :
-          GetDataRed.val.filter((fil)=>{return fil.GRID_ID == res.gridId})[0].DATA 
+          // GetDataRed.val.filter((fil)=>{return fil.GRID_ID == res.gridId})[0].DATA 
+          console.log('ConfEidtForm')
         }
           gridData={res} key={i} handleSave={handleSave} funNavConf={funNavConf}/>
         })
