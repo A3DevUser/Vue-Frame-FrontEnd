@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { MainObject } from './Elements/commonFun';
+import { MainObject } from '../Elements/commonFun';
 // import FormTable from './FormTableDir/FormTable';
-import { FetchConfColumnData } from '../Store/Actions/ConfColumn'
-import { FetchConfGridData } from '../Store/Actions/ConfGridAct'
-import { FetchConfSectionData } from '../Store/Actions/ConfSection'
-import { FormConfData } from '../Store/Actions/SendConfData';
+import { FetchConfColumnData } from '../../Store/Actions/ConfColumn'
+import { FetchConfGridData } from '../../Store/Actions/ConfGridAct'
+import { FetchConfSectionData } from '../../Store/Actions/ConfSection'
+import { FormConfData } from '../../Store/Actions/SendConfData';
 import { useLocation, useNavigate } from 'react-router';
-import './CSS/FormConf.css'
+import '../CSS/FormConf.css'
 import { Alert } from 'react-bootstrap';
 import swal from 'sweetalert';
-import { FetchFormEditData } from '../Store/Actions/FormEditAct';
+import { FetchFormEditData } from '../../Store/Actions/FormEditAct';
+import { FetchWorkFlowEditData } from '../../Store/Actions/WorkFlowEditAct';
 
 let AlertVal = {}
 export const AlertData = {
@@ -25,7 +26,7 @@ export const AlertData = {
 }
 
 
-const FormConf = () => {
+const EditWorkFlowConf = () => {
   // console.log('AterDataNew',AlertVal)
     const dispatch = useDispatch();
     const location = useLocation();
@@ -37,7 +38,8 @@ const FormConf = () => {
     const FormDatRed = useSelector((state) => state.FormDatRed)
     const SendConfDataRed = useSelector((state) => state.SendConfDataRed)    
     const AuthRed = useSelector((state)=>state.AuthRed)
-    const FormEditRed = useSelector((state)=>state.FormEditRed)
+    // const FormEditRed = useSelector((state)=>state.FormEditRed)
+    const WorkFlowEditRed = useSelector((state)=>state.WorkFlowEditRed)
 
 
 
@@ -48,11 +50,27 @@ const FormConf = () => {
       // console.log('finalObj',Object.values(obj))
     }
 
+    // console.log('WorkFlowEditRed',SectionRed,GridRed,ColumnRed,FormIdRed,FormDatRed);
+    console.log('WorkFlowEditRed SectionRed ',SectionRed);
+    console.log('WorkFlowEditRed GridRed ',GridRed);
+    console.log('WorkFlowEditRed ColumnRed ',ColumnRed);
+    console.log('WorkFlowEditRed FormIdRed ',FormIdRed);
+    console.log('WorkFlowEditRed FormDatRed ',FormDatRed);
+    console.log('WorkFlowEditRed WorkFlowEditRed ',WorkFlowEditRed);
+    // console.log('WorkFlowEditRed FormEditRed ',FormEditRed);
+
+    // useEffect(()=>{
+    //   if(location.state !== null ){
+    //     console.log('WorkFlowEditRed location', location.state.formId)
+    //   }
+    //   // console.log('WorkFlowEditRed',WorkFlowEditRed.val);
+    // },[FormEditRed])
+
     useEffect(()=>{
         dispatch(FetchConfSectionData(FormIdRed,AuthRed.val))
         dispatch(FetchConfGridData(FormIdRed,AuthRed.val))
         dispatch(FetchConfColumnData(FormIdRed,AuthRed.val))
-        dispatch(FetchFormEditData(location.state !== null ? location.state.formId : '' ,AuthRed.val))
+        dispatch(FetchWorkFlowEditData(location.state !== null ? location.state.formId : '' ,AuthRed.val))
     },[FormIdRed])
 
     // console.log('FormIdRed',SectionRed);
@@ -123,25 +141,30 @@ const FormConf = () => {
       //   dispatch(FormConfData(val.api,FormData,AuthRed.val))
       // }
       if (Object.keys(FormDatRed).includes(val.gridId)) {
-      const FormData = FormDatRed[val.gridId].map((res) => {
-        // if(location.state !== null && val.gridId == 'GID-005'){
-        //   const colGridId = GridRed.val.filter((fil) => { return fil.secId == 'S-002' })[0].gridId;
-        //   console.log('mainGrid Val',FormDatRed)
-        //   const formGridIdmain = FormDatRed[colGridId][0].gridId;
-        //   console.log('mainGrid Val if');
-        //   return { ...res, formId: location.state.formId, targetId: val.gridId, gridId: formGridIdmain }
-        // }else if (location.state !== null) {
-        //   console.log('mainGrid Val else',FormDatRed)
-        //   return { ...res, formId: location.state.formId, targetId: val.gridId }
-        // }
-          
-          return { ...res, ...SendConfDataRed.val, targetId: val.gridId }
 
+      const FormData = FormDatRed[val.gridId].map((res) => {
+        
+        // if(location.state !== null && val.gridId == 'GID-005'){
+          //   const colGridId = GridRed.val.filter((fil) => { return fil.secId == 'S-002' })[0].gridId;
+          //   console.log('mainGrid Val',FormDatRed)
+          //   const formGridIdmain = FormDatRed[colGridId][0].gridId;
+          //   console.log('mainGrid Val if');
+          //   return { ...res, formId: location.state.formId, targetId: val.gridId, gridId: formGridIdmain }
+          // }
+         if (location.state !== null) {
+          // console.log('mainGrid Val else',location.state)
+          // console.log('mainGrid Val else',val.gridId)
+          return { ...res, formId: location.state.formId, targetId: val.gridId }
+        } else {
+          // alert('inside EditForm')
+          return { ...res, ...SendConfDataRed.val, targetId: val.gridId }
+        }
       })
-      console.log('insideFormConf',FormData)
+      console.log('mainGrid Val else',FormData)
+      // console.log('FormDataNewVal',JSON.stringify(FormData))
       dispatch(FormConfData(val.api, FormData, AuthRed.val))
     }
-
+    
 
 
       // const gridId=GridRed.val.filter((fil)=>{return fil.secId==val})[0].gridId
@@ -161,6 +184,8 @@ const FormConf = () => {
         // }
     }
 
+    // console.log('EditWorkFlow', FormEditRed.val)
+
 
   return (
     <div>
@@ -176,9 +201,9 @@ const FormConf = () => {
   {
         SectionRed.loading ? MainObject.loader() : GridRed.loading ? MainObject.loader() : 
          ColumnRed.loading ? MainObject.loader() :
-         FormEditRed.loading ? MainObject.loader() :
+         WorkFlowEditRed.loading ? MainObject.loader() :
       // defaultVal&&MainObject.tabs(SectionRed.val,GridRed.val,ColumnRed.val.sort((a,b) => parseInt(a.number) - parseInt(b.number)),[],defaultVal,setdefaultVal,handleSave)
-      defaultVal&&MainObject.conftabs(SectionRed.val,GridRed.val,ColumnRed.val.sort((a,b) => parseInt(a.number) - parseInt(b.number)),FormEditRed.val,defaultVal,setdefaultVal,handleSave)
+      defaultVal&&MainObject.conftabs(SectionRed.val,GridRed.val,ColumnRed.val.sort((a,b) => parseInt(a.number) - parseInt(b.number)),WorkFlowEditRed.val,defaultVal,setdefaultVal,handleSave)
         //  MainObject.accordion(SectionRed.val,SubSectionRed.val,ColumnRed.val,[],width,defaultVal,setdefaultVal) 
   }
   {/* <span className='mx-5 my-2' style={{float:'right'}}>
@@ -192,4 +217,4 @@ const FormConf = () => {
   )
 }
 
-export default FormConf
+export default EditWorkFlowConf;

@@ -21,7 +21,7 @@ const TableStruc = ({getTableProps,getTableBodyProps,headerGroups,prepareRow,row
     // const [vrmPath,setVrmPath] = useState(gridData.gridId == 'GID-902' ? '/addTable' : '')
     const vrmPath = gridData.gridId == 'GID-902' ? '/addTable' : ''
 
-    const save = ['/viewTable','/report']
+    const save = ['/viewTable','/report','/editConfForm','/editWorkFlowConf','/editDataSource','/editReport','/confform']
     const add = ['/viewTable','/editTable','/report','/usereditTable','/userviewTable']
     const removeDupl = ['/viewTable','/editTable','/report','/usereditTable','/userviewTable','/useraddTable']
 
@@ -43,7 +43,12 @@ const TableStruc = ({getTableProps,getTableBodyProps,headerGroups,prepareRow,row
     </div>
     <div style={{display:'flex', flexDirection:'row', marginBottom:'1em'}}>
     {/* {(window.location.pathname.includes('report')) ? <ReportImpExp  gridData ={GridRed.val} columnData={ColumnRed.val} data={[]} /> : <></>} */}
-    {(gridData.gridId == 'GID-576')||(gridData.gridId == 'GID-641') ? MainObject.CrtButton({classNameVal:'btn btn-outline-success', widthVal:'', heightVal:'',btnName: <>{gridData.gridId == 'GID-576' ?<><i class="bi bi-plus-lg"></i> Create New Form</> : <><i class="bi bi-plus-lg"></i> Create New WorkFlow</>}</>,navForm: ''}, ()=>{funNavConf(gridData.gridId)}) : <></>}
+    {/* {(gridData.gridId == 'GID-576')||(gridData.gridId == 'GID-641') ? MainObject.CrtButton({classNameVal:'btn btn-outline-success', widthVal:'', heightVal:'',btnName: <>{gridData.gridId == 'GID-576' ?<><i class="bi bi-plus-lg"></i> Create New Form</> : <><i class="bi bi-plus-lg"></i> Create New WorkFlow</>}</>,navForm: ''}, 
+    ()=>{funNavConf(gridData.gridId)}
+    ) : <></>} */}
+    {(gridData.gridId == 'GID-576')||(gridData.gridId == 'GID-641')||(gridData.gridId == 'GID-924')||(gridData.gridId == 'GID-925') ? MainObject.CrtButton({classNameVal:'btn btn-outline-success', widthVal:'', heightVal:'',btnName: <>{gridData.gridId == 'GID-576' ?<><i class="bi bi-plus-lg"></i> Create New Form</> : <></>}{gridData.gridId == 'GID-641' ? <><i class="bi bi-plus-lg"></i> Create New WorkFlow</> : <></> }{gridData.gridId == 'GID-924' ?<><i class="bi bi-plus-lg"></i> Create Report</> : <></>}{gridData.gridId == 'GID-925' ?<><i class="bi bi-plus-lg"></i> Create Data Source</> : <></>}</>,navForm: ''}, 
+    ()=>{funNavConf(gridData.gridId)}
+    ) : <></>}
     {(gridData.gridId == 'GID-290') ? <><button className='btn btn-outline-info mx-2' title="Add" style={{display : (gridData.isMrow =='true'&& !add.includes(window.location.pathname)) || (window.location.pathname.includes('confform')&&gridData.isMrow =='true')  ? 'block' : 'none', }}
         // disabled={EmdRed == 'yes'}
         onClick={handleAddRow} disabled={userDisBtn}
@@ -74,7 +79,7 @@ const TableStruc = ({getTableProps,getTableBodyProps,headerGroups,prepareRow,row
         ><i class="bi bi-plus-lg"></i> Get Data </button>}
         {gridData.gridId == 'GID-902' ? <></> : <><Button variant='btn btn-outline-danger'  title="Remove" style={{display : (gridData.isMrow =='true'&& !removeDupl.includes(window.location.pathname)) || (window.location.pathname.includes('confform')&&gridData.isMrow =='true') ? 'block' : 'none'}} onClick={handleRemove}><i class="bi bi-trash"> </i></Button></>}
         {gridData.gridId == 'GID-902' ? <></> : <><Button variant='btn btn-outline-secondary' title="Duplicate" style={{display : (gridData.isMrow =='true'&& !removeDupl.includes(window.location.pathname)) || (window.location.pathname.includes('confform')&&gridData.isMrow =='true') ? 'block' : 'none'}} className='mx-2' onClick={handleCopy}><i class="bi bi-copy"> </i></Button></>}
-        {(gridData.isMain == 'true') || (window.location.pathname.includes('confform')) || (window.location.pathname.includes('confreport')) ? <button className='btn btn-outline-success' style={{width: '', height: '', display:window.location.pathname.includes('viewTable') ?'none' :'block' }} onClick={()=>{handleSave(gridData,setdata,data)}}><i title='Save' class="bi bi-floppy" ></i></button> : <></>}
+        {(gridData.isMain == 'true') || (save.includes(window.location.pathname)) || (window.location.pathname.includes('confreport')) ? <button className='btn btn-outline-success' style={{width: '', height: '', display:window.location.pathname.includes('viewTable') ?'none' :'block' }} onClick={()=>{handleSave(gridData,setdata,data)}}><i title='Save' class="bi bi-floppy" ></i></button> : <></>}
         {/* {(window.location.pathname.includes('report')) ? <><GlobalFilter filter={globalFilter} setfilter={setGlobalFilter}/></> : <></>} */}
   </div>
   </div>

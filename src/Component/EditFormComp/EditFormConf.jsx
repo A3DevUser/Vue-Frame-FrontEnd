@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { MainObject } from './Elements/commonFun';
+import { MainObject } from '../Elements/commonFun';
 // import FormTable from './FormTableDir/FormTable';
-import { FetchConfColumnData } from '../Store/Actions/ConfColumn'
-import { FetchConfGridData } from '../Store/Actions/ConfGridAct'
-import { FetchConfSectionData } from '../Store/Actions/ConfSection'
-import { FormConfData } from '../Store/Actions/SendConfData';
+import { FetchConfColumnData } from '../../Store/Actions/ConfColumn'
+import { FetchConfGridData } from '../../Store/Actions/ConfGridAct'
+import { FetchConfSectionData } from '../../Store/Actions/ConfSection'
+import { FormConfData } from '../../Store/Actions/SendConfData';
 import { useLocation, useNavigate } from 'react-router';
-import './CSS/FormConf.css'
+import '../CSS/FormConf.css'
 import { Alert } from 'react-bootstrap';
 import swal from 'sweetalert';
-import { FetchFormEditData } from '../Store/Actions/FormEditAct';
+import { FetchFormEditData } from '../../Store/Actions/FormEditAct';
 
 let AlertVal = {}
 export const AlertData = {
@@ -25,7 +25,7 @@ export const AlertData = {
 }
 
 
-const FormConf = () => {
+const EditFormConf = () => {
   // console.log('AterDataNew',AlertVal)
     const dispatch = useDispatch();
     const location = useLocation();
@@ -47,6 +47,21 @@ const FormConf = () => {
     function funSave() {
       // console.log('finalObj',Object.values(obj))
     }
+
+    // console.log('WorkFlowEditRed',SectionRed,GridRed,ColumnRed,FormIdRed,FormDatRed);
+    console.log('WorkFlowEditRed SectionRed ',SectionRed);
+    console.log('WorkFlowEditRed GridRed ',GridRed);
+    console.log('WorkFlowEditRed ColumnRed ',ColumnRed);
+    console.log('WorkFlowEditRed FormIdRed ',FormIdRed);
+    console.log('WorkFlowEditRed FormDatRed ',FormDatRed);
+    console.log('WorkFlowEditRed FormEditRed ',FormEditRed);
+
+    useEffect(()=>{
+      if(location.state !== null ){
+        console.log('WorkFlowEditRed location', location.state.formId)
+      }
+      // console.log('WorkFlowEditRed',WorkFlowEditRed.val);
+    },[FormEditRed])
 
     useEffect(()=>{
         dispatch(FetchConfSectionData(FormIdRed,AuthRed.val))
@@ -123,22 +138,24 @@ const FormConf = () => {
       //   dispatch(FormConfData(val.api,FormData,AuthRed.val))
       // }
       if (Object.keys(FormDatRed).includes(val.gridId)) {
-      const FormData = FormDatRed[val.gridId].map((res) => {
-        // if(location.state !== null && val.gridId == 'GID-005'){
-        //   const colGridId = GridRed.val.filter((fil) => { return fil.secId == 'S-002' })[0].gridId;
-        //   console.log('mainGrid Val',FormDatRed)
-        //   const formGridIdmain = FormDatRed[colGridId][0].gridId;
-        //   console.log('mainGrid Val if');
-        //   return { ...res, formId: location.state.formId, targetId: val.gridId, gridId: formGridIdmain }
-        // }else if (location.state !== null) {
-        //   console.log('mainGrid Val else',FormDatRed)
-        //   return { ...res, formId: location.state.formId, targetId: val.gridId }
-        // }
-          
-          return { ...res, ...SendConfDataRed.val, targetId: val.gridId }
 
+      const FormData = FormDatRed[val.gridId].map((res) => {
+
+        if(location.state !== null && val.gridId == 'GID-005'){
+          const colGridId = GridRed.val.filter((fil) => { return fil.secId == 'S-002' })[0].gridId;
+          console.log('mainGrid Val',FormDatRed)
+          const formGridIdmain = FormDatRed[colGridId][0].gridId;
+          console.log('mainGrid Val if');
+          return { ...res, formId: location.state.formId, targetId: val.gridId, gridId: formGridIdmain }
+        }else if (location.state !== null) {
+          console.log('mainGrid Val else',FormDatRed)
+          return { ...res, formId: location.state.formId, targetId: val.gridId }
+        } else {
+          alert('inside EditForm')
+          // return { ...res, ...SendConfDataRed.val, targetId: val.gridId }
+        }
       })
-      console.log('insideFormConf',FormData)
+      // console.log('FormDataNewVal',JSON.stringify(FormData))
       dispatch(FormConfData(val.api, FormData, AuthRed.val))
     }
 
@@ -160,6 +177,8 @@ const FormConf = () => {
         //   // console.log('Save Grid',secApi)
         // }
     }
+
+    console.log('EditWorkFlow', FormEditRed.val)
 
 
   return (
@@ -192,4 +211,4 @@ const FormConf = () => {
   )
 }
 
-export default FormConf
+export default EditFormConf;
