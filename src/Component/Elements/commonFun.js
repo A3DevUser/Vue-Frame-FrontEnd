@@ -1,7 +1,7 @@
 import { Accordion,Modal,Spinner,Button,Badge, Alert } from "react-bootstrap"
 import FormTable from "../FormTableDir/FormTable"
 import ModalButton from "../ModalButton"
-import  {ModalCompo, SimpleModalCompo } from "../ModalCompo"
+import  {ModalCompo, MultiModalCompo, SimpleModalCompo } from "../ModalCompo"
 import TabsBar from "../Tabs"
 import './CommonFunc.css'
 import ConfTabsBar from "../../Component/ConfTabs"
@@ -155,6 +155,8 @@ export const MainObject = {
 
     CrtLink : (path,formId,lable) => {
         return <Link to={{pathname : path}} state={{formId : formId}} >{lable}</Link>
-    }
+    },
+
+    MultiModalCompo : (title,bodyDetails,show,setshow,showFunc,multiData,columns) =>{return <MultiModalCompo title={title} bodyDetails={bodyDetails} show={show} setshow={setshow} showFunc={showFunc} multiData={multiData} columns={columns}/>},
 
 } 

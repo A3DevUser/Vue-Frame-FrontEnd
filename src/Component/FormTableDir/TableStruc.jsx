@@ -1,6 +1,6 @@
 import { MainObject } from '../../Component/Elements/commonFun'
 import React, { useEffect, useState } from 'react'
-import { Button, Tooltip } from 'react-bootstrap'
+import { Button, Dropdown, DropdownButton, Tooltip } from 'react-bootstrap'
 import TableCell from './TableCell'
 import { useSelector } from 'react-redux'
 import ReportImpExp from '../ReportExp/ReportImpExp'
@@ -8,7 +8,7 @@ import ReportImpExp from '../ReportExp/ReportImpExp'
 import GlobalFilter from './GlobalFilter'
 
 
-const TableStruc = ({getTableProps,getTableBodyProps,headerGroups,prepareRow,rows,gridData,handleAddRow,handleSave,handleRemove,handleCopy,previousPage,canPreviousPage,nextPage,canNextPage,pageOptions,state,pageCount,gotoPage,setGlobalFilter,hide,funNavConf,disBtn,setdata,data,userDisBtn}) => {
+const TableStruc = ({getTableProps,getTableBodyProps,headerGroups,prepareRow,rows,gridData,handleAddRow,handleSave,handleRemove,handleCopy,previousPage,canPreviousPage,nextPage,canNextPage,pageOptions,state,pageCount,gotoPage,setGlobalFilter,hide,funNavConf,disBtn,setdata,data,userDisBtn,funMultiRows}) => {
 // console.log('pageNewDataRows',rows)
     const EmdRed = useSelector((state)=>state.EmdRed)
     const ColumnRed = useSelector((state) => state.ColumnRed)
@@ -25,9 +25,15 @@ const TableStruc = ({getTableProps,getTableBodyProps,headerGroups,prepareRow,row
     const add = ['/viewTable','/editTable','/report','/usereditTable','/userviewTable']
     const removeDupl = ['/viewTable','/editTable','/report','/usereditTable','/userviewTable','/useraddTable']
 
+    // const [show,setshow] = useState(false)
+
     useEffect(() => {
         console.log('pageNewDataRows',rows)
     },[rows])
+
+    // function funMultiRows() {
+    //     setshow(!show)
+    // }
 
   return (
     <div>
@@ -37,9 +43,7 @@ const TableStruc = ({getTableProps,getTableBodyProps,headerGroups,prepareRow,row
     </div>
     <div style={{display:'flex', flexDirection:'row', marginBottom:'1em'}}>
     {/* {(window.location.pathname.includes('report')) ? <ReportImpExp  gridData ={GridRed.val} columnData={ColumnRed.val} data={[]} /> : <></>} */}
-    {(gridData.gridId == 'GID-576')||(gridData.gridId == 'GID-641') ? MainObject.CrtButton({classNameVal:'btn btn-outline-success', widthVal:'', heightVal:'',btnName: <>{gridData.gridId == 'GID-576' ?<><i class="bi bi-plus-lg"></i> Create New Form</> : <><i class="bi bi-plus-lg"></i> Create New WorkFlow</>}</>,navForm: ''}, 
-    ()=>{funNavConf(gridData.gridId)}
-    ) : <></>}
+    {(gridData.gridId == 'GID-576')||(gridData.gridId == 'GID-641') ? MainObject.CrtButton({classNameVal:'btn btn-outline-success', widthVal:'', heightVal:'',btnName: <>{gridData.gridId == 'GID-576' ?<><i class="bi bi-plus-lg"></i> Create New Form</> : <><i class="bi bi-plus-lg"></i> Create New WorkFlow</>}</>,navForm: ''}, ()=>{funNavConf(gridData.gridId)}) : <></>}
     {(gridData.gridId == 'GID-290') ? <><button className='btn btn-outline-info mx-2' title="Add" style={{display : (gridData.isMrow =='true'&& !add.includes(window.location.pathname)) || (window.location.pathname.includes('confform')&&gridData.isMrow =='true')  ? 'block' : 'none', }}
         // disabled={EmdRed == 'yes'}
         onClick={handleAddRow} disabled={userDisBtn}
@@ -47,10 +51,20 @@ const TableStruc = ({getTableProps,getTableBodyProps,headerGroups,prepareRow,row
         {(gridData.gridId == 'GID-902') ? <><button className='btn btn-outline-info mx-2' title="Add" style={{display : (gridData.isMrow =='true'&& !add.includes(window.location.pathname)) || (window.location.pathname.includes('confform')&&gridData.isMrow =='true')  ? 'block' : 'none', }}
         // disabled={EmdRed == 'yes'}
         onClick={handleAddRow} disabled={disBtn}
-        ><i class="bi bi-plus-lg"></i> </button></> : ((gridData.gridId != 'GID-290') ? <><button className='btn btn-outline-info mx-2' title="Add" style={{display : (gridData.isMrow =='true'&& !add.includes(window.location.pathname)) || (window.location.pathname.includes('confform')&&gridData.isMrow =='true')  ? 'block' : 'none', }}
+        ><i class="bi bi-plus-lg"></i> </button></> : <></>}
+        { gridData.isMultiSelect == 'true' ? <>
+        <div className='dropdown mx-2'>
+            <DropdownButton title={<i class="bi bi-pen"></i>} position='left'>
+                <Dropdown.Item onClick={()=>{handleAddRow()}}><i class="bi bi-plus-lg"></i> Add Single Row</Dropdown.Item>
+                <Dropdown.Item onClick={()=>{funMultiRows()}}><i class="bi bi-grid"></i> Add Detailed Rows</Dropdown.Item>
+            </DropdownButton>
+        </div>
+        </>
+        : <>        
+        <button className='btn btn-outline-info mx-2' title="Add" style={{display : (gridData.isMrow =='true'&& !add.includes(window.location.pathname)) || (window.location.pathname.includes('confform')&&gridData.isMrow =='true')  ? 'block' : 'none', }}
         // disabled={EmdRed == 'yes'}
-        onClick={handleAddRow}
-        ><i class="bi bi-plus-lg"></i> </button></> : <></>)}
+        onClick={handleAddRow}><i class="bi bi-plus-lg"></i> </button>
+        </>}
         {!hide ? <button className='btn btn-success mx-2' style={{display : (window.location.pathname.includes('confreport')&&gridData.isMrow =='getdata') ? 'block' : 'none'}}
         // disabled={EmdRed == 'yes'}
         onClick={handleAddRow}

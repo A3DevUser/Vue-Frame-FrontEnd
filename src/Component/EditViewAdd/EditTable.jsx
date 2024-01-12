@@ -42,11 +42,11 @@ const EditTable = () => {
     dispatch(FormIdAct(location.state.formId))
     },[location])
 
-    useEffect(()=>{
-      if(!FormExcelPostRed.loading){
-        dispatch(FetchGetData(location.state.formId,AuthRed.val,UserDataStateRed,location.state.daysFlag))
-      }
-    },[FormExcelPostRed])
+    // useEffect(()=>{
+    //   if(!FormExcelPostRed.loading){
+    //     dispatch(FetchGetData(location.state.formId,AuthRed.val,UserDataStateRed,location.state.daysFlag))
+    //   }
+    // },[FormExcelPostRed])
 
 
     const handleSave = (gridData,setdata) =>{
@@ -79,8 +79,8 @@ const EditTable = () => {
 
       useEffect(() => {
         console.log('LoadersCheck Grid',GridRed.loading)
-        console.log('LoadersCheck Data Rows',GetDataRed.loading)
-        console.log('LoadersCheck Grid Columns',ColumnEditActRed.loading)
+        console.log('LoadersCheck Data Rows',JSON.stringify(GetDataRed.val))
+        console.log('LoadersCheck Grid Columns',JSON.stringify(ColumnEditActRed.val))
       },[GridRed,GetDataRed,ColumnEditActRed])
 
   return (

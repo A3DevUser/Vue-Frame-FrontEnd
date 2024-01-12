@@ -342,6 +342,12 @@ const FormTable = ({col,dData,gridData,handleSave,funNavConf,disBtn,setDisBtn}) 
           ...columns]
         })
       })
+
+    const [show,setshow] = useState(false)
+
+    function funMultiRows() {
+      setshow(!show)
+    }
   
   const {getTableProps,getTableBodyProps,headerGroups,prepareRow,page,selectedFlatRows,previousPage,canPreviousPage,nextPage,canNextPage,pageOptions,state,gotoPage,pageCount,setGlobalFilter} = tableInstance
 
@@ -366,7 +372,8 @@ const FormTable = ({col,dData,gridData,handleSave,funNavConf,disBtn,setDisBtn}) 
   </div>
                 </div> */}
           </div>
-        <TableStruc getTableBodyProps={getTableBodyProps} getTableProps={getTableProps}  headerGroups={headerGroups} prepareRow={prepareRow} rows={page} handleSave={handleSave} handleAddRow={handleAddRow} gridData={gridData} handleRemove={handleRemove} handleCopy={handleCopy} previousPage={previousPage} canPreviousPage={canPreviousPage} nextPage={nextPage} canNextPage={canNextPage} pageOptions={pageOptions} state={state} gotoPage={gotoPage} pageCount={pageCount} setGlobalFilter={setGlobalFilter} hide={hide} funNavConf={funNavConf} disBtn={disBtn} setdata={setdata} data={data} userDisBtn={userDisBtn}/>
+          {MainObject.MultiModalCompo('MultiRow Details','',show,setshow,funMultiRows,setdata,columns)}
+        <TableStruc getTableBodyProps={getTableBodyProps} getTableProps={getTableProps}  headerGroups={headerGroups} prepareRow={prepareRow} rows={page} handleSave={handleSave} handleAddRow={handleAddRow} gridData={gridData} handleRemove={handleRemove} handleCopy={handleCopy} previousPage={previousPage} canPreviousPage={canPreviousPage} nextPage={nextPage} canNextPage={canNextPage} pageOptions={pageOptions} state={state} gotoPage={gotoPage} pageCount={pageCount} setGlobalFilter={setGlobalFilter} hide={hide} funNavConf={funNavConf} disBtn={disBtn} setdata={setdata} data={data} userDisBtn={userDisBtn} funMultiRows={funMultiRows} />
         </Styles>
     </div>
   )
