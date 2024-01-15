@@ -42,7 +42,7 @@ const FormTable = ({col,dData,gridData,handleSave,funNavConf,disBtn,setDisBtn}) 
 
 
     useEffect(()=>{
-      if(EmdRed=='add'&&window.location.pathname.includes('Table')){
+      if(EmdRed=='add'&&window.location.pathname.includes('editTable')){
         if(Object.keys(FormDatRed).includes(gridData.gridId)){
           if(gridData.isMain=='true'){
             setdata([...FormDatRed[gridData.gridId]])
@@ -68,11 +68,17 @@ const FormTable = ({col,dData,gridData,handleSave,funNavConf,disBtn,setDisBtn}) 
         }else{
           let dataObj = {}
           col.filter((fil)=>{return fil.gridId == gridData.gridId}).forEach((fe)=>{dataObj[fe.accessor]=''})
-          setdata([])
         }
       }
+ 
     },[gridData])
 
+    // useEffect(()=>{
+    //   if(window.location.pathname=='addTable'){
+    //     alert('add')
+    //     setdata([])
+    //   }
+    // },[FormIdRed])
 
     // const mySelRowState = useSelector((state)=>state.selectedRowState)
     // const AreaSchemeDateSetRed = useSelector((state)=>state.AreaSchemeDateSetRed)
@@ -209,7 +215,7 @@ const FormTable = ({col,dData,gridData,handleSave,funNavConf,disBtn,setDisBtn}) 
               dispatch(FormDataAct({...FormDatRed,[gridData.gridId] : {...FormDatRed[gridData.gridId],
                 [MainObjIdRed] : data.map((res)=>{return {...res,GRID_ID:gridData.gridId, formId :FormIdRed }})}
             }) )  
-            }else{
+            }else if(window.location.pathname !=='addTable'){
               dispatch(FormDataAct({...FormDatRed,[gridData.gridId] : data.map((res)=>{return {...res,GRID_ID:gridData.gridId, formId :FormIdRed }})}) ) 
             }
           }
@@ -324,6 +330,9 @@ const FormTable = ({col,dData,gridData,handleSave,funNavConf,disBtn,setDisBtn}) 
       const tableInstance = useTable({
           columns,
           data,
+          autoResetPage: false,
+          autoResetFilters: false,
+          autoResetSortBy: false,
           initialState
           
       },useBlockLayout,useGlobalFilter,usePagination,useResizeColumns,useSticky,useRowSelect,(hooks)=>{

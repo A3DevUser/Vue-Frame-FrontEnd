@@ -57,9 +57,11 @@ const ConfEdit = () => {
 
       const funNavConf = (gridIdVal) => {
           if(gridIdVal == FormConfig){
+            sessionStorage.setItem('formId','FORM-105')
               dispatch(FormIdAct('FORM-105'))
               navigate('/confform')
           }else if(gridIdVal == WorkFlowConfig){
+            sessionStorage.setItem('formId','FORM-106')
               dispatch(FormIdAct('FORM-106'))
               navigate('/confform')
           }

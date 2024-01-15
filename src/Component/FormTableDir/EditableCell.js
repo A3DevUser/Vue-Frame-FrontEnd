@@ -593,6 +593,7 @@ const ImportGridRed = useSelector((state)=>state.ImportGridRed)
 
 
     const onChange = e => {
+      sessionStorage.setItem('formId',e.target.value)
       setValue(e.target.value)
       dispatch(FetchImportColumnData(e.target.value,AuthRed.val))
       dispatch(FetchImportGridData(e.target.value,AuthRed.val))

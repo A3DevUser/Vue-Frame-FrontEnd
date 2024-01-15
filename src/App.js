@@ -1,5 +1,5 @@
 import { MainObject } from './Component/Elements/commonFun'
-import React, { lazy, useState } from 'react'
+import React, { lazy, useEffect, useState } from 'react'
 import { Route, Routes } from 'react-router'
 import MultiDropDown from './Component/Elements/MultiDropDown'
 import Form from './Component/Form'
@@ -10,7 +10,7 @@ import FormConf from './Component/FormConf'
 import Home from './Component/LogInDirectory/Home'
 import ProtectedRoutes from './Component/LogInDirectory/ProtectedRoutes'
 import LogInPage from './Component/LogInDirectory/LogInPage'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import AddTable from './Component/EditViewAdd/AddTable'
 import EditTable from './Component/EditViewAdd/EditTable'
 import ViewTable from './Component/EditViewAdd/ViewTable'
@@ -31,8 +31,11 @@ import PendencyDashboard from './Component/PendencyDashboard/PendencyDashboard'
 import Partysheet from './Component/A3dir/Partysheet/Partysheet'
 import A3HomeSheet from './Component/A3dir/A3HomeSheet'
 import HomePartySheet from './Component/A3dir/Partysheet/HomePartySheet'
+import { AuthSucess } from './Store/Actions/Authentication'
+import { EmdAct, FormIdAct, UserDataState } from './Store/Actions/GeneralStates'
 
 const App = () => {
+  const dispatch = useDispatch()
 
   const [show, setshow] = useState(false)
   const [validate, setValidate] = useState(false);
@@ -48,6 +51,13 @@ const App = () => {
   //     alert('hello world')
   //   }`
   // )
+
+  useEffect(()=>{
+    dispatch(AuthSucess(sessionStorage.getItem('userData')))
+    dispatch(FormIdAct(sessionStorage.getItem('formId')))
+    dispatch(EmdAct(sessionStorage.getItem('emd')))
+    dispatch(UserDataState(sessionStorage.getItem('userName')))
+  },[])
 
 
   return (
