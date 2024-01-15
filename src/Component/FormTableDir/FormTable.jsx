@@ -230,6 +230,14 @@ const FormTable = ({ col, dData, gridData, handleSave, funNavConf, disBtn, setDi
         })
       })
     }
+
+    if (gridData.gridId == 'GID-902'){
+      setDisBtn(false)              
+    }
+    if (gridData.gridId == 'GID-290'){
+      setUserDisBtn(false)
+    }
+    
   }                                           //Tez
 
 
@@ -394,7 +402,7 @@ const FormTable = ({ col, dData, gridData, handleSave, funNavConf, disBtn, setDi
 
   useEffect(() => {
     if (data.length > 0 && !SendObjectIdRed.loading) {
-      console.log('opData', SendObjectIdRed.val.rowId)
+      console.log('SendObjectIdRed', SendObjectIdRed.val.rowId,data)
       if (data[SendObjectIdRed.val.rowId]['VF_MAIN_OBJ_ID'].length == 0) {
         setdata(old =>
           old.map((row, index) => {

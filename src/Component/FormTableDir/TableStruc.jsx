@@ -65,7 +65,7 @@ const TableStruc = ({getTableProps,getTableBodyProps,headerGroups,prepareRow,row
             </DropdownButton>
         </div>
         </>
-        : <>        
+        : gridData.isMrow == 'false' ? <></> : <>        
         <button className='btn btn-outline-info mx-2' title="Add" style={{display : (gridData.isMrow =='true'&& !add.includes(window.location.pathname)) || (window.location.pathname.includes('confform')&&gridData.isMrow =='true')  ? 'block' : 'none', }}
         // disabled={EmdRed == 'yes'}
         onClick={handleAddRow}><i class="bi bi-plus-lg"></i> </button>
