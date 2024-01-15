@@ -80,7 +80,8 @@ const ReportConf = () => {
             </div>
         <div style={{flex: '95%',height:'89vh'}} data-spy="scroll" data-target='sectionNavbar' className='bg-light'>
         {
-            SectionRed.loading ? MainObject.loader() : GridRed.loading ? MainObject.loader() : ColumnRed.loading ? MainObject.loader() : FormEditRed.loading ? MainObject.loader() : defaultVal&&MainObject.conftabs(SectionRed.val,GridRed.val,ColumnRed.val.sort((a,b) => parseInt(a.number) - parseInt(b.number)),FormEditRed.val,defaultVal,setdefaultVal,handleSave)
+            SectionRed.loading ? MainObject.loader() : GridRed.loading ? MainObject.loader() : ColumnRed.loading ? MainObject.loader() : FormEditRed.loading ? MainObject.loader() : 
+            defaultVal&&MainObject.conftabs(SectionRed.val,GridRed.val,ColumnRed.val.sort((a,b) => parseInt(a.number) - parseInt(b.number)),FormEditRed.val,defaultVal,setdefaultVal,handleSave)
         }
         </div>
         </div>
