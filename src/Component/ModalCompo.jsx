@@ -88,12 +88,12 @@ export const MultiModalCompo = ({ title, bodyDetails, show, setshow, showFunc, m
   
   }
 
-  useEffect(() => {
-    multiData((old) => {
-      return rowData
-    })
-    setFlag(false)
-  },[rowData])
+  // useEffect(() => {
+  //   multiData((old) => {
+  //     return rowData
+  //   })
+  //   setFlag(false)
+  // },[rowData])
 
   // useEffect(() => {
   //   setRowData(newRowData)
