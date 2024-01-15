@@ -118,7 +118,7 @@ const FormTable = ({ col, dData, gridData, handleSave, funNavConf, disBtn, setDi
     )
   }
 
-  // const addAndDeleteRow = (index,obj,action) => {   ---old Add Delete Row
+  // const addAndDeleteRow = (index,obj,action) => {   ---old Add Delete Row Tez
 
   //   if(action=='add' || action == 'Useradd'){
   //   // setdata((old)=>{
@@ -157,7 +157,7 @@ const FormTable = ({ col, dData, gridData, handleSave, funNavConf, disBtn, setDi
   //   }
   // }
 
-  const addAndDeleteRow = (index, obj, action) => {
+  const addAndDeleteRow = (index, obj, action) => {      //Tez
     if (action == 'add' || action == 'Useradd') {
       // setdata((old)=>{
       //   return old.map((res,i)=>{
@@ -230,7 +230,7 @@ const FormTable = ({ col, dData, gridData, handleSave, funNavConf, disBtn, setDi
         })
       })
     }
-  }
+  }                                           //Tez
 
 
   const handleOnfocus = (fid, gid, cid, rData, oData, rowInd) => {
@@ -279,8 +279,8 @@ const FormTable = ({ col, dData, gridData, handleSave, funNavConf, disBtn, setDi
   // useEffect(()=>{
   //   console.log('FormDatRed',FormDatRed)
   // },[FormDatRed])
-
-  useEffect(() => {
+ 
+  useEffect(() => {                                                 //Tez
     // console.log('opData',{...FormDatRed,[gridData.gridId] : data})
     if (window.location.pathname == '/confform') {
       console.log('FormTable confform', { ...FormDatRed, [gridData.gridId]: data });
@@ -317,7 +317,7 @@ const FormTable = ({ col, dData, gridData, handleSave, funNavConf, disBtn, setDi
       } else {
         dispatch(FormDataAct({ ...FormDatRed, [gridData.gridId]: data.map((res) => { return { ...res, GRID_ID: gridData.gridId, formId: FormIdRed } }) }))
       }
-    }
+    }     //Tez
 
     //   if(data.length > 0){
     //   setfinalArr((old)=>{
