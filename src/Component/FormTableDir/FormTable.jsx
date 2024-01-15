@@ -449,11 +449,11 @@ const FormTable = ({ col, dData, gridData, handleSave, funNavConf, disBtn, setDi
     })
   })
 
-  const [show,setshow] = useState(false)
+      const [show,setshow] = useState(false)
 
-  function funMultiRows() {
-    setshow(!show)
-  }
+    function funMultiRows() {
+      setshow(!show)
+    }
 
   const { getTableProps, getTableBodyProps, headerGroups, prepareRow, page, selectedFlatRows, previousPage, canPreviousPage, nextPage, canNextPage, pageOptions, state, gotoPage, pageCount, setGlobalFilter } = tableInstance
 

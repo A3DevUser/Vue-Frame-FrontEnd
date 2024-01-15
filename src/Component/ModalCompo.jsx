@@ -68,8 +68,8 @@ export const MultiModalCompo = ({ title, bodyDetails, show, setshow, showFunc, m
 
   let newRowData = [{"Cost_Code":"TEXT_C01","Cost_Code_Name":"TEXT_C01","Department_Name":"","Process":"","VF_OBJ_ID":"","VF_STATUS":"","VF_ACTION":"","VF_STAGE":"","VF_PROCESS_INSTANCE_ID":"","VF_INSTANCE_ID":"","VF_GRID_ID":"","VF_CREATED_BY":"","VF_CREATED_ON":"","VF_MODIFIED_BY":"","VF_MODIFIED_ON":"","VF_ORGANISATION_ID":"","VF_NEXT_ROLE":"","VF_MAIN_OBJ_ID":"","VF_CURRENT_USER":"","VF_ROLE":"","remove":""},{"Cost_Code":"TEXT_C02","Cost_Code_Name":"TEXT_C02","Department_Name":"","Process":"","VF_OBJ_ID":"","VF_STATUS":"","VF_ACTION":"","VF_STAGE":"","VF_PROCESS_INSTANCE_ID":"","VF_INSTANCE_ID":"","VF_GRID_ID":"","VF_CREATED_BY":"","VF_CREATED_ON":"","VF_MODIFIED_BY":"","VF_MODIFIED_ON":"","VF_ORGANISATION_ID":"","VF_NEXT_ROLE":"","VF_MAIN_OBJ_ID":"","VF_CURRENT_USER":"","VF_ROLE":"","remove":""}]
 
-  const [rowData,setRowData] = useState(newRowData)
-  // const [flag,setFlag] = useState(true)
+  const [rowData,setRowData] = useState()
+  const [flag,setFlag] = useState(true)
 
   const handleMultiAdd = (selectedFlatRows) => {
     
@@ -79,7 +79,7 @@ export const MultiModalCompo = ({ title, bodyDetails, show, setshow, showFunc, m
     columns.forEach((res)=> {return obj[res.accessor]=''})
   
     setRowData(old =>{
-      return old.filter((fil,i)=>{
+      return newRowData.filter((fil,i)=>{
         return selectedFlatRows.some(row=> i==row.id)
       })
     })
@@ -88,12 +88,12 @@ export const MultiModalCompo = ({ title, bodyDetails, show, setshow, showFunc, m
   
   }
 
-  // useEffect(() => {
-  //   multiData((old) => {
-  //     return rowData
-  //   })
-  //   setFlag(false)
-  // },[rowData])
+  useEffect(() => {
+    multiData((old) => {
+      return rowData
+    })
+    setFlag(false)
+  },[rowData])
 
   // useEffect(() => {
   //   setRowData(newRowData)
