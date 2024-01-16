@@ -179,7 +179,8 @@ export const EditableCell = ({
     },[])
 
   return <select name={id} value={value} onFocus={()=>{handleOnfocus(parentId.formIdVal,parentId.gridIdVal,parentId.colIdVal,parentId.json.original,DropValRed.val,index)}} onChange={onChange} onBlur={onBlur} className='form-control' style={{width:colObj.width,height:'7vh', border:'none'}} disabled={rowObj.original.isDisable}>
-    {value != null&&window.location.pathname == '/editTable' ? <><option value={dropdownArray[0]}>{dropdownArray[1]}</option></> : <><option value="">Select One</option></>}
+    {value != null&&window.location.pathname == '/editTable' ? <><option value={dropdownArray[0]}>{dropdownArray[1]}</option></> : value != null&&window.location.pathname == '/editConfForm' ? <><option value={dropdownArray[0]}>{dropdownArray[1]}</option></> : value != null&&window.location.pathname == '/editWorkFlowConf' ? <><option value={dropdownArray[0]}>{dropdownArray[1]}</option></> : value != null&&window.location.pathname == '/editDataSource' ? <><option value={dropdownArray[0]}>{dropdownArray[1]}</option></> : value != null&&window.location.pathname == '/editReport' ? <><option value={dropdownArray[0]}>{dropdownArray[1]}</option></> : <><option value="">Select One</option></>}
+    {/* {value != null&&window.location.pathname == ('/editConfForm') ? <><option value={dropdownArray[0]}>{dropdownArray[1]}</option></> : <><option value="">Select One</option></>} */}
       {/* <option value="">Select One</option> */}
       {
        DropValRed.loading ? <option>loading...</option> : 
@@ -557,17 +558,35 @@ const ImportGridRed = useSelector((state)=>state.ImportGridRed)
 
     const dispatch = useDispatch()
     
-    const handleClick = () =>{
-      if(gridIdVal == 'GID-576'){
-          dispatch(FormIdAct('FORM-105'))
-      }else if(gridIdVal == 'GID-641'){
-          dispatch(FormIdAct('FORM-106'))
-      }else{
-        // console.log('FormDataNewVal',gridIdVal)        
-      }
+    // const handleClick = () =>{
+    //   if(gridIdVal == 'GID-576'){
+    //       dispatch(FormIdAct('FORM-105'))
+    //   }else if(gridIdVal == 'GID-641'){
+    //       dispatch(FormIdAct('FORM-106'))
+    //   }else{
+    //     // console.log('FormDataNewVal',gridIdVal)        
+    //   }
 
+    // }
+    const handleClick = () =>{
+      if (gridIdVal == 'GID-576') {
+        sessionStorage.setItem('formId','FORM-105')
+        dispatch(FormIdAct('FORM-105'))
+      } else if (gridIdVal == 'GID-641') {
+        sessionStorage.setItem('formId','FORM-106')
+        dispatch(FormIdAct('FORM-106'))
+      } else if (gridIdVal == 'GID-924') {
+        sessionStorage.setItem('formId','FORM-203')
+        dispatch(FormIdAct('FORM-203'))
+        // console.log('FormDataNewVal',gridIdVal)        
+      }else if(gridIdVal == 'GID-925'){
+        sessionStorage.setItem('formId','FORM-202')
+        dispatch(FormIdAct('FORM-202'))
+      }else{
+        // console.log('empty');
+      }
     }
-    console.log('FormDataNewVal',rowObj)
+    console.log('FormDataNewVal',{formId : rowObj.original.form_id},path)
     return <Link to={{pathname : path}} state={{formId : rowObj.original.form_id}} onClick={handleClick}  >{lable}</Link>
   }
 
@@ -593,7 +612,6 @@ const ImportGridRed = useSelector((state)=>state.ImportGridRed)
 
 
     const onChange = e => {
-      sessionStorage.setItem('formId',e.target.value)
       setValue(e.target.value)
       dispatch(FetchImportColumnData(e.target.value,AuthRed.val))
       dispatch(FetchImportGridData(e.target.value,AuthRed.val))

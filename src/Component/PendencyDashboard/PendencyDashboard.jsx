@@ -36,7 +36,7 @@ const PendencyDashboard = () => {
 
     // let pendencyData = [{"Assigment_Name":"Vendor Contact","Zero_Three":"1","Four_Six":"5","Seven_Nine":"2","Above_Ten":"0"},{"Assigment_Name":"Cost Code","Zero_Three":"0","Four_Six":"0","Seven_Nine":"0","Above_Ten":"11"},{"Assigment_Name":"Activity Master","Zero_Three":"0","Four_Six":"0","Seven_Nine":"0","Above_Ten":"0"},{"Assigment_Name":"Vendor On Boarding","Zero_Three":"0","Four_Six":"0","Seven_Nine":"11","Above_Ten":"11"}]
 
-    console.log('PendencyDataRed',PendencyColRed.val)
+    console.log('PendencyDataRed',JSON.stringify(PendencyDataRed.val))
 
   return (<>{
     PendencyColRed.loading ? MainObject.loader() : PendencyDataRed.loading ? MainObject.loader() :

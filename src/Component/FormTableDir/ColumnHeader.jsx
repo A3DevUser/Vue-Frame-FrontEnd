@@ -119,7 +119,9 @@ export const ColumnHeader = (colData, updateMyData, dropDown, addAndDeleteRow, g
         accessor: res.accessor,
         Cell : ({cell})=>{
           // console.log('cell.row',cell.row)
-          return<EditableLink lable={gridIdVal== 'GID-576' ? 'Edit Form' : 'Edit WorkFlow'} to={'/confform'} rowObj={cell.row} gridIdVal={gridIdVal} />
+          // return<EditableLink lable={gridIdVal== 'GID-576' ? 'Edit Form' : 'Edit WorkFlow'} to={'/confform'} rowObj={cell.row} gridIdVal={gridIdVal} />
+          return <EditableLink lable={(gridIdVal == 'GID-576') || (gridIdVal == 'GID-641') || (gridIdVal == 'GID-924') || (gridIdVal == 'GID-925') ? (gridIdVal == 'GID-576' ? 'Edit Form' : (gridIdVal == 'GID-641' ? 'Edit WorkFlow' : (gridIdVal == 'GID-924' ? 'Edit Report' : (gridIdVal == 'GID-925' ? 'Edit Data Source' : <></>)))) : <></>} 
+          to={(gridIdVal == 'GID-576') || (gridIdVal == 'GID-641') || (gridIdVal == 'GID-924') || (gridIdVal == 'GID-925') ? (gridIdVal == 'GID-576' ? '/editConfForm' : (gridIdVal == 'GID-641' ? '/editWorkFlowConf' : (gridIdVal == 'GID-924' ? '/editReport' : (gridIdVal == 'GID-925' ? '/editDataSource' : <></>)))) : <></>} rowObj={cell.row} gridIdVal={gridIdVal} />
         },
         width: res.width,
         sticky: res.sticky

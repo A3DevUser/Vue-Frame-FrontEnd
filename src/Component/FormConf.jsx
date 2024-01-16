@@ -49,10 +49,16 @@ const FormConf = () => {
     }
 
     useEffect(()=>{
+      if(location.state){
+        sessionStorage.setItem('formId1',location.state.formId)
+      }
+    },[location])
+
+    useEffect(()=>{
         dispatch(FetchConfSectionData(FormIdRed,AuthRed.val))
         dispatch(FetchConfGridData(FormIdRed,AuthRed.val))
         dispatch(FetchConfColumnData(FormIdRed,AuthRed.val))
-        dispatch(FetchFormEditData(location.state !== null ? location.state.formId : '' ,AuthRed.val))
+        dispatch(FetchFormEditData(location.state !== null ? location.state.formId : sessionStorage.getItem('formId1')  ,AuthRed.val))
     },[FormIdRed])
 
     // console.log('FormIdRed',SectionRed);
@@ -115,13 +121,32 @@ const FormConf = () => {
     //   }
 
 
-      if(Object.keys(FormDatRed).includes(val.gridId)){
-        // console.log('Submit Report Conf',FormDatRed)
-        // console.log('mainGrid Val',val.gridId)
-        const FormData = FormDatRed[val.gridId].map((res) => {return {...res, ...SendConfDataRed.val, targetId: val.gridId}})
-        // console.log('FormDataNewVal',JSON.stringify(FormData))
-        dispatch(FormConfData(val.api,FormData,AuthRed.val))
-      }
+      // if(Object.keys(FormDatRed).includes(val.gridId)){
+      //   // console.log('Submit Report Conf',FormDatRed)
+      //   // console.log('mainGrid Val',val.gridId)
+      //   const FormData = FormDatRed[val.gridId].map((res) => {return {...res, ...SendConfDataRed.val, targetId: val.gridId}})
+      //   // console.log('FormDataNewVal',JSON.stringify(FormData))
+      //   dispatch(FormConfData(val.api,FormData,AuthRed.val))
+      // }
+      if (Object.keys(FormDatRed).includes(val.gridId)) {
+      const FormData = FormDatRed[val.gridId].map((res) => {
+        // if(location.state !== null && val.gridId == 'GID-005'){
+        //   const colGridId = GridRed.val.filter((fil) => { return fil.secId == 'S-002' })[0].gridId;
+        //   console.log('mainGrid Val',FormDatRed)
+        //   const formGridIdmain = FormDatRed[colGridId][0].gridId;
+        //   console.log('mainGrid Val if');
+        //   return { ...res, formId: location.state.formId, targetId: val.gridId, gridId: formGridIdmain }
+        // }else if (location.state !== null) {
+        //   console.log('mainGrid Val else',FormDatRed)
+        //   return { ...res, formId: location.state.formId, targetId: val.gridId }
+        // }
+          
+          return { ...res, ...SendConfDataRed.val, targetId: val.gridId }
+
+      })
+      console.log('insideFormConf',FormData)
+      dispatch(FormConfData(val.api, FormData, AuthRed.val))
+    }
 
 
 
