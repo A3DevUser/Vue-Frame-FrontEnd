@@ -22,15 +22,16 @@ const ExportError = (val) =>{
     }
 }
 
-export const PostExportData = (data,token) =>{
+export const PostExportData = (userId,data,token) =>{
     const headers = {
         'Content-Type': 'application/json', 
         'Authorization': `Bearer ${token}` , 
       };
     return(dispatch)=>{
         dispatch(ExportReq())
-        axios.post(`http://localhost:8080/VF/importExportAddData`,data,{headers})
+        axios.post(`http://localhost:8080/VF/importExportAddData?currLoggedInUser=${userId}`,data,{headers})
         .then((res)=>{
+            console.log('inside Export data ACT', res.data);
             dispatch(ExportSuccess(res.data))
             return swal({
                 title :'Alert',
