@@ -44,7 +44,6 @@ export const PostExportData = (data,token) =>{
                 title :'Alert',
                 text : err,
                 icon: "warning",
-                dangerMode: true
             })
         })
     }

@@ -46,8 +46,15 @@ function ExcelReader({columnData, gridData}) {
                  })[0].accessor
                 }
 
-                rowData[columnName] = JSON.stringify(cell.value);
-                rowData['GRID_ID'] = gridId
+                if(typeof cell.value=='number'){
+                  rowData[columnName] = JSON.stringify(cell.value);
+                  rowData['GRID_ID'] = gridId
+                  console.log('inside Upload if',rowData[columnName]);
+                }else{
+                  rowData[columnName] = cell.value;
+                  rowData['GRID_ID'] = gridId
+                  console.log('inside Upload else',rowData[columnName]);
+                }
               });
               result.push(rowData);
             }

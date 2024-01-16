@@ -49,19 +49,19 @@ const EditFormConf = () => {
     }
 
     // console.log('WorkFlowEditRed',SectionRed,GridRed,ColumnRed,FormIdRed,FormDatRed);
-    console.log('WorkFlowEditRed SectionRed ',SectionRed);
-    console.log('WorkFlowEditRed GridRed ',GridRed);
-    console.log('WorkFlowEditRed ColumnRed ',ColumnRed);
-    console.log('WorkFlowEditRed FormIdRed ',FormIdRed);
-    console.log('WorkFlowEditRed FormDatRed ',FormDatRed);
-    console.log('WorkFlowEditRed FormEditRed ',FormEditRed);
+    // console.log('WorkFlowEditRed SectionRed ',SectionRed);
+    // console.log('WorkFlowEditRed GridRed ',GridRed);
+    // console.log('WorkFlowEditRed ColumnRed ',ColumnRed);
+    // console.log('WorkFlowEditRed FormIdRed ',FormIdRed);
+    // console.log('WorkFlowEditRed FormDatRed ',FormDatRed);
+    // console.log('WorkFlowEditRed FormEditRed ',FormEditRed);
 
-    useEffect(()=>{
-      if(location.state !== null ){
-        console.log('WorkFlowEditRed location', location.state.formId)
-      }
-      // console.log('WorkFlowEditRed',WorkFlowEditRed.val);
-    },[FormEditRed])
+    // useEffect(()=>{
+    //   if(location.state !== null ){
+    //     console.log('WorkFlowEditRed location', location.state.formId)
+    //   }
+    //   // console.log('WorkFlowEditRed',WorkFlowEditRed.val);
+    // },[FormEditRed])
 
     useEffect(()=>{
         dispatch(FetchConfSectionData(FormIdRed,AuthRed.val))

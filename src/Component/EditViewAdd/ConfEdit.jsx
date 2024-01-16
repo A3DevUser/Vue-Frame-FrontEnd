@@ -29,7 +29,8 @@ const ConfEdit = () => {
 
     useEffect(()=>{
     // dispatch(FetchGridData(FormIdRed,AuthRed.val))
-    // dispatch(FetchColumnData(FormIdRed,EmdRed,AuthRed.val))   
+    // dispatch(FetchColumnData(FormIdRed,EmdRed,AuthRed.val)) 
+      
     dispatch(FetchConfGridData(FormIdRed,AuthRed.val))
     dispatch(FetchConfColumnData(FormIdRed,AuthRed.val))
     dispatch(FetchGetData(FormIdRed,AuthRed.val,UserDataStateRed))

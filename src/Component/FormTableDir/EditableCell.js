@@ -174,7 +174,9 @@ export const EditableCell = ({
     useEffect(() => {
       if (value != null){
         setDropdownArray(value.split('$$')); 
-        // console.log('valueDropValRed',value.split('$#'))
+        // console.log('valueDropValRed',initialValue)
+        // console.log('valueDropValRed',value.split('$$'))
+        
       }
     },[])
 
