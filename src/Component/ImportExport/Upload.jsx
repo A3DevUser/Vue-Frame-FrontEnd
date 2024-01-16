@@ -14,6 +14,7 @@ function ExcelReader({columnData, gridData}) {
 
 
   const AuthRed = useSelector((state)=>state.AuthRed)
+  const UserDataStateRed = useSelector((state) => state.UserDataStateRed)
 
   const dispatch = useDispatch()
 
@@ -61,8 +62,8 @@ function ExcelReader({columnData, gridData}) {
           });
         });
         dispatch(ExcelDataAct(result)); 
-        console.log('resultUpload',JSON.stringify(result))
-        dispatch(PostExportData(result,AuthRed.val)) // You can set the result in the component state or perform any other necessary operations
+        dispatch(PostExportData(UserDataStateRed,result,AuthRed.val)) // You can set the result in the component state or perform any other necessary operations
+        console.log('resultUpload',UserDataStateRed,result)
       } catch (error) {
         swal({
           title :'Alert',
