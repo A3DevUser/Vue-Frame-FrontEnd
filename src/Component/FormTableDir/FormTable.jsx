@@ -464,8 +464,10 @@ const FormTable = ({ col, dData, gridData, handleSave, funNavConf, disBtn, setDi
   const tableInstance = useTable({
     columns,
     data,
+    autoResetPage: false,
+    autoResetFilters: false,
+    autoResetSortBy: false,
     initialState
-
   }, useBlockLayout, useGlobalFilter, usePagination, useResizeColumns, useSticky, useRowSelect, (hooks) => {
     hooks.visibleColumns.push((columns) => {
       return [{
