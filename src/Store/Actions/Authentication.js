@@ -8,7 +8,7 @@ const AuthReq = (val) => {
         payload: val
     }
 }
-const AuthSucess = (val) => {
+export const AuthSucess = (val) => {
     return {
         type: "AuthSucess",
         payload: val
@@ -27,6 +27,8 @@ export const AuthToken = (user) => {
         // console.log('user',user)
         axios.post('http://localhost:8080/auth/generateToken',user)
             .then((response) => {
+                console.log('response.data',response.data)
+                sessionStorage.setItem('userName',user.username)
                 sessionStorage.setItem('userData', response.data.replace('"',''))
                 dispatch(AuthSucess(response.data))
                 // console.log("userDataAuth ",response.data)

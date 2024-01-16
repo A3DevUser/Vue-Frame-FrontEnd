@@ -33,12 +33,14 @@ const Navbar = () => {
 
 
     const handleNavigate = (res) =>{
+        sessionStorage.setItem('formId',res.formId)
         if(res.emd=='yes' || res.emd =='no'){
             dispatch(FetchActionData('madhur1',AuthRed.val))
         }
         // dispatch(FormDataAct({}))
         dispatch(FormIdAct(res.formId))
         if(res.emd){
+            sessionStorage.setItem('emd',res.emd)
             dispatch(EmdAct(res.emd))
         }
         if (res.formId == 'FORM-309'){

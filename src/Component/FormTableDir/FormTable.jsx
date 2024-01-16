@@ -45,7 +45,7 @@ const FormTable = ({ col, dData, gridData, handleSave, funNavConf, disBtn, setDi
 
 
     useEffect(()=>{
-      if(EmdRed=='add'&&window.location.pathname.includes('Table')){
+      if(EmdRed=='add'&&window.location.pathname.includes('editTable')){
         if(Object.keys(FormDatRed).includes(gridData.gridId)){
           if(gridData.isMain=='true'){
             setdata([...FormDatRed[gridData.gridId]])
