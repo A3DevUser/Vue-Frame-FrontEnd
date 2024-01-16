@@ -61,7 +61,7 @@ const TableStruc = ({getTableProps,getTableBodyProps,headerGroups,prepareRow,row
         <div className='dropdown mx-2'>
             <DropdownButton title={<i class="bi bi-pen"></i>} position='left'>
                 <Dropdown.Item onClick={()=>{handleAddRow()}}><i class="bi bi-plus-lg"></i> Add Single Row</Dropdown.Item>
-                <Dropdown.Item onClick={()=>{funMultiRows()}}><i class="bi bi-grid"></i> Add Detailed Rows</Dropdown.Item>
+                <Dropdown.Item onClick={()=>{funMultiRows(gridData.gridId)}}><i class="bi bi-grid"></i> Add Detailed Rows</Dropdown.Item>
             </DropdownButton>
         </div>
         </>
