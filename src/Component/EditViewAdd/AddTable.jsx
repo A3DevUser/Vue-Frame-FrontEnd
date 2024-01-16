@@ -12,7 +12,6 @@ import swal from 'sweetalert'
 const AddTable = () => {
     const dispatch = useDispatch()
 
-
     const ColumnRed = useSelector((state)=>state.ColumnRed)
     const FormIdRed = useSelector((state)=>state.FormIdRed)
     const GridRed = useSelector((state)=>state.GridRed)

@@ -68,7 +68,7 @@ const EditReport = () => {
           const FormData = FormDatRed[val.gridId].map((res) => {return {...res}})
           console.log('Inside EditReport',FormData);
           // dispatch(FormReportConfData(val.api,FormData,AuthRed.val))
-        }else{
+        }else{ 
           const FormData = FormDatRed[val.gridId].map((res) => {return {...res, ...SendReportConfDataRed.val, targetId: val.gridId}})
           console.log('mainGrid Val else report',FormData)
           // console.log('Inside EditReport',targetId);

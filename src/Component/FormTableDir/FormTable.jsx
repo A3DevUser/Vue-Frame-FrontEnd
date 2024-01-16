@@ -50,7 +50,7 @@ const FormTable = ({ col, dData, gridData, handleSave, funNavConf, disBtn, setDi
 
 
     useEffect(()=>{
-      if(EmdRed=='add'&&window.location.pathname.includes('Table')){
+      if(EmdRed=='add'&&window.location.pathname.includes('editTable')){
         if(Object.keys(FormDatRed).includes(gridData.gridId)){
           if(gridData.isMain=='true'){
             setdata([...FormDatRed[gridData.gridId]])
@@ -162,7 +162,41 @@ const FormTable = ({ col, dData, gridData, handleSave, funNavConf, disBtn, setDi
   //   }
   // }
 
+  const [dropdownArray,setDropdownArray] = useState([]);
+  const pages = ['/editConfForm']
+  useEffect(() => {
+    // console.log('new dropArry',[...FormEditRed.val][0].DATA[0].formId);
+    if(([...FormEditRed.val][0]  !== null) && pages.includes(window.location.pathname) ){
+      let EditFormId = [...FormEditRed.val][0].DATA[0].formId
+      const droparrcon = EditFormId.split('$$')
+      setDropdownArray(droparrcon)
+      console.log('new dropArry from');
+    }
+    else if(([...WorkFlowEditRed.val][0]  !== null)&& window.location.pathname == ('/editWorkFlowConf')){
+      let EditWorkFlow = [...WorkFlowEditRed.val][0].DATA[0].wfId
+      const droparrcon = EditWorkFlow.split('$$')
+      setDropdownArray(droparrcon)
+      console.log('new dropArry workflow');
+    }
+    else if(([...EditReportRed.val][0]  !== null) && window.location.pathname == ('/editReport')){
+      // let EditReport = [...EditReportRed.val][0].DATA[0].dsId
+      if(gridData.gridId == "GID-017"){
+        let EditReport = [...EditReportRed.val][0].DATA[0].dsId
+      const droparrcon = EditReport.split('$$')
+      setDropdownArray(droparrcon)
+      console.log('new dropArry reportDsid',droparrcon);
+      }else if(gridData.gridId == "GID-018"){
+        let EditReportFil = [...EditReportRed.val][0].DATA[0].rptId
+          const droparrcon = EditReportFil.split('$$')
+          setDropdownArray(droparrcon)
+          console.log('new dropArry reportRpti',droparrcon);
+      }
+  }})
+  
+
   const addAndDeleteRow = (index, obj, action) => {      //Tez
+  
+    
     if (action == 'add' || action == 'Useradd') {
       // setdata((old)=>{
       //   return old.map((res,i)=>{
@@ -191,33 +225,33 @@ const FormTable = ({ col, dData, gridData, handleSave, funNavConf, disBtn, setDi
           let EditFormId = [...FormEditRed.val][0].DATA[0].formId
           console.log('new update data obj', [...FormEditRed.val][0].DATA[0].formId)
           if ([...FormEditRed.val][0].DATA[0].formId != '' && window.location.pathname == ('/editConfForm')) {
-            setdata((old) => { return [...old, { ...obj, formId: EditFormId }] })
+            setdata((old) => { return [...old, { ...obj, formId: dropdownArray[0] }] })
           }
         } else if ( gridData.gridId == "GID-004" && window.location.pathname == ('/editConfForm') ) {
           let EditFormId = [...FormEditRed.val][0].DATA[0].formId
           console.log('new update data obj', [...FormEditRed.val][0].DATA[0].formId)
           if ([...FormEditRed.val][0].DATA[0].formId != '' && window.location.pathname == ('/editConfForm')) {
-            setdata((old) => { return [...old, { ...obj, formId: EditFormId }] })
+            setdata((old) => { return [...old, { ...obj, formId: dropdownArray[0] }] })
           }
         }
          else if (gridData.gridId == "GID-008" && window.location.pathname == ('/editWorkFlowConf')) {
           let EditWorkFlow = [...WorkFlowEditRed.val][0].DATA[0].wfId
           if ([...WorkFlowEditRed.val][0].DATA[0].wfId !== '' && window.location.pathname == ('/editWorkFlowConf')) {
-            setdata((old) => { return [...old, { ...obj, wfId: EditWorkFlow }] })
+            setdata((old) => { return [...old, { ...obj, wfId: dropdownArray[0] }] })
           }
           // console.log('gridData check val', gridData.gridId == "GID-008")
         }
         else if (gridData.gridId == "GID-017" && window.location.pathname == ('/editReport')) {
           let EditReport = [...EditReportRed.val][0].DATA[0].dsId
           if ([...EditReportRed.val][0].DATA[0].dsId !== '' && window.location.pathname == ('/editReport')) {
-            setdata((old) => { return [...old, { ...obj, dsId: EditReport }] })
+            setdata((old) => { return [...old, { ...obj, dsId: dropdownArray[0] }] })
           }
           // console.log('gridData check val', gridData.gridId == "GID-017")
         }
         else if (gridData.gridId == "GID-018" && window.location.pathname == ('/editReport')) {
           let EditReportFil = [...EditReportRed.val][0].DATA[0].rptId
           if ([...EditReportRed.val][0].DATA[0].rptId !== '' && window.location.pathname == ('/editReport')) {
-            setdata((old) => { return [...old, { ...obj, rptId: EditReportFil }] })
+            setdata((old) => { return [...old, { ...obj, rptId: dropdownArray[0] }] })
           }
           // console.log('gridData check val', gridData.gridId == "GID-018")
         }

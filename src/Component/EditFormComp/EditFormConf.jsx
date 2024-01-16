@@ -49,25 +49,32 @@ const EditFormConf = () => {
     }
 
     // console.log('WorkFlowEditRed',SectionRed,GridRed,ColumnRed,FormIdRed,FormDatRed);
-    console.log('WorkFlowEditRed SectionRed ',SectionRed);
-    console.log('WorkFlowEditRed GridRed ',GridRed);
-    console.log('WorkFlowEditRed ColumnRed ',ColumnRed);
-    console.log('WorkFlowEditRed FormIdRed ',FormIdRed);
-    console.log('WorkFlowEditRed FormDatRed ',FormDatRed);
-    console.log('WorkFlowEditRed FormEditRed ',FormEditRed);
+    // console.log('WorkFlowEditRed SectionRed ',SectionRed);
+    // console.log('WorkFlowEditRed GridRed ',GridRed);
+    // console.log('WorkFlowEditRed ColumnRed ',ColumnRed);
+    // console.log('WorkFlowEditRed FormIdRed ',FormIdRed);
+    // console.log('WorkFlowEditRed FormDatRed ',FormDatRed);
+    // console.log('WorkFlowEditRed FormEditRed ',FormEditRed);
+
+    // useEffect(()=>{
+    //   if(location.state !== null ){
+    //     console.log('WorkFlowEditRed location', location.state.formId)
+    //   }
+    //   // console.log('WorkFlowEditRed',WorkFlowEditRed.val);
+    // },[FormEditRed])
 
     useEffect(()=>{
-      if(location.state !== null ){
-        console.log('WorkFlowEditRed location', location.state.formId)
+      console.log('response.data',location.state)
+      if(location.state){
+        sessionStorage.setItem('formId1',location.state.formId)
       }
-      // console.log('WorkFlowEditRed',WorkFlowEditRed.val);
-    },[FormEditRed])
+    },[location])
 
     useEffect(()=>{
         dispatch(FetchConfSectionData(FormIdRed,AuthRed.val))
         dispatch(FetchConfGridData(FormIdRed,AuthRed.val))
         dispatch(FetchConfColumnData(FormIdRed,AuthRed.val))
-        dispatch(FetchFormEditData(location.state !== null ? location.state.formId : '' ,AuthRed.val))
+        dispatch(FetchFormEditData(location.state !== null ? location.state.formId : sessionStorage.getItem('formId1') ,AuthRed.val))
     },[FormIdRed])
 
     // console.log('FormIdRed',SectionRed);

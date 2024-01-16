@@ -29,7 +29,8 @@ const ConfEdit = () => {
 
     useEffect(()=>{
     // dispatch(FetchGridData(FormIdRed,AuthRed.val))
-    // dispatch(FetchColumnData(FormIdRed,EmdRed,AuthRed.val))   
+    // dispatch(FetchColumnData(FormIdRed,EmdRed,AuthRed.val)) 
+      // alert('opppppppppppppppppsssssssssssssssssss')
     dispatch(FetchConfGridData(FormIdRed,AuthRed.val))
     dispatch(FetchConfColumnData(FormIdRed,AuthRed.val))
     dispatch(FetchGetData(FormIdRed,AuthRed.val,UserDataStateRed))
@@ -72,15 +73,19 @@ const ConfEdit = () => {
 
       const funNavConf = (gridIdVal) => {
           if(gridIdVal == FormConfig){
+            sessionStorage.setItem('formId','FORM-105')
               dispatch(FormIdAct('FORM-105'))
               navigate('/confform')
           }else if(gridIdVal == WorkFlowConfig){
+            sessionStorage.setItem('formId','FORM-106')
               dispatch(FormIdAct('FORM-106'))
               navigate('/confform')
           }else if(gridIdVal == reportEdit){
+            sessionStorage.setItem('formId','FORM-203')
             dispatch(FormIdAct('FORM-203'))
             navigate('/confreport')
           }else if(gridIdVal == dataSource){
+            sessionStorage.setItem('formId','FORM-202')
             dispatch(FormIdAct('FORM-202'))
             navigate('/confreport')
           }

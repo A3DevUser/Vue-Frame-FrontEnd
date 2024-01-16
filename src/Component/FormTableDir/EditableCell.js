@@ -174,7 +174,9 @@ export const EditableCell = ({
     useEffect(() => {
       if (value != null){
         setDropdownArray(value.split('$$')); 
-        // console.log('valueDropValRed',value.split('$#'))
+        // console.log('valueDropValRed',initialValue)
+        // console.log('valueDropValRed',value.split('$$'))
+        
       }
     },[])
 
@@ -570,13 +572,17 @@ const ImportGridRed = useSelector((state)=>state.ImportGridRed)
     // }
     const handleClick = () =>{
       if (gridIdVal == 'GID-576') {
+        sessionStorage.setItem('formId','FORM-105')
         dispatch(FormIdAct('FORM-105'))
       } else if (gridIdVal == 'GID-641') {
+        sessionStorage.setItem('formId','FORM-106')
         dispatch(FormIdAct('FORM-106'))
       } else if (gridIdVal == 'GID-924') {
+        sessionStorage.setItem('formId','FORM-203')
         dispatch(FormIdAct('FORM-203'))
         // console.log('FormDataNewVal',gridIdVal)        
       }else if(gridIdVal == 'GID-925'){
+        sessionStorage.setItem('formId','FORM-202')
         dispatch(FormIdAct('FORM-202'))
       }else{
         // console.log('empty');

@@ -5,7 +5,7 @@ const ProtectedRoutes = ({ logStatus }) => {
   return (
     <>
       {
-        logStatus ? <Outlet /> : <Navigate to={'/'} />
+        sessionStorage.getItem('userData') ? <Outlet /> : <Navigate to={'/'} />
       }
     </>
   )

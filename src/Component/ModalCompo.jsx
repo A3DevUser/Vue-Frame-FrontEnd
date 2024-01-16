@@ -35,6 +35,7 @@ export const SimpleModalCompo = ({ title, bodyDetails, show, showFunc }) => {
   const UserDataStateRed = useSelector((state) => state.UserDataStateRed)
 
   const handleClick = () => {
+    sessionStorage.clear()
     handleLogOut()
     showFunc()
     dispatch(ResetAct())

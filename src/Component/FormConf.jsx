@@ -49,10 +49,16 @@ const FormConf = () => {
     }
 
     useEffect(()=>{
+      if(location.state){
+        sessionStorage.setItem('formId1',location.state.formId)
+      }
+    },[location])
+
+    useEffect(()=>{
         dispatch(FetchConfSectionData(FormIdRed,AuthRed.val))
         dispatch(FetchConfGridData(FormIdRed,AuthRed.val))
         dispatch(FetchConfColumnData(FormIdRed,AuthRed.val))
-        dispatch(FetchFormEditData(location.state !== null ? location.state.formId : '' ,AuthRed.val))
+        dispatch(FetchFormEditData(location.state !== null ? location.state.formId : sessionStorage.getItem('formId1')  ,AuthRed.val))
     },[FormIdRed])
 
     // console.log('FormIdRed',SectionRed);
