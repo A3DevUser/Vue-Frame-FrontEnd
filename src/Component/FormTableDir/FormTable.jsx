@@ -14,6 +14,9 @@ import { MainObject } from '../Elements/commonFun'
 import { Checkbox } from './Checkbox'
 import { Button, Col } from 'react-bootstrap'
 import { FetchObjectIdData } from '../../Store/Actions/ObjectIdAct'
+import { MultiModalCompo } from '../../Component/FormMultiRowAdd/MultiModalCompo'
+import { FetchMultiModalColData } from '../../Store/Actions/MultiModalColAct'
+import { FetchMultiModalColRowData } from '../../Store/Actions/MultiModalColRowAct'
 
 const FormTable = ({ col, dData, gridData, handleSave, funNavConf, disBtn, setDisBtn }) => {
   const [data, setdata] = useState([...dData])
@@ -33,6 +36,8 @@ const FormTable = ({ col, dData, gridData, handleSave, funNavConf, disBtn, setDi
   const FormEditRed = useSelector((state) => state.FormEditRed)
   const WorkFlowEditRed = useSelector((state) => state.WorkFlowEditRed)
   const EditReportRed = useSelector((state)=>state.EditReportRed)
+  const MultiModalColRed = useSelector((state) => state.MultiModalColRed)
+  const MultiModalColRowRed = useSelector((state) => state.MultiModalColRowRed)
 
   const SendReportConfDataRed = useSelector((state) => state.SendReportConfDataRed)
   const [localData, setLocalData] = useState([])
@@ -251,6 +256,7 @@ const FormTable = ({ col, dData, gridData, handleSave, funNavConf, disBtn, setDi
           // console.log('gridData check val', gridData.gridId == "GID-018")
         }
         else {
+          console.log('SendObjectIdRed','Inside Normal add')
           // console.log('gridData check val', gridData.gridId == "GID-008")
           // console.log('gridData check val', [...WorkFlowEditRed.val][0].DATA[0].wfId)
           setdata((old) => { return [...old, { ...obj, VF_OBJ_ID: index, VF_MAIN_OBJ_ID: MainObjIdRed }] })
@@ -264,6 +270,14 @@ const FormTable = ({ col, dData, gridData, handleSave, funNavConf, disBtn, setDi
         })
       })
     }
+
+    if (gridData.gridId == 'GID-902'){
+      setDisBtn(false)              
+    }
+    if (gridData.gridId == 'GID-290'){
+      setUserDisBtn(false)
+    }
+    
   }                                           //Tez
 
 
@@ -428,7 +442,7 @@ const FormTable = ({ col, dData, gridData, handleSave, funNavConf, disBtn, setDi
 
   useEffect(() => {
     if (data.length > 0 && !SendObjectIdRed.loading) {
-      console.log('opData', SendObjectIdRed.val.rowId)
+      console.log('SendObjectIdRed', SendObjectIdRed.val.rowId,data)
       if (data[SendObjectIdRed.val.rowId]['VF_MAIN_OBJ_ID'].length == 0) {
         setdata(old =>
           old.map((row, index) => {
@@ -487,8 +501,10 @@ const FormTable = ({ col, dData, gridData, handleSave, funNavConf, disBtn, setDi
 
   const [show,setshow] = useState(false)
 
-  function funMultiRows() {
+  function funMultiRows(gridId) {
     setshow(!show)
+    dispatch(FetchMultiModalColData(gridId, AuthRed.val))
+    dispatch(FetchMultiModalColRowData(gridId, AuthRed.val))
   }
 
   const { getTableProps, getTableBodyProps, headerGroups, prepareRow, page, selectedFlatRows, previousPage, canPreviousPage, nextPage, canNextPage, pageOptions, state, gotoPage, pageCount, setGlobalFilter } = tableInstance
@@ -515,6 +531,7 @@ const FormTable = ({ col, dData, gridData, handleSave, funNavConf, disBtn, setDi
                 </div> */}
           </div>
           {MainObject.MultiModalCompo('MultiRow Details','',show,setshow,funMultiRows,setdata,columns)}
+          {/* <MultiModalCompo title='MultiRow Details' bodyDetails = '' show={show} setshow={setshow} funMultiRows={funMultiRows} setdata={setdata} columns={columns}/> */}
         <TableStruc getTableBodyProps={getTableBodyProps} getTableProps={getTableProps}  headerGroups={headerGroups} prepareRow={prepareRow} rows={page} handleSave={handleSave} handleAddRow={handleAddRow} gridData={gridData} handleRemove={handleRemove} handleCopy={handleCopy} previousPage={previousPage} canPreviousPage={canPreviousPage} nextPage={nextPage} canNextPage={canNextPage} pageOptions={pageOptions} state={state} gotoPage={gotoPage} pageCount={pageCount} setGlobalFilter={setGlobalFilter} hide={hide} funNavConf={funNavConf} disBtn={disBtn} setdata={setdata} data={data} userDisBtn={userDisBtn} funMultiRows={funMultiRows} />
         </Styles>
     </div>

@@ -55,6 +55,7 @@ const AddTable = () => {
             })
             }else{
                 // setDataValidation(true)
+                console.log('FormDatRed',JSON.stringify(FormDatRed))
                 Object.keys(FormDatRed).forEach((res)=>{
                   if(Array.isArray(FormDatRed[res])){
                     // console.log('UPDATEUSERDATA',FormDatRed[res].forEach(obj => obj["VF_CREATED_BY"] = UserDataStateRed))

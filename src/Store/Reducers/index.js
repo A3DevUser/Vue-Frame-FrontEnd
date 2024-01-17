@@ -54,6 +54,8 @@ import { ColumnEditActRed } from "./ColumnEditRed";
 import { WorkFlowEditRed } from "./WorkFlowEditRed";
 import { DataSourceEditRed } from "./DataSourceEditRed";
 import { EditReportRed } from "./EditReportRed";
+import { MultiModalColRed } from "./MultiModalColRed";
+import { MultiModalColRowRed } from "./MultiModalColRowRed";
 
 
 const rootReducers = combineReducers({
@@ -118,7 +120,9 @@ const rootReducers = combineReducers({
     ColumnEditActRed,
     WorkFlowEditRed,
     DataSourceEditRed,
-    EditReportRed
+    EditReportRed,
+    MultiModalColRed,
+    MultiModalColRowRed
     });
 
 export default rootReducers

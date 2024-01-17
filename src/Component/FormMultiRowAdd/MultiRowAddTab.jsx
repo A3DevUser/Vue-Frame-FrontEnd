@@ -18,7 +18,7 @@ import { Checkbox } from '../../Component/A3dir/Checkbox'
 
 
 
-const MultiRowAddTab = ({ titleData, columnData, pendencyData, handleMultiAdd }) => {
+const MultiRowAddTab = ({ titleData, columnData, multiRowData, handleMultiAdd }) => {
 
     const calculateColumnWidth = (tableWidth, totalColumns) => {
         return Math.floor(tableWidth / totalColumns);
@@ -49,7 +49,7 @@ const MultiRowAddTab = ({ titleData, columnData, pendencyData, handleMultiAdd })
 
     // useEffect(()=>{console.log('NewNav FormIdRed',ReportTitleDataRed.val.length)})
 
-    const [data, setdata] = useState([...pendencyData])
+    const [data, setdata] = useState([...multiRowData])
 
     // console.log('columnData', columns)
 

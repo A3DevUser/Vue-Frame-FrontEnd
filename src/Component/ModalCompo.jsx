@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react'
 import { Modal } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import '../Component/CSS/ModalComp.css'
-import { LogInState, ResetAct } from '../Store/Actions/GeneralStates'
+import { LogInState, MainObjId, ResetAct } from '../Store/Actions/GeneralStates'
 import MultiRowAddTab from './FormMultiRowAdd/MultiRowAddTab'
+import { MainObject } from './Elements/commonFun'
 
 
 export const ModalCompo = ({ title, bodyDetails, show, showFunc }) => {
@@ -62,49 +63,63 @@ export const SimpleModalCompo = ({ title, bodyDetails, show, showFunc }) => {
 export const MultiModalCompo = ({ title, bodyDetails, show, setshow, showFunc, multiData, columns }) => {
   const dispatch = useDispatch()
   const UserDataStateRed = useSelector((state) => state.UserDataStateRed)
+  const MultiModalColRed = useSelector((state) => state.MultiModalColRed)
+  const MultiModalColRowRed = useSelector((state) => state.MultiModalColRowRed)
+  const MainObjIdRed = useSelector((state) => state.MainObjIdRed)
 
   let titleData = [{"Title":""}]
 
-  let newColumnData = [{"formId":"FORM-722","columnId":"COL-3965","fieldName":"Cost Code","accessor":"Cost_Code","columnFilterType":'',"secId":'',"cellType":"disableTextCell","width":"200","subSecId":'',"subSecName":'',"subSecWidth":'',"subSecType":'',"orderNo":"1","catgoryId":'',"gridId":"GID-784","sticky":'',"dbcolLimit":"4000","dbcolConst":"NOT ''","hideShow":'',"targetId":"GID-005"},{"formId":"FORM-722","columnId":"COL-3966","fieldName":"Cost Code Name","accessor":"Cost_Code_Name","columnFilterType":'',"secId":'',"cellType":"disableTextCell","width":"200","subSecId":'',"subSecName":'',"subSecWidth":'',"subSecType":'',"orderNo":"2","catgoryId":'',"gridId":"GID-784","sticky":'',"dbcolLimit":"4000","dbcolConst":"NOT ''","hideShow":'',"targetId":"GID-005"}]
+  let newColumnData = [{"fieldName":"Data AA","accessor":"data_a"},{"fieldName":"Data BA","accessor":"data_b"}]
 
-  let newRowData = [{"Cost_Code":"TEXT_C01","Cost_Code_Name":"TEXT_C01","Department_Name":"","Process":"","VF_OBJ_ID":"","VF_STATUS":"","VF_ACTION":"","VF_STAGE":"","VF_PROCESS_INSTANCE_ID":"","VF_INSTANCE_ID":"","VF_GRID_ID":"","VF_CREATED_BY":"","VF_CREATED_ON":"","VF_MODIFIED_BY":"","VF_MODIFIED_ON":"","VF_ORGANISATION_ID":"","VF_NEXT_ROLE":"","VF_MAIN_OBJ_ID":"","VF_CURRENT_USER":"","VF_ROLE":"","remove":""},{"Cost_Code":"TEXT_C02","Cost_Code_Name":"TEXT_C02","Department_Name":"","Process":"","VF_OBJ_ID":"","VF_STATUS":"","VF_ACTION":"","VF_STAGE":"","VF_PROCESS_INSTANCE_ID":"","VF_INSTANCE_ID":"","VF_GRID_ID":"","VF_CREATED_BY":"","VF_CREATED_ON":"","VF_MODIFIED_BY":"","VF_MODIFIED_ON":"","VF_ORGANISATION_ID":"","VF_NEXT_ROLE":"","VF_MAIN_OBJ_ID":"","VF_CURRENT_USER":"","VF_ROLE":"","remove":""}]
-
-  const [rowData,setRowData] = useState(newRowData)
-  const [flag,setFlag] = useState(true)
+  let newRowData = [{"data_a":"TEXT_C01","data_b":"TEXT_C01","VF_OBJ_ID":"0","VF_MAIN_OBJ_ID":"OBJ-123","remove":""},{"data_a":"TEXT_C02","data_b":"TEXT_C02","VF_OBJ_ID":"0","VF_MAIN_OBJ_ID":"OBJ-123","remove":""}]
 
   const handleMultiAdd = (selectedFlatRows) => {
     
     console.log('MultiRow Added','Multi Row CLick')
     
-    let obj ={}
-    columns.forEach((res)=> {return obj[res.accessor]=''})
-  
-    setRowData(old =>{
-      return newRowData.filter((fil,i)=>{
-        return selectedFlatRows.some(row=> i==row.id)
-      })
+    let allObj ={}
+    columns.forEach((res)=> {return allObj[res.accessor]=''})
+
+    let multiObj = MultiModalColRowRed.val.filter((fil,i)=>{
+      return selectedFlatRows.some(row=> i==row.id)
     })
-    
+
+    for (var i = 0; i < multiObj.length; i++) {
+      for (var key in allObj) {
+        if(multiObj[i][key] == ''){
+          multiObj[i][key] = allObj[key];
+        }else{
+          multiObj[i][key] = multiObj[i][key];
+        }
+
+      }
+    }
+
+    for (var i = 0; i < multiObj.length; i++) {
+      multiObj[i]["VF_OBJ_ID"] = i;
+      multiObj[i]["VF_MAIN_OBJ_ID"] = MainObjIdRed;
+    }
+
+    multiData((old) => {
+      console.log('SendObjectIdRed',JSON.stringify(multiObj))
+      return [...multiObj]
+    })
+
     setshow(!show)
   
   }
 
-  // useEffect(() => {
-  //   multiData((old) => {
-  //     return rowData
-  //   })
-  //   setFlag(false)
-  // },[rowData])
-
-  // useEffect(() => {
-  //   setRowData(newRowData)
-  // },[flag])
+  useEffect(() => {
+    console.log('MultiRow Added',MultiModalColRed.val)
+  },[MultiModalColRed])
 
   return (
     <div>
       <Modal size='xl' show={show} centered scrollable={true} onHide={showFunc}>
         <Modal.Header closeButton>{title}</Modal.Header>
-        <Modal.Body><MultiRowAddTab titleData={titleData} columnData={newColumnData} pendencyData={newRowData} handleMultiAdd={handleMultiAdd} /></Modal.Body>
+        <Modal.Body>
+          {MultiModalColRed.loading ? MainObject.loader() :
+          MultiModalColRowRed.loading ? MainObject.loader() : <MultiRowAddTab titleData={titleData} columnData={MultiModalColRed.val} multiRowData={MultiModalColRowRed.val} handleMultiAdd={handleMultiAdd} />}</Modal.Body>
       </Modal>
     </div>
   )
