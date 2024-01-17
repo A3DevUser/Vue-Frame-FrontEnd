@@ -275,7 +275,7 @@ const FormTable = ({ col, dData, gridData, handleSave, funNavConf, disBtn, setDi
   }
 
   const [columns, setcolumns] = useState(
-    gridData.isMrow == 'true' ?
+    (gridData.isMrow == 'true' )&&(window.location.pathname !=='/editTable') ?
       [...ColumnHeader(col, updateMyData, '', addAndDeleteRow, gridData, data, handleOnfocus, DropValRed.val),
       {
         Header: "Remove",
@@ -291,7 +291,7 @@ const FormTable = ({ col, dData, gridData, handleSave, funNavConf, disBtn, setDi
 
   useEffect(() => {
     setcolumns(
-      gridData.isMrow == 'true' ?
+      (gridData.isMrow == 'true' )&&(window.location.pathname !=='/editTable') ?
         [...ColumnHeader(col, updateMyData, '', addAndDeleteRow, gridData, data, handleOnfocus, DropValRed.val),
         {
           Header: "Remove",

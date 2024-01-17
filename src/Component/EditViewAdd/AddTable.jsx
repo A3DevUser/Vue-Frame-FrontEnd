@@ -12,6 +12,7 @@ import swal from 'sweetalert'
 const AddTable = () => {
     const dispatch = useDispatch()
 
+
     const ColumnRed = useSelector((state)=>state.ColumnRed)
     const FormIdRed = useSelector((state)=>state.FormIdRed)
     const GridRed = useSelector((state)=>state.GridRed)
@@ -72,39 +73,19 @@ const AddTable = () => {
                 })
             }
       }
-      // useEffect(()=>{
-      //   console.log('FormDatRedData',FormDatRed)
-      // },[FormDatRed])
 
   return (
 <div style={{marginTop:'3vh', paddingLeft:'1.3rem',paddingRight:'1rem'}}>
-      {/* <div style={{ display:'none', justifyContent : 'flex-end'}} className='mx-5 my-2'>
-        <ImpExp columnData={ColumnRed.val} gridData={GridRed.val}/>
-        <div>
-      {MainObject.button({classNameVal:'btn btn-primary', widthVal:'', heightVal:'',btnName:'Submit'},handleSave)}
-      </div>
-      </div> */}
       {
-        GridRed.loading&&GridRed.val.length == 0 ? MainObject.loader() :
-        ColumnRed.loading&&GridRed.val.length == 0  ? MainObject.loader() :
+        GridRed.loading ? MainObject.loader() :
+        ColumnRed.loading  ? MainObject.loader() :
         GridRed.val.filter((fil)=>{return fil.isMain }).map((res,i)=>{
-          // let dataObj = {}
-          // ColumnRed.val.filter((fil)=>{return fil.gridId == res.gridId}).forEach((fres)=>{
-          //   return dataObj[fres.accessor] = ''
-          // })
           let dataObj = {}
           ColumnRed.val.filter((fil)=>{
             return fil.gridId == res.gridId
           }).forEach((fe)=>{return dataObj[fe.accessor]=''})
-          // console.log('GridFormSubobj',Object.keys(FormDatRed).includes(res.gridId),res.gridId,Object.keys(FormDatRed).includes(res.gridId) ? FormDatRed[res.gridId] : dataObj)   
-          // console.log('dataObjGridID',res.gridId)
-          // let gridIdArr = ['GID-902','GID-752']
-         return FormDatRed&&ColumnRed&&<GridFormSub column={ColumnRed.val.sort((a,b)=>{return a.number-b.number})} data=
-        // {gridIdArr.includes(res.gridId)  ?  [dataObj] :  []}
-        //  {res.gridId == 'GID-902' ? (Object.keys(FormDatRed).includes(res.gridId) ? FormDatRed[res.gridId] : [dataObj]) : []}
-        //  {window.location.pathname == '/addTable' ? [dataObj] : [] }
+         return  <GridFormSub column={ColumnRed.val.sort((a,b)=>{return a.number-b.number})} data=
          {[]}
-        //  {Object.keys(FormDatRed).includes(res.gridId) ? FormDatRed[res.gridId] : [dataObj]} 
          gridData={res} key={i} handleSave={handleSave} disBtn={disBtn} setDisBtn={setDisBtn}/>
         })
       }

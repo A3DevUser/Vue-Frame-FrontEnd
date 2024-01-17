@@ -28,21 +28,12 @@ const ConfEdit = () => {
     const UserDataStateRed = useSelector((state)=>state.UserDataStateRed)
 
     useEffect(()=>{
-    // dispatch(FetchGridData(FormIdRed,AuthRed.val))
-    // dispatch(FetchColumnData(FormIdRed,EmdRed,AuthRed.val)) 
-      // alert('opppppppppppppppppsssssssssssssssssss')
     dispatch(FetchConfGridData(FormIdRed,AuthRed.val))
     dispatch(FetchConfColumnData(FormIdRed,AuthRed.val))
     dispatch(FetchGetData(FormIdRed,AuthRed.val,UserDataStateRed))
     },[FormIdRed])
 
-    // console.log('GridRedNew',GridRed)
-
     const handleSave = () =>{
-        // console.log('FormDatRed',Object.values(FormDatRed).filter((fil)=>{return fil.length > 0})) 
-        // console.log('FormDatRed',ExcelDataRed)
-      //  console.log(FormDatRed)
-          // dispatch(PostFormExcelData(res)) 
           Object.values(FormDatRed).forEach((res)=>{
             dispatch(PostFormExcelData(res,AuthRed.val)) 
           })
@@ -53,18 +44,6 @@ const ConfEdit = () => {
 
       }
 
-      // let FormConfig = 'GID-576'
-      // let WorkFlowConfig = 'GID-641'
-
-      // const funNavConf = (gridIdVal) => {
-      //     if(gridIdVal == FormConfig){
-      //         dispatch(FormIdAct('FORM-105'))
-      //         navigate('/confform')
-      //     }else if(gridIdVal == WorkFlowConfig){
-      //         dispatch(FormIdAct('FORM-106'))
-      //         navigate('/confform')
-      //     }
-      // }
 
       let FormConfig = 'GID-576'
       let WorkFlowConfig = 'GID-641'
@@ -91,37 +70,20 @@ const ConfEdit = () => {
           }
       }
 
-
   return (
 <div style={{marginTop:'5vh', paddingLeft:'1.3rem',paddingRight:'1rem' }}>
-      {/* <div style={{ display:'none', justifyContent : 'flex-end'}} className='mx-5 my-2'>
-        <ImpExp columnData={ColumnRed.val} gridData={GridRed.val}/>
-        <div>
-      {MainObject.button({classNameVal:'btn btn-primary', widthVal:'', heightVal:'',btnName:'Submit'},handleSave)}
-      </div>
-      </div> */}
-      {
-        GridRed.loading ? MainObject.loader() :
-        ColumnRed.loading ? MainObject.loader() :
-        GetDataRed.loading ? MainObject.loader() :
-        GridRed.val.filter((fil)=>{return fil.isMrow }).map((res,i)=>{
-          let dataObj = {}
-          ColumnRed.val.filter((fil)=>{return fil.gridId == res.gridId}).forEach((fres)=>{
-            dataObj[fres.accessor] = ''
-          })
-          console.log('dataObj',GetDataRed.val)
-          // console.log('dataObj',dataObj)
-          let gridIdArr = ['GID-575','GID-576','GID-641','GID-924','GID-925']
-         return <GridFormSub column={ColumnRed.val.sort((a,b)=>{return a.number-b.number})} data=
-        //  {[]}
-         {
-          gridIdArr.includes(res.gridId)  ?  [dataObj] :
-          // GetDataRed.val.filter((fil)=>{return fil.GRID_ID == res.gridId})[0].DATA 
-          console.log('ConfEidtForm')
-        }
-          gridData={res} key={i} handleSave={handleSave} funNavConf={funNavConf}/>
-        })
-      }
+  {
+    GridRed.loading ? MainObject.loader() :
+    ColumnRed.loading ? MainObject.loader() :
+    GridRed.val.map((res)=>{
+      let dataObj = {}
+      ColumnRed.val.filter((fil)=>{return fil.gridId == res.gridId}).forEach((fres)=>{
+        dataObj[fres.accessor] = ''
+      })
+      return MainObject.table(ColumnRed.val.sort((a,b)=>{return a.number-b.number}),[dataObj],res,handleSave,funNavConf)
+    })
+
+  }
     </div>
   )
 }
