@@ -863,3 +863,14 @@ export const DisableCell = ({
     {/* xyz */}
   </div>
 }
+
+export const  ExternalA3Link = ({
+  rowObj : rowObj,
+}) =>{
+
+  const UserDataStateRed = useSelector((state)=>state.UserDataStateRed)
+
+  const auditId = rowObj.original.VF_MAIN_OBJ_ID;
+
+  return <a href={`http://192.168.100.233:3001/?AuditId=${auditId}&UserId=${UserDataStateRed}&auditType=Universal%20branch`} target="_blank" >Perform Assesment</a>
+}

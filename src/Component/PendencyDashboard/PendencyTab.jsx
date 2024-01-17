@@ -12,6 +12,7 @@ import Pagination from 'react-bootstrap/Pagination';
 import ReportDownloadOpt from '../ReportExp/ReportDownloadOpt'
 import TableCell from '../../Component/FormTableDir/TableCell'
 import { Link } from 'react-router-dom'
+import swal from 'sweetalert'
 
 
 
@@ -30,9 +31,22 @@ const PendencyTab = ({ titleData, columnData, pendencyData }) => {
                 return { Header: res.fieldName, 
                     accessor: res.accessor, 
                     Cell : ({cell}) =>{
-                        return <Link to={{pathname : '/editTable'}} state={{formId: cell.row.original.formId,daysFlag:res.accessor}} 
-                        // onClick={() => handleFormId(cell.row.original.formId, res.accessor)}
-                        >{cell.value}</Link>
+                        if(cell.value != 0){
+                            return <Link  to={{pathname : '/editTable'}} state={{formId: cell.row.original.formId,daysFlag:res.accessor}} 
+                            // onClick={() => handleFormId(cell.row.original.formId, res.accessor)}
+                            >{cell.value}</Link>
+                        }else{
+                            return <Link 
+                            onClick={() => 
+                                // handleFormId(cell.row.original.formId, res.accessor)
+                                swal({
+                                    title :'Alert',
+                                    text : 'There is "0" assigment for date range',
+                                    icon: "warning",
+                                })
+                            }
+                            >{cell.value}</Link>
+                        }
                     },
                     width: calculateColumnWidth(1 * window.innerWidth, columnData.length) } 
             }else{

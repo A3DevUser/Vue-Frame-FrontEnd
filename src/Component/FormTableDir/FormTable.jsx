@@ -442,7 +442,7 @@ const FormTable = ({ col, dData, gridData, handleSave, funNavConf, disBtn, setDi
 
   useEffect(() => {
     if (data.length > 0 && !SendObjectIdRed.loading) {
-      console.log('SendObjectIdRed', SendObjectIdRed.val.rowId,data)
+      console.log('SendObjectIdRed', SendObjectIdRed.val.rowId,data,gridData.gridId)
       if (data[SendObjectIdRed.val.rowId]['VF_MAIN_OBJ_ID'].length == 0) {
         setdata(old =>
           old.map((row, index) => {
@@ -460,6 +460,12 @@ const FormTable = ({ col, dData, gridData, handleSave, funNavConf, disBtn, setDi
       }
     }
   }, [SendObjectIdRed])
+
+  useEffect(()=>{
+    console.log('FormDatRed.val',FormDatRed)
+    console.log('FormDatRed.val',data)
+
+  },[FormDatRed])
   // useEffect(() => {
   //   // Check if dData has changed since the last render
   //   if (prevDData.current !== dData) {
