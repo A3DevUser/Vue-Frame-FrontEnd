@@ -89,8 +89,9 @@ const EditTable = () => {
         GetDataRed.loading ? MainObject.loader() :
         FormExcelPostRed.loading ? MainObject.loader() :
         GridRed.val.filter((fil)=>{return fil.isMain }).map((res,i)=>{
+          let mainObjId = res.VF_MAIN_OBJ_ID
          return <GridFormSub column={ColumnEditActRed.val.sort((a,b)=>{return a.orderNo-b.orderNo})} data=
-        //  {[]}
+        //  {[]} && fil.VF_MAIN_OBJ_ID == mainObjId
          {
           GetDataRed.val.filter((fil)=>{return fil.GRID_ID == res.gridId})[0].DATA  
         }

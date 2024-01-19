@@ -513,7 +513,7 @@ if(dropDown.filter((fil,i)=>{return i==index})[0].mixVal){
     
     return <div style={{ display: 'flex', alignItems: 'center', height: '10vh', justifyContent: 'center'}}>
       {MainObject.modalButton('Actions', handleFunc)}
-      {MainObject.modalpop('',<><ModalForm/></>,show,handleFunc)}
+      {MainObject.modalpop('',<><ModalForm actObjId = {rowObj.original.VF_MAIN_OBJ_ID}/></>,show,handleFunc)}
     </div>
   }
 
