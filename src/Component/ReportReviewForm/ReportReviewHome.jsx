@@ -11,6 +11,7 @@ import { FetchReviewDataData } from '../../Store/Actions/ReviewFormDataAct'
 import { Checkbox } from '../FormTableDir/Checkbox'
 import { useSticky } from 'react-table-sticky'
 import { SendReviewData } from '../../Store/Actions/SendReviewDataAct'
+import { useLocation } from 'react-router'
 
 
 
@@ -18,6 +19,7 @@ const ReportReviewHome = ({ gridData, columnData, reportData }) => {
     // const ReportTitleDataRed = useSelector((state) => state.ReportTitleDataRed)
 
     const dispatch = useDispatch()
+    const location = useLocation()
     const AuthRed = useSelector((state)=>state.AuthRed)
     const ReviewTypeFilterRed = useSelector((state)=>state.ReviewTypeFilterRed)
     const ReviewFreqFilterRed = useSelector((state)=>state.ReviewFreqFilterRed)
@@ -44,9 +46,11 @@ const ReportReviewHome = ({ gridData, columnData, reportData }) => {
     console.log(columnData)
     // useEffect(()=>{console.log('NewNav FormIdRed',ReportTitleDataRed.val.length)})
 
-    const [data, setdata] = useState([...reportData])
+    const [data, setdata] = useState([
+        ...reportData
+    ])
 
-    // console.log('columnData', columns)
+    console.log('columnDatareportData', reportData)
 
     const defaultColumn = useMemo(() => {
         return {
@@ -138,57 +142,27 @@ const ReportReviewHome = ({ gridData, columnData, reportData }) => {
                     <div className='collapseHead1 card card-body'>
                     <div className='dropDownFil'>
                         <label htmlFor="reviewType">Review type: </label>
-                        <select onChange={handleTypeChange} name="" id="reviewType" className='form-control'>
-                            <option value="">Select one...</option>
-                            {
-                                ReviewTypeFilterRed.loading ? 
-                                <option value="">Loading...</option>
-                                :
-                                ReviewTypeFilterRed.val.map((res)=>{
-                                    return <option value={res.displayValue}>{res.displayValue}</option>
-                                })
-                            }
-                        </select>
+                        <input placeholder='Review type...' className='form-control reviewInput' type="text" value={'Cyclic Review'} id='reviewName' disabled/>
                         </div>
                         <div className='dropDownFil'>
                         <label htmlFor="reviewFreq">Review frequency: </label>
-                        <select onChange={handleFreqChange} name="" id="reviewFreq" className='form-control'>
-                        <option value="">Select one...</option>
-                        {
-                            ReviewFreqFilterRed.loading ? 
-                            <option value="">Loading...</option>
-                            :
-                            ReviewFreqFilterRed.val.map((res)=>{
-                                return <option value={res.displayValue}>{res.displayValue}</option>
-                            })
-                        }
-                        </select>
+                        <input placeholder='Review frequency...' className='form-control reviewInput' type="text" value={data[0].REVIEW_FREQ} id='reviewName' disabled/>
                         </div>
                         <div className='dropDownFil'>
                         <label htmlFor="reviewSubFreq">Review sub-frequency: </label>
-                        <select onChange={handleSubfreq} name="" id="reviewSubFreq" className='form-control'>
-                        <option value="">Select one...</option>
-                        {
-                            ReviewSubFreqFilterRed.loading ?
-                            <option value="">Loading...</option>
-                            :
-                            ReviewSubFreqFilterRed.val.map((res)=>{
-                                return <option value={res.displayValue}>{res.displayValue}</option>
-                            })
-                        }
-                        </select>
+                        <input placeholder='Review sub-frequency...' className='form-control reviewInput' type="text" value={data[0].REVIEW_CYCLE} id='reviewName' disabled/>
                         </div>
                         <div className='dropDownFil'>
                             <label htmlFor='reviewName'>Review Name</label>
-                            <input placeholder='Review Name...' className='form-control reviewInput' type="text" onBlur={handleBlur} id='reviewName' />
+                            <input placeholder='Review Name...' className='form-control reviewInput' type="text" value={location.state.reviewName} id='reviewName' disabled/>
                         </div>
-                        <div className='dropDownFil'>
+                        {/* <div className='dropDownFil'>
                             <button onClick={handleVendors} className='btn btn-success'>Load Vendors</button>
-                        </div>
+                        </div> */}
 
                     </div>
                     <div className='collapseHead2'>
-                        <button className='btn btn-success' onClick={handleReview}>Generate Review</button>
+                        <button className='btn btn-success' onClick={handleReview}>Re-Generate Review</button>
                     </div>
                 </div>
                 <div className='tableDiv'>

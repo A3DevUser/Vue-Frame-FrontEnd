@@ -27,7 +27,8 @@ const ReportReviewForm = () => {
     <>
     {
         A3ColumnRed.loading ? MainObject.loader() :
-        <ReportReviewHome columnData={A3ColumnRed.val} reportData={[]}/>
+        ReviewPlanDataRed.loading ? MainObject.loader() :
+        <ReportReviewHome columnData={A3ColumnRed.val} reportData={ReviewPlanDataRed.val}/>
     }
     </>
   )
