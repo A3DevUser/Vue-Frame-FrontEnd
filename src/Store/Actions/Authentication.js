@@ -30,6 +30,7 @@ export const AuthToken = (user) => {
                 console.log('response.data',response.data)
                 sessionStorage.setItem('userName',user.username)
                 sessionStorage.setItem('userData', response.data.replace('"',''))
+                localStorage.setItem('token', response.data.replace('"',''))
                 dispatch(AuthSucess(response.data))
                 // console.log("userDataAuth ",response.data)
             dispatch(LogInState(true))

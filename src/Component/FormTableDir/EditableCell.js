@@ -874,3 +874,14 @@ export const  ExternalA3Link = ({
 
   return <a href={`http://192.168.100.233:3001/?AuditId=${auditId}&UserId=${UserDataStateRed}&auditType=Universal%20branch`} target="_blank" >Perform Assesment</a>
 }
+
+export const DownloadRpt = ({
+  rowObj : rowObj,
+}) =>{
+const VF_STATUS = rowObj.original.audit_status
+if(VF_STATUS == 'Workpaper Completed'){
+  return <a href="./RBIA_Audit_Report.docx" download={'Audit Report.docx'}>Download Report</a>
+}else{
+  return <p></p>
+}
+}

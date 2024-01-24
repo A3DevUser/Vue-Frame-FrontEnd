@@ -37,6 +37,8 @@ import EditDataSource from './Component/EditFormComp/EditDataSource'
 import EditReport from './Component/EditFormComp/EditReport'
 import { AuthSucess } from './Store/Actions/Authentication'
 import { EmdAct, FormIdAct, UserDataState } from './Store/Actions/GeneralStates'
+import AddTab from './Component/EditViewAdd/AddTable/AddTab'
+import ReviewForm from './Component/ReviewForm/ReviewForm'
 
 const App = () => {
   const dispatch = useDispatch()
@@ -66,20 +68,6 @@ const App = () => {
 
   return (
     <div>
-<Offline>
-  <div style={{ width: '100vw', height: '50vh', display: 'flex', justifyContent: 'center', alignItems: 'end' }}>
-    <span style={{ fontSize: '150px' }} class="bi bi-wifi-off"></span>
-  </div>
-  <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-  <ul>
-  <h3>No internet</h3><br/>
-  <h5>Try:</h5><br/>
-    <li>Checking the network cables, modem, and router</li>
-    <li>Reconnecting to Wi-Fi</li>
-  </ul>
-</div>
-
-</Offline>
 
       {/* {
 
@@ -89,7 +77,6 @@ const App = () => {
       } */}
       {/* <MultiDropDown/> */}
       {/* <button className='btn btn-primary' onClick={()=>{eval('handleClick()')}}>Click me</button> */}
-      <Online>
       <Navbar />
       <Routes>
         <Route path='/' element={<LogInPage/>} />
@@ -116,9 +103,9 @@ const App = () => {
           <Route path='/homesheet' element={<A3HomeSheet/>} />
           <Route path='/homePartySheet' element={<HomePartySheet/>} />
           <Route path='/pendencyDashboard' element={<PendencyDashboard/>} />
+          <Route path='/reviewPlan' element={<ReviewForm/>}/>
         </Route>
       </Routes>
-      </Online>
     </div>
   )
 }

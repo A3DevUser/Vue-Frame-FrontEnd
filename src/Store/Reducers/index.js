@@ -56,6 +56,9 @@ import { DataSourceEditRed } from "./DataSourceEditRed";
 import { EditReportRed } from "./EditReportRed";
 import { MultiModalColRed } from "./MultiModalColRed";
 import { MultiModalColRowRed } from "./MultiModalColRowRed";
+import { ReviewTypeFilterRed,ReviewFreqFilterRed,ReviewSubFreqFilterRed } from "./ReviewFilterRed";
+import { ReviewDataRed } from "./ReviewDataRed";
+import { SendReviewDataRed } from "./SendReviewDataRed";
 
 
 const rootReducers = combineReducers({
@@ -122,7 +125,12 @@ const rootReducers = combineReducers({
     DataSourceEditRed,
     EditReportRed,
     MultiModalColRed,
-    MultiModalColRowRed
+    MultiModalColRowRed,
+    ReviewTypeFilterRed,
+    ReviewFreqFilterRed,
+    ReviewSubFreqFilterRed,
+    ReviewDataRed,
+    SendReviewDataRed
     });
 
 export default rootReducers

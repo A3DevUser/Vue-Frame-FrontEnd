@@ -51,7 +51,10 @@ const Navbar = () => {
             }else if(res.emd=='no'){
                 navigate('/userviewTable')
             }
-        }else{
+        }else if(res.formId == 'FORM-885'){
+            navigate('/reviewPlan')
+        }
+        else{
             if(res.emd=='add'){
                 navigate('/addTable')
             }else if(res.emd=='yes'){

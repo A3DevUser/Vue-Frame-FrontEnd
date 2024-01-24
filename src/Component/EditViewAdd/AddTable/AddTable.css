@@ -1,0 +1,14 @@
+.headerMainClass{
+    display: flex;
+}
+.headingClass{
+flex: 1;
+display: flex;
+padding-left: 20px;
+}
+.btnClass{
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    gap:10px
+}
