@@ -12,11 +12,16 @@ const ReviewForm = () => {
     const A3ColumnRed = useSelector((state)=>state.A3ColumnRed)
     const A3HomeDataRed = useSelector((state)=>state.A3HomeDataRed)
     const FormIdRed = useSelector((state)=>state.FormIdRed)
+    const ReviewPlanDataRed = useSelector((state)=> state.ReviewPlanDataRed)
 
     useEffect(()=>{
         dispatch(FetchA3ColumnData(FormIdRed,'home',AuthRed.val))
         dispatch(FetchReviewType(AuthRed.val))
     },[])
+
+    useEffect(() => {
+      console.log('ReviewPlanDataRed',ReviewPlanDataRed)
+    },[ReviewPlanDataRed])
 
   return (
     <>
