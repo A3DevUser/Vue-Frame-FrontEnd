@@ -40,6 +40,7 @@ import { EmdAct, FormIdAct, UserDataState } from './Store/Actions/GeneralStates'
 import AddTab from './Component/EditViewAdd/AddTable/AddTab'
 import ReviewForm from './Component/ReviewForm/ReviewForm'
 import CheckerForm from './Component/ReviewForm/CheckerForm'
+import ReportReviewForm from './Component/ReportReviewForm/ReportReviewForm'
 
 const App = () => {
   const dispatch = useDispatch()
@@ -105,8 +106,9 @@ const App = () => {
           <Route path='/homePartySheet' element={<HomePartySheet/>} />
           <Route path='/pendencyDashboard' element={<PendencyDashboard/>} />
           <Route path='/reviewPlan' element={<ReviewForm/>}/>
+          <Route path='/reportReviewPlan' element={<ReportReviewForm/>}/>
+          <Route path='/checkerForm' element={<CheckerForm/>}/>
         </Route>
-        <Route path='/checkerForm' element={<CheckerForm/>}/>
       </Routes>
     </div>
   )

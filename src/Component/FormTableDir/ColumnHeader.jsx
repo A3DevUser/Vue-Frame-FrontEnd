@@ -1,5 +1,5 @@
 import { useEffect } from "react"
-import { DisableCell, DownloadRpt, EditableActionCell, EditableActionPopCell, EditableAnaCell, EditableAttachCell, EditableCell, EditableDateCell, EditableDdCell, EditableDdIe, EditableDisableDdCell, EditableHomeLink, EditableImporter, EditableLink, EditableLogicCell, EditableMixCell, EditableMksCell, EditableNumCell, EditablePartyLink, EditableRtf, EditableStaticCell, EditableUploader, ExternalA3Link, } from "./EditableCell"
+import { CheckerLink, DisableCell, DownloadRpt, EditableActionCell, EditableActionPopCell, EditableAnaCell, EditableAttachCell, EditableCell, EditableDateCell, EditableDdCell, EditableDdIe, EditableDisableDdCell, EditableHomeLink, EditableImporter, EditableLink, EditableLogicCell, EditableMixCell, EditableMksCell, EditableNumCell, EditablePartyLink, EditableRtf, EditableStaticCell, EditableUploader, ExternalA3Link, } from "./EditableCell"
 
 export const ColumnHeader = (colData, updateMyData, dropDown, addAndDeleteRow, gridData, data, handleOnfocus, dropDownData) => {
 
@@ -201,6 +201,14 @@ export const ColumnHeader = (colData, updateMyData, dropDown, addAndDeleteRow, g
           width: res.width,
           sticky: res.sticky
         }
+        }else if(res.cellType == 'checkerLink'){
+          return {
+            Header : res.fieldName,
+            accessor : res.accessor,
+            Cell : ({cell}) =>{
+              return <CheckerLink rowObj={cell.row.original}/>
+            }
+          }
         }
      else {
       return {

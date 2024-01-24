@@ -6,11 +6,13 @@ import { Styles } from './ReportStyles'
 import '../FormTableDir/TableStyle.css'
 import Mock_data from './MOCK_DATA_TAB.json'
 import { Columns } from './Columns'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
 import Pagination from 'react-bootstrap/Pagination';
 import ReportDownloadOpt from '../ReportExp/ReportDownloadOpt'
 import { Link } from 'react-router-dom'
+import { FormIdAct } from '../../Store/Actions/GeneralStates'
+import { FetchReviewPlanDataData } from '../../Store/Actions/ReviewPlanDataAct'
 
 
 const BassicTab = ({ gridData, columnData, reportData }) => {
@@ -21,6 +23,14 @@ const BassicTab = ({ gridData, columnData, reportData }) => {
     const ReportTitleColumnRed = useSelector((state) => state.ReportTitleColumnRed)
     const ReportTitleGridRed = useSelector((state) => state.ReportTitleGridRed)
     const ReportTitleDataRed = useSelector((state) => state.ReportTitleDataRed)
+    const AuthRed = useSelector((state)=>state.AuthRed)
+
+    const dispatch = useDispatch()
+
+    const funreviewPlan = (reviewId) => {
+        dispatch(FormIdAct('FORM-885'))
+        dispatch(FetchReviewPlanDataData(reviewId,AuthRed.val))
+    }
 
 
     const calculateColumnWidth = (tableWidth, totalColumns) => {
@@ -41,8 +51,9 @@ const BassicTab = ({ gridData, columnData, reportData }) => {
                     Filter: ColumnFilter,
                     width: calculateColumnWidth(1.0 * window.innerWidth, columnData.length),
                     Cell : ({cell}) =>{
-                        return <Link to={{pathname : '/reviewPlan'}} 
+                        return <Link to={{pathname : '/reportReviewPlan'}} 
                         state={{reviewId: cell.row.original.REVIEW_ID}} 
+                        onClick={() => { funreviewPlan(cell.row.original.REVIEW_ID) }}
                         >Assessment</Link>
                     }, } 
             }else{

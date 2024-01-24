@@ -24,12 +24,13 @@ const CheckerFormTab = ({columnData, reportData }) => {
 
 const [show,setshow] = useState(false)
     const [columns, setcolumns] = useState(
-        columnData
-        // [...columnData.map((res) => { return { Header: res.fieldName, accessor: res.accessor, Filter: ColumnFilter, width: res.width ? res.width : calculateColumnWidth(1.0 * window.innerWidth, columnData.length) } })]
+        // columnData
+        [...columnData.map((res) => { return { Header: res.fieldName, accessor: res.accessor, Filter: ColumnFilter, width: res.width ? res.width : calculateColumnWidth(1.0 * window.innerWidth, columnData.length) } })]
     );
 
 
     const [data, setdata] = useState([...reportData])
+    const [response,setresponse] = useState({})
 
 
     const defaultColumn = useMemo(() => {
@@ -40,6 +41,17 @@ const [show,setshow] = useState(false)
 
     const handleModal = (e) =>{
             setshow(!show)
+            setresponse((old)=>{return {...old,reviewStatus : e.target.value}})
+    }
+
+    function handleDataSave(){
+       setshow(!show)
+       const newData = [...data]
+       const finalData = newData.map((res)=>{
+        return {...res,...response}
+       })
+
+       console.log('reviewFinalData',finalData)
     }
    
     const { getTableProps,
@@ -65,7 +77,7 @@ const [show,setshow] = useState(false)
     const { pageIndex } = state
     return (
         <>
-        <CheckerResponseModal setshow={setshow} show={show} />
+        <CheckerResponseModal setshow={setshow} show={show}  handleDataSave={handleDataSave} setresponse={setresponse}/>
             <div style={{ padding: 'auto 1px' }} className='mainReviewDiv' >
                 <div className='tableDiv'>
                     <div className='headerDrop'>

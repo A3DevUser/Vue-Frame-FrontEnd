@@ -14,7 +14,7 @@ import { SendReviewData } from '../../Store/Actions/SendReviewDataAct'
 
 
 
-const ReviewHome = ({ gridData, columnData, reportData }) => {
+const ReportReviewHome = ({ gridData, columnData, reportData }) => {
     // const ReportTitleDataRed = useSelector((state) => state.ReportTitleDataRed)
 
     const dispatch = useDispatch()
@@ -80,7 +80,7 @@ const ReviewHome = ({ gridData, columnData, reportData }) => {
     const handleReview = () =>{
         let newData = [...selectedFlatRows.map((res)=>{return res.original})]
         const finalData = newData.map((res)=>{
-            return {ASSOCIATE_VEND : res.ASSOCIATE_VEND,VENDOR_ID:'',...reviewFilter,VF_MAIN_OBJ_ID:res.VF_MAIN_OBJ_ID}
+            return {ASSOCIATE_VEND : res.ASSOCIATE_VEND,VENDOR_ID:'',...reviewFilter}
         })
 
         dispatch(SendReviewData(finalData,AuthRed.val))
@@ -251,4 +251,4 @@ const ReviewHome = ({ gridData, columnData, reportData }) => {
     )
 }
 
-export default ReviewHome
+export default ReportReviewHome
