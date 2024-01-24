@@ -60,6 +60,7 @@ import { ReviewTypeFilterRed,ReviewFreqFilterRed,ReviewSubFreqFilterRed } from "
 import { ReviewDataRed } from "./ReviewDataRed";
 import { SendReviewDataRed } from "./SendReviewDataRed";
 import { ReviewPlanDataRed } from "./ReviewPlanDataRed";
+import { SendCheckerDataRed } from "./SendCheckerDataRed";
 
 
 const rootReducers = combineReducers({
@@ -132,7 +133,8 @@ const rootReducers = combineReducers({
     ReviewSubFreqFilterRed,
     ReviewDataRed,
     SendReviewDataRed,
-    ReviewPlanDataRed
+    ReviewPlanDataRed,
+    SendCheckerDataRed
     });
 
 export default rootReducers

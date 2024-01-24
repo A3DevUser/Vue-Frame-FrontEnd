@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useSticky } from 'react-table-sticky'
 import './CheckerTab.css'
 import CheckerResponseModal from './CheckerResponseModal'
+import { SendCheckerData } from '../../Store/Actions/SendCheckerData'
 
 
 
@@ -51,7 +52,7 @@ const [show,setshow] = useState(false)
         return {...res,...response}
        })
 
-       console.log('reviewFinalData',finalData)
+       dispatch(SendCheckerData(finalData,AuthRed.val))
     }
    
     const { getTableProps,

@@ -31,11 +31,11 @@ export const SendReviewData = (data,token) =>{
         dispatch(SendReviewDataReq());
         axios.post(`http://localhost:8080/VF/setReviewPlanData`,data,{headers})
         .then((res)=>{
+            dispatch(SendReviewDataSuccess(res.data))
             return swal({
-                title:res.data,
+                title: 'Data Saved Successfully !!!',
                 icon:'success'
             })
-            dispatch(SendReviewDataSuccess(res.data))
         })
         .catch((err)=>{
             dispatch(SendReviewDataErr(err))
