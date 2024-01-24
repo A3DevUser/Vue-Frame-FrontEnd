@@ -7,7 +7,7 @@ import { MainObject } from './Elements/commonFun'
 import Form from './Form'
 import LoadingBar from 'react-top-loading-bar';
 
-const ModalForm = () => {
+const ModalForm = ({actObjId}) => {
 
 
   const dispatch = useDispatch();
@@ -20,12 +20,15 @@ const ModalForm = () => {
   const GetDataRed = useSelector((state)=> state.GetDataRed)
   const EmdRed = useSelector((state)=>state.EmdRed)
   const MainObjIdRed = useSelector((state)=>state.MainObjIdRed)
+  const ColumnEditActRed = useSelector((state)=> state.ColumnEditActRed)
 
 
 
   const [defaultVal, setdefaultVal] = useState([])
   const [obj, setObj] = useState({});
   const [progress, setProgress] = useState(0);
+  const [mainObjId,setMainObjId] = useState(actObjId)
+  const [modalMultiData,setModalMultiData] = useState(GetDataRed.val)
 
   useEffect(() => {
     setProgress(23)
@@ -74,11 +77,27 @@ const ModalForm = () => {
 
   }, [FormDatRed])
 
+
+  useEffect(()=>{
+
+    const newData = modalMultiData.map(res => ({
+      ...res,
+      DATA: res.DATA.filter(obj => obj.VF_MAIN_OBJ_ID == mainObjId)
+    }))
+    // console.log('finalObj', newData)
+    // console.log('finalObj', mainObjId)
+    setModalMultiData(newData);
+  },[])
+
+
   // useEffect(()=>{
   //   console.log('ModalGridRed',ModalGridRed)
   // },[ModalGridRed])
-  // console.log('finalObj', [[FormDatRed[0]], ...Object.values(obj)])
-  // console.log('finalObj', JSON.stringify(Object.values(obj)))
+  
+  // console.log('finalObj', JSON.stringify(GetDataRed.val.filter((fil) => {
+  //   return fil.GRID_ID == 'GID-1171'
+  // })))
+  console.log('finalObj', ModalColumnRed.val)
 
   return (
     <div>
@@ -93,8 +112,15 @@ const ModalForm = () => {
         <div style={{ flex: '95%' }} data-spy="scroll" data-target='sectionNavbar' className='bg-light'>
           {
             ModalSectionRed.loading ? MainObject.loader() : ModalGridRed.loading ? MainObject.loader() :
-              ModalColumnRed.loading ? MainObject.loader() :
-                defaultVal && MainObject.tabs(ModalSectionRed.val, ModalGridRed.val, ModalColumnRed.val, GetDataRed.val , defaultVal, setdefaultVal)
+              ModalColumnRed.loading ? MainObject.loader() : 
+              // ColumnEditActRed.loading ? MainObject.loader() :
+                defaultVal && MainObject.tabs(ModalSectionRed.val, ModalGridRed.val, 
+                  // ModalColumnRed.val,
+                  ColumnEditActRed.val.sort((a,b)=>{return a.orderNo-b.orderNo}), 
+                  // GetDataRed.val
+                  // [{}]
+                  modalMultiData
+                   , defaultVal, setdefaultVal)
             //  MainObject.accordion(ModalSectionRed.val,SubSectionRed.val,ModalColumnRed.val,[],width,defaultVal,setdefaultVal) 
           }
         </div>

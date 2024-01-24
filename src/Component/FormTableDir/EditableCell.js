@@ -16,6 +16,7 @@ import { FetchImportGridData } from "../../Store/Actions/ImportGridAct"
 import { FetchObjectIdData } from "../../Store/Actions/ObjectIdAct"
 import RichText from "../../Component/RichText/RichText"
 import { Button, InputGroup, Modal } from "react-bootstrap"
+import Select from 'react-select'
 
 export const EditableCell = ({
     value: initialValue,
@@ -169,18 +170,47 @@ export const EditableCell = ({
     const ColumnRed = useSelector((state)=>state.ConfColumnRed)
     const [dropdownArray,setDropdownArray] = useState([]);
 
-    // var dropdownArray = []
+
 
     useEffect(() => {
       if (value != null){
         setDropdownArray(value.split('$$')); 
-        // console.log('valueDropValRed',initialValue)
+        console.log('valueDropValRed',DropValRed.val)
         // console.log('valueDropValRed',value.split('$$'))
-        
+
       }
     },[])
 
-  return <select name={id} value={value} onFocus={()=>{handleOnfocus(parentId.formIdVal,parentId.gridIdVal,parentId.colIdVal,parentId.json.original,DropValRed.val,index)}} onChange={onChange} onBlur={onBlur} className='form-control' style={{width:colObj.width,height:'7vh', border:'none'}} disabled={rowObj.original.isDisable}>
+    const [selectedOption, setSelectedOption] = useState({ value: '', label: 'Select One' });
+
+    // useEffect(() => {
+    //   console.log('selectedOption',selectedOption.value)
+    //   setValue(selectedOption.value)
+    //   if(selectedOption.value == 'textArea'){
+    //     freez = false
+    //   }else{
+    //     freez = true
+    //   }
+    // },[selectedOption])
+
+    let ddPath = ['/editTable','/editConfForm','/editWorkFlowConf','/editDataSource','/editReport','/editConfForm']
+
+    // return <>
+    //   {value != null&&window.location.pathname == '/editTable' ? <>
+    //     <Select name={id} menuPosition={'fixed'} styles={{ menuPortal: provided => ({ ...provided, zIndex: 5 }) }} onBlur={onBlur} onFocus={()=>{handleOnfocus(parentId.formIdVal,parentId.gridIdVal,parentId.colIdVal,parentId.json.original,DropValRed.val,index)}} defaultValue={ { value: '', label: 'Select One' } }  onChange={setSelectedOption} options={DropValRed.loading ? [{ value: '', label: 'Select One' }] : 
+    // DropValRed.val.filter((fil)=>{return (fil.ColId == parentId.colIdVal)&&(fil.rowInd == index)}).map((res) => {
+    //   return   {value: res.storedValue,
+    //            label: res.displayValue}
+    // }) }/>
+    //   </> : <>
+    //   <Select name={id} menuPosition={'fixed'} styles={{ menuPortal: provided => ({ ...provided, zIndex: 5 }) }} onBlur={onBlur} onFocus={()=>{handleOnfocus(parentId.formIdVal,parentId.gridIdVal,parentId.colIdVal,parentId.json.original,DropValRed.val,index)}} defaultValue={selectedOption}  onChange={setSelectedOption} options={DropValRed.loading ? [{ value: '', label: 'Select One' }] : 
+    // DropValRed.val.filter((fil)=>{return (fil.ColId == parentId.colIdVal)&&(fil.rowInd == index)}).map((res) => {
+    //   return   {value: res.storedValue,
+    //            label: res.displayValue}
+    // }) }/>
+    //   </>}</>
+
+  return <><select name={id} value={value} onFocus={()=>{handleOnfocus(parentId.formIdVal,parentId.gridIdVal,parentId.colIdVal,parentId.json.original,DropValRed.val,index)}} onChange={onChange} onBlur={onBlur} className='form-control' style={{width:colObj.width,height:'7vh', border:'none'}} disabled={rowObj.original.isDisable}>
     {value != null&&window.location.pathname == '/editTable' ? <><option value={dropdownArray[0]}>{dropdownArray[1]}</option></> : value != null&&window.location.pathname == '/editConfForm' ? <><option value={dropdownArray[0]}>{dropdownArray[1]}</option></> : value != null&&window.location.pathname == '/editWorkFlowConf' ? <><option value={dropdownArray[0]}>{dropdownArray[1]}</option></> : value != null&&window.location.pathname == '/editDataSource' ? <><option value={dropdownArray[0]}>{dropdownArray[1]}</option></> : value != null&&window.location.pathname == '/editReport' ? <><option value={dropdownArray[0]}>{dropdownArray[1]}</option></> : <><option value="">Select One</option></>}
     {/* {value != null&&window.location.pathname == ('/editConfForm') ? <><option value={dropdownArray[0]}>{dropdownArray[1]}</option></> : <><option value="">Select One</option></>} */}
       {/* <option value="">Select One</option> */}
@@ -190,7 +220,7 @@ export const EditableCell = ({
             return <option key={i} value={res.storedValue}>{res.displayValue}</option>
       })
       }
-           </select>
+           </select></>
   }
 
   export const EditableNumCell = ({
@@ -513,7 +543,7 @@ if(dropDown.filter((fil,i)=>{return i==index})[0].mixVal){
     
     return <div style={{ display: 'flex', alignItems: 'center', height: '10vh', justifyContent: 'center'}}>
       {MainObject.modalButton('Actions', handleFunc)}
-      {MainObject.modalpop('',<><ModalForm/></>,show,handleFunc)}
+      {MainObject.modalpop('',<><ModalForm actObjId = {rowObj.original.VF_MAIN_OBJ_ID}/></>,show,handleFunc)}
     </div>
   }
 
