@@ -51,7 +51,7 @@ const BassicTab = ({ gridData, columnData, reportData }) => {
                     Filter: ColumnFilter,
                     width: calculateColumnWidth(1.0 * window.innerWidth, columnData.length),
                     Cell : ({cell}) =>{
-                        return <Link to={{pathname : '/reviewPlan'}} 
+                        return <Link to={{pathname : '/reportReviewPlan'}} 
                         state={{reviewId: cell.row.original.REVIEW_ID}} 
                         onClick={() => { funreviewPlan(cell.row.original.REVIEW_ID) }}
                         >Assessment</Link>
