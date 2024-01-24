@@ -112,7 +112,8 @@ const ModalForm = ({actObjId}) => {
         <div style={{ flex: '95%' }} data-spy="scroll" data-target='sectionNavbar' className='bg-light'>
           {
             ModalSectionRed.loading ? MainObject.loader() : ModalGridRed.loading ? MainObject.loader() :
-              ModalColumnRed.loading ? MainObject.loader() : ColumnEditActRed.loading ? MainObject.loader() :
+              ModalColumnRed.loading ? MainObject.loader() : 
+              // ColumnEditActRed.loading ? MainObject.loader() :
                 defaultVal && MainObject.tabs(ModalSectionRed.val, ModalGridRed.val, 
                   // ModalColumnRed.val,
                   ColumnEditActRed.val.sort((a,b)=>{return a.orderNo-b.orderNo}), 

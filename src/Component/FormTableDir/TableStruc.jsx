@@ -125,12 +125,16 @@ const TableStruc = ({getTableProps,getTableBodyProps,headerGroups,prepareRow,row
             <strong>
                 { pageIndex + 1} of { pageOptions.length }
             </strong>{' | '}
-            Go To Page <input type='number' min={0} defaultValue={pageIndex -1} onChange={
+            Go To Page <input type='number' min={0} defaultValue={pageIndex + 1} onChange={
                 (e)=>{
-                    const PageNumber = e.target.value ? Number(e.target.value) -1 : 0
-                    gotoPage(PageNumber)
+                    if(e.target.value > pageOptions.length){
+                        alert('invalid page number')
+                    }else{
+                        const PageNumber = e.target.value ? Number(e.target.value) -1 : 0
+                        gotoPage(PageNumber)
+                    }
                 }
-            }></input>
+            } ></input>
         </span>
         <button className='btn btn-outline-secondary btn-sm ' title='First page' onClick={() => gotoPage(0)} disabled={!canPreviousPage}>{'<<'}</button>
         <button className='btn btn-outline-secondary btn-sm ' title='Previous page' onClick={() => previousPage()} disabled={!canPreviousPage}>Previous</button>

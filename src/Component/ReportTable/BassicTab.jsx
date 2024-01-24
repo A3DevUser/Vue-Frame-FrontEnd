@@ -10,11 +10,12 @@ import { useSelector } from 'react-redux'
 import { useEffect } from 'react'
 import Pagination from 'react-bootstrap/Pagination';
 import ReportDownloadOpt from '../ReportExp/ReportDownloadOpt'
+import { Link } from 'react-router-dom'
 
 
 const BassicTab = ({ gridData, columnData, reportData }) => {
-    console.log('NewRptDataChk',JSON.stringify(gridData))
-    console.log('NewRptDataChk',JSON.stringify(columnData))
+    // console.log('NewRptDataChk',JSON.stringify(gridData))
+    // console.log('NewRptDataChk',JSON.stringify(columnData))
     console.log('NewRptDataChk',JSON.stringify(reportData))
     // const ReportTitleDataRed = useSelector((state) => state.ReportTitleDataRed)
     const ReportTitleColumnRed = useSelector((state) => state.ReportTitleColumnRed)
@@ -26,9 +27,32 @@ const BassicTab = ({ gridData, columnData, reportData }) => {
         return Math.floor(tableWidth / totalColumns);
     };
 
+    // const [columns, setcolumns] = useState(
+    //     // Columns
+    //     [...columnData.map((res) => { return { Header: res.rptColLabel, accessor: res.rptColName, Filter: ColumnFilter, width: calculateColumnWidth(1.0 * window.innerWidth, columnData.length) } })]
+    // );
+
     const [columns, setcolumns] = useState(
         // Columns
-        [...columnData.map((res) => { return { Header: res.rptColLabel, accessor: res.rptColName, Filter: ColumnFilter, width: calculateColumnWidth(1.0 * window.innerWidth, columnData.length) } })]
+        [...columnData.map((res) => {
+            if(res.rptColTyp == 'rePlanLink'){
+                return { Header: res.rptColLabel, 
+                    accessor: res.rptColName, 
+                    Filter: ColumnFilter,
+                    width: calculateColumnWidth(1.0 * window.innerWidth, columnData.length),
+                    Cell : ({cell}) =>{
+                        return <Link to={{pathname : '/reviewPlan'}} 
+                        state={{reviewId: cell.row.original.REVIEW_ID}} 
+                        >Assessment</Link>
+                    }, } 
+            }else{
+                return { Header: res.rptColLabel,
+                     accessor: res.rptColName,
+                      Filter: ColumnFilter,
+                       width: calculateColumnWidth(1.0 * window.innerWidth, columnData.length) } 
+            }
+
+            })]
     );
 
     // useEffect(()=>{console.log('NewNav FormIdRed',ReportTitleDataRed.val.length)})
