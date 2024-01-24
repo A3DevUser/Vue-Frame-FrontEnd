@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux'
 import ReportImpExp from '../ReportExp/ReportImpExp'
 
 import GlobalFilter from './GlobalFilter'
+import swal from 'sweetalert'
 
 
 const TableStruc = ({getTableProps,getTableBodyProps,headerGroups,prepareRow,rows,gridData,handleAddRow,handleSave,handleRemove,handleCopy,previousPage,canPreviousPage,nextPage,canNextPage,pageOptions,state,pageCount,gotoPage,setGlobalFilter,hide,funNavConf,disBtn,setdata,data,userDisBtn,funMultiRows}) => {
@@ -128,7 +129,11 @@ const TableStruc = ({getTableProps,getTableBodyProps,headerGroups,prepareRow,row
             Go To Page <input type='number' min={0} defaultValue={pageIndex + 1} onChange={
                 (e)=>{
                     if(e.target.value > pageOptions.length){
-                        alert('invalid page number')
+                        swal({
+                            title :'Alert',
+                            text : 'Invalid Page Number',
+                            icon: "warning",
+                        })
                     }else{
                         const PageNumber = e.target.value ? Number(e.target.value) -1 : 0
                         gotoPage(PageNumber)
