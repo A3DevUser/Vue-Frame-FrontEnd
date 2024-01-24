@@ -39,6 +39,7 @@ import { AuthSucess } from './Store/Actions/Authentication'
 import { EmdAct, FormIdAct, UserDataState } from './Store/Actions/GeneralStates'
 import AddTab from './Component/EditViewAdd/AddTable/AddTab'
 import ReviewForm from './Component/ReviewForm/ReviewForm'
+import CheckerForm from './Component/ReviewForm/CheckerForm'
 
 const App = () => {
   const dispatch = useDispatch()
@@ -105,6 +106,7 @@ const App = () => {
           <Route path='/pendencyDashboard' element={<PendencyDashboard/>} />
           <Route path='/reviewPlan' element={<ReviewForm/>}/>
         </Route>
+        <Route path='/checkerForm' element={<CheckerForm/>}/>
       </Routes>
     </div>
   )

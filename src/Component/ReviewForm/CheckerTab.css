@@ -1,0 +1,20 @@
+.tableDiv{
+    display: flex;
+    flex-direction: column;
+    gap : 10px;
+}
+
+.headerDrop{
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    gap: 10px;
+}
+
+#aprroveReject{
+    width: 15vw;
+}
+
+#aprroveRejectLabel{
+    font-size: large;
+}
