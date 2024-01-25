@@ -8,13 +8,20 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Checkbox } from '../FormTableDir/Checkbox'
 import { useSticky } from 'react-table-sticky'
 import { PartysheetColumns } from '../../Component/A3dir/Partysheet/PartySheetColumns'
+import { useLocation } from 'react-router'
 
 const NewPartySheetTable = ({columnData,tableData,vendorList}) => {
+
+  const location = useLocation()
 
   const [data,setdata] = useState([...tableData])
   const [columns,setcolumns] = useState([...PartysheetColumns(columnData,vendorList,updateMyData)])
   const [finalData,setfinalData]=useState([])
   const [fileArr,setfileArr] =useState()
+  const dispatch = useDispatch()
+
+
+  const AuthRed = useSelector((state)=>state.AuthRed)
 
   const formData = new FormData()
   function updateMyData(rowIndex, columnId, value, fileData){
@@ -43,12 +50,19 @@ const NewPartySheetTable = ({columnData,tableData,vendorList}) => {
   }
 
   const handleSave = () =>{
+
+    let finData = data.map((res) => {
+      return {...res, reviewId : location.state.reviewId, vendorId : '', reviewName : location.state.review_name}
+    })
+
+    console.log('savedataFinal',finData)
+    dispatch(A3GetPartySheetData(finData,AuthRed.val))
     alert('Data Saved Successfully !!')
   }
 
   useEffect(()=>{
-    console.log('finalData',finalData)
-  },[data])
+    console.log('finalcolumns',columns)
+  },[])
 
   const defaultColumn = useMemo(() => {
     return {

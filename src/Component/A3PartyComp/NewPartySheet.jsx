@@ -18,12 +18,16 @@ const NewPartySheet = () => {
   const AuthRed = useSelector((state)=>state.AuthRed)
   const A3TestRed = useSelector((state) => state.A3TestRed);
   const vendorData = location.state.data
+  const revData = location.state.dataRow
   console.log('vendorData',vendorData)
   const vendorList =  vendorData.map((res)=>{
-    return res.ASSOCIATE_VEND
+    console.log('newIdGet',res)
+    // return res.ASSOCIATE_VEND
+    return res.VF_MAIN_OBJ_ID
   })
 
-  console.log('location.state',location.state)
+  console.log('revDataValues',revData)
+
   useEffect(()=>{
     dispatch(FetchA3PartyColumnData(FormIdRed,'party',AuthRed.val))
     dispatch(FetchA3TestData('TPRM New vendor risk assessment - TPRE',location.state.vendorType,AuthRed.val))
