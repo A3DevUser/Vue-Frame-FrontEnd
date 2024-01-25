@@ -57,7 +57,7 @@ const NewPartySheetTable = ({columnData,tableData,vendorList}) => {
 
     console.log('savedataFinal',finData)
     dispatch(A3GetPartySheetData(finData,AuthRed.val))
-    alert('Data Saved Successfully !!')
+    // alert('Data Saved Successfully !!')
   }
 
   useEffect(()=>{
