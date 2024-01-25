@@ -1,0 +1,42 @@
+.homeMainDiv{
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    height: 87vh;
+
+}
+
+.homeHeader{
+    flex: 1;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.homeTable{
+    flex: 8;
+}
+
+.vendorFilter{
+    width: 20vw;
+}
+
+.vendorFilterDiv{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+#vendorFilterLabel{
+    font-size: large;
+}
+
+.generateDiv{
+    flex: 1;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    margin-right: 3vw;
+}

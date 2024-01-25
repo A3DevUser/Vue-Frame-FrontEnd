@@ -730,11 +730,13 @@ const ImportGridRed = useSelector((state)=>state.ImportGridRed)
  }
 
 
- export const EditableHomeLink = ({}) =>{
+ export const EditableHomeLink = ({
+  rowObj : rowObj
+ }) =>{
 
   return (
   <div style={{display:'flex', justifyContent:'center', alignItems:'center'}}>
-  <Link to={'/homesheet'}>Assesment Form</Link>
+  <Link to={'/a3HomeSheet'} state={{reviewId : rowObj.original.review_plan_id,review_name:rowObj.original.review_name}}>Assesment Form</Link>
   </div>)
 
  }

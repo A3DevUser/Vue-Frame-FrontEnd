@@ -321,3 +321,13 @@ export const EditableCell = ({
   
     return <h3 align='center'>{value}</h3>
   }
+
+  export const RiskRatingDropDown = ({
+
+  }) =>{
+    return <select className="form-control">
+      <option value='High'>High</option>
+      <option value='Medium'>Medium</option>
+      <option value='Low'>Low</option>
+    </select>
+  }

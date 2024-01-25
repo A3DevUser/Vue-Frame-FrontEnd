@@ -21,7 +21,7 @@ const A3TestErr = (val) =>{
     }
 };
 
-export const FetchA3TestData = (id,token) =>{
+export const FetchA3TestData = (questionType,vendorType,token) =>{
     const headers = {
         'Content-Type': 'application/json', 
         'Authorization': `Bearer ${token}` , 
@@ -29,7 +29,7 @@ export const FetchA3TestData = (id,token) =>{
 
     return (dispatch)=>{
         dispatch(A3TestReq());
-        axios.get(`http://localhost:8080/VF/VFA3Checklist?formId=FORM-101`,{headers})
+        axios.get(`http://localhost:8080/VF/getQuestionData?pQueType=${questionType}&pVenType=${vendorType}`,{headers})
         .then((res)=>{
             dispatch(A3TestSuccess(res.data))
         })
