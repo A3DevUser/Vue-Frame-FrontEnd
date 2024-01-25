@@ -20,8 +20,8 @@ const ReportReviewForm = () => {
     },[])
 
     useEffect(() => {
-      console.log('ReviewPlanDataRed',ReviewPlanDataRed.val)
-    },[ReviewPlanDataRed])
+console.log('NewRptDataChk',A3ColumnRed)
+    },[A3ColumnRed])
 
   return (
     <>
