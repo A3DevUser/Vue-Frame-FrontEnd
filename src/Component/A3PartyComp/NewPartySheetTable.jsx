@@ -9,6 +9,7 @@ import { Checkbox } from '../FormTableDir/Checkbox'
 import { useSticky } from 'react-table-sticky'
 import { PartysheetColumns } from '../../Component/A3dir/Partysheet/PartySheetColumns'
 import { useLocation } from 'react-router'
+import { A3GetPartySheetData } from '../../Store/Actions/A3GetPartySheetDataAct'
 
 const NewPartySheetTable = ({columnData,tableData,vendorList}) => {
 
