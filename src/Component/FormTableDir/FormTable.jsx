@@ -56,13 +56,13 @@ const FormTable = ({ col, dData, gridData, handleSave, funNavConf, disBtn, setDi
             setdata([...FormDatRed[gridData.gridId]])
             // console.log('CheckFormData',[...FormDatRed[gridData.gridId]].length)
               
-              if([...FormDatRed[gridData.gridId]].length >= 1 && gridData.gridId == 'GID-902'){
-                setDisBtn(true)
-              }
+              // if([...FormDatRed[gridData.gridId]].length >= 1 && gridData.gridId == 'GID-902'){
+              //   setDisBtn(true)
+              // }
 
-          if ([...FormDatRed[gridData.gridId]].length >= 1 && gridData.gridId == 'GID-902') {
-            setDisBtn(true)
-          }
+          // if ([...FormDatRed[gridData.gridId]].length >= 1 && gridData.gridId == 'GID-902') {
+          //   setDisBtn(true)
+          // }
 
           // if([...FormDatRed[gridData.gridId]].length >= 1 && gridData.gridId == 'GID-290'){
           //   setUserDisBtn(true)
