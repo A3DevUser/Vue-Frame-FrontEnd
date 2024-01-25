@@ -78,6 +78,7 @@ const ReviewHome = ({ gridData, columnData, reportData }) => {
     }
 
     const handleReview = () =>{
+        console.log('Review Data Saved','inside send button') 
         let newData = [...selectedFlatRows.map((res)=>{return res.original})]
         const finalData = newData.map((res)=>{
             return {ASSOCIATE_VEND : res.ASSOCIATE_VEND,VENDOR_ID:'',...reviewFilter,VF_MAIN_OBJ_ID:res.VF_MAIN_OBJ_ID}

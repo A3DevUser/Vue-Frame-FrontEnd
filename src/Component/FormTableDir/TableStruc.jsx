@@ -66,11 +66,11 @@ const TableStruc = ({getTableProps,getTableBodyProps,headerGroups,prepareRow,row
             </DropdownButton>
         </div>
         </> : <></>}
-        {gridData.isMrow == 'false' ? <></> : <>        
+        {gridData.isMrow == 'true'&&gridData.isMultiSelect == 'false'&&gridData.gridId != 'GID-902'&&gridData.gridId != 'GID-290' ? <>
         <button className='btn btn-outline-info mx-2' title="Add" style={{display : (gridData.isMrow =='true'&& !add.includes(window.location.pathname)) || (window.location.pathname.includes('confform')&&gridData.isMrow =='true')  ? 'block' : 'none', }}
         // disabled={EmdRed == 'yes'}
         onClick={handleAddRow}><i class="bi bi-plus-lg"></i> </button>
-        </>}
+        </> : <></>}
         {!hide ? <button className='btn btn-success mx-2' style={{display : (window.location.pathname.includes('confreport')&&gridData.isMrow =='getdata') ? 'block' : 'none'}}
         // disabled={EmdRed == 'yes'}
         onClick={handleAddRow}
