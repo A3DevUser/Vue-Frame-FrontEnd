@@ -86,7 +86,7 @@ const ReviewHome = ({ gridData, columnData, reportData }) => {
 
         dispatch(SendReviewData(finalData,AuthRed.val))
     }
-    
+
     const handleVendors = () =>{
         dispatch(FetchReviewDataData(reviewFilter.reviewFreq,reviewFilter.reviewSubFreq,AuthRed.val))
     }
