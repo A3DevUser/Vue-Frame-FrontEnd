@@ -32,7 +32,7 @@ const CheckerForm = () => {
     {
         A3ColumnRed.loading ? MainObject.loader() :
         ReviewPlanDataRed.loading ? MainObject.loader() :
-        <CheckerFormTab revieId={location.state.reviewId} reviewName={location.state.reviewName} columnData={A3ColumnRed.val} reportData={ReviewPlanDataRed.val}/>
+        <CheckerFormTab reviewId={location.state.reviewId} reviewName={location.state.reviewName} columnData={A3ColumnRed.val} reportData={ReviewPlanDataRed.val}/>
 
     }
     </>

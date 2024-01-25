@@ -11,7 +11,7 @@ import { SendCheckerData } from '../../Store/Actions/SendCheckerData'
 
 
 
-const CheckerFormTab = ({revieId, reviewName, columnData, reportData }) => {
+const CheckerFormTab = ({reviewId, reviewName, columnData, reportData }) => {
     // const ReportTitleDataRed = useSelector((state) => state.ReportTitleDataRed)
 
     const dispatch = useDispatch()
@@ -49,7 +49,7 @@ const [show,setshow] = useState(false)
        setshow(!show)
        const newData = [...data]
        const finalData = newData.map((res)=>{
-        return {...res,...response, revieId : revieId, reviewName : reviewName}
+        return {...res,...response, reviewId : reviewId, reviewName : reviewName}
        })
 
        console.log('ModalfinalData',finalData)
