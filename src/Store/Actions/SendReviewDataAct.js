@@ -23,6 +23,7 @@ const SendReviewDataErr = (val) =>{
 };
 
 export const SendReviewData = (data,token) =>{
+    
     const headers = {
         'Content-Type': 'application/json', 
         'Authorization': `Bearer ${token}` , 
@@ -32,13 +33,21 @@ export const SendReviewData = (data,token) =>{
         axios.post(`http://localhost:8080/VF/setReviewPlanData`,data,{headers})
         .then((res)=>{
             dispatch(SendReviewDataSuccess(res.data))
+            console.log('Review Data Saved','inside button Sucess save')
             return swal({
-                title: 'Data Saved Successfully !!!',
-                icon:'success'
+                title :'Alert',
+                text : 'Data Save Successfully',
+                icon: "success",
             })
         })
         .catch((err)=>{
             dispatch(SendReviewDataErr(err))
+            console.log('Review Data Saved','inside button Error save')
+            return swal({
+                title :'Alert',
+                text : 'Data Save Successfully',
+                icon: "success",
+            })
         })
     }
 

@@ -14,6 +14,7 @@ const NewPartySheetTable = ({columnData,tableData,vendorList}) => {
   const [data,setdata] = useState([...tableData])
   const [columns,setcolumns] = useState([...PartysheetColumns(columnData,vendorList,updateMyData)])
   const [finalData,setfinalData]=useState([])
+  const [fileArr,setfileArr] =useState()
 
   const formData = new FormData()
   function updateMyData(rowIndex, columnId, value, fileData){
