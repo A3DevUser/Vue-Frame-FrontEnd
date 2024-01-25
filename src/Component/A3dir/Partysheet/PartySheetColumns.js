@@ -1,4 +1,4 @@
-import { EditableAttachCell, EditableCell, EditableDateCell, EditableDdCell, EditableMixCell, EditableNumCell } from "./EditableCellPartySheet"
+import { EditableAttachCell, EditableCell, EditableDateCell, EditableDdCell, EditableMixCell, EditableNumCell, RiskRatingDropDown } from "./EditableCellPartySheet"
 
 const calculateColumnWidth = (tableWidth, totalColumns) => {
     return Math.floor(tableWidth / totalColumns);
@@ -51,6 +51,13 @@ export const PartysheetColumns = (col,accountData,updateMyData) =>{
                     Header : cres.fieldName,
                     accessor : cres.accessor+'#'+res,
                     Cell : ({cell}) =>{return <EditableDdCell rowObj={cell.row}  column={cell.column.id} row={cell.row.id} updateMyData={updateMyData} value={cell.value} colObj={cell.column}/>},
+                    width : cres.width !== null ? cres.width : calculateColumnWidth( 0.97 * window.innerWidth, col.length)
+                }
+            }else if(cres.cellType=='rrDropDown'){
+                return{
+                    Header : cres.fieldName,
+                    accessor : cres.accessor+'#'+res,
+                    Cell : ({cell}) =>{return <RiskRatingDropDown/>},
                     width : cres.width !== null ? cres.width : calculateColumnWidth( 0.97 * window.innerWidth, col.length)
                 }
             }

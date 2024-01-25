@@ -21,14 +21,14 @@ const A3HomeDataErr = (val) =>{
     }
 };
 
-export const FetchA3HomeDataData = (product,token) =>{
+export const FetchA3HomeDataData = (reviewId,vendorType,token) =>{
     const headers = {
         'Content-Type': 'application/json', 
         'Authorization': `Bearer ${token}` , 
       };
     return (dispatch)=>{
         dispatch(A3HomeDataReq());
-        axios.get(`http://localhost:8080/VF/fetchAccountData?schemeCode=${product}`,{headers})
+        axios.get(`http://localhost:8080/VF/getOutputReviewPlan2?reviewId=${reviewId}&vendorType=${vendorType}`,{headers})
         .then((res)=>{
             dispatch(A3HomeDataSuccess(res.data))
         })
