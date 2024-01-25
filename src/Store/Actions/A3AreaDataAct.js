@@ -28,7 +28,7 @@ export const FetchA3AreaDataData = (id,emd,token) =>{
       };
     return (dispatch)=>{
         dispatch(A3AreaDataReq());
-        axios.get(`http://localhost:8080/VF/fetchArea?branchName=Universal branch`,{headers})
+        axios.get(`http://192.168.100.236:8443/VueFrame-ver2-0.0.1-SNAPSHOT/fetchArea?branchName=Universal branch`,{headers})
         .then((res)=>{
             dispatch(A3AreaDataSuccess(res.data))
         })

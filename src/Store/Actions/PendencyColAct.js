@@ -28,7 +28,7 @@ export const FetchPendencyColData = (token) =>{
       };
     return (dispatch)=>{
         dispatch(PendencyColReq());
-        axios.get(`http://localhost:8080/VF/getTaskConfColumn`, {headers})
+        axios.get(`http://192.168.100.236:8443/VueFrame-ver2-0.0.1-SNAPSHOT/getTaskConfColumn`, {headers})
         .then((res)=>{
             dispatch(PendencyColSuccess(res.data))
         })

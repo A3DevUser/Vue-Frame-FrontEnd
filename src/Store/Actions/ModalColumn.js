@@ -28,7 +28,7 @@ export const FetchModalColumnData = (id,emd,token) =>{
       };
     return (dispatch)=>{
         dispatch(ModalColumnReq());
-        axios.get(`http://localhost:8080/VF/getcol?formId=${id}&emd=${emd}`,{headers})
+        axios.get(`http://192.168.100.236:8443/VueFrame-ver2-0.0.1-SNAPSHOT/getcol?formId=${id}&emd=${emd}`,{headers})
         .then((res)=>{
             dispatch(ModalColumnSuccess(res.data))
         })

@@ -30,7 +30,7 @@ export const FetchDropValData = (FormId,GridId,ColId,JSON,oldData,rowInd,token) 
       };
     return (dispatch)=>{
         dispatch(DropValReq());
-        axios.get(`http://localhost:8080/VF/dropdown?formId=${FormId}&colId=${ColId}&gridId=${GridId}&jsonDrop=${JSON}`, {headers})
+        axios.get(`http://192.168.100.236:8443/VueFrame-ver2-0.0.1-SNAPSHOT/dropdown?formId=${FormId}&colId=${ColId}&gridId=${GridId}&jsonDrop=${JSON}`, {headers})
         .then((res)=>{
             // console.log("JSONval",rowInd)
             newObj[ColId+rowInd] = res.data.map((mres)=>{return {...mres,ColId : ColId,rowInd:rowInd}})

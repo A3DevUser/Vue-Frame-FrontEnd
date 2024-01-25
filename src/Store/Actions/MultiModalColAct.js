@@ -28,7 +28,7 @@ export const FetchMultiModalColData = (gridId,token) =>{
       };
     return (dispatch)=>{
         dispatch(MultiModalColReq());
-        axios.get(`http://localhost:8080/VF/getMultiColumnData?gridId=${gridId}`, {headers})
+        axios.get(`http://192.168.100.236:8443/VueFrame-ver2-0.0.1-SNAPSHOT/getMultiColumnData?gridId=${gridId}`, {headers})
         .then((res)=>{
             dispatch(MultiModalColSuccess(res.data))
         })

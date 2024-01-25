@@ -29,7 +29,7 @@ export const PostExportData = (userId,data,token) =>{
       };
     return(dispatch)=>{
         dispatch(ExportReq())
-        axios.post(`http://localhost:8080/VF/importExportAddData?currLoggedInUser=${userId}`,data,{headers})
+        axios.post(`http://192.168.100.236:8443/VueFrame-ver2-0.0.1-SNAPSHOT/importExportAddData?currLoggedInUser=${userId}`,data,{headers})
         .then((res)=>{
             console.log('inside Export data ACT', res.data);
             dispatch(ExportSuccess(res.data))

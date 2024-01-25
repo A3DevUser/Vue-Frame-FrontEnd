@@ -72,7 +72,7 @@ export const FetchReviewType = (token) =>{
 
     return (dispatch)=>{
         dispatch(ReviewTypeReq())
-        axios.get(`http://localhost:8080/VF/getReviewData`,{headers})
+        axios.get(`http://192.168.100.236:8443/VueFrame-ver2-0.0.1-SNAPSHOT/getReviewData`,{headers})
         .then((res)=>{
             dispatch(ReviewTypeSuccess(res.data))
         })
@@ -91,7 +91,7 @@ export const FetchReviewFreq = (reviewType,token) =>{
 
     return (dispatch)=>{
         dispatch(ReviewFreqReq())
-        axios.get(`http://localhost:8080/VF/getReviewFreqDd?reviewType=${reviewType}`,{headers})
+        axios.get(`http://192.168.100.236:8443/VueFrame-ver2-0.0.1-SNAPSHOT/getReviewFreqDd?reviewType=${reviewType}`,{headers})
         .then((res)=>{
             dispatch(ReviewFreqSuccess(res.data))
         })
@@ -110,7 +110,7 @@ export const FetchReviewSubFreq = (reviewFreq,token) =>{
 
     return (dispatch)=>{
         dispatch(ReviewSubFreqReq())
-        axios.get(`http://localhost:8080/VF/getReviewSubFreqDD?reviewFreq=${reviewFreq}`,{headers})
+        axios.get(`http://192.168.100.236:8443/VueFrame-ver2-0.0.1-SNAPSHOT/getReviewSubFreqDD?reviewFreq=${reviewFreq}`,{headers})
         .then((res)=>{
             dispatch(ReviewSubFreqSuccess(res.data))
         })

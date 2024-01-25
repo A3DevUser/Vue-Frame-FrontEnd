@@ -28,7 +28,7 @@ export const FetchA3PartyColumnData = (formId,isPageType,token) =>{
       };
     return (dispatch)=>{
         dispatch(A3PartyColumnReq());
-        axios.get(`http://localhost:8080/VF/getVfA3ConfColumnHeader?formId=${formId}&isPageType=${isPageType}`,{headers})
+        axios.get(`http://192.168.100.236:8443/VueFrame-ver2-0.0.1-SNAPSHOT/getVfA3ConfColumnHeader?formId=${formId}&isPageType=${isPageType}`,{headers})
         .then((res)=>{
             dispatch(A3PartyColumnSuccess(res.data))
         })

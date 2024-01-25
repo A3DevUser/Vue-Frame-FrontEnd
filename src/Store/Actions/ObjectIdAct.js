@@ -29,7 +29,7 @@ export const FetchObjectIdData = (FormId,token,rowId) =>{
       };
     return (dispatch)=>{
         dispatch(ObjectIdReq());
-        axios.get(`http://localhost:8080/VF/generateObjId?formId=${FormId}`, {headers})
+        axios.get(`http://192.168.100.236:8443/VueFrame-ver2-0.0.1-SNAPSHOT/generateObjId?formId=${FormId}`, {headers})
         .then((res)=>{
             dispatch(ObjectIdSuccess({objId:res.data,rowId:rowId}))
         })

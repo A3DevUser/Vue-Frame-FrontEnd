@@ -29,7 +29,7 @@ export const FetchA3TestData = (questionType,vendorType,token) =>{
 
     return (dispatch)=>{
         dispatch(A3TestReq());
-        axios.get(`http://localhost:8080/VF/getQuestionData?pQueType=${questionType}&pVenType=${vendorType}`,{headers})
+        axios.get(`http://192.168.100.236:8443/VueFrame-ver2-0.0.1-SNAPSHOT/getQuestionData?pQueType=${questionType}&pVenType=${vendorType}`,{headers})
         .then((res)=>{
             dispatch(A3TestSuccess(res.data))
         })

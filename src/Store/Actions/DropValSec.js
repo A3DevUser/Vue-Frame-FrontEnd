@@ -28,7 +28,7 @@ export const FetchDropValSecData = (DropData,token) =>{
       };
     return (dispatch)=>{
         dispatch(DropValSecReq());
-        axios.get(`http://localhost:8080/VF/DropDataColData?jsonDrop=${DropData}`,{headers})
+        axios.get(`http://192.168.100.236:8443/VueFrame-ver2-0.0.1-SNAPSHOT/DropDataColData?jsonDrop=${DropData}`,{headers})
         .then((res)=>{
             dispatch(DropValSecSuccess(res.data))
             // console.log("FinalApival",res.data)

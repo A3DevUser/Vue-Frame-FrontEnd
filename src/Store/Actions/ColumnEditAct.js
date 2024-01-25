@@ -28,7 +28,7 @@ export const FetchColumnEditActData = (formId,userID,token) =>{
       };
     return (dispatch)=>{
         dispatch(ColumnEditActReq());
-        axios.get(`http://localhost:8080/VF/getcol2?formId=${formId}&pUserName=${userID}`, {headers})
+        axios.get(`http://192.168.100.236:8443/VueFrame-ver2-0.0.1-SNAPSHOT/getcol2?formId=${formId}&pUserName=${userID}`, {headers})
         .then((res)=>{
             dispatch(ColumnEditActSuccess(res.data))
         })

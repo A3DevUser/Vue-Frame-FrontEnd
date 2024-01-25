@@ -29,7 +29,7 @@ export const FetchReportConfSectionData = (id,token) =>{
       };
     return (dispatch)=>{
         dispatch(ReportConfSectionReq());
-        axios.get(`http://localhost:8080/VF/getConSection?formId=${id}`,{headers})
+        axios.get(`http://192.168.100.236:8443/VueFrame-ver2-0.0.1-SNAPSHOT/getConSection?formId=${id}`,{headers})
         .then((res)=>{
             dispatch(ReportConfSectionSuccess(res.data))
         })

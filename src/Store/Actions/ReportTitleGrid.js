@@ -30,7 +30,7 @@ export const FetchReportTitleGridData = (id,token) =>{
     //   console.log(headers)
     return (dispatch)=>{
         dispatch(ReportTitleGridReq());
-        axios.get(`http://localhost:8080/VF/getRptData?rptId=${id}`,{headers})
+        axios.get(`http://192.168.100.236:8443/VueFrame-ver2-0.0.1-SNAPSHOT/getRptData?rptId=${id}`,{headers})
         .then((res)=>{
             dispatch(ReportTitleGridSuccess(res.data))
         })

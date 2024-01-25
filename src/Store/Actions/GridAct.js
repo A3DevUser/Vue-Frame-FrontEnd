@@ -30,7 +30,7 @@ export const FetchGridData = (id,token) =>{
     //   console.log(headers)
     return (dispatch)=>{
         dispatch(GridReq());
-        axios.get(`http://localhost:8080/VF/getByGrid?formId=${id}`,{headers})
+        axios.get(`http://192.168.100.236:8443/VueFrame-ver2-0.0.1-SNAPSHOT/getByGrid?formId=${id}`,{headers})
         .then((res)=>{
             dispatch(GridSuccess(res.data))
         })

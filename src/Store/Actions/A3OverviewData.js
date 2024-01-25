@@ -28,7 +28,7 @@ export const FetchA3OverviewDataData = (id,token) =>{
       };
     return (dispatch)=>{
         dispatch(A3OverviewDataReq());
-        axios.get(`http://localhost:8080/VF/fetchDataId`,{headers})
+        axios.get(`http://192.168.100.236:8443/VueFrame-ver2-0.0.1-SNAPSHOT/fetchDataId`,{headers})
         .then((res)=>{
             dispatch(A3OverviewDataSuccess(res.data))
         })

@@ -28,7 +28,7 @@ export const FetchA3OverviewColumnData = (id,isPageType,token) =>{
       };
     return (dispatch)=>{
         dispatch(A3OverviewColumnReq());
-        axios.get(`http://localhost:8080/VF/getVfA3ConfColumnHeader?formId=${id}&isPageType=${isPageType}`,{headers})
+        axios.get(`http://192.168.100.236:8443/VueFrame-ver2-0.0.1-SNAPSHOT/getVfA3ConfColumnHeader?formId=${id}&isPageType=${isPageType}`,{headers})
         .then((res)=>{
             dispatch(A3OverviewColumnSuccess(res.data))
         })

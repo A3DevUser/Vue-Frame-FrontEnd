@@ -28,7 +28,7 @@ export const FetchEditReportData = (id,token)=>{
       };
     return(dispatch)=>{
         dispatch(EditReportReq())
-        axios.get(`http://localhost:8080/VF/getRptEditData?rptId=${id}`,{headers})
+        axios.get(`http://192.168.100.236:8443/VueFrame-ver2-0.0.1-SNAPSHOT/getRptEditData?rptId=${id}`,{headers})
         .then((res)=>{
             dispatch(EditReportSuccess(res.data))
         })

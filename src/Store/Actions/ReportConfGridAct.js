@@ -28,7 +28,7 @@ export const FetchReportConfGridData = (id,token) =>{
       };
     return (dispatch)=>{
         dispatch(ReportConfGridReq());
-        axios.get(`http://localhost:8080/VF/getConfSGrid?formId=${id}`,{headers})
+        axios.get(`http://192.168.100.236:8443/VueFrame-ver2-0.0.1-SNAPSHOT/getConfSGrid?formId=${id}`,{headers})
         .then((res)=>{
             dispatch(ReportConfGridSuccess(res.data))
         })

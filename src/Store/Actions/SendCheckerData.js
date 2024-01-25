@@ -29,7 +29,7 @@ export const SendCheckerData = (data,token) =>{
       };
     return (dispatch)=>{
         dispatch(SendCheckerDataReq());
-        axios.post(`http://localhost:8080/VF/updateStatusToAccept`,data,{headers})
+        axios.post(`http://192.168.100.236:8443/VueFrame-ver2-0.0.1-SNAPSHOT/updateStatusToAccept`,data,{headers})
         .then((res)=>{
             dispatch(SendCheckerDataSuccess(res.data))
             return swal({
