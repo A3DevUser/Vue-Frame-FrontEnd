@@ -1,4 +1,5 @@
 import axios from "axios";
+import swal from "sweetalert";
 
 const A3SaveReq = (val) =>{
     return {
@@ -21,7 +22,7 @@ const A3SaveErr = (val) =>{
     }
 };
 
-export const PostA3SaveData = (data,token) =>{
+export const PostA3SaveData = (data,token,navigate) =>{
     const headers = {
         'Content-Type': 'application/json', 
         'Authorization': `Bearer ${token}` , 
@@ -31,7 +32,12 @@ export const PostA3SaveData = (data,token) =>{
         axios.post(`http://localhost:8080/VF/SubmitOnBoardingData`,data,{headers})
         .then((res)=>{
             dispatch(A3SaveSuccess(res.data))
-            return alert('Data Saved successfull !!!')
+            return swal({
+              title :  'Data Saved successfull !!!',
+              icon:'success'
+            }).then(()=>{
+                // navigate('/addTable')
+            })
         })
         .catch((err)=>{
             dispatch(A3SaveErr(err))

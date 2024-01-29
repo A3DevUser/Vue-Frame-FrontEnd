@@ -13,12 +13,14 @@ import { PostA3SaveData } from '../../../Store/Actions/A3DataSaveAct'
 import A3OverviewModal from './A3OverviewModal'
 import DividePartySheet from './DividePartySheet'
 import swal from 'sweetalert'
+import { useNavigate } from 'react-router'
 
 
 
 
-const PartySheetTable = ({col,dData,userName,accData,tableData}) => {
+const PartySheetTable = ({col,dData,userName,accData,tableData,handleChange}) => {
 const dispatch = useDispatch()
+const navigate = useNavigate()
 
 
 const accColumn = col.filter((fil)=>{return fil.parentCell=='account'}).map((res)=>{return res.accessor});
@@ -137,19 +139,19 @@ const accColumn = col.filter((fil)=>{return fil.parentCell=='account'}).map((res
       function handleSave(){
         const dataList = Object.values(finalData);
 
-        dispatch(PostA3SaveData(dataList,AuthRed.val))
+        dispatch(PostA3SaveData(dataList,AuthRed.val,navigate))
       }
 
-      function handleChange(e){
-        const rangeLowCount = (((e.target.value)-1)*10);
-        const rangeHighCount = ((e.target.value)*10)
-        // setaccountData(()=>{return accData.slice(rangeLowCount,rangeHighCount)})
+    //   function handleChange(e){
+    //     const rangeLowCount = (((e.target.value)-1)*10);
+    //     const rangeHighCount = ((e.target.value)*10)
+    //     // setaccountData(()=>{return accData.slice(rangeLowCount,rangeHighCount)})
 
-        setcolumns([...PartysheetColumns(col,accData.slice(rangeLowCount,rangeHighCount).map((res)=>{return res.Associate_Vend}),updateMyData)])
+    //     setcolumns([...PartysheetColumns(col,accData.slice(rangeLowCount,rangeHighCount).map((res)=>{return res.Associate_Vend}),updateMyData)])
 
-        // console.log('DividePartySheet',accData.slice(rangeLowCount,rangeHighCount))
+    //     // console.log('DividePartySheet',accData.slice(rangeLowCount,rangeHighCount))
 
-    }
+    // }
 
     function handleSearchChange(e){
       setglobalSearchVal(e.target.value)
@@ -210,12 +212,12 @@ const accColumn = col.filter((fil)=>{return fil.parentCell=='account'}).map((res
     <>
     <A3OverviewModal show={show} setShow={setShow} />
     <div style={{display:'flex', flexDirection:'column'}}>
-      <div className='my-2' style={{display:'flex',justifyContent:'flex-end',width: '97%', gap:10}}>
+      <div className='my-2' style={{display:'flex',justifyContent:'space-between',width: '97%', gap:10}}>
         <div style={{display:'flex', justifyContent:'center', alignItems:'center'}}>
         {/* <span style={{fontSize:25}} class="bi bi-arrow-left-circle-fill"></span> */}
         <DividePartySheet dataLength={accData.length} handleChange={handleChange}/>
         </div>
-        <div>
+        {/* <div>
         <DropdownButton variant='success' title='Overview'>
           <Dropdown.Item onClick={()=>setShow(true)}>Sheet Summary</Dropdown.Item>
           <Dropdown.Item onClick={()=>setShow(true)}>Assesment Summary</Dropdown.Item>
@@ -233,7 +235,7 @@ const accColumn = col.filter((fil)=>{return fil.parentCell=='account'}).map((res
         <InputGroup.Text style={{cursor:'pointer'}} onClick={handleSearch}>
         <i class="bi bi-search"></i>
         </InputGroup.Text>
-        </InputGroup>
+        </InputGroup> */}
         <button onClick={handleSave} className='btn btn-outline-success'><i class="bi bi-floppy"></i></button>
       </div>
       <div>

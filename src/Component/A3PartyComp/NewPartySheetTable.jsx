@@ -111,8 +111,6 @@ const { pageIndex } = state
                                                         <div>{column.canFilter ? column.render('Filter') : null}</div>
                                                     </div>
                                                 ))
-
-
                                             }
                                         </div>
                                     </>

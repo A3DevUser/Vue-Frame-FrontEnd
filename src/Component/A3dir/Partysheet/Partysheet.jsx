@@ -20,16 +20,21 @@ const Partysheet = () => {
 
   console.log('location', location.state);
 
+  const handleChange = (e) =>{
+    dispatch(FetchA3PartyColumnData(e.target.value, 'party', AuthRed.val));
+    dispatch(FetchA3TestData(e.target.value,'New' ,AuthRed.val));  
+  }
+
   useEffect(() => {
-    dispatch(FetchA3PartyColumnData(FormIdRed, 'party', AuthRed.val));
-    dispatch(FetchA3TestData(FormIdRed, AuthRed.val));
+    dispatch(FetchA3PartyColumnData('TPRM New vendor risk assessment - TPRE', 'party', AuthRed.val));
+    dispatch(FetchA3TestData('TPRM New vendor risk assessment - TPRE','New' ,AuthRed.val));
   }, [dispatch, FormIdRed, AuthRed.val]);
 
   useEffect(() => {
     if (location.state && A3TestRed.val.length > 0) {
       const accArray = location.state.rowData.Associate_Vend;
       const outputId = A3TestRed.val.map((res) => {
-        return 'OB-' + res.testId + location.state.rowData.VF_MAIN_OBJ_ID;
+        return 'OB-' + res.QUESTION_ID + location.state.rowData.VF_MAIN_OBJ_ID;
       });
       console.log('outputId',outputId)
       dispatch(FetchA3PsOpDataData(outputId, AuthRed.val));
@@ -48,7 +53,7 @@ const Partysheet = () => {
        A3TestRed.loading ?  MainObject.loader() : 
        A3PsOpDataRed.loading ? MainObject.loader() :
 
-        <PartySheetTable accData={[location.state.rowData]} col={A3PartyColumnRed.val} dData={A3TestRed.val} tableData={A3PsOpDataRed.val} />
+        <PartySheetTable accData={[location.state.rowData]} col={A3PartyColumnRed.val} dData={A3TestRed.val} tableData={A3PsOpDataRed.val} handleChange={handleChange} />
       }
     </>
   );

@@ -15,12 +15,12 @@ const DividePartySheet = ({dataLength,handleChange}) => {
 
   return (
     <>
-    <span className='mx-2' style={{fontWeight:'bolder', fontSize:'15px'}}>Party Sheet :</span>
+    <span className='mx-3' style={{fontWeight:'bolder', fontSize:'15px'}}>Pre-Onboarding Type :</span>
     <select className='form-select' onChange={handleChange} style={{width:'15vw',marginRight:'45vw'}}>
-        <option value={1}>Select Sheet...</option>
-        {
-            options
-        }
+        <option value={1}>Select Type...</option>
+        <option value={'TPRM New vendor risk assessment - TPRE'}>TPRE</option>
+        <option value={'Determination of Material Outsourcing'}>MA</option>
+        <option value={'Due diligence Questionnaire'}>DDQ</option>
     </select>
     </>
   )

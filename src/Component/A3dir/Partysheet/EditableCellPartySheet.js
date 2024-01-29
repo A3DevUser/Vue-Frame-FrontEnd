@@ -326,8 +326,76 @@ export const EditableCell = ({
 
   }) =>{
     return <select className="form-control">
+      <option value={''}>Select One...</option>
       <option value='High'>High</option>
       <option value='Medium'>Medium</option>
       <option value='Low'>Low</option>
     </select>
+  }
+
+  export const EditableRateNumCell = ({
+    value: initialValue,
+    row:  index ,
+    column:  id ,
+    updateMyData, 
+    colObj:colObj,
+    parentId
+  }) => {
+    const [value, setValue] = React.useState(initialValue)
+  
+    const onChange = e => {
+      setValue(e.target.value)
+    }
+  
+    const onBlur = () => {
+      updateMyData(index, id, value,null,parentId.column.parent.id.id)
+    }
+  
+    React.useEffect(() => {
+      setValue(initialValue)
+    }, [initialValue])
+
+  
+    return <div>
+      <input value={value > 3 ? 3 : value <0 ? 0 : value} type={'number'} min={'0'} max={'3'} className='form-control' 
+      // style={{width:colObj.width}} 
+      onChange={onChange} onBlur={onBlur} placeholder='Enter Remark...' />
+      {/* xyz */}
+    </div>
+  }
+
+  export const EditableDdqResCell = ({
+    value: initialValue,
+    row:  index ,
+    column:  id ,
+    updateMyData, 
+    colObj:colObj,
+    rowObj:rowObj,
+    parentId
+  }) => {
+    const [value, setValue] = React.useState(initialValue)
+  
+    const onChange = e => {
+      setValue(e.target.value)
+    }
+  
+    const onBlur = () => {
+      updateMyData(index, id, value,null,parentId.column.parent.id.id)
+    }
+  
+    React.useEffect(() => {
+      setValue(initialValue)
+    }, [initialValue])
+
+  
+    return <div>
+      <select onChange={onChange} onBlur={onBlur} className="form-control">
+        <option value={''}>Select One...</option>
+        {
+          rowObj.RESPONSE_DISPLAY_VAL.split(',').map((res)=>{
+            return <option value={res}>{res}</option>
+          })
+        }
+      </select>
+    </div>
   }
