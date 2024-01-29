@@ -30,7 +30,7 @@ export const FetchNavbarData = (token) =>{
     return (dispatch)=>{
         dispatch(NavbarReq());
         // console.log('headers dispatch => ' + headers)
-        axios.get(`http://192.168.100.236:8443/VueFrame-ver2-0.0.1-SNAPSHOT/getNavEle`,{headers})
+        axios.get(`http://localhost:8080/VF/getNavEle`,{headers})
         .then((res)=>{
             dispatch(NavbarSuccess(res.data))
         })

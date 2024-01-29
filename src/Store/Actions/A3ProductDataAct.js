@@ -28,7 +28,7 @@ export const FetchA3ProductDataData = (id,token) =>{
       };
     return (dispatch)=>{
         dispatch(A3ProductDataReq());
-        axios.get(`http://192.168.100.236:8443/VueFrame-ver2-0.0.1-SNAPSHOT/fetchScheme?areaName=${id}`,{headers})
+        axios.get(`http://localhost:8080/VF/fetchScheme?areaName=${id}`,{headers})
         .then((res)=>{
             dispatch(A3ProductDataSuccess(res.data))
         })

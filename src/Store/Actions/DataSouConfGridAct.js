@@ -28,7 +28,7 @@ export const FetchDataSouConfGridActData = (id,token) =>{
       };
     return (dispatch)=>{
         dispatch(DataSouConfGridActReq());
-        axios.get(`http://192.168.100.236:8443/VueFrame-ver2-0.0.1-SNAPSHOT/getRptConfGrid?formId=${id}`,{headers})
+        axios.get(`http://localhost:8080/VF/getRptConfGrid?formId=${id}`,{headers})
         .then((res)=>{
             dispatch(DataSouConfGridActSuccess(res.data))
         })

@@ -28,7 +28,7 @@ export const FetchFormEditData = (formId,token)=>{
       };
     return(dispatch)=>{
         dispatch(FormEditReq())
-        axios.get(`http://192.168.100.236:8443/VueFrame-ver2-0.0.1-SNAPSHOT/getConfigData?formId=${formId}`,{headers})
+        axios.get(`http://localhost:8080/VF/getConfigData?formId=${formId}`,{headers})
         .then((res)=>{
             dispatch(FormEditSuccess(res.data))
         })

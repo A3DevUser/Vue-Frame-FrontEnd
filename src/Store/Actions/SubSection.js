@@ -28,7 +28,7 @@ export const FetchSubSectionData = (id,token) =>{
       };
     return (dispatch)=>{
         dispatch(SubSectionReq());
-        axios.get(`http://192.168.100.236:8443/VueFrame-ver2-0.0.1-SNAPSHOT/getSubSection?formId=${id}`,{headers})
+        axios.get(`http://localhost:8080/VF/getSubSection?formId=${id}`,{headers})
         .then((res)=>{
             dispatch(SubSectionSuccess(res.data))
         })

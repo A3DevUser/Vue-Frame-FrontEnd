@@ -29,7 +29,7 @@ export const FetchSectionData = (id,token) =>{
       };
     return (dispatch)=>{
         dispatch(SectionReq());
-        axios.get(`http://192.168.100.236:8443/VueFrame-ver2-0.0.1-SNAPSHOT/getSection?formId=${id}`,{headers})
+        axios.get(`http://localhost:8080/VF/getSection?formId=${id}`,{headers})
         .then((res)=>{
             dispatch(SectionSuccess(res.data))
         })

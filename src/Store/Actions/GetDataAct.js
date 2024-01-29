@@ -28,7 +28,7 @@ export const FetchGetData = (formId,token,userId,flagData) =>{
       };
     return (dispatch)=>{
         dispatch(GetDataReq());
-        axios.get(`http://192.168.100.236:8443/VueFrame-ver2-0.0.1-SNAPSHOT/getTableData?formId=${formId}&VF_CURRENT_USER=${userId}&daysFlag=${flagData}`, {headers})
+        axios.get(`http://localhost:8080/VF/getTableData?formId=${formId}&VF_CURRENT_USER=${userId}&daysFlag=${flagData}`, {headers})
         .then((res)=>{
             dispatch(GetDataSuccess(res.data))
         })

@@ -28,7 +28,7 @@ export const FetchActionData = (userId,token) =>{
       };
     return (dispatch)=>{
         dispatch(ActionReq());
-        axios.get(`http://192.168.100.236:8443/VueFrame-ver2-0.0.1-SNAPSHOT/getActions?currUser=${userId}`,{headers})
+        axios.get(`http://localhost:8080/VF/getActions?currUser=${userId}`,{headers})
         .then((res)=>{
             dispatch(ActionSuccess(res.data))
         })

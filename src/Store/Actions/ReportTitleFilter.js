@@ -28,7 +28,7 @@ export const FetchReportTitleFilterData = (id,token) =>{
       };
     return (dispatch)=>{
         dispatch(ReportTitleFilterReq());
-        axios.get(`http://192.168.100.236:8443/VueFrame-ver2-0.0.1-SNAPSHOT/getRptFilData?rptId=${id}`, {headers})
+        axios.get(`http://localhost:8080/VF/getRptFilData?rptId=${id}`, {headers})
         .then((res)=>{
             dispatch(ReportTitleFilterSuccess(res.data))
         })

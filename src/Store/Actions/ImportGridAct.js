@@ -28,7 +28,7 @@ export const FetchImportGridData = (formId,token)=>{
       };
     return(dispatch)=>{
         dispatch(ImportGridReq())
-        axios.get(`http://192.168.100.236:8443/VueFrame-ver2-0.0.1-SNAPSHOT/getByGrid?formId=${formId}`,{headers})
+        axios.get(`http://localhost:8080/VF/getByGrid?formId=${formId}`,{headers})
         .then((res)=>{
             dispatch(ImportGridSuccess(res.data))
         })

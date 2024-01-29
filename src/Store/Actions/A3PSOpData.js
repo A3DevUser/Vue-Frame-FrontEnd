@@ -28,7 +28,7 @@ export const FetchA3PsOpDataData = (opId,token) =>{
       };
     return (dispatch)=>{
         dispatch(A3PsOpDataReq());
-        axios.get(`http://192.168.100.236:8443/VueFrame-ver2-0.0.1-SNAPSHOT/getOBOutpuByIds?id=${opId}`,{headers})
+        axios.get(`http://localhost:8080/VF/getOBOutpuByIds?id=${opId}`,{headers})
         .then((res)=>{
             dispatch(A3PsOpDataSuccess(res.data))
         })

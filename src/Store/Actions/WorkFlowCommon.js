@@ -24,7 +24,7 @@ const WFCommonErr = (val) =>{
 export const FetchWFCommonData = (id) =>{
     return (dispatch)=>{
         dispatch(WFCommonReq());
-        axios.post(`http://192.168.100.236:8443/VueFrame-ver2-0.0.1-SNAPSHOT/setWorkFlowGridData?gridId=${id}`)
+        axios.post(`http://localhost:8080/VF/setWorkFlowGridData?gridId=${id}`)
         .then((res)=>{
             dispatch(WFCommonSuccess(res.data))
         })

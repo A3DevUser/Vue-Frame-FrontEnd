@@ -80,8 +80,8 @@ const LogInPage = () => {
     useEffect(()=>{
         if(AuthRed.loading==false&&LogInStateRed == true){
             // dispatch(LogInState(true))
-            navigate('/homepage')
-            // navigate('/pendencyDashboard')
+            // navigate('/homepage')
+            navigate('/pendencyDashboard')
         }else if(AuthRed.error !==''){
             // console.log('AuthRed',AuthRed)
             alert('Inavlid Username or password')

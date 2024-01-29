@@ -28,7 +28,7 @@ export const PostA3SaveData = (data,token) =>{
       };
     return (dispatch)=>{
         dispatch(A3SaveReq());
-        axios.post(`http://192.168.100.236:8443/VueFrame-ver2-0.0.1-SNAPSHOT/SubmitOnBoardingData`,data,{headers})
+        axios.post(`http://localhost:8080/VF/SubmitOnBoardingData`,data,{headers})
         .then((res)=>{
             dispatch(A3SaveSuccess(res.data))
             return alert('Data Saved successfull !!!')

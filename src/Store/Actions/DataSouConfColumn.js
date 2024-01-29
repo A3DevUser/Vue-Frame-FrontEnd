@@ -28,7 +28,7 @@ export const FetchDataSouConfColumnData = (id,token) =>{
       };
     return (dispatch)=>{
         dispatch(DataSouConfColumnReq());
-        axios.get(`http://192.168.100.236:8443/VueFrame-ver2-0.0.1-SNAPSHOT/getRptConfCol?formId=${id}`, {headers})
+        axios.get(`http://localhost:8080/VF/getRptConfCol?formId=${id}`, {headers})
         .then((res)=>{
             dispatch(DataSouConfColumnSuccess(res.data))
         })

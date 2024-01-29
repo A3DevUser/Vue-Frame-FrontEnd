@@ -28,7 +28,7 @@ export const FetchWorkFlowEditData = (id,token)=>{
       };
     return(dispatch)=>{
         dispatch(WorkFlowEditReq())
-        axios.get(`http://192.168.100.236:8443/VueFrame-ver2-0.0.1-SNAPSHOT/getWfEditData?wfId=${id}`,{headers})
+        axios.get(`http://localhost:8080/VF/getWfEditData?wfId=${id}`,{headers})
         .then((res)=>{
             dispatch(WorkFlowEditSuccess(res.data))
         })

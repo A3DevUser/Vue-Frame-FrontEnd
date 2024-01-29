@@ -29,7 +29,7 @@ export const A3GetPartySheetData = (data,token) =>{
       };
     return (dispatch)=>{
         dispatch(A3GetPartySheetDataReq());
-        axios.post(`http://192.168.100.236:8443/VueFrame-ver2-0.0.1-SNAPSHOT/setAssessTpreData`,data,{headers})
+        axios.post(`http://localhost:8080/VF/setAssessTpreData`,data,{headers})
         .then((res)=>{
             dispatch(A3GetPartySheetDataSuccess(res))
             return swal({

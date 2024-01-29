@@ -29,7 +29,7 @@ export const FetchReviewDataData = (reviewFreq,reviewSubFreq,token) =>{
       };
     return (dispatch)=>{
         dispatch(ReviewDataReq());
-        axios.get(`http://192.168.100.236:8443/VueFrame-ver2-0.0.1-SNAPSHOT/getA3ReviewOBData?reviewFreq=${reviewFreq}&reviewSubFreq=${reviewSubFreq}`,{headers})
+        axios.get(`http://localhost:8080/VF/getA3ReviewOBData?reviewFreq=${reviewFreq}&reviewSubFreq=${reviewSubFreq}`,{headers})
         .then((res)=>{
             dispatch(ReviewDataSuccess(res.data))
         })
