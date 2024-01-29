@@ -723,7 +723,7 @@ const ImportGridRed = useSelector((state)=>state.ImportGridRed)
  export const EditablePartyLink = ({
   rowObj : rowObj,
  }) =>{
-
+console.log('EditablePartyLink',rowObj)
   return <div style={{display:'flex', justifyContent:'center', alignItems:'center'}}>
   <Link to={'/partysheet'} state={{rowData :rowObj.original}} >Assesment Form</Link>
   </div>
@@ -733,10 +733,10 @@ const ImportGridRed = useSelector((state)=>state.ImportGridRed)
  export const EditableHomeLink = ({
   rowObj : rowObj
  }) =>{
-
+  console.log('EditableHomeLink',rowObj.original)
   return (
   <div style={{display:'flex', justifyContent:'center', alignItems:'center'}}>
-  <Link to={'/a3HomeSheet'} state={{reviewId : rowObj.original.review_plan_id,review_name:rowObj.original.review_name}}>Assesment Form</Link>
+  <Link to={'/a3HomeSheet'} state={{reviewId : rowObj.original.review_plan_id,review_name:rowObj.original.review_name, dataRow : rowObj.original}}>Assesment Form</Link>
   </div>)
 
  }
@@ -893,5 +893,6 @@ export const CheckerLink = ({
   rowObj : rowObj,
 
 }) =>{
-  return <Link to={'/checkerForm'}>Vendors</Link>
+  console.log('new row login data',rowObj.review_name)
+  return <Link to={'/checkerForm'} state={{reviewId : rowObj.review_id, reviewName : rowObj.review_name}}>Vendors</Link>
 }

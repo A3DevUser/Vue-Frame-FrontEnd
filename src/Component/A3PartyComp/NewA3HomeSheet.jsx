@@ -41,6 +41,8 @@ const NewA3HomeSheet = () => {
         }})
     }
 
+    console.log('A3HomeDataRedValues',A3HomeDataRed)
+
   return (
     <>
     <div className='homeMainDiv'>

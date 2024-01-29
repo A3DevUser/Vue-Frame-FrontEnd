@@ -65,12 +65,17 @@ const TableStruc = ({getTableProps,getTableBodyProps,headerGroups,prepareRow,row
                 <Dropdown.Item onClick={()=>{funMultiRows(gridData.gridId)}}><i class="bi bi-grid"></i> Add Detailed Rows</Dropdown.Item>
             </DropdownButton>
         </div>
-        </>
-        : gridData.isMrow == 'false' ? <></> : <>        
+        </> : <></>}
+        {gridData.isMrow == 'true'&&gridData.isMultiSelect == 'false' ? <>
         <button className='btn btn-outline-info mx-2' title="Add" style={{display : (gridData.isMrow =='true'&& !add.includes(window.location.pathname)) || (window.location.pathname.includes('confform')&&gridData.isMrow =='true')  ? 'block' : 'none', }}
         // disabled={EmdRed == 'yes'}
         onClick={handleAddRow}><i class="bi bi-plus-lg"></i> </button>
-        </>}
+        </> : <></>}
+        {window.location.pathname == '/confform' || window.location.pathname == '/confreport' ? <>
+        <button className='btn btn-outline-info mx-2' title="Add" style={{display : (gridData.isMrow =='true'&& !add.includes(window.location.pathname)) || (window.location.pathname.includes('confform')&&gridData.isMrow =='true')  ? 'block' : 'none', }}
+        // disabled={EmdRed == 'yes'}
+        onClick={handleAddRow}><i class="bi bi-plus-lg"></i> </button>
+        </> : <></>}
         {!hide ? <button className='btn btn-success mx-2' style={{display : (window.location.pathname.includes('confreport')&&gridData.isMrow =='getdata') ? 'block' : 'none'}}
         // disabled={EmdRed == 'yes'}
         onClick={handleAddRow}

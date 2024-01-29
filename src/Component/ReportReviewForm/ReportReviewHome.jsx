@@ -26,7 +26,7 @@ const ReportReviewHome = ({ gridData, columnData, reportData }) => {
     const ReviewSubFreqFilterRed = useSelector((state)=>state.ReviewSubFreqFilterRed)
     const ReviewDataRed = useSelector((state)=>state.ReviewDataRed)
 
-    const [reviewFilter,setreviewFilter] = useState({})
+    const [reviewFilter,setreviewFilter] = useState([...reportData])
 
     useEffect(()=>{
         console.log('ReviewTypeFilterRed',ReviewTypeFilterRed)
@@ -82,10 +82,12 @@ const ReportReviewHome = ({ gridData, columnData, reportData }) => {
     }
 
     const handleReview = () =>{
+
         let newData = [...selectedFlatRows.map((res)=>{return res.original})]
         const finalData = newData.map((res)=>{
-            return {ASSOCIATE_VEND : res.ASSOCIATE_VEND,VENDOR_ID:'',...reviewFilter}
+            return {ASSOCIATE_VEND : res.ASSOCIATE_VEND,VENDOR_ID:'',...res}
         })
+        // console.log('reviewFilter re-gen data',finalData)
 
         dispatch(SendReviewData(finalData,AuthRed.val))
     }

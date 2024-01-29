@@ -11,7 +11,7 @@ import { SendCheckerData } from '../../Store/Actions/SendCheckerData'
 
 
 
-const CheckerFormTab = ({columnData, reportData }) => {
+const CheckerFormTab = ({reviewId, reviewName, columnData, reportData }) => {
     // const ReportTitleDataRed = useSelector((state) => state.ReportTitleDataRed)
 
     const dispatch = useDispatch()
@@ -49,8 +49,10 @@ const [show,setshow] = useState(false)
        setshow(!show)
        const newData = [...data]
        const finalData = newData.map((res)=>{
-        return {...res,...response}
+        return {...res,...response, reviewId : reviewId, reviewName : reviewName}
        })
+
+       console.log('ModalfinalData',finalData)
 
        dispatch(SendCheckerData(finalData,AuthRed.val))
     }
@@ -81,13 +83,19 @@ const [show,setshow] = useState(false)
         <CheckerResponseModal setshow={setshow} show={show}  handleDataSave={handleDataSave} setresponse={setresponse}/>
             <div style={{ padding: 'auto 1px' }} className='mainReviewDiv' >
                 <div className='tableDiv'>
-                    <div className='headerDrop'>
+                    {/* <div></div> */}
+                    <div className='headerDrop'  style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', maxWidth: '90vw', paddingLeft: '18px', marginTop: '-3px', marginBottom: '9px' }}>
+                        <div>
+                        <h4>Review Title&nbsp;:-&nbsp;{reviewName}</h4>
+                        </div>
+                        <div style={{display: 'flex', alignItems: 'center', marginTop: '3px'}}>
                         <label htmlFor="aprroveReject" id='aprroveRejectLabel'>Result </label>
                         <select id="aprroveReject" className='form-control' onChange={(e)=>{handleModal(e)}}>
                             <option value="">Select One</option>
                             <option value="approve">Approve</option>
                             <option value="reject">Reject</option>
                         </select>
+                        </div>
                     </div>
                     <div>
                 <Styles>

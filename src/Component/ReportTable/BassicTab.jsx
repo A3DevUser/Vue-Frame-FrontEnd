@@ -18,7 +18,7 @@ import { FetchReviewPlanDataData } from '../../Store/Actions/ReviewPlanDataAct'
 const BassicTab = ({ gridData, columnData, reportData }) => {
     // console.log('NewRptDataChk',JSON.stringify(gridData))
     // console.log('NewRptDataChk',JSON.stringify(columnData))
-    console.log('NewRptDataChk',JSON.stringify(reportData))
+    // console.log('NewRptDataChk',columnData)
     // const ReportTitleDataRed = useSelector((state) => state.ReportTitleDataRed)
     const ReportTitleColumnRed = useSelector((state) => state.ReportTitleColumnRed)
     const ReportTitleGridRed = useSelector((state) => state.ReportTitleGridRed)

@@ -61,6 +61,7 @@ import { ReviewDataRed } from "./ReviewDataRed";
 import { SendReviewDataRed } from "./SendReviewDataRed";
 import { ReviewPlanDataRed } from "./ReviewPlanDataRed";
 import { SendCheckerDataRed } from "./SendCheckerDataRed";
+import { A3GetPartySheetDataRed } from "./A3GetPartySheetDataRed"; 
 
 
 const rootReducers = combineReducers({
@@ -134,7 +135,8 @@ const rootReducers = combineReducers({
     ReviewDataRed,
     SendReviewDataRed,
     ReviewPlanDataRed,
-    SendCheckerDataRed
+    SendCheckerDataRed,
+    A3GetPartySheetDataRed
     });
 
 export default rootReducers
