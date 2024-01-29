@@ -86,7 +86,7 @@ const AddTable = () => {
             return fil.gridId == res.gridId
           }).forEach((fe)=>{return dataObj[fe.accessor]=''})
          return  <GridFormSub column={ColumnRed.val.sort((a,b)=>{return a.number-b.number})} data=
-         {[]}
+         {FormDatRed.hasOwnProperty(res.gridId) ? FormDatRed[res.gridId].length == 0 ? [] : FormDatRed[res.gridId] : [] }
          gridData={res} key={i} handleSave={handleSave} disBtn={disBtn} setDisBtn={setDisBtn}/>
         })
       }

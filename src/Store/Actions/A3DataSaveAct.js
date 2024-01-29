@@ -36,7 +36,7 @@ export const PostA3SaveData = (data,token,navigate) =>{
               title :  'Data Saved successfull !!!',
               icon:'success'
             }).then(()=>{
-                // navigate('/addTable')
+                navigate('/addTable')
             })
         })
         .catch((err)=>{

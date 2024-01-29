@@ -25,7 +25,7 @@ export const PartysheetColumns = (col,accountData,updateMyData) =>{
     ,...accountData.map((res)=>{
         console.log('check val Party',res)
     return {
-        Header : res,
+        Header : res.split('$$')[0],
         accessor : res,
         columns : col.filter((fil)=>{return fil.parentCell !=='test'}).sort((a,b)=> a.orderBy-b.orderBy).map((cres)=>{
             if(cres.cellType=='textArea'){

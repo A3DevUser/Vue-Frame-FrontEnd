@@ -44,6 +44,8 @@ const FormTable = ({ col, dData, gridData, handleSave, funNavConf, disBtn, setDi
   const [hide, setHide] = useState(false)
   const [localVal, setLocalVal] = useState([])
 
+  console.log('dData',dData)
+
   useEffect(() => {
     setLocalData(SendReportConfDataRed.val)
   }, [SendReportConfDataRed])
