@@ -1,10 +1,10 @@
-import { EditableAttachCell, EditableCell, EditableDateCell, EditableDdCell, EditableDdqResCell, EditableMixCell, EditableNumCell, EditableRateNumCell, RiskRatingDropDown } from "./EditableCellPartySheet"
+import { EditableAttachCell, EditableCell, EditableDateCell, EditableDdCell, EditableDdqResCell, EditableMixCell, EditableNumCell, EditableRateNumCell, MARiskRatingDropDown, RiskRatingDropDown } from "./EditableCellPartySheet"
 
 const calculateColumnWidth = (tableWidth, totalColumns) => {
     return Math.floor(tableWidth / totalColumns);
 };
 
-export const PartysheetColumns = (col,accountData,updateMyData) =>{
+export const PartysheetColumns = (col,accountData,updateMyData,setmaxScore) =>{
 
     console.log('PartysheetData',col)
     console.log('PartysheetData',accountData)
@@ -62,10 +62,18 @@ export const PartysheetColumns = (col,accountData,updateMyData) =>{
                 return{
                     Header : cres.fieldName,
                     accessor : cres.accessor+'#'+res,
-                    Cell : ({cell}) =>{return <RiskRatingDropDown/>},
+                    Cell : ({cell}) =>{return <RiskRatingDropDown setmaxScore={setmaxScore} column={cell.column.id} row={cell.row.id} updateMyData={updateMyData} value={cell.value} colObj={cell.column} parentId={cell}/>},
                     width : cres.width !== null ? cres.width : calculateColumnWidth( 0.97 * window.innerWidth, col.length)
                 }
-            }else if(cres.cellType == 'rateNum'){
+            }else if(cres.cellType=='marrDropDown'){
+            return{
+                Header : cres.fieldName,
+                accessor : cres.accessor+'#'+res,
+                Cell : ({cell}) =>{return <MARiskRatingDropDown setmaxScore={setmaxScore} column={cell.column.id} row={cell.row.id} updateMyData={updateMyData} value={cell.value} colObj={cell.column} parentId={cell}/>},
+                width : cres.width !== null ? cres.width : calculateColumnWidth( 0.97 * window.innerWidth, col.length)
+            }
+        }
+            else if(cres.cellType == 'rateNum'){
                 return{
                     Header : cres.fieldName,
                     accessor : cres.accessor+'#'+res,

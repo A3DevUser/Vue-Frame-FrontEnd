@@ -323,13 +323,72 @@ export const EditableCell = ({
   }
 
   export const RiskRatingDropDown = ({
-
+    value: initialValue,
+    row:  index ,
+    column:  id ,
+    updateMyData, 
+    colObj:colObj,
+    parentId,
+    setmaxScore
   }) =>{
-    return <select className="form-control">
-      <option value={''}>Select One...</option>
-      <option value='High'>High</option>
-      <option value='Medium'>Medium</option>
-      <option value='Low'>Low</option>
+
+
+    const [value, setValue] = React.useState(initialValue)
+    const onChange = e => {
+      setValue(e.target.value)
+    }
+
+  
+    const onBlur = () => {
+      console.log(parentId)
+      updateMyData(index, id, value,null,parentId.column.parent.id.id)
+    }
+  
+    React.useEffect(() => {
+      setValue(initialValue)
+      setmaxScore(5)
+    }, [initialValue])
+
+    return <select className="form-control" onChange={onChange} onBlur={onBlur}>
+      <option value={0}>Select One...</option>
+      <option value={5}>High</option>
+      <option value={3}>Medium</option>
+      <option value={0}>Low</option>
+    </select>
+  }
+
+  export const MARiskRatingDropDown = ({
+    value: initialValue,
+    row:  index ,
+    column:  id ,
+    updateMyData, 
+    colObj:colObj,
+    parentId,
+    setmaxScore
+  }) =>{
+
+
+    const [value, setValue] = React.useState(initialValue)
+    const onChange = e => {
+      setValue(e.target.value)
+    }
+
+  
+    const onBlur = () => {
+      console.log(parentId)
+      updateMyData(index, id, value,null,parentId.column.parent.id.id)
+    }
+  
+    React.useEffect(() => {
+      setValue(initialValue)
+      setmaxScore(3)
+    }, [initialValue])
+
+    return <select className="form-control" onChange={onChange} onBlur={onBlur}>
+      <option value={0}>Select One...</option>
+      <option value={1}>1</option>
+      <option value={2}>2</option>
+      <option value={3}>3</option>
     </select>
   }
 

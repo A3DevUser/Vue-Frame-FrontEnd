@@ -14,6 +14,7 @@ import A3OverviewModal from './A3OverviewModal'
 import DividePartySheet from './DividePartySheet'
 import swal from 'sweetalert'
 import { useNavigate } from 'react-router'
+import { FormTestScoreData } from '../../../Store/Actions/TestScoreDataAct'
 
 
 
@@ -21,6 +22,7 @@ import { useNavigate } from 'react-router'
 const PartySheetTable = ({col,dData,userName,accData,tableData,handleChange}) => {
 const dispatch = useDispatch()
 const navigate = useNavigate()
+
 
 
 const accColumn = col.filter((fil)=>{return fil.parentCell=='account'}).map((res)=>{return res.accessor});
@@ -75,27 +77,57 @@ const accColumn = col.filter((fil)=>{return fil.parentCell=='account'}).map((res
   })
 
 
-  
+  const [maxScore,setmaxScore] = useState(0)
+
   
   const [accountData,setaccountData] = useState([...accData.slice(0,10)])
-  const [columns,setcolumns]=useState([...PartysheetColumns(col,accData.slice(0,10).map((res)=>{return res.Associate_Vend}),updateMyData)])
+  const [columns,setcolumns]=useState([...PartysheetColumns(col,accData.slice(0,10).map((res)=>{return res.Associate_Vend}),updateMyData,setmaxScore)])
   const [data,setdata]=useState(
     tableData.length > 0 ?
     [...finalOpData] : [...dData]
   );
 
+
   
   const [finalData,setfinalData] = useState({})
   const [fileArr,setfileArr] =useState()
+  const [score,setScore] = useState()
   const [show,setShow] = useState(false)
   const [globalSearchVal,setglobalSearchVal] = useState('')
 
   const mainObjDataRed = useSelector((state)=>state.mainObjDataRed)
   const AuthRed = useSelector((state)=>state.AuthRed)
 
+  let isScorVal = ''
+
+  if(col.filter((fil) => {
+    return fil.isScoring == 'true'
+  }).length > 0){
+    isScorVal = col.filter((fil) => {
+      return fil.isScoring == 'true'
+    })[0].accessor
+  }
+
+  
+  // console.log('TestColumnData',isScorVal[0].accessor)
+  useEffect(()=>{
+    // console.log('TestColumnDataFind',Object.values(finalData).map((res)=>{
+    //   return res[isScorVal]
+    // }))
+    console.log('TestColumnDataFind',Object.values(finalData).reduce((acc,cur)=>{
+      return acc += Number(cur[isScorVal])
+    },0))
+
+    setScore(Object.values(finalData).reduce((acc,cur)=>{
+      return acc += Number(cur[isScorVal])
+    },0))
+
+  },[finalOpData])
+
+
     let userId = userName
     const accList = accData.map((res)=>{return res.Associate_Vend})
-
+console.log('vendorIdData',accList)
     const defaultColumn = React.useMemo(
         () => ({
           Filter: ColumnFilter
@@ -132,13 +164,21 @@ const accColumn = col.filter((fil)=>{return fil.parentCell=='account'}).map((res
       }
 
       useEffect(()=>{
-        console.log('opFinalData',data)
+        console.log('opFinalData',finalData)
       },[finalData])
 
-
+console.log('DataRowCount',dData)
       function handleSave(){
+        alert(dData.length)
         const dataList = Object.values(finalData);
-
+        dispatch(FormTestScoreData([  {
+          "tpreScore": score,
+          "tpreRating": score >= (dData.length*maxScore)/2 ? 'High' : score == 0 ? 'Low' : 'Medium',
+          "isMaterial": "Material",
+          "dueDilligenceScore": "Yearly",
+          "vendor_ID": accList[0].split('$$')[0],
+          "VENDOR_ID": accList[0].split('$$')[0]
+        }],AuthRed.val))
         dispatch(PostA3SaveData(dataList,AuthRed.val,navigate))
       }
 
@@ -177,6 +217,7 @@ const accColumn = col.filter((fil)=>{return fil.parentCell=='account'}).map((res
           getTableBodyProps,
           headerGroups,
           page,
+          rows,
           nextPage,
           previousPage,
           canPreviousPage,
@@ -215,7 +256,7 @@ const accColumn = col.filter((fil)=>{return fil.parentCell=='account'}).map((res
       <div className='my-2' style={{display:'flex',justifyContent:'space-between',width: '97%', gap:10}}>
         <div style={{display:'flex', justifyContent:'center', alignItems:'center'}}>
         {/* <span style={{fontSize:25}} class="bi bi-arrow-left-circle-fill"></span> */}
-        <DividePartySheet dataLength={accData.length} handleChange={handleChange}/>
+        <DividePartySheet score={score} dataLength={accData.length} handleChange={handleChange}/>
         </div>
         {/* <div>
         <DropdownButton variant='success' title='Overview'>
@@ -264,7 +305,7 @@ const accColumn = col.filter((fil)=>{return fil.parentCell=='account'}).map((res
           ))}
         </div>
         <div {...getTableBodyProps()} className="body">
-          {page.map((row) => {
+          {rows.map((row) => {
             prepareRow(row);
             return (
               <div {...row.getRowProps()} className="tr">
