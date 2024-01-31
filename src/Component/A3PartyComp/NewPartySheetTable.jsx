@@ -7,16 +7,17 @@ import '../FormTableDir/TableStyle.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { Checkbox } from '../FormTableDir/Checkbox'
 import { useSticky } from 'react-table-sticky'
-import { PartysheetColumns } from '../../Component/A3dir/Partysheet/PartySheetColumns'
 import { useLocation } from 'react-router'
 import { A3GetPartySheetData } from '../../Store/Actions/A3GetPartySheetDataAct'
+import { NewPartysheetColumns } from './NewPartySheetColumns'
 
 const NewPartySheetTable = ({columnData,tableData,vendorList}) => {
 
   const location = useLocation()
 
   const [data,setdata] = useState([...tableData])
-  const [columns,setcolumns] = useState([...PartysheetColumns(columnData,vendorList,updateMyData)])
+  const [maxScore,setmaxScore] = useState(0)
+  const [columns,setcolumns] = useState([...NewPartysheetColumns(columnData,vendorList,updateMyData,setmaxScore)])
   const [finalData,setfinalData]=useState([])
   const [fileArr,setfileArr] =useState()
   const dispatch = useDispatch()

@@ -43,6 +43,8 @@ import CheckerForm from './Component/ReviewForm/CheckerForm'
 import ReportReviewForm from './Component/ReportReviewForm/ReportReviewForm'
 import NewA3HomeSheet from './Component/A3PartyComp/NewA3HomeSheet'
 import NewPartySheet from './Component/A3PartyComp/NewPartySheet'
+import ComboHomeTest from './Component/ComboHomeTest/ComboHomeTest'
+
 
 const App = () => {
   const dispatch = useDispatch()
@@ -112,6 +114,7 @@ const App = () => {
           <Route path='/checkerForm' element={<CheckerForm/>}/>
         <Route path='/a3HomeSheet' element={<NewA3HomeSheet/>} />
         <Route path='/a3PartySheet' element={<NewPartySheet/>}/>
+        <Route path='/hometestsheet' element={<ComboHomeTest/>}/>
         </Route>
       </Routes>
     </div>

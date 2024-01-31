@@ -20,6 +20,7 @@ const NewA3HomeSheet = () => {
     const A3HomeDataRed = useSelector((state)=>state.A3HomeDataRed)
     const FormIdRed = useSelector((state)=>state.FormIdRed)
     const [vendorType,setvendorType] = useState('')
+    const [selected,setSelected] = useState({})
 
 
     useEffect(()=>{
@@ -37,11 +38,17 @@ const NewA3HomeSheet = () => {
     const handleNavigate = () =>{
         console.log('location.state',vendorType)
         navigate('/a3PartySheet',{state:{
-            data :A3HomeDataRed.val, vendorType:vendorType
+            data : selected.length >= 1 ? selected.map((res) => {
+                return res.original
+            }) : A3HomeDataRed.val , vendorType:vendorType
         }})
     }
 
-    console.log('A3HomeDataRedValues',A3HomeDataRed)
+    // console.log('A3HomeDataRedValues',selected.map((res) => {
+    //     return res.original
+    // }))//A3HomeDataRed.val
+
+    console.log('A3HomeDataRedValues',selected.length)
 
   return (
     <>
@@ -56,7 +63,7 @@ const NewA3HomeSheet = () => {
             {
                 A3PartyColumnRed.loading ? MainObject.loader() :
                 A3HomeDataRed.loading ? MainObject.loader() :
-        <NewA3HomeTable columnData={A3PartyColumnRed.val} tableData={A3HomeDataRed.val} />
+        <NewA3HomeTable columnData={A3PartyColumnRed.val} tableData={A3HomeDataRed.val} setSelected={setSelected}/>
             }
         </div>
     </div>

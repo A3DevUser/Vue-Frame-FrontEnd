@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Checkbox } from '../FormTableDir/Checkbox'
 import { useSticky } from 'react-table-sticky'
 
-const NewA3HomeTable = ({columnData,tableData}) => {
+const NewA3HomeTable = ({columnData,tableData,setSelected}) => {
 
   const [data,setdata] = useState([...tableData])
   const [columns,setcolumns] = useState([...columnData.map((res)=>{
@@ -58,6 +58,10 @@ const NewA3HomeTable = ({columnData,tableData}) => {
 
 const { globalFilter } = state
 const { pageIndex } = state
+
+useEffect(() => {
+    setSelected(selectedFlatRows)
+},[selectedFlatRows])
 
   return (
     <>
