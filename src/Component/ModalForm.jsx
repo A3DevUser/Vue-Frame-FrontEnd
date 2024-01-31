@@ -84,7 +84,7 @@ const ModalForm = ({actObjId}) => {
       ...res,
       DATA: res.DATA.filter(obj => obj.VF_MAIN_OBJ_ID == mainObjId)
     }))
-    // console.log('finalObj', newData)
+    console.log('ColumnEditActRed', ModalColumnRed)
     // console.log('finalObj', mainObjId)
     setModalMultiData(newData);
   },[])
@@ -116,7 +116,8 @@ const ModalForm = ({actObjId}) => {
               // ColumnEditActRed.loading ? MainObject.loader() :
                 defaultVal && MainObject.tabs(ModalSectionRed.val, ModalGridRed.val, 
                   // ModalColumnRed.val,
-                  ColumnEditActRed.val.sort((a,b)=>{return a.orderNo-b.orderNo}), 
+                  // ColumnEditActRed.val.sort((a,b)=>{return a.orderNo-b.orderNo}), 
+                  ModalColumnRed.val.sort((a,b)=>{return a.orderNo-b.orderNo}),
                   // GetDataRed.val
                   // [{}]
                   modalMultiData
