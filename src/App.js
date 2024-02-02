@@ -114,8 +114,8 @@ const App = () => {
           <Route path='/checkerForm' element={<CheckerForm/>}/>
         <Route path='/a3HomeSheet' element={<NewA3HomeSheet/>} />
         <Route path='/a3PartySheet' element={<NewPartySheet/>}/>
-        <Route path='/hometestsheet' element={<ComboHomeTest/>}/>
         </Route>
+        <Route path='/hometestsheet' element={<ComboHomeTest/>}/>
       </Routes>
     </div>
   )

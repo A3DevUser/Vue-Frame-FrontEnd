@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { useTable, useGlobalFilter, useFilters, usePagination, useSortBy, useBlockLayout, useRowSelect } from 'react-table'
 import GlobalFilter from './GlobalFilter'
 import { ColumnFilter } from './ColumnFilter'
@@ -78,6 +78,8 @@ const ComboHomeTest = () => {
         }
     }, [])
 
+
+
     const { getTableProps,
         getTableBodyProps,
         headerGroups,
@@ -113,6 +115,10 @@ const ComboHomeTest = () => {
               ...columns]
             })
           })
+
+          useEffect(()=>{
+            console.log('selectedFlatRows',selectedFlatRows)
+        },[selectedFlatRows])
 
     const { globalFilter } = state
     const { pageIndex } = state
