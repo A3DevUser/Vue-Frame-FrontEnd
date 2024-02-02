@@ -442,26 +442,26 @@ const FormTable = ({ col, dData, gridData, handleSave, funNavConf, disBtn, setDi
     setdata(old => { return [...old, ...selectedFlatRows.map((res) => { return res.original })] })
   }
 
-  useEffect(() => {
-    if (data.length > 0 && !SendObjectIdRed.loading) {
-      console.log('SendObjectIdRed', SendObjectIdRed.val.rowId,data,gridData.gridId)
-      if (data[SendObjectIdRed.val.rowId]['VF_MAIN_OBJ_ID'].length == 0) {
-        setdata(old =>
-          old.map((row, index) => {
-            if (index == SendObjectIdRed.val.rowId) {
-              return {
-                ...old[SendObjectIdRed.val.rowId],
-                ['VF_MAIN_OBJ_ID']: SendObjectIdRed.val.objId
-                // ['auditId'] : 'auditId'
-              }
-            }
-            return row
-          })
-        )
-        // data[SendObjectIdRed.val.rowId]['VF_MAIN_OBJ_ID']==SendObjectIdRed.val.objId
-      }
-    }
-  }, [SendObjectIdRed])
+  // useEffect(() => {
+  //   if (data.length > 0 && !SendObjectIdRed.loading) {
+  //     console.log('SendObjectIdRed', SendObjectIdRed.val.rowId,data,gridData.gridId)
+  //     if (data[SendObjectIdRed.val.rowId]['VF_MAIN_OBJ_ID'].length == 0) {
+  //       setdata(old =>
+  //         old.map((row, index) => {
+  //           if (index == SendObjectIdRed.val.rowId) {
+  //             return {
+  //               ...old[SendObjectIdRed.val.rowId],
+  //               ['VF_MAIN_OBJ_ID']: SendObjectIdRed.val.objId
+  //               // ['auditId'] : 'auditId'
+  //             }
+  //           }
+  //           return row
+  //         })
+  //       )
+  //       // data[SendObjectIdRed.val.rowId]['VF_MAIN_OBJ_ID']==SendObjectIdRed.val.objId
+  //     }
+  //   }
+  // }, [SendObjectIdRed])
 
   useEffect(()=>{
     console.log('FormDatRed.val',FormDatRed)

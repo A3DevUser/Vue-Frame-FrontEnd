@@ -78,3 +78,17 @@ export const mainObjData = (val) =>{
         payload : val
     }
 }
+
+export const AddTableMainFormData = (val) =>{
+    return {
+        type :'AddTableFormData',
+        payload: val
+    }
+}
+
+export const AddTableMultFormData = (val) =>{
+    return {
+        type :'AddTableMultFormData',
+        payload: val
+    }
+}

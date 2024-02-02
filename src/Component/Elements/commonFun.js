@@ -10,6 +10,7 @@ import BassicTab from "../ReportTable/BassicTab"
 import { useDispatch } from "react-redux"
 import { FormIdAct } from "../../Store/Actions/GeneralStates"
 import { Link } from "react-router-dom"
+import AddTabs from "../../Component/EditViewAdd/AddTable/AddTabs"
 
 export const MainObject = {
     alert : (alertVal) => {
@@ -158,5 +159,9 @@ export const MainObject = {
     },
 
     MultiModalCompo : (title,bodyDetails,show,setshow,showFunc,multiData,columns) =>{return <MultiModalCompo title={title} bodyDetails={bodyDetails} show={show} setshow={setshow} showFunc={showFunc} multiData={multiData} columns={columns}/>},
+
+    addTabs : (sectionData,griData,columnData)=>{
+        return <AddTabs sectionData={sectionData} gridData={griData} columnData={columnData}/>
+    },
 
 } 
