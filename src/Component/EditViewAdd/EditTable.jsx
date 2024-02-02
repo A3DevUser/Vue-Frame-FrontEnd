@@ -58,7 +58,11 @@ const EditTable = () => {
             }) 
               if(newObj.length >= 0){
                 console.log('newFormDataRed',newObj)
-                dispatch(PostFormExcelData(UserDataStateRed,newObj,AuthRed.val,setdata,setDisBtn,location.state.formId,location.state.daysFlag,navigate))
+                dispatch(PostFormExcelData(UserDataStateRed,newObj,AuthRed.val,
+                  // setdata,
+                  setDisBtn,
+                  // location.state.formId,location.state.daysFlag,
+                  navigate))
               }
             }})
       }else{
