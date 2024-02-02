@@ -98,7 +98,7 @@ const accColumn = col.filter((fil)=>{return fil.parentCell=='account'}).map((res
   const mainObjDataRed = useSelector((state)=>state.mainObjDataRed)
   const AuthRed = useSelector((state)=>state.AuthRed)
 
-  let isScorVal = ''
+  let isScorVal = 0
 
   if(col.filter((fil) => {
     return fil.isScoring == 'true'
@@ -109,17 +109,17 @@ const accColumn = col.filter((fil)=>{return fil.parentCell=='account'}).map((res
   }
 
   
-  // console.log('TestColumnData',isScorVal[0].accessor)
+  console.log('TestColumnDatacol',isScorVal)
   useEffect(()=>{
     // console.log('TestColumnDataFind',Object.values(finalData).map((res)=>{
     //   return res[isScorVal]
     // }))
-    console.log('TestColumnDataFind',Object.values(finalData).reduce((acc,cur)=>{
-      return acc += Number(cur[isScorVal])
-    },0))
+    console.log('TestColumnDataFind',Object.values(finalData).map((res) => {
+      return res[isScorVal]
+    }))
 
     setScore(Object.values(finalData).reduce((acc,cur)=>{
-      return acc += Number(cur[isScorVal])
+      return acc += (cur[isScorVal] ? Number(cur[isScorVal]) : 0 )
     },0))
 
   },[finalOpData])
