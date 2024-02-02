@@ -169,7 +169,7 @@ console.log('vendorIdData',accList)
 
 console.log('DataRowCount',dData)
       function handleSave(){
-        alert(dData.length)
+        // alert(dData.length)
         const dataList = Object.values(finalData);
         dispatch(FormTestScoreData([  {
           "tpreScore": score,

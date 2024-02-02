@@ -60,12 +60,13 @@ const AddTable = () => {
                   if(Array.isArray(FormDatRed[res])){
                     // console.log('UPDATEUSERDATA',FormDatRed[res].forEach(obj => obj["VF_CREATED_BY"] = UserDataStateRed))
                     // let finData = FormDatRed[res].forEach(obj => obj["VF_CREATED_BY"] = UserDataStateRed)
-                    // console.log('UPDATEUSERDATA',finData)
+                    // console.log('UPDATEUSERDATA',FormDatRed[res])
                     dispatch(PostFormExcelData(UserDataStateRed,FormDatRed[res],AuthRed.val,setdata,setDisBtn)) 
                     // setDataValidation(false)
                     // console.log('FormDatRedDatanew',FormDatRed[res])
                   }else{
                     Object.values(FormDatRed[res]).forEach((fres)=>{
+                      console.log('UPDATEUSERDATA',fres)
                       dispatch(PostFormExcelData(UserDataStateRed,fres,AuthRed.val,setdata,setDisBtn))
                       // setDataValidation(false)
                     })
