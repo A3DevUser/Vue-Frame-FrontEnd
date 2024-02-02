@@ -123,7 +123,7 @@ const AddTable = () => {
           ColumnRed.val.filter((fil)=>{
             return fil.gridId == res.gridId
           }).forEach((fe)=>{return dataObj[fe.accessor]=''})
-         return  <AddTab columnData={ColumnRed.val.sort((a,b)=>{return a.number-b.number})} reportData={[]} gridData={res} handleSave={handleSave}  />
+         return  <AddTab columnData={ColumnRed.val.sort((a,b)=>{return a.number-b.number})} reportData={AddTableFormDataRed.hasOwnProperty(res.gridId) ? AddTableFormDataRed[res.gridId].length == 0 ? [] : AddTableFormDataRed[res.gridId] : [] } gridData={res} handleSave={handleSave}  />
         //  <GridFormSub column={ColumnRed.val.sort((a,b)=>{return a.number-b.number})} data=
         //  {[]}
         //  gridData={res} key={i} handleSave={handleSave} disBtn={disBtn} setDisBtn={setDisBtn}/>
