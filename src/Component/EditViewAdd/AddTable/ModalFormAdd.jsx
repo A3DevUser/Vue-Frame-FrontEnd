@@ -85,7 +85,7 @@ const ModalFormAdd = ({VF_MAIN_OBJ_ID}) => {
         ModalSectionRed.loading ? MainObject.loader() :
         ModalGridRed.loading ? MainObject.loader() :
         ModalColumnRed.loading ? MainObject.loader() :
-        MainObject.addTabs(ModalSectionRed.val,ModalGridRed.val,ModalColumnRed.val)
+        MainObject.addTabs(ModalSectionRed.val,ModalGridRed.val,ModalColumnRed.val.sort((a,b)=> a.number - b.number))
       }
     </div>
   )
