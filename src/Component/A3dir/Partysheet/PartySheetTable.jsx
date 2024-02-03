@@ -19,7 +19,7 @@ import { FormTestScoreData } from '../../../Store/Actions/TestScoreDataAct'
 
 
 
-const PartySheetTable = ({col,dData,userName,accData,tableData,handleChange}) => {
+const PartySheetTable = ({col,dData,userName,accData,tableData,handleChange,filterTypr}) => {
 const dispatch = useDispatch()
 const navigate = useNavigate()
 
@@ -98,7 +98,7 @@ const accColumn = col.filter((fil)=>{return fil.parentCell=='account'}).map((res
   const mainObjDataRed = useSelector((state)=>state.mainObjDataRed)
   const AuthRed = useSelector((state)=>state.AuthRed)
 
-  let isScorVal = ''
+  let isScorVal = 0
 
   if(col.filter((fil) => {
     return fil.isScoring == 'true'
@@ -109,17 +109,17 @@ const accColumn = col.filter((fil)=>{return fil.parentCell=='account'}).map((res
   }
 
   
-  // console.log('TestColumnData',isScorVal[0].accessor)
+  console.log('TestColumnDatacol',isScorVal)
   useEffect(()=>{
     // console.log('TestColumnDataFind',Object.values(finalData).map((res)=>{
     //   return res[isScorVal]
     // }))
-    console.log('TestColumnDataFind',Object.values(finalData).reduce((acc,cur)=>{
-      return acc += Number(cur[isScorVal])
-    },0))
+    console.log('TestColumnDataFind',Object.values(finalData).map((res) => {
+      return res[isScorVal]
+    }))
 
     setScore(Object.values(finalData).reduce((acc,cur)=>{
-      return acc += Number(cur[isScorVal])
+      return acc += (cur[isScorVal] ? Number(cur[isScorVal]) : 0 )
     },0))
 
   },[finalOpData])
@@ -256,7 +256,7 @@ console.log('DataRowCount',dData)
       <div className='my-2' style={{display:'flex',justifyContent:'space-between',width: '97%', gap:10}}>
         <div style={{display:'flex', justifyContent:'center', alignItems:'center'}}>
         {/* <span style={{fontSize:25}} class="bi bi-arrow-left-circle-fill"></span> */}
-        <DividePartySheet score={score} dataLength={accData.length} handleChange={handleChange}/>
+        <DividePartySheet score={score} filterTypr={filterTypr} dataLength={accData.length} handleChange={handleChange}/>
         </div>
         {/* <div>
         <DropdownButton variant='success' title='Overview'>

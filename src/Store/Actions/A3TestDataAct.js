@@ -29,7 +29,8 @@ export const FetchA3TestData = (questionType,vendorType,token) =>{
 
     return (dispatch)=>{
         dispatch(A3TestReq());
-        axios.get(`http://localhost:8080/VF/getQuestionData?pQueType=${questionType}&pVenType=${vendorType}`,{headers})
+        // axios.get(`http://localhost:8080/VF/getQuestionData?pQueType=${questionType}&pVenType=${vendorType}`,{headers})
+        axios.get(`http://localhost:8080/VF/getQuestionData2?category=${questionType}&assessType=${vendorType}`,{headers})
         .then((res)=>{
             dispatch(A3TestSuccess(res.data))
         })

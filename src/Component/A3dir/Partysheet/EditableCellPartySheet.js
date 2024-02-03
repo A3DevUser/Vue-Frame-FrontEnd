@@ -340,7 +340,7 @@ export const EditableCell = ({
 
   
     const onBlur = () => {
-      console.log(parentId)
+      console.log('TestColumnDataFind123',value)
       updateMyData(index, id, value,null,parentId.column.parent.id.id)
     }
   
@@ -450,11 +450,14 @@ export const EditableCell = ({
     return <div>
       <select onChange={onChange} onBlur={onBlur} className="form-control">
         <option value={''}>Select One...</option>
-        {
+        <option value={'Yes'}>Yes</option>
+        <option value={'No'}>No</option>
+        <option value={'NA'}>NA</option>
+        {/* {
           rowObj.RESPONSE_DISPLAY_VAL.split(',').map((res)=>{
             return <option value={res}>{res}</option>
           })
-        }
+        } */}
       </select>
     </div>
   }

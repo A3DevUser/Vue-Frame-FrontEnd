@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import PartySheetTable from './PartySheetTable';
 import { useDispatch, useSelector } from 'react-redux';
 import { MainObject } from '../../../Component/Elements/commonFun';
@@ -17,34 +17,36 @@ const Partysheet = () => {
   const AuthRed = useSelector((state) => state.AuthRed);
   const mainObjDataRed = useSelector((state) => state.mainObjDataRed);
   const A3PsOpDataRed = useSelector((state) => state.A3PsOpDataRed);
+  const [filterTypr,setFilterTypr] = useState('TPRM New vendor risk assessment - TPRE')
+
 
   console.log('location', location.state);
 
   const handleChange = (e) =>{
+    setFilterTypr(e.target.value)
     dispatch(FetchA3PartyColumnData(e.target.value, 'party', AuthRed.val));
-    dispatch(FetchA3TestData(e.target.value,'New' ,AuthRed.val));  
+    dispatch(FetchA3TestData(e.target.value,'Pre Onboarding$$Pre Onboarding' ,AuthRed.val));  
   }
 
   useEffect(() => {
-    dispatch(FetchA3PartyColumnData('TPRM New vendor risk assessment - TPRE', 'party', AuthRed.val));
-    dispatch(FetchA3TestData('TPRM New vendor risk assessment - TPRE','New' ,AuthRed.val));
+    dispatch(FetchA3PartyColumnData('Third Party Risk Evaluation$$Third Party Risk Evaluation', 'party', AuthRed.val));
+    dispatch(FetchA3TestData('Third Party Risk Evaluation$$Third Party Risk Evaluation','New' ,AuthRed.val));
+    dispatch(FetchA3TestData('Third Party Risk Evaluation$$Third Party Risk Evaluation','Pre Onboarding$$Pre Onboarding' ,AuthRed.val));
   }, [dispatch, FormIdRed, AuthRed.val]);
 
   useEffect(() => {
+    console.log('A3TestRed',A3TestRed.val)
     if (location.state && A3TestRed.val.length > 0) {
       const accArray = location.state.rowData.Associate_Vend;
       const outputId = A3TestRed.val.map((res) => {
-        return 'OB-' + res.QUESTION_ID + location.state.rowData.VF_MAIN_OBJ_ID;
+        // return 'OB-' + res.QUESTION_ID + location.state.rowData.VF_MAIN_OBJ_ID;
+        return 'OB-' + res.VF_MAIN_OBJ_ID + location.state.rowData.VF_MAIN_OBJ_ID;
       });
       console.log('outputId',outputId)
       dispatch(FetchA3PsOpDataData(outputId, AuthRed.val));
     }
   }, [ A3TestRed.val, location.state]);
 
-  useEffect(() => {
-    console.log('A3PsOpDataRed', A3PsOpDataRed);
-  }, [A3PsOpDataRed]);
-  
 
   return (
     <>
@@ -53,7 +55,7 @@ const Partysheet = () => {
        A3TestRed.loading ?  MainObject.loader() : 
        A3PsOpDataRed.loading ? MainObject.loader() :
 
-        <PartySheetTable accData={[location.state.rowData]} col={A3PartyColumnRed.val} dData={A3TestRed.val} tableData={A3PsOpDataRed.val} handleChange={handleChange} />
+        <PartySheetTable accData={[location.state.rowData]} col={A3PartyColumnRed.val} dData={A3TestRed.val} tableData={A3PsOpDataRed.val} handleChange={handleChange} filterTypr={filterTypr}/>
       }
     </>
   );
