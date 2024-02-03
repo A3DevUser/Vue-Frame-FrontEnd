@@ -14,7 +14,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import AddTable from './Component/EditViewAdd/AddTable'
 import EditTable from './Component/EditViewAdd/EditTable'
 import ViewTable from './Component/EditViewAdd/ViewTable'
-import {Offline,Online} from 'react-detect-offline'
+import { Offline, Online } from 'react-detect-offline'
 import { Modal } from 'react-bootstrap'
 import ReportForm from './Component/Report/ReportForm'
 import ConfEdit from './Component/EditViewAdd/ConfEdit'
@@ -53,7 +53,7 @@ const App = () => {
   const [show, setshow] = useState(false)
   const [validate, setValidate] = useState(false);
 
-  const LogInStateRed = useSelector((state)=>state.LogInStateRed)
+  const LogInStateRed = useSelector((state) => state.LogInStateRed)
 
   const handleFunc = () => {
     setshow(!show)
@@ -65,12 +65,12 @@ const App = () => {
   //   }`
   // )
 
-  useEffect(()=>{
+  useEffect(() => {
     dispatch(AuthSucess(sessionStorage.getItem('userData')))
     dispatch(FormIdAct(sessionStorage.getItem('formId')))
     dispatch(EmdAct(sessionStorage.getItem('emd')))
     dispatch(UserDataState(sessionStorage.getItem('userName')))
-  },[])
+  }, [])
 
 
   return (
@@ -86,13 +86,13 @@ const App = () => {
       {/* <button className='btn btn-primary' onClick={()=>{eval('handleClick()')}}>Click me</button> */}
       <Navbar />
       <Routes>
-        <Route path='/' element={<LogInPage/>} />
-        <Route element={<ProtectedRoutes logStatus={LogInStateRed}/>}>
-          <Route path='/addTable' element={<AddTable/>} />
-          <Route path='/editTable' element={<EditTable/>} />
-          <Route path='/viewTable' element={<ViewTable/>} />
-          <Route path='/confEdit' element={<ConfEdit/>}/>
-          <Route path='/homepage' element={<Home  />} />
+        <Route path='/' element={<LogInPage />} />
+        <Route element={<ProtectedRoutes logStatus={LogInStateRed} />}>
+          <Route path='/addTable' element={<AddTable />} />
+          <Route path='/editTable' element={<EditTable />} />
+          <Route path='/viewTable' element={<ViewTable />} />
+          <Route path='/confEdit' element={<ConfEdit />} />
+          <Route path='/homepage' element={<Home />} />
           <Route path='/forms' element={<Form />} />
           <Route path='/GridForm' element={<GridForm />} />
           <Route path='/confform' element={<FormConf />} />
@@ -103,20 +103,20 @@ const App = () => {
           <Route path='/editReport' element={<EditReport />} />
           <Route path='/reportForm' element={<ReportForm />} />
           {/* <Route path='/reportForm' element={<BassicTab />} /> */}
-          <Route path='/useraddTable' element={<UserAddTable/>} />
-          <Route path='/usereditTable' element={<UserEditTable/>} />
-          <Route path='/userviewTable' element={<UserViewTable/>} />
-          <Route path='/partysheet' element={<Partysheet/>} />
-          <Route path='/homesheet' element={<A3HomeSheet/>} />
-          <Route path='/homePartySheet' element={<HomePartySheet/>} />
-          <Route path='/pendencyDashboard' element={<PendencyDashboard/>} />
-          <Route path='/reviewPlan' element={<ReviewForm/>}/>
-          <Route path='/reportReviewPlan' element={<ReportReviewForm/>}/>
-          <Route path='/checkerForm' element={<CheckerForm/>}/>
-        <Route path='/a3HomeSheet' element={<NewA3HomeSheet/>} />
-        <Route path='/a3PartySheet' element={<NewPartySheet/>}/>
-        <Route path='/hometestsheet' element={<ComboHomeTest/>}/>
-        <Route path='/ComboPartySheet' element={<ComboPartySheet/>}/>
+          <Route path='/useraddTable' element={<UserAddTable />} />
+          <Route path='/usereditTable' element={<UserEditTable />} />
+          <Route path='/userviewTable' element={<UserViewTable />} />
+          <Route path='/partysheet' element={<Partysheet />} />
+          <Route path='/homesheet' element={<A3HomeSheet />} />
+          <Route path='/homePartySheet' element={<HomePartySheet />} />
+          <Route path='/pendencyDashboard' element={<PendencyDashboard />} />
+          <Route path='/reviewPlan' element={<ReviewForm />} />
+          <Route path='/reportReviewPlan' element={<ReportReviewForm />} />
+          <Route path='/checkerForm' element={<CheckerForm />} />
+          <Route path='/a3HomeSheet' element={<NewA3HomeSheet />} />
+          <Route path='/a3PartySheet' element={<NewPartySheet />} />
+          <Route path='/hometestsheet' element={<ComboHomeTest />} />
+          <Route path='/ComboPartySheet' element={<ComboPartySheet />} />
         </Route>
         {/* <Route path='/hometestsheet' element={<ComboHomeTest/>}/> */}
       </Routes>
