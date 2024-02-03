@@ -38,7 +38,8 @@ const PendencyDashboard = () => {
 
     console.log('PendencyDataRed',JSON.stringify(PendencyDataRed.val))
 
-  return (<>{
+  return (<>
+  {
     PendencyColRed.loading ? MainObject.loader() : PendencyDataRed.loading ? MainObject.loader() :
     <PendencyTab titleData={titleData} columnData={PendencyColRed.val.sort((a,b) => parseInt(a.columnId) - parseInt(b.columnId))} pendencyData={PendencyDataRed.val} />
     }</>

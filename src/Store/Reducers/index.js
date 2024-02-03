@@ -3,7 +3,7 @@ import { SectionRed } from "./SectionRed";
 import { ColumnRed } from "./ColumnRed";
 import { SubSectionRed } from "./SubSectionRed";
 import {NavBarRed}  from "./NavBarRed"
-import { FormIdRed,FormDatRed,EmdRed,DropDownValRed,ExcelDataRed,MainObjIdRed, mainObjDataRed } from "./GeneralStatesRed";
+import { FormIdRed,FormDatRed,EmdRed,DropDownValRed,ExcelDataRed,MainObjIdRed, mainObjDataRed,AddTableFormDataRed, AddTableMultFormDataRed } from "./GeneralStatesRed";
 import { GridRed } from "./GridRed";
 import { ConfSectionRed } from "./ConfSectionRed";
 import { ConfColumnRed } from "./ConfColumnRed";
@@ -63,6 +63,7 @@ import { ReviewPlanDataRed } from "./ReviewPlanDataRed";
 import { SendCheckerDataRed } from "./SendCheckerDataRed";
 import { A3GetPartySheetDataRed } from "./A3GetPartySheetDataRed"; 
 import { SendTestScoreDataRed } from "./TestScoreDataRed"; 
+import { AddTablePostRed } from "./AddTablePostRed";
 
 
 const rootReducers = combineReducers({
@@ -138,7 +139,10 @@ const rootReducers = combineReducers({
     ReviewPlanDataRed,
     SendCheckerDataRed,
     A3GetPartySheetDataRed,
-    SendTestScoreDataRed
+    SendTestScoreDataRed,
+    AddTableFormDataRed,
+    AddTableMultFormDataRed,
+    AddTablePostRed
     });
 
 export default rootReducers

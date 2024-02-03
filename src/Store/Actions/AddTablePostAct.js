@@ -2,52 +2,48 @@ import axios from "axios";
 import swal from "sweetalert"
 import { FetchGetData } from "./GetDataAct";
 import { useNavigate } from "react-router";
+import { batch } from "react-redux";
 
-const FormExcelReq = (val) =>{
+const AddTableReq = (val) =>{
     return {
-        type : 'FormExcelReq',
+        type : 'AddTableReq',
         payload : val
     }
 };
 
-const FormExcelSuccess = (val) =>{
+const AddTableSuccess = (val) =>{
     return {
-        type : 'FormExcelSuccess',
+        type : 'AddTableSuccess',
         payload : val 
     }
 };
 
-const FormExcelErr = (val) =>{
+const AddTableErr = (val) =>{
     return {
-        type : 'FormExcelErr',
+        type : 'AddTableErr',
         payload : val
     }
 };
 
-export const PostFormExcelData = (userId,data,token,
-    // setdata,
-    setDisBtn
-    // ,formId,daysFlag
-    ,navigate) =>{
+export const AddTableReset = (val) =>{
+    return {
+        type :'AddTableReset',
+        payload : val
+    }
+}
+
+export const PostAddTableData = (userId,data,token,setDisBtn) =>{
 
     const headers = {
         'Content-Type': 'application/json', 
         'Authorization': `Bearer ${token}` , 
       };
     return (dispatch)=>{
-        dispatch(FormExcelReq());
+        dispatch(AddTableReq());
         axios.post(`http://localhost:8080/VF/callWorkflowProcedure?currLoggedInUser=${userId}`,data,{headers})
         .then((res)=>{
-            dispatch(FormExcelSuccess(res.data))
-            if(window.location.pathname == '/addTable'){
-                // setdata([])
-                setDisBtn(false)
-            }else if(window.location.pathname == '/editTable'){
-                // dispatch(FetchGetData(formId,token,userId,daysFlag))
-                // setdata([])
-                navigate('/pendencyDashboard')
-                setDisBtn(false)
-            }
+            dispatch(AddTableSuccess(res.data))
+            setDisBtn(false)
             return swal({
                 title :'Alert',
                 text : 'Data Save Successfully',
@@ -55,7 +51,7 @@ export const PostFormExcelData = (userId,data,token,
             })
         })
         .catch((err)=>{
-            dispatch(FormExcelErr(err))
+            dispatch(AddTableErr(err))
             let ErrorLog = JSON.stringify(`Error Occurred: ${err}`)
             return swal({
                 title :'Alert',

@@ -70,3 +70,17 @@ export const mainObjDataRed = (state=false, action) =>{
         default : return state
     }
 }
+
+export const AddTableFormDataRed = (state=false, action) =>{
+    switch (action.type) {
+        case 'AddTableFormData' : return action.payload
+        default : return state
+    }
+}
+
+export const AddTableMultFormDataRed = (state=false, action) =>{
+    switch (action.type) {
+        case 'AddTableMultFormData' : return action.payload
+        default : return state
+    }
+}

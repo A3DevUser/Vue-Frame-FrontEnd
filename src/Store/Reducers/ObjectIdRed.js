@@ -1,5 +1,5 @@
 const initialFieldVal = {
-    loading : true,
+    loading : false,
     val : [],
     error:''
 }
@@ -17,12 +17,7 @@ export const SendObjectIdRed = (state=initialFieldVal,action) => {
             loading:true, val:[], error:action.payload
         }
 
-        case 'ResetAct' : return {
-            ...initialFieldVal
-        }
-        case 'ResetObjId' : return {
-            loading : true, val:[], error : ''
-        }
+
         default :return state
     }
 
