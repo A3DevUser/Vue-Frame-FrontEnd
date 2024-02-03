@@ -4,7 +4,7 @@ const calculateColumnWidth = (tableWidth, totalColumns) => {
     return Math.floor(tableWidth / totalColumns);
 };
 
-export const PartysheetColumns = (col,accountData,updateMyData,setmaxScore) =>{
+export const PartysheetColumns = (col,accountData,updateMyData,setmaxScore,setmaWeightAge) =>{
 
     console.log('PartysheetData',col)
     console.log('PartysheetData',accountData)
@@ -69,7 +69,7 @@ export const PartysheetColumns = (col,accountData,updateMyData,setmaxScore) =>{
             return{
                 Header : cres.fieldName,
                 accessor : cres.accessor+'#'+res,
-                Cell : ({cell}) =>{return <MARiskRatingDropDown setmaxScore={setmaxScore} column={cell.column.id} row={cell.row.id} updateMyData={updateMyData} value={cell.value} colObj={cell.column} parentId={cell}/>},
+                Cell : ({cell}) =>{return <MARiskRatingDropDown setmaxScore={setmaxScore} setmaWeightAge={setmaWeightAge} column={cell.column.id} row={cell.row.id} updateMyData={updateMyData} value={cell.value} colObj={cell.column} parentId={cell} WEIGHTAGE = {cell.row.original.WEIGHTAGE}/>},
                 width : cres.width !== null ? cres.width : calculateColumnWidth( 0.97 * window.innerWidth, col.length)
             }
         }
