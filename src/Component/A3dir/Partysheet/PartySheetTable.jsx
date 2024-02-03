@@ -121,7 +121,7 @@ const accColumn = col.filter((fil)=>{return fil.parentCell=='account'}).map((res
 
     if(filterTypr == 'Materiality Assessment$$Materiality Assessment'){
     setScore(Object.values(finalData).reduce((acc,cur)=>{
-      return (acc += (cur[isScorVal] ? Number(cur[isScorVal])*maWeightAge/100 : 0 ))
+      return (acc += (cur[isScorVal] ? Number(cur[isScorVal])*Number(maWeightAge)/100 : 0 ))
     },0))
   }
     else{

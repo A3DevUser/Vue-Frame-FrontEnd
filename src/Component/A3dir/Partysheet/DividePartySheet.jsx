@@ -22,8 +22,12 @@ const DividePartySheet = ({score,dataLength,handleChange,isScorVal,filterTypr}) 
         setTPRE(false)
         setMA(false)
         setDDQ(true)
-      }else{
+      }else if(filterTypr == 'Third Party Risk Evaluation$$Third Party Risk Evaluation'){
         setTPRE(true)
+        setMA(false)
+        setDDQ(false)
+      }else{
+        setTPRE(false)
         setMA(false)
         setDDQ(false)
       }

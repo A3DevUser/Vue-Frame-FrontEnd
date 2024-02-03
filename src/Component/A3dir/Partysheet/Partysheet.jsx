@@ -30,7 +30,7 @@ const Partysheet = () => {
 
   useEffect(() => {
     dispatch(FetchA3PartyColumnData('Third Party Risk Evaluation$$Third Party Risk Evaluation', 'party', AuthRed.val));
-    dispatch(FetchA3TestData('Third Party Risk Evaluation$$Third Party Risk Evaluation','New' ,AuthRed.val));
+    // dispatch(FetchA3TestData('Third Party Risk Evaluation$$Third Party Risk Evaluation','New' ,AuthRed.val));
     dispatch(FetchA3TestData('Third Party Risk Evaluation$$Third Party Risk Evaluation','Pre Onboarding$$Pre Onboarding' ,AuthRed.val));
   }, [dispatch, FormIdRed, AuthRed.val]);
 
