@@ -19,7 +19,7 @@ import { FormTestScoreData } from '../../../Store/Actions/TestScoreDataAct'
 
 
 
-const PartySheetTable = ({col,dData,userName,accData,tableData,handleChange}) => {
+const PartySheetTable = ({col,dData,userName,accData,tableData,handleChange,filterTypr}) => {
 const dispatch = useDispatch()
 const navigate = useNavigate()
 
@@ -256,7 +256,7 @@ console.log('DataRowCount',dData)
       <div className='my-2' style={{display:'flex',justifyContent:'space-between',width: '97%', gap:10}}>
         <div style={{display:'flex', justifyContent:'center', alignItems:'center'}}>
         {/* <span style={{fontSize:25}} class="bi bi-arrow-left-circle-fill"></span> */}
-        <DividePartySheet score={score} dataLength={accData.length} handleChange={handleChange}/>
+        <DividePartySheet score={score} filterTypr={filterTypr} dataLength={accData.length} handleChange={handleChange}/>
         </div>
         {/* <div>
         <DropdownButton variant='success' title='Overview'>
