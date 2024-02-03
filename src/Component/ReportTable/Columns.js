@@ -54,7 +54,8 @@ export const Group_Columns = [
     {
         Header: 'Id',
         Footer: 'Id',
-        accessor: 'id'
+        accessor: 'id',
+        // disableFilters: true
     },
     {
         Header: 'Name',
@@ -104,3 +105,61 @@ export const Group_Columns = [
         ]
     }
 ]
+
+export const Group_columns_Name = [
+    // {
+    //     Header: 'Id',
+    //     Footer: 'Id',
+    //     accessor: 'id',
+    //     disableFilters: true
+    // },
+    {
+        Header : 'Vishal',
+        Footer : 'Vishal',
+        columns : [
+            {
+                Header: 'First Name',
+                Footer: 'First Name',
+                accessor: 'first_namev'
+            },
+            {
+                Header: 'Last Name',
+                Footer: 'Last Name',
+                accessor: 'last_namev'
+            }
+        ]
+    },
+    {
+        Header : 'Nitin',
+        Footer : 'Nitin',
+        columns : [
+            {
+                Header: 'First Name',
+                Footer: 'First Name',
+                accessor: 'first_namen'
+            },
+            {
+                Header: 'Last Name',
+                Footer: 'Last Name',
+                accessor: 'last_namen'
+            }
+        ]
+    },
+    {
+        Header : 'Tej',
+        Footer : 'Tej',
+        columns : [
+            {
+                Header: 'First Name',
+                Footer: 'First Name',
+                accessor: 'first_namet'
+            },
+            {
+                Header: 'Last Name',
+                Footer: 'Last Name',
+                accessor: 'last_namet'
+            }
+        ]
+    }
+]
+
