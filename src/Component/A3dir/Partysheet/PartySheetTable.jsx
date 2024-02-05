@@ -120,14 +120,17 @@ const accColumn = col.filter((fil)=>{return fil.parentCell=='account'}).map((res
     }))
 
     if(filterTypr == 'Materiality Assessment$$Materiality Assessment'){
+      // alert('inside if',maWeightAge)
     setScore(Object.values(finalData).reduce((acc,cur)=>{
-      return (acc += (cur[isScorVal] ? Number(cur[isScorVal])*Number(maWeightAge)/100 : 0 ))
+      console.log('maWeightAgeValue', acc)
+      return acc += (cur[isScorVal] ? (Number(cur[isScorVal]))/100 : 0 )
     },0))
   }
-    else{
+    else if (filterTypr != 'Materiality Assessment$$Materiality Assessment'){
+            // alert('inside else',maWeightAge)
       setScore(Object.values(finalData).reduce((acc,cur)=>{
         return acc += (cur[isScorVal] ? Number(cur[isScorVal]) : 0 )
-      },0))
+      },0)) 
     }
 
   },[finalOpData])

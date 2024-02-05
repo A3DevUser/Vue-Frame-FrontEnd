@@ -384,8 +384,8 @@ export const EditableCell = ({
     const onBlur = () => {
       // console.log(parentId)
       // console.log('selectedRowMA',WEIGHTAGE)
-      setmaWeightAge(WEIGHTAGE)
-      updateMyData(index, id, value,null,parentId.column.parent.id.id)
+      // setmaWeightAge(WEIGHTAGE)
+      updateMyData(index, id, (value*WEIGHTAGE),null,parentId.column.parent.id.id)
     }
   
     React.useEffect(() => {
