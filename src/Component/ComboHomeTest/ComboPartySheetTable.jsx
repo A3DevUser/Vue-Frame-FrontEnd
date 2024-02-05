@@ -129,6 +129,17 @@ const ComboPartySheetTable = ({ columnData, tableData }) => {
                                 <strong>Total Records 00</strong>
                             </div>
                         </div>
+                        <pre>
+                            <code>
+                                {JSON.stringify(
+                                    {
+                                        selectedFlatRows: selectedFlatRows.map((row) => row.original),
+                                    },
+                                    null,
+                                    2
+                                )}
+                            </code>
+                        </pre>
                     </Styles>
                 </div>
             </div>
