@@ -28,7 +28,7 @@ export const FetchA3HomeDataData = (reviewId,vendorType,token) =>{
       };
     return (dispatch)=>{
         dispatch(A3HomeDataReq());
-        axios.get(`http://localhost:8080/VF/getOutputReviewPlan2?reviewId=${reviewId}&vendorType=${vendorType}`,{headers})
+        axios.get(`http://localhost:8080/VF/getOutputReviewPlan2?reviewId=${reviewId}`,{headers})
         .then((res)=>{
             dispatch(A3HomeDataSuccess(res.data))
         })

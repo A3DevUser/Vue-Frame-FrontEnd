@@ -8,6 +8,7 @@ import { useSticky } from 'react-table-sticky'
 import './CheckerTab.css'
 import CheckerResponseModal from './CheckerResponseModal'
 import { SendCheckerData } from '../../Store/Actions/SendCheckerData'
+import { useNavigate } from 'react-router'
 
 
 
@@ -15,6 +16,7 @@ const CheckerFormTab = ({reviewId, reviewName, review_freq, review_type, sub_fre
     // const ReportTitleDataRed = useSelector((state) => state.ReportTitleDataRed)
 
     const dispatch = useDispatch()
+    const navigate = useNavigate()
     const AuthRed = useSelector((state)=>state.AuthRed)
 
 
@@ -54,7 +56,7 @@ const [show,setshow] = useState(false)
 
        console.log('ModalfinalData',finalData)
 
-       dispatch(SendCheckerData(finalData,AuthRed.val))
+       dispatch(SendCheckerData(finalData,AuthRed.val,navigate))
     }
    
     const { getTableProps,

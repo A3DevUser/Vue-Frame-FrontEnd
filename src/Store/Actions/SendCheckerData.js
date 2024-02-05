@@ -22,7 +22,7 @@ const SendCheckerDataErr = (val) =>{
     }
 };
 
-export const SendCheckerData = (data,token) =>{
+export const SendCheckerData = (data,token,navigate) =>{
     const headers = {
         'Content-Type': 'application/json', 
         'Authorization': `Bearer ${token}` , 
@@ -32,9 +32,12 @@ export const SendCheckerData = (data,token) =>{
         axios.post(`http://localhost:8080/VF/updateStatusToAccept`,data,{headers})
         .then((res)=>{
             dispatch(SendCheckerDataSuccess(res.data))
+            
             return swal({
-                title:res.data,
+                title:'Data Saved Successfully !!',
                 icon:'success'
+            }).then(()=>{
+                navigate('/pendencyDashboard')
             })
         })
         .catch((err)=>{

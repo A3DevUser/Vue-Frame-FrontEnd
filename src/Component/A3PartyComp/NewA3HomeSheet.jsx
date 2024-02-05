@@ -25,6 +25,8 @@ const NewA3HomeSheet = () => {
 
     useEffect(()=>{
         dispatch(FetchA3PartyColumnData(FormIdRed,'home',AuthRed.val))
+        const reviewId = location.state.reviewId
+        dispatch(FetchA3HomeDataData(reviewId,'New',AuthRed.val))
     },[])
 
     const getA3HomeData = (e) =>{
