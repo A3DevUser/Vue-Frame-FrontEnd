@@ -894,5 +894,5 @@ export const CheckerLink = ({
 
 }) =>{
   console.log('new row login data',rowObj)
-  return <Link to={'/checkerForm'} state={{reviewId : rowObj.review_id, reviewName : rowObj.review_name}}>Vendors</Link>
+  return <Link to={'/checkerForm'} state={{reviewId : rowObj.review_id, reviewName : rowObj.review_name, review_freq : rowObj.review_freq, sub_frequency : rowObj.sub_frequency, review_type : rowObj.review_type}}>Vendors</Link>
 }

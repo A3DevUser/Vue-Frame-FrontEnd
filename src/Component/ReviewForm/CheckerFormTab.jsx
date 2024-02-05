@@ -51,7 +51,7 @@ const [show,setshow] = useState(false)
        setshow(!show)
        const newData = [...data]
        const finalData = newData.map((res)=>{
-        return {...res,...response, reviewId : reviewId, reviewName : reviewName, review_freq : review_freq, review_type : review_type, sub_frequency : sub_frequency}
+        return {...res,...response, reviewId : reviewId, reviewName : reviewName, review_type : review_type}
        })
 
        console.log('ModalfinalData',finalData)
