@@ -22,8 +22,12 @@ const DividePartySheet = ({score,dataLength,handleChange,isScorVal,filterTypr}) 
         setTPRE(false)
         setMA(false)
         setDDQ(true)
-      }else{
+      }else if(filterTypr == 'Third Party Risk Evaluation$$Third Party Risk Evaluation'){
         setTPRE(true)
+        setMA(false)
+        setDDQ(false)
+      }else{
+        setTPRE(false)
         setMA(false)
         setDDQ(false)
       }
@@ -56,8 +60,9 @@ const DividePartySheet = ({score,dataLength,handleChange,isScorVal,filterTypr}) 
     </select>
     <button onClick={handleDue}  className='btn btn-success' style={{ fontSize:'15px', width:'11vw'}}>Raise Due Diligence</button>
     <span className='mx-3' style={{fontWeight:'bolder', fontSize:'15px'}}>Score :</span>
-    <input value={score} className='form-control' style={{fontWeight:'bolder', fontSize:'15px', width:'15vw'}} disabled/>
-
+    <input value={Number(score).toFixed(2)} className='form-control' style={{fontWeight:'bolder', fontSize:'15px', width:'5vw'}} disabled/>
+    <span className='mx-3' style={{fontWeight:'bolder', fontSize:'15px', display: filterTypr == 'Materiality Assessment$$Materiality Assessment' ? 'block' : 'none' }}>Materiality :</span>
+    <input value={Number(score).toFixed(2) >= 1.50 ? 'Yes' : 'No'} className='form-control' style={{fontWeight:'bolder', fontSize:'15px', width:'5vw', display: filterTypr == 'Materiality Assessment$$Materiality Assessment' ? 'block' : 'none'}} disabled/>
     </>
   )
 }

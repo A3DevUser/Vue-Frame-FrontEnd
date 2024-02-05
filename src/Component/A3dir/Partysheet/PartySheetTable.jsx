@@ -78,10 +78,11 @@ const accColumn = col.filter((fil)=>{return fil.parentCell=='account'}).map((res
 
 
   const [maxScore,setmaxScore] = useState(0)
+  const [maWeightAge,setmaWeightAge] = useState(0)
 
   
   const [accountData,setaccountData] = useState([...accData.slice(0,10)])
-  const [columns,setcolumns]=useState([...PartysheetColumns(col,accData.slice(0,10).map((res)=>{return res.Associate_Vend}),updateMyData,setmaxScore)])
+  const [columns,setcolumns]=useState([...PartysheetColumns(col,accData.slice(0,10).map((res)=>{return res.Associate_Vend}),updateMyData,setmaxScore,setmaWeightAge)])
   const [data,setdata]=useState(
     tableData.length > 0 ?
     [...finalOpData] : [...dData]
@@ -118,9 +119,16 @@ const accColumn = col.filter((fil)=>{return fil.parentCell=='account'}).map((res
       return res[isScorVal]
     }))
 
+    if(filterTypr == 'Materiality Assessment$$Materiality Assessment'){
     setScore(Object.values(finalData).reduce((acc,cur)=>{
-      return acc += (cur[isScorVal] ? Number(cur[isScorVal]) : 0 )
+      return (acc += (cur[isScorVal] ? Number(cur[isScorVal])*Number(maWeightAge)/100 : 0 ))
     },0))
+  }
+    else{
+      setScore(Object.values(finalData).reduce((acc,cur)=>{
+        return acc += (cur[isScorVal] ? Number(cur[isScorVal]) : 0 )
+      },0))
+    }
 
   },[finalOpData])
 
@@ -169,17 +177,31 @@ console.log('vendorIdData',accList)
 
 console.log('DataRowCount',dData)
       function handleSave(){
-        // alert(dData.length)
-        const dataList = Object.values(finalData);
-        dispatch(FormTestScoreData([  {
-          "tpreScore": score,
-          "tpreRating": score >= (dData.length*maxScore)/2 ? 'High' : score == 0 ? 'Low' : 'Medium',
-          "isMaterial": "Material",
-          "dueDilligenceScore": "Yearly",
-          "vendor_ID": accList[0].split('$$')[0],
-          "VENDOR_ID": accList[0].split('$$')[0]
-        }],AuthRed.val))
-        dispatch(PostA3SaveData(dataList,AuthRed.val,navigate))
+        if(filterTypr == 'Materiality Assessment$$Materiality Assessment'){
+          const dataList = Object.values(finalData);
+          dispatch(FormTestScoreData([  {
+            "tpreScore": score,
+            "tpreRating": Number(score).toFixed(2) >= 1.50 ? 'High' : score == 0 ? 'Low' : 'Medium',
+            "isMaterial": "Material",
+            "dueDilligenceScore": "Yearly",
+            "vendor_ID": accList[0].split('$$')[0],
+            "VENDOR_ID": accList[0].split('$$')[0],
+            "materialRating": Number(score).toFixed(2) >= 1.50 ? 'Yes' : 'No'
+          }],AuthRed.val))
+          dispatch(PostA3SaveData(dataList,AuthRed.val,navigate))
+        }else{
+          const dataList = Object.values(finalData);
+          dispatch(FormTestScoreData([  {
+            "tpreScore": score,
+            "tpreRating": score >= (dData.length*maxScore)/2 ? 'High' : score == 0 ? 'Low' : 'Medium',
+            "isMaterial": "Material",
+            "dueDilligenceScore": "Yearly",
+            "vendor_ID": accList[0].split('$$')[0],
+            "VENDOR_ID": accList[0].split('$$')[0],
+            "materialRating": Number(score).toFixed(2) >= 1.50 ? 'Yes' : 'No'
+          }],AuthRed.val))
+          dispatch(PostA3SaveData(dataList,AuthRed.val,navigate)) 
+        }
       }
 
     //   function handleChange(e){

@@ -364,7 +364,9 @@ export const EditableCell = ({
     updateMyData, 
     colObj:colObj,
     parentId,
-    setmaxScore
+    WEIGHTAGE : WEIGHTAGE,
+    setmaxScore,
+    setmaWeightAge
   }) =>{
 
 
@@ -373,9 +375,16 @@ export const EditableCell = ({
       setValue(e.target.value)
     }
 
+    // React.useEffect(() => {
+    //   // console.log('selectedRowMA',WEIGHTAGE)
+    //   setmaWeightAge(WEIGHTAGE)
+    // },[WEIGHTAGE])
+
   
     const onBlur = () => {
-      console.log(parentId)
+      // console.log(parentId)
+      // console.log('selectedRowMA',WEIGHTAGE)
+      setmaWeightAge(WEIGHTAGE)
       updateMyData(index, id, value,null,parentId.column.parent.id.id)
     }
   
