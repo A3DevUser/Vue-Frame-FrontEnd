@@ -16,7 +16,7 @@ const ComboHomeTest = () => {
     const ReportTitleColumnRed = useSelector((state) => state.ReportTitleColumnRed)
     const ReportTitleGridRed = useSelector((state) => state.ReportTitleGridRed)
     const ReportTitleDataRed = useSelector((state) => state.ReportTitleDataRed)
-    const AuthRed = useSelector((state)=>state.AuthRed)
+    const AuthRed = useSelector((state) => state.AuthRed)
 
     const dispatch = useDispatch()
 
@@ -98,27 +98,27 @@ const ComboHomeTest = () => {
             data,
             defaultColumn
         }, useFilters, useBlockLayout, useGlobalFilter, useSortBy, usePagination,
-        useRowSelect,
-        (hooks)=>{
-            hooks.visibleColumns.push((columns)=>{
-              return [{
-                id :'selection',
-                Header : ({getToggleAllRowsSelectedProps})=>{
-                  return <HomeTestCheckBox {...getToggleAllRowsSelectedProps()}/>
-                },
-                Cell : ({row}) =>{
-                  return <HomeTestCheckBox {...row.getToggleRowSelectedProps()}/>
-                },
-                width:'50',
-                sticky : 'left'
-              },
-              ...columns]
+            useRowSelect,
+            (hooks) => {
+                hooks.visibleColumns.push((columns) => {
+                    return [{
+                        id: 'selection',
+                        Header: ({ getToggleAllRowsSelectedProps }) => {
+                            return <HomeTestCheckBox {...getToggleAllRowsSelectedProps()} />
+                        },
+                        Cell: ({ row }) => {
+                            return <HomeTestCheckBox {...row.getToggleRowSelectedProps()} />
+                        },
+                        width: '50',
+                        sticky: 'left'
+                    },
+                    ...columns]
+                })
             })
-          })
 
-          useEffect(()=>{
-            console.log('selectedFlatRows',selectedFlatRows)
-        },[selectedFlatRows])
+    useEffect(() => {
+        console.log('selectedFlatRows', selectedFlatRows)
+    }, [selectedFlatRows])
 
     const { globalFilter } = state
     const { pageIndex } = state
@@ -130,8 +130,8 @@ const ComboHomeTest = () => {
 
                     <div style={{ paddingTop: '-5px', marginTop: '-4px', marginRight: '-32em' }}>
                         <div>
-                            <ReportDownloadOpt repoData = {ReportTitleDataRed.val} repoColunm = {ReportTitleColumnRed.val} 
-                                    repoGrid = {ReportTitleGridRed.val}
+                            <ReportDownloadOpt repoData={ReportTitleDataRed.val} repoColunm={ReportTitleColumnRed.val}
+                                repoGrid={ReportTitleGridRed.val}
                             />
                         </div>
                     </div>
@@ -194,6 +194,17 @@ const ComboHomeTest = () => {
                         <strong>Total Records 00</strong>
                     </div>
                 </div>
+                <pre>
+                    <code>
+                        {JSON.stringify(
+                            {
+                                selectedFlatRows: selectedFlatRows.map((row) => row.original),
+                            },
+                            null,
+                            2
+                        )}
+                    </code>
+                </pre>
             </div>
 
         </>
