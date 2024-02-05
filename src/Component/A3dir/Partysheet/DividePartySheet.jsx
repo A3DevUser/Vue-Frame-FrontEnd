@@ -8,30 +8,26 @@ const DividePartySheet = ({score,dataLength,handleChange,isScorVal,filterTypr}) 
     const navigate = useNavigate()
 
     const options = []
-    const [TPRE,setTPRE] = useState(true)
-    const [MA,setMA] = useState(false)
-    const [DDQ,setDDQ] = useState(false)
+    // const [TPRE,setTPRE] = useState(true)
+    // const [MA,setMA] = useState(false)
+    // const [DDQ,setDDQ] = useState(false)
 
-    useEffect(() => {
+    // useEffect(() => {
       
-      if(filterTypr == 'Materiality Assessment$$Materiality Assessment'){
-        setTPRE(false)
-        setMA(true)
-        setDDQ(false)
-      }else if(filterTypr == 'Due Diligence$$Due Diligence'){
-        setTPRE(false)
-        setMA(false)
-        setDDQ(true)
-      }else if(filterTypr == 'Third Party Risk Evaluation$$Third Party Risk Evaluation'){
-        setTPRE(true)
-        setMA(false)
-        setDDQ(false)
-      }else{
-        setTPRE(false)
-        setMA(false)
-        setDDQ(false)
-      }
-    }, [filterTypr]);
+    //   if(filterTypr == 'Materiality Assessment$$Materiality Assessment'){
+    //     setTPRE(false)
+    //     setMA(true)
+    //     setDDQ(false)
+    //   }else if(filterTypr == 'Due Diligence$$Due Diligence'){
+    //     setTPRE(false)
+    //     setMA(false)
+    //     setDDQ(true)
+    //   }else{
+    //     setTPRE(true)
+    //     setMA(false)
+    //     setDDQ(false)
+    //   }
+    // }, [filterTypr]);
 
     for (let index = 1; index <= dividedCount; index++) {
         options.push(<option value={index} key={index}>sheet {index}</option>)
@@ -52,17 +48,16 @@ const DividePartySheet = ({score,dataLength,handleChange,isScorVal,filterTypr}) 
   return (
     <>
     <span className='mx-3' style={{fontWeight:'bolder', fontSize:'15px'}}>Pre-Onboarding Type :</span>
-    <select className='form-select' onChange={handleChange} style={{width:'15vw',marginRight:'30vw'}}>
-        <option value={1}>Select Type...</option>
-        <option value={'Third Party Risk Evaluation$$Third Party Risk Evaluation'} selected={TPRE}>TPRE</option>
-        <option value={'Materiality Assessment$$Materiality Assessment'} selected={MA}>MA</option>
-        <option value={'Due Diligence$$Due Diligence'} selected={DDQ}>DDQ</option>
+    <select className='form-select' onChange={handleChange} style={{width:'15vw',marginRight:'30vw'}} value={filterTypr}>
+        {/* <option value={1}>Select Type...</option> */}
+        <option value={'Third Party Risk Evaluation$$Third Party Risk Evaluation'} >TPRE</option>
+        <option value={'Materiality Assessment$$Materiality Assessment'} >MA</option>
+        <option value={'Due Diligence$$Due Diligence'} >DDQ</option>
     </select>
     <button onClick={handleDue}  className='btn btn-success' style={{ fontSize:'15px', width:'11vw'}}>Raise Due Diligence</button>
     <span className='mx-3' style={{fontWeight:'bolder', fontSize:'15px'}}>Score :</span>
-    <input value={Number(score).toFixed(2)} className='form-control' style={{fontWeight:'bolder', fontSize:'15px', width:'5vw'}} disabled/>
-    <span className='mx-3' style={{fontWeight:'bolder', fontSize:'15px', display: filterTypr == 'Materiality Assessment$$Materiality Assessment' ? 'block' : 'none' }}>Materiality :</span>
-    <input value={Number(score).toFixed(2) >= 1.50 ? 'Yes' : 'No'} className='form-control' style={{fontWeight:'bolder', fontSize:'15px', width:'5vw', display: filterTypr == 'Materiality Assessment$$Materiality Assessment' ? 'block' : 'none'}} disabled/>
+    <input value={score} className='form-control' style={{fontWeight:'bolder', fontSize:'15px', width:'15vw'}} disabled/>
+
     </>
   )
 }
