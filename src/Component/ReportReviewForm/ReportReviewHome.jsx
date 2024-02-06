@@ -85,7 +85,7 @@ const ReportReviewHome = ({ gridData, columnData, reportData }) => {
 
         let newData = [...selectedFlatRows.map((res)=>{return res.original})]
         const finalData = newData.map((res)=>{
-            return {ASSOCIATE_VEND : res.ASSOCIATE_VEND,VENDOR_ID:'',...res, REVIEW_FREQ: data[0].REVIEW_FREQ, REVIEW_CYCLE: data[0].REVIEW_CYCLE, REVIEW_NAME: location.state.reviewName, REVIEW_TYPE: 'Cyclic Review'}
+            return {ASSOCIATE_VEND : res.ASSOCIATE_VEND,VENDOR_ID:'',...res, reviewFreq: data[0].REVIEW_FREQ, reviewSubFreq: data[0].REVIEW_CYCLE, reviewName: location.state.reviewName, reviewType: 'Cyclic Review'}
         })
         console.log('reviewFilter re-gen data',finalData)
 
