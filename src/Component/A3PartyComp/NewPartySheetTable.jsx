@@ -21,6 +21,7 @@ const NewPartySheetTable = ({columnData,tableData,vendorList}) => {
   const [finalData,setfinalData]=useState([])
   const [fileArr,setfileArr] =useState()
   const dispatch = useDispatch()
+  const [score,setScore] = useState()
 
 
   const AuthRed = useSelector((state)=>state.AuthRed)
@@ -50,21 +51,36 @@ const NewPartySheetTable = ({columnData,tableData,vendorList}) => {
       })
     )   
   }
+  let finData = []
 
   const handleSave = () =>{
 
-    let finData = data.map((res) => {
+    finData = data.map((res) => {
       return {...res, reviewId : location.state.reviewId, vendorId : '', reviewName : location.state.review_name}
     })
 
-    console.log('savedataFinal',finData)
+    console.log('savedataFinal',columnData)
     dispatch(A3GetPartySheetData(finData,AuthRed.val))
     // alert('Data Saved Successfully !!')
   }
 
+  let isScorVal = 0
+
+  if(columnData.filter((fil) => {
+    return fil.isScoring == 'true'
+  }).length > 0){
+    isScorVal = columnData.filter((fil) => {
+      return fil.isScoring == 'true'
+    })[0].accessor
+  }
+
   useEffect(()=>{
-    console.log('finalcolumns',columns)
-  },[])
+    console.log('finalcolumns',isScorVal)
+
+      setScore(Object.values(data).reduce((acc,cur)=>{
+        return acc += (cur[isScorVal] ? Number(cur[isScorVal]) : 0 )
+      },0)) 
+    },[data])
 
   const defaultColumn = useMemo(() => {
     return {
@@ -112,8 +128,13 @@ const { pageIndex } = state
   return (
     <>
               <div className='tableDiv'>
-                <div style={{display:'flex', justifyContent:'right', marginTop:'5px', marginRight:'10px'}}>
-                <button onClick={handleSave} className='btn btn-success'>Save</button>
+                <div style={{display:'flex', justifyContent:'space-between', marginTop:'5px', marginRight:'10px'}}>
+                {/* <div style={{display:'flex', justifyContent:'center', alignItems:'center'}}> */}
+                <span style={{fontWeight:'bolder', fontSize:'25px', paddingLeft:'15px'}}>Third Party Risk Evaluation</span>
+                <div style={{display:'flex', justifyContent: 'right',  paddingLeft:'48rem'}}>
+                <span className='mx-3' style={{fontWeight:'bolder', fontSize:'25px'}}>Score :</span>
+              <input value={Number(score).toFixed(2)} className='form-control' style={{fontWeight:'bolder', fontSize:'15px', width:'10vw'}} disabled/></div>
+                <button onClick={handleSave} className='btn btn-success mx-5'>Save</button>
                 </div>
                 <Styles>
                     <div {...getTableProps()} className="table sticky mx-3 my-1 tableCont " style={{ maxHeight: '75vh', maxWidth: '97.3vw', overflow: 'scroll', border: 'none' }} >

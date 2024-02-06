@@ -114,9 +114,7 @@ const accColumn = col.filter((fil)=>{return fil.parentCell=='account'}).map((res
     // console.log('TestColumnDataFind',Object.values(finalData).map((res)=>{
     //   return res[isScorVal]
     // }))
-    console.log('TestColumnDataFind',Object.values(finalData).map((res) => {
-      return res[isScorVal]
-    }))
+    console.log('TestColumnDataFind',finalData)
 
     if(filterTypr == 'Materiality Assessment$$Materiality Assessment'){
       // alert('inside if',maWeightAge)

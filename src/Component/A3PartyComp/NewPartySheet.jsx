@@ -29,9 +29,11 @@ const NewPartySheet = () => {
   console.log('revDataValues',revData)
 
   useEffect(()=>{
-    dispatch(FetchA3PartyColumnData(FormIdRed,'party',AuthRed.val))
-    dispatch(FetchA3TestData('TPRM New vendor risk assessment - TPRE',location.state.vendorType,AuthRed.val))
-  },[])
+    // dispatch(FetchA3PartyColumnData(FormIdRed,'party',AuthRed.val));
+    // dispatch(FetchA3TestData('TPRM New vendor risk assessment - TPRE',location.state.vendorType,AuthRed.val));
+    dispatch(FetchA3PartyColumnData('Third Party Risk Evaluation$$Third Party Risk Evaluation', 'party', AuthRed.val));
+    dispatch(FetchA3TestData('Third Party Risk Evaluation$$Third Party Risk Evaluation','Pre Onboarding$$Pre Onboarding' ,AuthRed.val));
+  },[dispatch])
 
   return (
     <>

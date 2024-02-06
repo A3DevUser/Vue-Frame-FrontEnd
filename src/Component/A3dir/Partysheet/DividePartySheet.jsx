@@ -50,9 +50,9 @@ const DividePartySheet = ({score,dataLength,handleChange,isScorVal,filterTypr}) 
     <span className='mx-3' style={{fontWeight:'bolder', fontSize:'15px'}}>Pre-Onboarding Type :</span>
     <select className='form-select' onChange={handleChange} style={{width:'15vw',marginRight:'30vw'}} value={filterTypr}>
         {/* <option value={1}>Select Type...</option> */}
-        <option value={'Third Party Risk Evaluation$$Third Party Risk Evaluation'} >TPRE</option>
-        <option value={'Materiality Assessment$$Materiality Assessment'} >MA</option>
-        <option value={'Due Diligence$$Due Diligence'} >DDQ</option>
+        <option value={'Third Party Risk Evaluation$$Third Party Risk Evaluation'} >Third Party Risk Evaluation</option>
+        <option value={'Materiality Assessment$$Materiality Assessment'} >Materiality Assessment</option>
+        <option value={'Due Diligence$$Due Diligence'} >Due Diligence</option>
     </select>
     <button onClick={handleDue}  className='btn btn-success' style={{ fontSize:'15px', width:'11vw'}}>Raise Due Diligence</button>
     <span className='mx-3' style={{fontWeight:'bolder', fontSize:'15px'}}>Score :</span>
