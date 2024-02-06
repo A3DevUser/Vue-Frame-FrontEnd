@@ -22,7 +22,7 @@ const A3GetPartySheetDataErr = (val) =>{
     }
 };
 
-export const A3GetPartySheetData = (data,token) =>{
+export const A3GetPartySheetData = (data,token,navigate) =>{
     const headers = {
         'Content-Type': 'application/json', 
         'Authorization': `Bearer ${token}` , 
@@ -35,6 +35,8 @@ export const A3GetPartySheetData = (data,token) =>{
             return swal({
                 title:'Data Saved Successfully',
                 icon:'success'
+            }).then(()=>{
+                navigate('/pendencyDashboard')
             })
         })
         .catch((err)=>{

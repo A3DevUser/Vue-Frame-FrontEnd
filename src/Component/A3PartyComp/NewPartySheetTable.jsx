@@ -7,7 +7,7 @@ import '../FormTableDir/TableStyle.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { Checkbox } from '../FormTableDir/Checkbox'
 import { useSticky } from 'react-table-sticky'
-import { useLocation } from 'react-router'
+import { useLocation, useNavigate } from 'react-router'
 import { A3GetPartySheetData } from '../../Store/Actions/A3GetPartySheetDataAct'
 import { NewPartysheetColumns } from './NewPartySheetColumns'
 
@@ -21,10 +21,11 @@ const NewPartySheetTable = ({columnData,tableData,vendorList}) => {
   const [finalData,setfinalData]=useState([])
   const [fileArr,setfileArr] =useState()
   const dispatch = useDispatch()
-  const [score,setScore] = useState()
-
+  // const [score,setScore] = useState()
+console.log('vendorListValues',vendorList);
 
   const AuthRed = useSelector((state)=>state.AuthRed)
+  const navigate = useNavigate()
 
   const formData = new FormData()
   function updateMyData(rowIndex, columnId, value, fileData){
@@ -60,27 +61,27 @@ const NewPartySheetTable = ({columnData,tableData,vendorList}) => {
     })
 
     console.log('savedataFinal',columnData)
-    dispatch(A3GetPartySheetData(finData,AuthRed.val))
+    dispatch(A3GetPartySheetData(finData,AuthRed.val,navigate))
     // alert('Data Saved Successfully !!')
   }
 
-  let isScorVal = 0
+  // let isScorVal = 0
 
-  if(columnData.filter((fil) => {
-    return fil.isScoring == 'true'
-  }).length > 0){
-    isScorVal = columnData.filter((fil) => {
-      return fil.isScoring == 'true'
-    })[0].accessor
-  }
+  // if(columnData.filter((fil) => {
+  //   return fil.isScoring == 'true'
+  // }).length > 0){
+  //   isScorVal = columnData.filter((fil) => {
+  //     return fil.isScoring == 'true'
+  //   })[0].accessor
+  // }
 
-  useEffect(()=>{
-    console.log('finalcolumns',isScorVal)
+  // useEffect(()=>{
+  //   console.log('finalcolumns',isScorVal)
 
-      setScore(Object.values(data).reduce((acc,cur)=>{
-        return acc += (cur[isScorVal] ? Number(cur[isScorVal]) : 0 )
-      },0)) 
-    },[data])
+  //     setScore(Object.values(data).reduce((acc,cur)=>{
+  //       return acc += (cur[isScorVal] ? Number(cur[isScorVal]) : 0 )
+  //     },0)) 
+  //   },[data])
 
   const defaultColumn = useMemo(() => {
     return {
@@ -131,9 +132,9 @@ const { pageIndex } = state
                 <div style={{display:'flex', justifyContent:'space-between', marginTop:'5px', marginRight:'10px'}}>
                 {/* <div style={{display:'flex', justifyContent:'center', alignItems:'center'}}> */}
                 <span style={{fontWeight:'bolder', fontSize:'25px', paddingLeft:'15px'}}>Third Party Risk Evaluation</span>
-                <div style={{display:'flex', justifyContent: 'right',  paddingLeft:'48rem'}}>
+                {/* <div style={{display:'flex', justifyContent: 'right',  paddingLeft:'48rem'}}>
                 <span className='mx-3' style={{fontWeight:'bolder', fontSize:'25px'}}>Score :</span>
-              <input value={Number(score).toFixed(2)} className='form-control' style={{fontWeight:'bolder', fontSize:'15px', width:'10vw'}} disabled/></div>
+              <input value={Number(score).toFixed(2)} className='form-control' style={{fontWeight:'bolder', fontSize:'15px', width:'10vw'}} disabled/></div> */}
                 <button onClick={handleSave} className='btn btn-success mx-5'>Save</button>
                 </div>
                 <Styles>
