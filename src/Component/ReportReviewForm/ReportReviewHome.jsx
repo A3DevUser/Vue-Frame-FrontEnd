@@ -85,9 +85,9 @@ const ReportReviewHome = ({ gridData, columnData, reportData }) => {
 
         let newData = [...selectedFlatRows.map((res)=>{return res.original})]
         const finalData = newData.map((res)=>{
-            return {ASSOCIATE_VEND : res.ASSOCIATE_VEND,VENDOR_ID:'',...res}
+            return {ASSOCIATE_VEND : res.ASSOCIATE_VEND,VENDOR_ID:'',...res, REVIEW_FREQ: data[0].REVIEW_FREQ, REVIEW_CYCLE: data[0].REVIEW_CYCLE, REVIEW_NAME: location.state.reviewName, REVIEW_TYPE: 'Cyclic Review'}
         })
-        // console.log('reviewFilter re-gen data',finalData)
+        console.log('reviewFilter re-gen data',finalData)
 
         dispatch(SendReviewData(finalData,AuthRed.val))
     }
@@ -144,15 +144,15 @@ const ReportReviewHome = ({ gridData, columnData, reportData }) => {
                     <div className='collapseHead1 card card-body'>
                     <div className='dropDownFil'>
                         <label htmlFor="reviewType">Review type: </label>
-                        <input placeholder='Review type...' className='form-control reviewInput' type="text" value={'Cyclic Review'} id='reviewName' disabled/>
+                        <input placeholder='Review type...' className='form-control reviewInput' type="text" value={'Cyclic Review'} id='reviewType' disabled/>
                         </div>
                         <div className='dropDownFil'>
                         <label htmlFor="reviewFreq">Review frequency: </label>
-                        <input placeholder='Review frequency...' className='form-control reviewInput' type="text" value={data[0].REVIEW_FREQ} id='reviewName' disabled/>
+                        <input placeholder='Review frequency...' className='form-control reviewInput' type="text" value={data[0].REVIEW_FREQ} id='reviewFreq' disabled/>
                         </div>
                         <div className='dropDownFil'>
                         <label htmlFor="reviewSubFreq">Review sub-frequency: </label>
-                        <input placeholder='Review sub-frequency...' className='form-control reviewInput' type="text" value={data[0].REVIEW_CYCLE} id='reviewName' disabled/>
+                        <input placeholder='Review sub-frequency...' className='form-control reviewInput' type="text" value={data[0].REVIEW_CYCLE} id='reviewSubfreq' disabled/>
                         </div>
                         <div className='dropDownFil'>
                             <label htmlFor='reviewName'>Review Name</label>
