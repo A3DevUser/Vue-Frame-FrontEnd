@@ -463,9 +463,9 @@ export const EditableCell = ({
         <option value={'No'}>No</option>
         <option value={'NA'}>NA</option>
         {
-          rowObj.RESPONSE_DISPLAY_VAL.split(',').map((res)=>{
+          rowObj.RESPONSE_DISPLAY_VAL != null ? rowObj.RESPONSE_DISPLAY_VAL.split(',').map((res)=>{
             return <option value={res}>{res}</option>
-          })
+          }) : <></>
         }
       </select>
     </div>
