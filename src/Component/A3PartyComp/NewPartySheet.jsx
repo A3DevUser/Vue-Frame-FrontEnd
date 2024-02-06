@@ -40,7 +40,7 @@ const NewPartySheet = () => {
     {
       A3PartyColumnRed.loading ? MainObject.loader() :
       A3TestRed.loading ? MainObject.loader() :
-    <NewPartySheetTable columnData={A3PartyColumnRed.val} tableData={A3TestRed.val} vendorList={vendorList}  />
+    <NewPartySheetTable columnData={A3PartyColumnRed.val} tableData={A3TestRed.val} vendorList={vendorList}  daysFlag={location.state.daysFlag}/>
     }
     </>
   )

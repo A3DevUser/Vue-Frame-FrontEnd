@@ -35,6 +35,7 @@ const EditTable = () => {
 
 
     useEffect(()=>{
+      // console.log('locationVal',location);
     dispatch(FetchGridData(location.state.formId,AuthRed.val))
     // dispatch(FetchColumnData(FormIdRed,'yes',AuthRed.val))   
     dispatch(FetchColumnEditActData(location.state.formId,UserDataStateRed,AuthRed.val))

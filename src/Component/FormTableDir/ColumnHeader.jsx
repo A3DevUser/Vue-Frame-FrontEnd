@@ -1,7 +1,7 @@
 import { useEffect } from "react"
 import { CheckerLink, DisableCell, DownloadRpt, EditableActionCell, EditableActionPopCell, EditableAnaCell, EditableAttachCell, EditableCell, EditableDateCell, EditableDdCell, EditableDdIe, EditableDisableDdCell, EditableHomeLink, EditableImporter, EditableLink, EditableLogicCell, EditableMixCell, EditableMksCell, EditableNumCell, EditablePartyLink, EditableRtf, EditableStaticCell, EditableUploader, ExternalA3Link, } from "./EditableCell"
 
-export const ColumnHeader = (colData, updateMyData, dropDown, addAndDeleteRow, gridData, data, handleOnfocus, dropDownData) => {
+export const ColumnHeader = (colData, updateMyData, dropDown, addAndDeleteRow, gridData, data, handleOnfocus, dropDownData, location) => {
 
   return colData.filter((fil) => { return fil.gridId == gridData.gridId }).map((res) => {
     // console.log('colData',res)
@@ -151,7 +151,7 @@ export const ColumnHeader = (colData, updateMyData, dropDown, addAndDeleteRow, g
         Header : res.fieldName,
         accessor : res.accessor,
         Cell : ({cell}) =>{
-          return <EditableHomeLink rowObj={cell.row}/>
+          return <EditableHomeLink penFlag = {location.state.daysFlag} rowObj={cell.row}/>
         },
         width: res.width,
         sticky: res.sticky

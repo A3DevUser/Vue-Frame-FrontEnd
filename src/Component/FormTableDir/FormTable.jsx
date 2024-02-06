@@ -17,6 +17,7 @@ import { FetchObjectIdData } from '../../Store/Actions/ObjectIdAct'
 import { MultiModalCompo } from '../../Component/FormMultiRowAdd/MultiModalCompo'
 import { FetchMultiModalColData } from '../../Store/Actions/MultiModalColAct'
 import { FetchMultiModalColRowData } from '../../Store/Actions/MultiModalColRowAct'
+import { useLocation } from 'react-router'
 
 const FormTable = ({ col, dData, gridData, handleSave, funNavConf, disBtn, setDisBtn }) => {
   const [data, setdata] = useState([...dData])
@@ -43,6 +44,7 @@ const FormTable = ({ col, dData, gridData, handleSave, funNavConf, disBtn, setDi
   const [localData, setLocalData] = useState([])
   const [hide, setHide] = useState(false)
   const [localVal, setLocalVal] = useState([])
+  const location = useLocation()
 
   console.log('dData',dData)
 
@@ -292,7 +294,7 @@ const FormTable = ({ col, dData, gridData, handleSave, funNavConf, disBtn, setDi
 
   const [columns, setcolumns] = useState(
     (gridData.isMrow == 'true' )&&(window.location.pathname !=='/editTable') ?
-      [...ColumnHeader(col, updateMyData, '', addAndDeleteRow, gridData, data, handleOnfocus, DropValRed.val),
+      [...ColumnHeader(col, updateMyData, '', addAndDeleteRow, gridData, data, handleOnfocus, DropValRed.val, location),
       {
         Header: "Remove",
         accessor: 'remove',
@@ -300,7 +302,7 @@ const FormTable = ({ col, dData, gridData, handleSave, funNavConf, disBtn, setDi
         Cell: ({ cell }) => { return <EditableActionCell colObj={cell.column} column={cell.column.id} row={cell.row.id} rowObj={cell.row} addAndDeleteRow={addAndDeleteRow} /> },
       }]
       :
-      ColumnHeader(col, updateMyData, '', addAndDeleteRow, gridData, data, handleOnfocus, DropValRed.val)
+      ColumnHeader(col, updateMyData, '', addAndDeleteRow, gridData, data, handleOnfocus, DropValRed.val, location)
 
   )
   // console.log(ColumnHeader(col,updateMyData))
@@ -308,7 +310,7 @@ const FormTable = ({ col, dData, gridData, handleSave, funNavConf, disBtn, setDi
   useEffect(() => {
     setcolumns(
       (gridData.isMrow == 'true' )&&(window.location.pathname !=='/editTable') ?
-        [...ColumnHeader(col, updateMyData, '', addAndDeleteRow, gridData, data, handleOnfocus, DropValRed.val),
+        [...ColumnHeader(col, updateMyData, '', addAndDeleteRow, gridData, data, handleOnfocus, DropValRed.val, location),
         {
           Header: "Remove",
           accessor: 'remove',
@@ -316,7 +318,7 @@ const FormTable = ({ col, dData, gridData, handleSave, funNavConf, disBtn, setDi
           Cell: ({ cell }) => { return <EditableActionCell colObj={cell.column} column={cell.column.id} row={cell.row.id} rowObj={cell.row} addAndDeleteRow={addAndDeleteRow} data={data.length} /> },
         }]
         :
-        ColumnHeader(col, updateMyData, '', addAndDeleteRow, gridData, data, handleOnfocus, DropValRed.val)
+        ColumnHeader(col, updateMyData, '', addAndDeleteRow, gridData, data, handleOnfocus, DropValRed.val, location)
     )
   }, [col])
 

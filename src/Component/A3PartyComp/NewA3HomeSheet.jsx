@@ -38,11 +38,11 @@ const NewA3HomeSheet = () => {
     }
 
     const handleNavigate = () =>{
-        console.log('location.state',vendorType)
+        console.log('location.state',location.state.daysFlag)
         navigate('/a3PartySheet',{state:{
             data : selected.length >= 1 ? selected.map((res) => {
                 return res.original
-            }) : A3HomeDataRed.val , vendorType:vendorType
+            }) : A3HomeDataRed.val , vendorType:vendorType, daysFlag: location.state.daysFlag
         }})
     }
 

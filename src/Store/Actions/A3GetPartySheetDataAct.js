@@ -1,5 +1,6 @@
 import axios from "axios";
 import swal from "sweetalert";
+import { FormIdAct } from "./GeneralStates";
 
 const A3GetPartySheetDataReq = (val) =>{
     return {
@@ -22,7 +23,7 @@ const A3GetPartySheetDataErr = (val) =>{
     }
 };
 
-export const A3GetPartySheetData = (data,token,navigate) =>{
+export const A3GetPartySheetData = (data,token,navigate,daysFlag) =>{
     const headers = {
         'Content-Type': 'application/json', 
         'Authorization': `Bearer ${token}` , 
@@ -36,7 +37,9 @@ export const A3GetPartySheetData = (data,token,navigate) =>{
                 title:'Data Saved Successfully',
                 icon:'success'
             }).then(()=>{
-                navigate('/pendencyDashboard')
+                // dispatch(FormIdAct('FORM-1144'))
+                // navigate('/pendencyDashboard')
+                navigate('/editTable', {state : {formId : 'FORM-1144', daysFlag : daysFlag}})
             })
         })
         .catch((err)=>{

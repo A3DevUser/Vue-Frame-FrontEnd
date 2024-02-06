@@ -731,12 +731,14 @@ console.log('EditablePartyLink',rowObj)
 
 
  export const EditableHomeLink = ({
-  rowObj : rowObj
+  rowObj : rowObj,
+  penFlag : penFlag
  }) =>{
-  console.log('EditableHomeLink',rowObj.original)
+
+  console.log('EditableHomeLink',penFlag)
   return (
   <div style={{display:'flex', justifyContent:'center', alignItems:'center'}}>
-  <Link to={'/a3HomeSheet'} state={{reviewId : rowObj.original.review_plan_id,review_name:rowObj.original.review_name, dataRow : rowObj.original}}>Assesment Form</Link>
+  <Link to={'/a3HomeSheet'} state={{reviewId : rowObj.original.review_plan_id,review_name:rowObj.original.review_name, dataRow : rowObj.original, daysFlag : penFlag}}>Assesment Form</Link>
   </div>)
 
  }

@@ -11,7 +11,7 @@ import { useLocation, useNavigate } from 'react-router'
 import { A3GetPartySheetData } from '../../Store/Actions/A3GetPartySheetDataAct'
 import { NewPartysheetColumns } from './NewPartySheetColumns'
 
-const NewPartySheetTable = ({columnData,tableData,vendorList}) => {
+const NewPartySheetTable = ({columnData,tableData,vendorList,daysFlag}) => {
 
   const location = useLocation()
 
@@ -61,7 +61,7 @@ console.log('vendorListValues',vendorList);
     })
 
     console.log('savedataFinal',columnData)
-    dispatch(A3GetPartySheetData(finData,AuthRed.val,navigate))
+    dispatch(A3GetPartySheetData(finData,AuthRed.val,navigate, daysFlag ))
     // alert('Data Saved Successfully !!')
   }
 
