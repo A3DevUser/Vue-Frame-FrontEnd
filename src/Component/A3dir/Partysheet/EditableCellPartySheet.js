@@ -462,11 +462,92 @@ export const EditableCell = ({
         <option value={'Yes'}>Yes</option>
         <option value={'No'}>No</option>
         <option value={'NA'}>NA</option>
-        {/* {
+        {
           rowObj.RESPONSE_DISPLAY_VAL.split(',').map((res)=>{
             return <option value={res}>{res}</option>
           })
-        } */}
+        }
       </select>
+    </div>
+  }
+
+  export const EditableTpreResCell = ({
+    value: initialValue,
+    row:  index ,
+    column:  id ,
+    updateMyData, 
+    colObj:colObj,
+    rowObj:rowObj,
+    parentId
+  }) => {
+    const [value, setValue] = React.useState(initialValue)
+  
+    const onChange = e => {
+      setValue(e.target.value)
+    }
+  
+    const onBlur = () => {
+      updateMyData(index, id, value,null,parentId.column.parent.id.id)
+    }
+  
+    React.useEffect(() => {
+      setValue(initialValue)
+    }, [initialValue])
+
+  
+    return <div> 
+      <select onChange={onChange} onBlur={onBlur} className="form-control">
+        <option value={''}>Select One...</option>
+        {
+          rowObj.original.RESPONSE_VALUE ?
+          rowObj.original.RESPONSE_VALUE.sort((a,b)=>a.storedValue- b.storedValue).map((res)=>{
+            return <option value={res.storedValue}>{res.displayValue}</option>
+          })
+          :
+          <></>
+        }
+      </select>
+    </div>
+  }
+
+  export const EditableRrtTextCell = ({
+    value: initialValue,
+    row:  index ,
+    column:  id ,
+    updateMyData, 
+    colObj:colObj,
+    rowObj:rowObj,
+    parentId,
+    col:col
+  }) => {
+    const [value, setValue] = React.useState(initialValue)
+  
+    const onChange = e => {
+      setValue(e.target.value)
+    }
+    const responseAcc = col.filter((res)=>{
+      return res.isdependent == 'true'
+    })[0].accessor
+
+    const finalResponseAcc = Object.keys(rowObj.original).filter((res)=>{
+      return res.includes(responseAcc)
+    })[0]
+
+    useEffect(()=>{
+      setValue(rowObj.original[`${finalResponseAcc}`])
+    },[rowObj])
+
+
+    const onBlur = () => {
+      updateMyData(index, id, value,null,parentId.column.parent.id.id)
+    }
+  
+    React.useEffect(() => {
+      setValue(initialValue)
+    }, [initialValue])
+
+  
+    return <div>
+      <input type="text" disabled={true} value={value == 1 ? 'Low' : value ==2 ? 'Medium' : value ==3 ? 'High' : '' } className="form-control" />
     </div>
   }
