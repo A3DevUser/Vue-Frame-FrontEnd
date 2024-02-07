@@ -3,7 +3,7 @@ import { SectionRed } from "./SectionRed";
 import { ColumnRed } from "./ColumnRed";
 import { SubSectionRed } from "./SubSectionRed";
 import {NavBarRed}  from "./NavBarRed"
-import { FormIdRed,FormDatRed,EmdRed,DropDownValRed,ExcelDataRed,MainObjIdRed, mainObjDataRed,AddTableFormDataRed, AddTableMultFormDataRed } from "./GeneralStatesRed";
+import { FormIdRed,FormDatRed,EmdRed,DropDownValRed,ExcelDataRed,MainObjIdRed, mainObjDataRed,AddTableFormDataRed, AddTableMultFormDataRed, PreOnboardignScoreRed } from "./GeneralStatesRed";
 import { GridRed } from "./GridRed";
 import { ConfSectionRed } from "./ConfSectionRed";
 import { ConfColumnRed } from "./ConfColumnRed";
@@ -142,7 +142,8 @@ const rootReducers = combineReducers({
     SendTestScoreDataRed,
     AddTableFormDataRed,
     AddTableMultFormDataRed,
-    AddTablePostRed
+    AddTablePostRed,
+    PreOnboardignScoreRed
     });
 
 export default rootReducers

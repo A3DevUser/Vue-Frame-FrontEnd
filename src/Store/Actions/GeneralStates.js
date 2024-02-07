@@ -92,3 +92,10 @@ export const AddTableMultFormData = (val) =>{
         payload: val
     }
 }
+
+export const PreOnboardignScoreAct = (val) =>{
+    return {
+        type :'PreOnboardignScoreAct',
+        payload: val
+    }
+}

@@ -84,3 +84,10 @@ export const AddTableMultFormDataRed = (state=false, action) =>{
         default : return state
     }
 }
+
+export const PreOnboardignScoreRed = (state=false, action) =>{
+    switch (action.type) {
+        case 'PreOnboardignScoreAct' : return action.payload
+        default : return state
+    }
+}

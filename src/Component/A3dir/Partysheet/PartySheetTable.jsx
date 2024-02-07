@@ -15,6 +15,7 @@ import DividePartySheet from './DividePartySheet'
 import swal from 'sweetalert'
 import { useNavigate } from 'react-router'
 import { FormTestScoreData } from '../../../Store/Actions/TestScoreDataAct'
+import { PreOnboardignScoreAct } from '../../../Store/Actions/GeneralStates'
 
 
 
@@ -22,6 +23,8 @@ import { FormTestScoreData } from '../../../Store/Actions/TestScoreDataAct'
 const PartySheetTable = ({col,dData,userName,accData,tableData,handleChange,filterTypr}) => {
 const dispatch = useDispatch()
 const navigate = useNavigate()
+
+const PreOnboardignScoreRed = useSelector((state) => state.PreOnboardignScoreRed)
 
 
 
@@ -91,7 +94,9 @@ const accColumn = col.filter((fil)=>{return fil.parentCell=='account'}).map((res
   
   const [finalData,setfinalData] = useState({})
   const [fileArr,setfileArr] =useState()
-  const [score,setScore] = useState()
+  const [scoreTpre,setScoreTpre] = useState(0)
+  const [score,setScore] = useState(0)
+  const [scoreDdq,setScoreDdq] = useState(0)
   const [show,setShow] = useState(false)
   const [globalSearchVal,setglobalSearchVal] = useState('')
 
@@ -117,20 +122,30 @@ const accColumn = col.filter((fil)=>{return fil.parentCell=='account'}).map((res
     console.log('TestColumnDataFind',finalData)
 
     if(filterTypr == 'Materiality Assessment$$Materiality Assessment'){
-      // alert('inside if',maWeightAge)
     setScore(Object.values(finalData).reduce((acc,cur)=>{
       console.log('maWeightAgeValue', acc)
       return acc += (cur[isScorVal] ? (Number(cur[isScorVal]))/100 : 0 )
     },0))
   }
-    else if (filterTypr != 'Materiality Assessment$$Materiality Assessment'){
-            // alert('inside else',maWeightAge)
-      setScore(Object.values(finalData).reduce((acc,cur)=>{
+    else if (filterTypr == 'Third Party Risk Evaluation$$Third Party Risk Evaluation'){
+            // dispatch(PreOnboardignScoreAct({TPRE: Object.values(finalData).reduce((acc,cur)=>{
+            //   return acc += (cur[isScorVal] ? Number(cur[isScorVal]) : 0 )
+            // },0), MA: '', DDQ: ''}))
+            setScoreTpre(Object.values(finalData).reduce((acc,cur)=>{
         return acc += (cur[isScorVal] ? Number(cur[isScorVal]) : 0 )
       },0)) 
     }
-
+    else if (filterTypr == 'Due Diligence$$Due Diligence'){
+            setScoreDdq(Object.values(finalData).reduce((acc,cur)=>{
+        return acc += (cur[isScorVal] ? Number(cur[isScorVal]) : 0 )
+      },0)) 
+    }
   },[finalOpData])
+
+  useEffect(() => {
+    dispatch(PreOnboardignScoreAct({TPRE: scoreTpre, MA: score, DDQ: scoreDdq}))
+  },[scoreTpre,score,scoreDdq])
+
 
 
     let userId = userName
@@ -264,7 +279,7 @@ console.log('DataRowCount',dData)
       <div className='my-2' style={{display:'flex',justifyContent:'space-between',width: '97%', gap:10}}>
         <div style={{display:'flex', justifyContent:'center', alignItems:'center'}}>
         {/* <span style={{fontSize:25}} class="bi bi-arrow-left-circle-fill"></span> */}
-        <DividePartySheet score={score} filterTypr={filterTypr} dataLength={accData.length} handleChange={handleChange}/>
+        {/* <DividePartySheet score={score} filterTypr={filterTypr} dataLength={accData.length} handleChange={handleChange}/> */}
         </div>
         {/* <div>
         <DropdownButton variant='success' title='Overview'>

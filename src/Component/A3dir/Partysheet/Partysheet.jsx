@@ -6,6 +6,7 @@ import { FetchA3PartyColumnData } from '../../../Store/Actions/A3PartyColumnAct'
 import { FetchA3TestData } from '../../../Store/Actions/A3TestDataAct';
 import { useLocation } from 'react-router';
 import { FetchA3PsOpDataData } from '../../../Store/Actions/A3PSOpData';
+import DividePartySheet from './DividePartySheet';
 
 const Partysheet = () => {
   const dispatch = useDispatch();
@@ -17,8 +18,8 @@ const Partysheet = () => {
   const AuthRed = useSelector((state) => state.AuthRed);
   const mainObjDataRed = useSelector((state) => state.mainObjDataRed);
   const A3PsOpDataRed = useSelector((state) => state.A3PsOpDataRed);
-  const [filterTypr,setFilterTypr] = useState('TPRM New vendor risk assessment - TPRE')
-
+  const [filterTypr,setFilterTypr] = useState('Third Party Risk Evaluation$$Third Party Risk Evaluation')
+  const PreOnboardignScoreRed = useSelector((state) => state.PreOnboardignScoreRed)
 
   console.log('location', location.state);
 
@@ -50,6 +51,12 @@ const Partysheet = () => {
 
   return (
     <>
+    {/* <div className='my-2' style={{display:'flex',justifyContent:'normal',width: '80%', gap:10}}> */}
+    <div >
+    <DividePartySheet score={''} filterTypr={filterTypr} dataLength={10} handleChange={handleChange}/>
+    </div>
+    {/* <button onClick={handleSave} className='btn btn-outline-success'><i class="bi bi-floppy"></i></button> */}
+    {/* </div> */}
       {/* partysheet */}
       {A3PartyColumnRed.loading ? MainObject.loader() :
        A3TestRed.loading ?  MainObject.loader() : 
