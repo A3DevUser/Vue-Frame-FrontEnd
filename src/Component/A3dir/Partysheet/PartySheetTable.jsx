@@ -20,7 +20,7 @@ import { PreOnboardignScoreAct } from '../../../Store/Actions/GeneralStates'
 
 
 
-const PartySheetTable = ({col,dData,userName,accData,tableData,handleChange,filterTypr}) => {
+const PartySheetTable = ({col,dData,userName,accData,tableData,handleChange,filterTypr,setClickSave, clickSave}) => {
 const dispatch = useDispatch()
 const navigate = useNavigate()
 
@@ -191,19 +191,34 @@ console.log('vendorIdData',accList)
       },[finalData])
 
 console.log('DataRowCount',dData)
-      function handleSave(){
-        // alert(dData.length)
-        const dataList = Object.values(finalData);
-        dispatch(FormTestScoreData([  {
-          "tpreScore": score,
-          "tpreRating": score >= (dData.length*maxScore)/2 ? 'High' : score == 0 ? 'Low' : 'Medium',
-          "isMaterial": "Material",
-          "dueDilligenceScore": "Yearly",
-          "vendor_ID": accList[0].split('$$')[0],
-          "VENDOR_ID": accList[0].split('$$')[0]
-        }],AuthRed.val))
-        dispatch(PostA3SaveData(dataList,AuthRed.val,navigate))
-      }
+      // function handleSave(){
+      //   // alert(dData.length)
+      //   const dataList = Object.values(finalData);
+      //   dispatch(FormTestScoreData([  {
+      //     "tpreScore": score,
+      //     "tpreRating": score >= (dData.length*maxScore)/2 ? 'High' : score == 0 ? 'Low' : 'Medium',
+      //     "isMaterial": "Material",
+      //     "dueDilligenceScore": "Yearly",
+      //     "vendor_ID": accList[0].split('$$')[0],
+      //     "VENDOR_ID": accList[0].split('$$')[0]
+      //   }],AuthRed.val))
+      //   dispatch(PostA3SaveData(dataList,AuthRed.val,navigate))
+      // }
+
+      useEffect(() => {
+        if(clickSave){
+          const dataList = Object.values(finalData);
+          dispatch(FormTestScoreData([  {
+            "tpreScore": score,
+            "tpreRating": score >= (dData.length*maxScore)/2 ? 'High' : score == 0 ? 'Low' : 'Medium',
+            "isMaterial": "Material",
+            "dueDilligenceScore": "Yearly",
+            "vendor_ID": accList[0].split('$$')[0],
+            "VENDOR_ID": accList[0].split('$$')[0]
+          }],AuthRed.val))
+          dispatch(PostA3SaveData(dataList,AuthRed.val,navigate))   
+        }
+      },[clickSave])
 
     //   function handleChange(e){
     //     const rangeLowCount = (((e.target.value)-1)*10);
@@ -300,7 +315,7 @@ console.log('DataRowCount',dData)
         <i class="bi bi-search"></i>
         </InputGroup.Text>
         </InputGroup> */}
-        <button onClick={handleSave} className='btn btn-outline-success'><i class="bi bi-floppy"></i></button>
+        {/* <button onClick={handleSave} className='btn btn-outline-success'><i class="bi bi-floppy"></i></button> */}
       </div>
       <div>
     <Styles>

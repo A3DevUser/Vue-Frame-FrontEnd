@@ -7,6 +7,7 @@ import { FetchA3TestData } from '../../../Store/Actions/A3TestDataAct';
 import { useLocation } from 'react-router';
 import { FetchA3PsOpDataData } from '../../../Store/Actions/A3PSOpData';
 import DividePartySheet from './DividePartySheet';
+import { PreOnboardignScoreAct } from '../../../Store/Actions/GeneralStates';
 
 const Partysheet = () => {
   const dispatch = useDispatch();
@@ -20,6 +21,8 @@ const Partysheet = () => {
   const A3PsOpDataRed = useSelector((state) => state.A3PsOpDataRed);
   const [filterTypr,setFilterTypr] = useState('Third Party Risk Evaluation$$Third Party Risk Evaluation')
   const PreOnboardignScoreRed = useSelector((state) => state.PreOnboardignScoreRed)
+
+  const [clickSave,setClickSave] = useState(false)
 
   console.log('location', location.state);
 
@@ -48,21 +51,27 @@ const Partysheet = () => {
     }
   }, [ A3TestRed.val, location.state]);
 
+  function handleSave (){
+    if(!clickSave){
+      setClickSave(true)
+      dispatch(PreOnboardignScoreAct({TPRE: NaN, MA: NaN, DDQ: NaN}))
+    }
+  }
+
 
   return (
     <>
-    {/* <div className='my-2' style={{display:'flex',justifyContent:'normal',width: '80%', gap:10}}> */}
+    <div style={{display:'flex', flexDirection:'row', alignItems:'center'}}>
     <div >
-    <DividePartySheet score={''} filterTypr={filterTypr} dataLength={10} handleChange={handleChange}/>
+    <DividePartySheet filterTypr={filterTypr} dataLength={10} handleChange={handleChange} handleSave={handleSave}/>
     </div>
-    {/* <button onClick={handleSave} className='btn btn-outline-success'><i class="bi bi-floppy"></i></button> */}
-    {/* </div> */}
+    </div>
       {/* partysheet */}
       {A3PartyColumnRed.loading ? MainObject.loader() :
        A3TestRed.loading ?  MainObject.loader() : 
        A3PsOpDataRed.loading ? MainObject.loader() :
 
-        <PartySheetTable accData={[location.state.rowData]} col={A3PartyColumnRed.val} dData={A3TestRed.val} tableData={A3PsOpDataRed.val} handleChange={handleChange} filterTypr={filterTypr}/>
+        <PartySheetTable accData={[location.state.rowData]} col={A3PartyColumnRed.val} dData={A3TestRed.val} tableData={A3PsOpDataRed.val} handleChange={handleChange} filterTypr={filterTypr} setClickSave={setClickSave} clickSave={clickSave}/>
       }
     </>
   );
