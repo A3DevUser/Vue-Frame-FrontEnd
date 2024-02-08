@@ -94,8 +94,8 @@ const [show,setshow] = useState(false)
                         <label htmlFor="aprroveReject" id='aprroveRejectLabel'>Result </label>
                         <select id="aprroveReject" className='form-control' onChange={(e)=>{handleModal(e)}}>
                             <option value="">Select One</option>
-                            <option value="approve">Approve</option>
-                            <option value="reject">Reject</option>
+                            <option value="Approved">Approve</option>
+                            <option value="Rejected">Reject</option>
                         </select>
                         </div>
                     </div>
