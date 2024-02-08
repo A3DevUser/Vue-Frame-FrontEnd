@@ -26,13 +26,13 @@ const CheckerForm = () => {
     useEffect(() => {
       console.log('final row ID',location.state.reviewId)
     },[location])
-
+console.log('A3ColumnRedValCol',A3ColumnRed.val);
   return (
     <>
     {
         A3ColumnRed.loading ? MainObject.loader() :
         ReviewPlanDataRed.loading ? MainObject.loader() :
-        <CheckerFormTab reviewId={location.state.reviewId} reviewName={location.state.reviewName} review_freq={location.state.review_freq} sub_frequency={location.state.sub_frequency} review_type={location.state.review_type} columnData={A3ColumnRed.val} reportData={ReviewPlanDataRed.val}/>
+        <CheckerFormTab reviewId={location.state.reviewId} reviewName={location.state.reviewName} review_freq={location.state.review_freq} sub_frequency={location.state.sub_frequency} review_type={location.state.review_type} columnData={A3ColumnRed.val.sort((a,b) => {return a.orderBy - b.orderBy})} reportData={ReviewPlanDataRed.val}/>
 
     }
     </>
