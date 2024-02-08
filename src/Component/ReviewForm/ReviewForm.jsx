@@ -22,7 +22,7 @@ const ReviewForm = () => {
     <>
     {
         A3ColumnRed.loading ? MainObject.loader() :
-        <ReviewHome columnData={A3ColumnRed.val} reportData={[]}/>
+        <ReviewHome columnData={A3ColumnRed.val.sort((a,b)=> a.orderBy - b.orderBy)} reportData={[]}/>
     }
     </>
   )
