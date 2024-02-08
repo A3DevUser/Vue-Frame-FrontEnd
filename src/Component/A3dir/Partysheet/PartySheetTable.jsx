@@ -20,7 +20,7 @@ import { PreOnboardignScoreAct } from '../../../Store/Actions/GeneralStates'
 
 
 
-const PartySheetTable = ({col,dData,userName,accData,tableData,handleChange,filterTypr}) => {
+const PartySheetTable = ({col,dData,userName,accData,tableData,handleChange,filterTypr,setClickSave, clickSave}) => {
 const dispatch = useDispatch()
 const navigate = useNavigate()
 
@@ -190,20 +190,35 @@ const accColumn = col.filter((fil)=>{return fil.parentCell=='account'}).map((res
       //   console.log('opFinalData',finalData)
       // },[finalData])
 
-// console.log('DataRowCount',dData)
-      function handleSave(){
-        // alert(dData.length)
-        const dataList = Object.values(finalData);
-        dispatch(FormTestScoreData([  {
-          "tpreScore": score,
-          "tpreRating": score >= (dData.length*maxScore)/2 ? 'High' : score == 0 ? 'Low' : 'Medium',
-          "isMaterial": "Material",
-          "dueDilligenceScore": "Yearly",
-          "vendor_ID": accList[0].split('$$')[0],
-          "VENDOR_ID": accList[0].split('$$')[0]
-        }],AuthRed.val))
-        dispatch(PostA3SaveData(dataList,AuthRed.val,navigate))
-      }
+console.log('DataRowCount',dData)
+      // function handleSave(){
+      //   // alert(dData.length)
+      //   const dataList = Object.values(finalData);
+      //   dispatch(FormTestScoreData([  {
+      //     "tpreScore": score,
+      //     "tpreRating": score >= (dData.length*maxScore)/2 ? 'High' : score == 0 ? 'Low' : 'Medium',
+      //     "isMaterial": "Material",
+      //     "dueDilligenceScore": "Yearly",
+      //     "vendor_ID": accList[0].split('$$')[0],
+      //     "VENDOR_ID": accList[0].split('$$')[0]
+      //   }],AuthRed.val))
+      //   dispatch(PostA3SaveData(dataList,AuthRed.val,navigate))
+      // }
+
+      useEffect(() => {
+        if(clickSave){
+          const dataList = Object.values(finalData);
+          dispatch(FormTestScoreData([  {
+            "tpreScore": score,
+            "tpreRating": score >= (dData.length*maxScore)/2 ? 'High' : score == 0 ? 'Low' : 'Medium',
+            "isMaterial": "Material",
+            "dueDilligenceScore": "Yearly",
+            "vendor_ID": accList[0].split('$$')[0],
+            "VENDOR_ID": accList[0].split('$$')[0]
+          }],AuthRed.val))
+          dispatch(PostA3SaveData(dataList,AuthRed.val,navigate))   
+        }
+      },[clickSave])
 
     //   function handleChange(e){
     //     const rangeLowCount = (((e.target.value)-1)*10);
@@ -276,11 +291,11 @@ const accColumn = col.filter((fil)=>{return fil.parentCell=='account'}).map((res
     <>
     <A3OverviewModal show={show} setShow={setShow} />
     <div style={{display:'flex', flexDirection:'column'}}>
-      <div className='my-2' style={{display:'flex',justifyContent:'space-between',width: '97%', gap:10}}>
-        <div style={{display:'flex', justifyContent:'center', alignItems:'center'}}>
+      {/* <div className='my-2' style={{display:'flex',justifyContent:'space-between',width: '97%', gap:10}}> */}
+        {/* <div style={{display:'flex', justifyContent:'center', alignItems:'center'}}> */}
         {/* <span style={{fontSize:25}} class="bi bi-arrow-left-circle-fill"></span> */}
         {/* <DividePartySheet score={score} filterTypr={filterTypr} dataLength={accData.length} handleChange={handleChange}/> */}
-        </div>
+        {/* </div> */}
         {/* <div>
         <DropdownButton variant='success' title='Overview'>
           <Dropdown.Item onClick={()=>setShow(true)}>Sheet Summary</Dropdown.Item>
@@ -300,8 +315,8 @@ const accColumn = col.filter((fil)=>{return fil.parentCell=='account'}).map((res
         <i class="bi bi-search"></i>
         </InputGroup.Text>
         </InputGroup> */}
-        <button onClick={handleSave} className='btn btn-outline-success'><i class="bi bi-floppy"></i></button>
-      </div>
+        {/* <button onClick={handleSave} className='btn btn-outline-success'><i class="bi bi-floppy"></i></button> */}
+      {/* </div> */}
       <div>
     <Styles>
         <div {...getTableProps()} className="table sticky table-hover table-striped mx-3" style={{ width: '97%', height:'75vh' }}>

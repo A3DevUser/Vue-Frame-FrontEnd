@@ -65,7 +65,7 @@ const NewA3HomeSheet = () => {
             {
                 A3PartyColumnRed.loading ? MainObject.loader() :
                 A3HomeDataRed.loading ? MainObject.loader() :
-        <NewA3HomeTable columnData={A3PartyColumnRed.val} tableData={A3HomeDataRed.val} setSelected={setSelected}/>
+        <NewA3HomeTable columnData={A3PartyColumnRed.val.sort((a,b) => {return a.orderBy - b.orderBy})} tableData={A3HomeDataRed.val} setSelected={setSelected}/>
             }
         </div>
     </div>
