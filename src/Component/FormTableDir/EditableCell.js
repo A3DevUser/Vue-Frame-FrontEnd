@@ -17,6 +17,7 @@ import { FetchObjectIdData } from "../../Store/Actions/ObjectIdAct"
 import RichText from "../../Component/RichText/RichText"
 import { Button, InputGroup, Modal } from "react-bootstrap"
 import Select from 'react-select'
+import { FetchWorkFlowEditData } from "../../Store/Actions/WorkFlowEditAct"
 
 export const EditableCell = ({
     value: initialValue,
@@ -560,6 +561,7 @@ const ImportGridRed = useSelector((state)=>state.ImportGridRed)
   }) => {
 
     const dispatch = useDispatch()
+    const AuthRed = useSelector((state)=>state.AuthRed)
     
     // const handleClick = () =>{
     //   if(gridIdVal == 'GID-576'){
@@ -578,6 +580,7 @@ const ImportGridRed = useSelector((state)=>state.ImportGridRed)
       } else if (gridIdVal == 'GID-641') {
         sessionStorage.setItem('formId','FORM-106')
         dispatch(FormIdAct('FORM-106'))
+        dispatch(FetchWorkFlowEditData(rowObj.original.form_id,AuthRed.val))
       } else if (gridIdVal == 'GID-924') {
         sessionStorage.setItem('formId','FORM-203')
         dispatch(FormIdAct('FORM-203'))

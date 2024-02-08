@@ -195,7 +195,7 @@ const FormTable = ({ col, dData, gridData, handleSave, funNavConf, disBtn, setDi
           setDropdownArray(droparrcon)
           console.log('new dropArry reportRpti',droparrcon);
       }
-  }})
+  }},[FormEditRed,WorkFlowEditRed,EditReportRed])
   
 
   const addAndDeleteRow = (index, obj, action) => {      //Tez

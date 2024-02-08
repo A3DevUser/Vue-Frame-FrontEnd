@@ -51,12 +51,12 @@ const EditWorkFlowConf = () => {
     }
 
     // console.log('WorkFlowEditRed',SectionRed,GridRed,ColumnRed,FormIdRed,FormDatRed);
-    console.log('WorkFlowEditRed SectionRed ',SectionRed);
-    console.log('WorkFlowEditRed GridRed ',GridRed);
-    console.log('WorkFlowEditRed ColumnRed ',ColumnRed);
-    console.log('WorkFlowEditRed FormIdRed ',FormIdRed);
-    console.log('WorkFlowEditRed FormDatRed ',FormDatRed);
-    console.log('WorkFlowEditRed WorkFlowEditRed ',WorkFlowEditRed);
+    // console.log('WorkFlowEditRed SectionRed ',SectionRed);
+    // console.log('WorkFlowEditRed GridRed ',GridRed);
+    // console.log('WorkFlowEditRed ColumnRed ',ColumnRed);
+    // console.log('WorkFlowEditRed FormIdRed ',FormIdRed);
+    // console.log('WorkFlowEditRed FormDatRed ',FormDatRed);
+    // console.log('WorkFlowEditRed WorkFlowEditRed ',WorkFlowEditRed);
     // console.log('WorkFlowEditRed FormEditRed ',FormEditRed);
 
     // useEffect(()=>{
@@ -70,7 +70,8 @@ const EditWorkFlowConf = () => {
         dispatch(FetchConfSectionData(FormIdRed,AuthRed.val))
         dispatch(FetchConfGridData(FormIdRed,AuthRed.val))
         dispatch(FetchConfColumnData(FormIdRed,AuthRed.val))
-        dispatch(FetchWorkFlowEditData(location.state !== null ? location.state.formId : sessionStorage.getItem('formId1') ,AuthRed.val))
+        // dispatch(FetchWorkFlowEditData(location.state !== null ? location.state.formId : sessionStorage.getItem('formId1') ,AuthRed.val))
+        // dispatch(FetchWorkFlowEditData('',AuthRed.val))
     },[FormIdRed])
 
     // console.log('FormIdRed',SectionRed);
@@ -100,7 +101,7 @@ const EditWorkFlowConf = () => {
     const width = '75vw'
 
     const handleSave = (val) =>{
-      // console.log('FormDataGrid',FormDatRed)
+      console.log('WFedittest',FormDatRed)
     //   let isMan = []
 
     //   let GridCol = ColumnRed.val.filter((fil)=>{
@@ -152,17 +153,19 @@ const EditWorkFlowConf = () => {
           //   return { ...res, formId: location.state.formId, targetId: val.gridId, gridId: formGridIdmain }
           // }
          if (location.state !== null) {
+          console.log('WFedittest','inside if');
           // console.log('mainGrid Val else',location.state)
           // console.log('mainGrid Val else',val.gridId)
           return { ...res, formId: location.state.formId, targetId: val.gridId }
         } else {
+          console.log('WFedittest','inside else');
           // alert('inside EditForm')
           return { ...res, ...SendConfDataRed.val, targetId: val.gridId }
         }
       })
       console.log('mainGrid Val else',FormData)
       // console.log('FormDataNewVal',JSON.stringify(FormData))
-      dispatch(FormConfData(val.api, FormData, AuthRed.val))
+      // dispatch(FormConfData(val.api, FormData, AuthRed.val))
     }
     
 
