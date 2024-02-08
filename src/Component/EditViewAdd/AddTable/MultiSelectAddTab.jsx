@@ -8,7 +8,7 @@ import { Checkbox } from './Checkbox'
 
 const MultiSelectAddTab = ({columnData,multiData,setselectRows}) => {
 
-console.log('columnData',columnData)
+// console.log('columnData',columnData)
     const [columns,setcolumns] = useState([...columnData.map((res)=>{return {Header : res.fieldName, accessor : res.accessor}})])
     const [data,setdata] = useState([...multiData])
 

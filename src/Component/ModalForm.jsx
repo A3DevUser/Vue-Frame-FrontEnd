@@ -84,7 +84,7 @@ const ModalForm = ({actObjId}) => {
       ...res,
       DATA: res.DATA.filter(obj => obj.VF_MAIN_OBJ_ID == mainObjId)
     }))
-    console.log('ColumnEditActRed', ModalColumnRed)
+    // console.log('ColumnEditActRed', ModalColumnRed)
     // console.log('finalObj', mainObjId)
     setModalMultiData(newData);
   },[])
@@ -97,7 +97,7 @@ const ModalForm = ({actObjId}) => {
   // console.log('finalObj', JSON.stringify(GetDataRed.val.filter((fil) => {
   //   return fil.GRID_ID == 'GID-1171'
   // })))
-  console.log('finalObj', ModalColumnRed.val)
+  // console.log('finalObj', ModalColumnRed.val)
 
   return (
     <div>

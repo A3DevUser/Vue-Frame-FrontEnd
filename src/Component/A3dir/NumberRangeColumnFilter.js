@@ -13,9 +13,9 @@ export const NumberRangeColumnFilter = ({
       return [min, max];
     }, [id, preFilteredRows]);
 
-useEffect(() => {
-console.log('minMax',min,max)
-}, [min,max])
+// useEffect(() => {
+// console.log('minMax',min,max)
+// }, [min,max])
     
       return (
         <div

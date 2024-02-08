@@ -23,10 +23,10 @@ const CheckerForm = () => {
         dispatch(FetchReviewPlanDataData(location.state.reviewId,AuthRed.val))
     },[])
 
-    useEffect(() => {
-      console.log('final row ID',location.state.reviewId)
-    },[location])
-console.log('A3ColumnRedValCol',A3ColumnRed.val);
+    // useEffect(() => {
+    //   console.log('final row ID',location.state.reviewId)
+    // },[location])
+
   return (
     <>
     {

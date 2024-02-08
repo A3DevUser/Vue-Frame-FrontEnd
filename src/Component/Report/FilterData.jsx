@@ -63,12 +63,12 @@ const FilterData = () => {
     dispatch(FetchReportTitleData(FormIdRed,AuthRed.val))
   }, [FormIdRed])
 
-  useEffect(()=>{
-    console.log('NewReport Data',ReportTitleColumnRed)
-    // console.log('NewReport Data',ReportTitleGridRed)
-    // console.log('NewReport Data',JSON.stringify(GridRed))
-    // console.log('NewReport Data',JSON.stringify(ColumnRed))
-  },[ReportTitleColumnRed,ReportTitleGridRed])
+  // useEffect(()=>{
+  //   console.log('NewReport Data',ReportTitleColumnRed)
+  //   // console.log('NewReport Data',ReportTitleGridRed)
+  //   // console.log('NewReport Data',JSON.stringify(GridRed))
+  //   // console.log('NewReport Data',JSON.stringify(ColumnRed))
+  // },[ReportTitleColumnRed,ReportTitleGridRed])
 
 
   const handleSave = ()=>{

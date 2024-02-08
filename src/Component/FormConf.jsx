@@ -144,7 +144,7 @@ const FormConf = () => {
           return { ...res, ...SendConfDataRed.val, targetId: val.gridId }
 
       })
-      console.log('insideFormConf',FormData)
+      // console.log('insideFormConf',FormData)
       dispatch(FormConfData(val.api, FormData, AuthRed.val))
     }
 

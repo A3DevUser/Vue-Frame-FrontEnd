@@ -54,7 +54,7 @@ const [show,setshow] = useState(false)
         return {...res,...response, reviewId : reviewId, reviewName : reviewName, review_type : review_type}
        })
 
-       console.log('ModalfinalData',finalData)
+    //    console.log('ModalfinalData',finalData)
 
        dispatch(SendCheckerData(finalData,AuthRed.val,navigate))
     }

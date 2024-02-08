@@ -27,7 +27,7 @@ export const AuthToken = (user) => {
         // console.log('user',user)
         axios.post('http://localhost:8080/auth/generateToken',user)
             .then((response) => {
-                console.log('response.data',response.data)
+                // console.log('response.data',response.data)
                 sessionStorage.setItem('userName',user.username)
                 sessionStorage.setItem('userData', response.data.replace('"',''))
                 localStorage.setItem('token', response.data.replace('"',''))

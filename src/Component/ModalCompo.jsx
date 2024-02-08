@@ -75,7 +75,7 @@ export const MultiModalCompo = ({ title, bodyDetails, show, setshow, showFunc, m
 
   const handleMultiAdd = (selectedFlatRows) => {
     
-    console.log('MultiRow Added','Multi Row CLick')
+    // console.log('MultiRow Added','Multi Row CLick')
     
     let allObj ={}
     columns.forEach((res)=> {return allObj[res.accessor]=''})
@@ -101,7 +101,7 @@ export const MultiModalCompo = ({ title, bodyDetails, show, setshow, showFunc, m
     }
 
     multiData((old) => {
-      console.log('SendObjectIdRed',JSON.stringify(multiObj))
+      // console.log('SendObjectIdRed',JSON.stringify(multiObj))
       return [...multiObj]
     })
 
@@ -110,7 +110,7 @@ export const MultiModalCompo = ({ title, bodyDetails, show, setshow, showFunc, m
   }
 
   useEffect(() => {
-    console.log('MultiRow Added',MultiModalColRed.val)
+    // console.log('MultiRow Added',MultiModalColRed.val)
   },[MultiModalColRed])
 
   return (

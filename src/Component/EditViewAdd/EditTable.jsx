@@ -47,18 +47,18 @@ const EditTable = () => {
 
 
     const handleSave = (gridData,setdata) =>{
-      console.log('newFormDataRed','inside save')
+      // console.log('newFormDataRed','inside save')
       if ((FormDatRed[GridRed.val.filter((fil) => {return fil.isMain == 'true'})[0].gridId].filter((fil) => {return fil.VF_ACTION != '' || fil.VF_ACTION != null})).length >= 1){
-        console.log('newFormDataRed','inside parent if')
+        // console.log('newFormDataRed','inside parent if')
         Object.keys(FormDatRed).forEach((res)=>{
           if(Array.isArray(FormDatRed[res])){
-            console.log('newFormDataRed',FormDatRed[res])
+            // console.log('newFormDataRed',FormDatRed[res])
             // console.log('newFormDataRed',FormDatRed[res].filter((fil) => {return  fil.VF_ACTION != null && fil.VF_ACTION != ''}))
             let newObj = FormDatRed[res].filter((fil) => {
               return  fil.VF_ACTION != null && fil.VF_ACTION != ''
             }) 
               if(newObj.length >= 0){
-                console.log('newFormDataRed',newObj)
+                // console.log('newFormDataRed',newObj)
                 dispatch(PostFormExcelData(UserDataStateRed,newObj,AuthRed.val,
                   // setdata,
                   setDisBtn,
@@ -67,7 +67,7 @@ const EditTable = () => {
               }
             }})
       }else{
-        console.log('newFormDataRed',FormDatRed)
+        // console.log('newFormDataRed',FormDatRed)
         Object.values(FormDatRed).forEach((res)=>{
           dispatch(PostFormExcelData(UserDataStateRed,res,AuthRed.val,setdata,setDisBtn)) 
         })

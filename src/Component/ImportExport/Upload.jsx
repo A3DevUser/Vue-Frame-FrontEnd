@@ -50,11 +50,11 @@ function ExcelReader({columnData, gridData}) {
                 if(typeof cell.value=='number'){
                   rowData[columnName] = JSON.stringify(cell.value);
                   rowData['GRID_ID'] = gridId
-                  console.log('inside Upload if',rowData[columnName]);
+                  // console.log('inside Upload if',rowData[columnName]);
                 }else{
                   rowData[columnName] = cell.value;
                   rowData['GRID_ID'] = gridId
-                  console.log('inside Upload else',rowData[columnName]);
+                  // console.log('inside Upload else',rowData[columnName]);
                 }
               });
               result.push(rowData);
@@ -63,7 +63,7 @@ function ExcelReader({columnData, gridData}) {
         });
         dispatch(ExcelDataAct(result)); 
         dispatch(PostExportData(UserDataStateRed,result,AuthRed.val)) // You can set the result in the component state or perform any other necessary operations
-        console.log('resultUpload',UserDataStateRed,result)
+        // console.log('resultUpload',UserDataStateRed,result)
       } catch (error) {
         swal({
           title :'Alert',

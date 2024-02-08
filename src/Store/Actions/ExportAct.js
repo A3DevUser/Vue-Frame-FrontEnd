@@ -31,7 +31,7 @@ export const PostExportData = (userId,data,token) =>{
         dispatch(ExportReq())
         axios.post(`http://localhost:8080/VF/importExportAddData?currLoggedInUser=${userId}`,data,{headers})
         .then((res)=>{
-            console.log('inside Export data ACT', res.data);
+            // console.log('inside Export data ACT', res.data);
             dispatch(ExportSuccess(res.data))
             return swal({
                 title :'Alert',

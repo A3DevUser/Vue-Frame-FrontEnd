@@ -68,6 +68,8 @@ export const Styles = styled.div`
       }
  
     &.sticky {
+      height : 70vh;
+      width : 95vw;
       overflow: scroll !important;
       .header,
       .footer {

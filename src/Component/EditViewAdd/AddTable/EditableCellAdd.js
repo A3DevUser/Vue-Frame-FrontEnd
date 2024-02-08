@@ -585,7 +585,7 @@ const ImportGridRed = useSelector((state)=>state.ImportGridRed)
         // console.log('empty');
       }
     }
-    console.log('FormDataNewVal',{formId : rowObj.original.form_id},path)
+    // console.log('FormDataNewVal',{formId : rowObj.original.form_id},path)
     return <Link to={{pathname : path}} state={{formId : rowObj.original.form_id}} onClick={handleClick}  >{lable}</Link>
   }
 

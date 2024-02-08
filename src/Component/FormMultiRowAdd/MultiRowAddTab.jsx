@@ -24,7 +24,7 @@ const MultiRowAddTab = ({ titleData, columnData, multiRowData, handleMultiAdd })
         return Math.floor(tableWidth / totalColumns);
     };
 
-    console.log('columnDataHeaderNew',columnData)
+    // console.log('columnDataHeaderNew',columnData)
 
     const [columns, setcolumns] = useState(
         // Columns

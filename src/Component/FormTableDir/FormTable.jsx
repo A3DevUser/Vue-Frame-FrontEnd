@@ -46,7 +46,7 @@ const FormTable = ({ col, dData, gridData, handleSave, funNavConf, disBtn, setDi
   const [localVal, setLocalVal] = useState([])
   const location = useLocation()
 
-  console.log('dData',dData)
+  // console.log('dData',dData)
 
   useEffect(() => {
     setLocalData(SendReportConfDataRed.val)
@@ -174,13 +174,13 @@ const FormTable = ({ col, dData, gridData, handleSave, funNavConf, disBtn, setDi
       let EditFormId = [...FormEditRed.val][0].DATA[0].formId
       const droparrcon = EditFormId.split('$$')
       setDropdownArray(droparrcon)
-      console.log('new dropArry from');
+      // console.log('new dropArry from');
     }
     else if(([...WorkFlowEditRed.val][0]  !== null)&& window.location.pathname == ('/editWorkFlowConf')){
       let EditWorkFlow = [...WorkFlowEditRed.val][0].DATA[0].wfId
       const droparrcon = EditWorkFlow.split('$$')
       setDropdownArray(droparrcon)
-      console.log('new dropArry workflow');
+      // console.log('new dropArry workflow');
     }
     else if(([...EditReportRed.val][0]  !== null) && window.location.pathname == ('/editReport')){
       // let EditReport = [...EditReportRed.val][0].DATA[0].dsId
@@ -188,12 +188,12 @@ const FormTable = ({ col, dData, gridData, handleSave, funNavConf, disBtn, setDi
         let EditReport = [...EditReportRed.val][0].DATA[0].dsId
       const droparrcon = EditReport.split('$$')
       setDropdownArray(droparrcon)
-      console.log('new dropArry reportDsid',droparrcon);
+      // console.log('new dropArry reportDsid',droparrcon);
       }else if(gridData.gridId == "GID-018"){
         let EditReportFil = [...EditReportRed.val][0].DATA[0].rptId
           const droparrcon = EditReportFil.split('$$')
           setDropdownArray(droparrcon)
-          console.log('new dropArry reportRpti',droparrcon);
+          // console.log('new dropArry reportRpti',droparrcon);
       }
   }},[FormEditRed,WorkFlowEditRed,EditReportRed])
   
@@ -227,13 +227,13 @@ const FormTable = ({ col, dData, gridData, handleSave, funNavConf, disBtn, setDi
         const constDDGID = ["GID-003", "GID-004"]
         if (gridData.gridId == "GID-003" && window.location.pathname == ('/editConfForm')) {
           let EditFormId = [...FormEditRed.val][0].DATA[0].formId
-          console.log('new update data obj', [...FormEditRed.val][0].DATA[0].formId)
+          // console.log('new update data obj', [...FormEditRed.val][0].DATA[0].formId)
           if ([...FormEditRed.val][0].DATA[0].formId != '' && window.location.pathname == ('/editConfForm')) {
             setdata((old) => { return [...old, { ...obj, formId: dropdownArray[0] }] })
           }
         } else if ( gridData.gridId == "GID-004" && window.location.pathname == ('/editConfForm') ) {
           let EditFormId = [...FormEditRed.val][0].DATA[0].formId
-          console.log('new update data obj', [...FormEditRed.val][0].DATA[0].formId)
+          // console.log('new update data obj', [...FormEditRed.val][0].DATA[0].formId)
           if ([...FormEditRed.val][0].DATA[0].formId != '' && window.location.pathname == ('/editConfForm')) {
             setdata((old) => { return [...old, { ...obj, formId: dropdownArray[0] }] })
           }
@@ -260,7 +260,7 @@ const FormTable = ({ col, dData, gridData, handleSave, funNavConf, disBtn, setDi
           // console.log('gridData check val', gridData.gridId == "GID-018")
         }
         else {
-          console.log('SendObjectIdRed','Inside Normal add')
+          // console.log('SendObjectIdRed','Inside Normal add')
           // console.log('gridData check val', gridData.gridId == "GID-008")
           // console.log('gridData check val', [...WorkFlowEditRed.val][0].DATA[0].wfId)
           setdata((old) => { return [...old, { ...obj, VF_OBJ_ID: index, VF_MAIN_OBJ_ID: MainObjIdRed }] })
@@ -335,26 +335,26 @@ const FormTable = ({ col, dData, gridData, handleSave, funNavConf, disBtn, setDi
   useEffect(() => {                                                 //Tez
     // console.log('opData',{...FormDatRed,[gridData.gridId] : data})
     if (window.location.pathname == '/confform') {
-      console.log('FormTable confform', { ...FormDatRed, [gridData.gridId]: data });
+      // console.log('FormTable confform', { ...FormDatRed, [gridData.gridId]: data });
       dispatch(FormDataAct({ ...FormDatRed, [gridData.gridId]: data }))
     } else if (window.location.pathname == '/editConfForm') {
-      console.log('FormTable editConfForm', { ...FormDatRed, [gridData.gridId]: data });
+      // console.log('FormTable editConfForm', { ...FormDatRed, [gridData.gridId]: data });
       dispatch(FormDataAct({ ...FormDatRed, [gridData.gridId]: data }))
     }
     else if (window.location.pathname == '/editDataSource') {
-      console.log('FormTable editDataSource', { ...FormDatRed, [gridData.gridId]: data });
+      // console.log('FormTable editDataSource', { ...FormDatRed, [gridData.gridId]: data });
       dispatch(FormDataAct({ ...FormDatRed, [gridData.gridId]: data }))
     }
     else if (window.location.pathname == '/editReport') {
-      console.log('FormTable editReport', { ...FormDatRed, [gridData.gridId]: data });
+      // console.log('FormTable editReport', { ...FormDatRed, [gridData.gridId]: data });
       dispatch(FormDataAct({ ...FormDatRed, [gridData.gridId]: data }))
     }
     else if (window.location.pathname == '/editWorkFlowConf') {
-      console.log('FormTable editWorkFlowConf', { ...FormDatRed, [gridData.gridId]: data });
+      // console.log('FormTable editWorkFlowConf', { ...FormDatRed, [gridData.gridId]: data });
       dispatch(FormDataAct({ ...FormDatRed, [gridData.gridId]: data }))
     }
     else if (window.location.pathname == '/confreport') {
-      console.log('FormTable confreport', { ...FormDatRed, [gridData.gridId]: data });
+      // console.log('FormTable confreport', { ...FormDatRed, [gridData.gridId]: data });
       // console.log('Submit Report Conf',FormDatRed)
       dispatch(FormDataAct({ ...FormDatRed, [gridData.gridId]: data }))
     }
@@ -430,7 +430,7 @@ const FormTable = ({ col, dData, gridData, handleSave, funNavConf, disBtn, setDi
 
   const handleRemove = () => {
 
-    console.log('handleRemove', 'inside handelRemove')
+    // console.log('handleRemove', 'inside handelRemove')
 
     setdata(old => {
       return old.filter((fil, i) => {
@@ -465,11 +465,11 @@ const FormTable = ({ col, dData, gridData, handleSave, funNavConf, disBtn, setDi
   //   }
   // }, [SendObjectIdRed])
 
-  useEffect(()=>{
-    console.log('FormDatRed.val',FormDatRed)
-    console.log('FormDatRed.val',data)
+  // useEffect(()=>{
+  //   console.log('FormDatRed.val',FormDatRed)
+  //   console.log('FormDatRed.val',data)
 
-  },[FormDatRed])
+  // },[FormDatRed])
   // useEffect(() => {
   //   // Check if dData has changed since the last render
   //   if (prevDData.current !== dData) {

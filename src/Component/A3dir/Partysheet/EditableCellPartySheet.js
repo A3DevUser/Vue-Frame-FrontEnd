@@ -340,7 +340,7 @@ export const EditableCell = ({
 
   
     const onBlur = () => {
-      console.log('TestColumnDataFind123',value)
+      // console.log('TestColumnDataFind123',value)
       updateMyData(index, id, value,null,parentId.column.parent.id.id)
     }
   
