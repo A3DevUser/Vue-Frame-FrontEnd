@@ -207,16 +207,41 @@ console.log('DataRowCount',dData)
 
       useEffect(() => {
         if(clickSave){
-          const dataList = Object.values(finalData);
-          dispatch(FormTestScoreData([  {
-            "tpreScore": score,
-            "tpreRating": score >= (dData.length*maxScore)/2 ? 'High' : score == 0 ? 'Low' : 'Medium',
-            "isMaterial": "Material",
-            "dueDilligenceScore": "Yearly",
-            "vendor_ID": accList[0].split('$$')[0],
-            "VENDOR_ID": accList[0].split('$$')[0]
-          }],AuthRed.val))
-          dispatch(PostA3SaveData(dataList,AuthRed.val,navigate))   
+          if(filterTypr == 'Materiality Assessment$$Materiality Assessment'){
+            const dataList = Object.values(finalData);
+            dispatch(FormTestScoreData([  {
+              "tpreScore": score,
+              "tpreRating": score >= (dData.length*maxScore)/2 ? 'High' : score == 0 ? 'Low' : 'Medium',
+              "isMaterial": "Material",
+              "dueDilligenceScore": "Yearly",
+              "vendor_ID": accList[0].split('$$')[0],
+              "VENDOR_ID": accList[0].split('$$')[0]
+            }],AuthRed.val))
+            dispatch(PostA3SaveData(dataList,AuthRed.val,navigate))
+          }else if(filterTypr == 'Due Diligence$$Due Diligence'){
+            const dataList = Object.values(finalData);
+            dispatch(FormTestScoreData([  {
+              "tpreScore": scoreDdq,
+              "tpreRating": scoreDdq >= (dData.length*maxScore)/2 ? 'High' : scoreDdq == 0 ? 'Low' : 'Medium',
+              "isMaterial": "Material",
+              "dueDilligenceScore": "Yearly",
+              "vendor_ID": accList[0].split('$$')[0],
+              "VENDOR_ID": accList[0].split('$$')[0]
+            }],AuthRed.val))
+            dispatch(PostA3SaveData(dataList,AuthRed.val,navigate))
+          }else{
+            const dataList = Object.values(finalData);
+            dispatch(FormTestScoreData([  {
+              "tpreScore": scoreTpre,
+              "tpreRating": scoreTpre >= (dData.length*maxScore)/2 ? 'High' : scoreTpre == 0 ? 'Low' : 'Medium',
+              "isMaterial": "Material",
+              "dueDilligenceScore": "Yearly",
+              "vendor_ID": accList[0].split('$$')[0],
+              "VENDOR_ID": accList[0].split('$$')[0]
+            }],AuthRed.val))
+            dispatch(PostA3SaveData(dataList,AuthRed.val,navigate))
+          }
+   
         }
       },[clickSave])
 
