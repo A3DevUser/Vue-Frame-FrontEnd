@@ -21,9 +21,9 @@ const HomePartySheet = () => {
         dispatch(FetchA3TestData(FormIdRed,AuthRed.val))
       },[])
 
-      useEffect(()=>{
-        console.log('locationSheet',location)
-      },[location])
+      // useEffect(()=>{
+      //   console.log('locationSheet',location)
+      // },[location])
     //   location.state.accArr
   return (
     <>

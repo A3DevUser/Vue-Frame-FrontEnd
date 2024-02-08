@@ -22,7 +22,7 @@ const PendencyTab = ({ titleData, columnData, pendencyData }) => {
         return Math.floor(tableWidth / totalColumns);
     };
 
-    console.log('columnDataHeaderNew',columnData)
+    // console.log('columnDataHeaderNew',columnData)
 
     const [columns, setcolumns] = useState(
         // Columns
@@ -90,7 +90,7 @@ const PendencyTab = ({ titleData, columnData, pendencyData }) => {
 
     const { globalFilter } = state
     const { pageIndex } = state
-    console.log('pageNewData',page)
+    // console.log('pageNewData',page)
     return (
         <>
             <div style={{ padding: 'auto 1px' }} >

@@ -53,24 +53,24 @@ const EditReport = () => {
     // useEffect(()=>{
     //   console.log('location',FormEditRed)
     // },[FormEditRed])
-    useEffect(()=>{
-      console.log('Inside EditReport',FormDatRed);
-      console.log('Inside EditReport GridRed',GridRed);
-      console.log('Inside EditReport EditReportRed',EditReportRed);
-    },[])
+    // useEffect(()=>{
+    //   console.log('Inside EditReport',FormDatRed);
+    //   console.log('Inside EditReport GridRed',GridRed);
+    //   console.log('Inside EditReport EditReportRed',EditReportRed);
+    // },[])
 
     const width = '75vw'
     // ...SendReportConfDataRed.val, , targetId: val.gridId
     const handleSave = (val) =>{
-      console.log('Inside EditReport',val);
+      // console.log('Inside EditReport',val);
       if(Object.keys(FormDatRed).includes(val.gridId)){
         if (val.gridId == 'GID-015'){
           const FormData = FormDatRed[val.gridId].map((res) => {return {...res}})
-          console.log('Inside EditReport',FormData);
+          // console.log('Inside EditReport',FormData);
           // dispatch(FormReportConfData(val.api,FormData,AuthRed.val))
         }else{ 
           const FormData = FormDatRed[val.gridId].map((res) => {return {...res, ...SendReportConfDataRed.val, targetId: val.gridId}})
-          console.log('mainGrid Val else report',FormData)
+          // console.log('mainGrid Val else report',FormData)
           // console.log('Inside EditReport',targetId);
           dispatch(FormReportConfData(val.api,FormData,AuthRed.val))
         }

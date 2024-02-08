@@ -19,7 +19,7 @@ const AddTabs = ({sectionData,gridData,columnData}) => {
                     {
                         gridData.filter((fil)=>{return fil.secId == res.secId}).map((gres)=>{
                             const gridColumn = columnData.filter((fil)=>{return fil.gridId == gres.gridId})
-                            console.log(gres,gridColumn)
+                            // console.log(gres,gridColumn)
                            return <AddTab columnData={gridColumn} gridData={gres} reportData={
                             AddTableMultFormDataRed.hasOwnProperty(MainObjIdRed) ? 
                             AddTableMultFormDataRed[MainObjIdRed].hasOwnProperty(gres.gridId) ?

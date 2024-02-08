@@ -116,9 +116,9 @@ const ComboHomeTest = () => {
                 })
             })
 
-    useEffect(() => {
-        console.log('selectedFlatRows', selectedFlatRows)
-    }, [selectedFlatRows])
+    // useEffect(() => {
+    //     console.log('selectedFlatRows', selectedFlatRows)
+    // }, [selectedFlatRows])
 
     const { globalFilter } = state
     const { pageIndex } = state

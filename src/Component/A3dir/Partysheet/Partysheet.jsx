@@ -21,7 +21,7 @@ const Partysheet = () => {
   const [filterTypr,setFilterTypr] = useState('Third Party Risk Evaluation$$Third Party Risk Evaluation')
   const PreOnboardignScoreRed = useSelector((state) => state.PreOnboardignScoreRed)
 
-  console.log('location', location.state);
+  // console.log('location', location.state);
 
   const handleChange = (e) =>{
     setFilterTypr(e.target.value)
@@ -36,14 +36,14 @@ const Partysheet = () => {
   }, [dispatch, FormIdRed, AuthRed.val]);
 
   useEffect(() => {
-    console.log('A3TestRed',A3TestRed.val)
+    // console.log('A3TestRed',A3TestRed.val)
     if (location.state && A3TestRed.val.length > 0) {
       const accArray = location.state.rowData.Associate_Vend;
       const outputId = A3TestRed.val.map((res) => {
         // return 'OB-' + res.QUESTION_ID + location.state.rowData.VF_MAIN_OBJ_ID;
         return 'OB-' + res.VF_MAIN_OBJ_ID + location.state.rowData.VF_MAIN_OBJ_ID;
       });
-      console.log('outputId',outputId)
+      // console.log('outputId',outputId)
       dispatch(FetchA3PsOpDataData(outputId, AuthRed.val));
     }
   }, [ A3TestRed.val, location.state]);

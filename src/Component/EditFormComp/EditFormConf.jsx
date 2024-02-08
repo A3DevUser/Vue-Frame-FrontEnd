@@ -64,7 +64,7 @@ const EditFormConf = () => {
     // },[FormEditRed])
 
     useEffect(()=>{
-      console.log('response.data',location.state)
+      // console.log('response.data',location.state)
       if(location.state){
         sessionStorage.setItem('formId1',location.state.formId)
       }
@@ -150,12 +150,12 @@ const EditFormConf = () => {
 
         if(location.state !== null && val.gridId == 'GID-005'){
           const colGridId = GridRed.val.filter((fil) => { return fil.secId == 'S-002' })[0].gridId;
-          console.log('mainGrid Val',FormDatRed)
+          // console.log('mainGrid Val',FormDatRed)
           const formGridIdmain = FormDatRed[colGridId][0].gridId;
-          console.log('mainGrid Val if');
+          // console.log('mainGrid Val if');
           return { ...res, formId: location.state.formId, targetId: val.gridId, gridId: formGridIdmain }
         }else if (location.state !== null) {
-          console.log('mainGrid Val else',FormDatRed)
+          // console.log('mainGrid Val else',FormDatRed)
           return { ...res, formId: location.state.formId, targetId: val.gridId }
         } else {
           alert('inside EditForm')
@@ -185,7 +185,7 @@ const EditFormConf = () => {
         // }
     }
 
-    console.log('EditWorkFlow', FormEditRed.val)
+    // console.log('EditWorkFlow', FormEditRed.val)
 
 
   return (

@@ -28,9 +28,9 @@ const ReportReviewHome = ({ gridData, columnData, reportData }) => {
 
     const [reviewFilter,setreviewFilter] = useState([...reportData])
 
-    useEffect(()=>{
-        console.log('ReviewTypeFilterRed',ReviewTypeFilterRed)
-    },[ReviewTypeFilterRed])
+    // useEffect(()=>{
+    //     console.log('ReviewTypeFilterRed',ReviewTypeFilterRed)
+    // },[ReviewTypeFilterRed])
 
     const calculateColumnWidth = (tableWidth, totalColumns) => {
         return Math.floor(tableWidth / totalColumns);
@@ -43,14 +43,14 @@ const ReportReviewHome = ({ gridData, columnData, reportData }) => {
         [...columnData.map((res) => { return { Header: res.fieldName, accessor: res.accessor, Filter: ColumnFilter, width: res.width ? res.width : calculateColumnWidth(1.0 * window.innerWidth, columnData.length) } })]
     );
 
-    console.log(columnData)
+    // console.log(columnData)
     // useEffect(()=>{console.log('NewNav FormIdRed',ReportTitleDataRed.val.length)})
 
     const [data, setdata] = useState([
         ...reportData
     ])
 
-    console.log('columnDatareportData', reportData)
+    // console.log('columnDatareportData', reportData)
 
     const defaultColumn = useMemo(() => {
         return {
@@ -87,7 +87,7 @@ const ReportReviewHome = ({ gridData, columnData, reportData }) => {
         const finalData = newData.map((res)=>{
             return {ASSOCIATE_VEND : res.ASSOCIATE_VEND,VENDOR_ID:'',...res, reviewFreq: data[0].REVIEW_FREQ, reviewSubFreq: data[0].REVIEW_CYCLE, reviewName: location.state.reviewName, reviewType: 'Cyclic Review'}
         })
-        console.log('reviewFilter re-gen data',finalData)
+        // console.log('reviewFilter re-gen data',finalData)
 
         dispatch(SendReviewData(finalData,AuthRed.val))
     }

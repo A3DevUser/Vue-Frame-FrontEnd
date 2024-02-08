@@ -26,9 +26,9 @@ const ReviewHome = ({ gridData, columnData, reportData }) => {
 
     const [reviewFilter,setreviewFilter] = useState({})
 
-    useEffect(()=>{
-        console.log('ReviewTypeFilterRed',ReviewTypeFilterRed)
-    },[ReviewTypeFilterRed])
+    // useEffect(()=>{
+    //     console.log('ReviewTypeFilterRed',ReviewTypeFilterRed)
+    // },[ReviewTypeFilterRed])
 
     const calculateColumnWidth = (tableWidth, totalColumns) => {
         return Math.floor(tableWidth / totalColumns);
@@ -41,7 +41,7 @@ const ReviewHome = ({ gridData, columnData, reportData }) => {
         [...columnData.map((res) => { return { Header: res.fieldName, accessor: res.accessor, Filter: ColumnFilter, width: res.width ? res.width : calculateColumnWidth(1.0 * window.innerWidth, columnData.length) } })]
     );
 
-    console.log(columnData)
+    // console.log(columnData)
     // useEffect(()=>{console.log('NewNav FormIdRed',ReportTitleDataRed.val.length)})
 
     const [data, setdata] = useState([...reportData])
@@ -78,7 +78,7 @@ const ReviewHome = ({ gridData, columnData, reportData }) => {
     }
 
     const handleReview = () =>{
-        console.log('Review Data Saved','inside send button') 
+        // console.log('Review Data Saved','inside send button') 
         let newData = [...selectedFlatRows.map((res)=>{return res.original})]
         const finalData = newData.map((res)=>{
             return {ASSOCIATE_VEND : res.ASSOCIATE_VEND,VENDOR_ID:'',...reviewFilter,VF_MAIN_OBJ_ID:res.VF_MAIN_OBJ_ID}

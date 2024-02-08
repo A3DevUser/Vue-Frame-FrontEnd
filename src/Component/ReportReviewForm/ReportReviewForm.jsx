@@ -19,9 +19,9 @@ const ReportReviewForm = () => {
         dispatch(FetchReviewType(AuthRed.val))
     },[])
 
-    useEffect(() => {
-console.log('NewRptDataChk',A3ColumnRed)
-    },[A3ColumnRed])
+//     useEffect(() => {
+// console.log('NewRptDataChk',A3ColumnRed)
+//     },[A3ColumnRed])
 
   return (
     <>

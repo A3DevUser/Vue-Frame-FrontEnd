@@ -51,12 +51,12 @@ const EditWorkFlowConf = () => {
     }
 
     // console.log('WorkFlowEditRed',SectionRed,GridRed,ColumnRed,FormIdRed,FormDatRed);
-    console.log('WorkFlowEditRed SectionRed ',SectionRed);
-    console.log('WorkFlowEditRed GridRed ',GridRed);
-    console.log('WorkFlowEditRed ColumnRed ',ColumnRed);
-    console.log('WorkFlowEditRed FormIdRed ',FormIdRed);
-    console.log('WorkFlowEditRed FormDatRed ',FormDatRed);
-    console.log('WorkFlowEditRed WorkFlowEditRed ',WorkFlowEditRed);
+    // console.log('WorkFlowEditRed SectionRed ',SectionRed);
+    // console.log('WorkFlowEditRed GridRed ',GridRed);
+    // console.log('WorkFlowEditRed ColumnRed ',ColumnRed);
+    // console.log('WorkFlowEditRed FormIdRed ',FormIdRed);
+    // console.log('WorkFlowEditRed FormDatRed ',FormDatRed);
+    // console.log('WorkFlowEditRed WorkFlowEditRed ',WorkFlowEditRed);
     // console.log('WorkFlowEditRed FormEditRed ',FormEditRed);
 
     // useEffect(()=>{
@@ -160,7 +160,7 @@ const EditWorkFlowConf = () => {
           return { ...res, ...SendConfDataRed.val, targetId: val.gridId }
         }
       })
-      console.log('mainGrid Val else',FormData)
+      // console.log('mainGrid Val else',FormData)
       // console.log('FormDataNewVal',JSON.stringify(FormData))
       dispatch(FormConfData(val.api, FormData, AuthRed.val))
     }

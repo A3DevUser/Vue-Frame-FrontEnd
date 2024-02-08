@@ -340,7 +340,7 @@ export const NewEditableCell = ({
 
   
     const onBlur = () => {
-      console.log(parentId)
+      // console.log(parentId)
       updateMyData(index, id, value,null,parentId.column.parent.id.id)
     }
   
@@ -375,7 +375,7 @@ export const NewEditableCell = ({
 
   
     const onBlur = () => {
-      console.log(parentId)
+      // console.log(parentId)
       updateMyData(index, id, value,null,parentId.column.parent.id.id)
     }
   

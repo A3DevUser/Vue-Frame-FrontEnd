@@ -38,7 +38,7 @@ const NewA3HomeSheet = () => {
     }
 
     const handleNavigate = () =>{
-        console.log('location.state',location.state.daysFlag)
+        // console.log('location.state',location.state.daysFlag)
         navigate('/a3PartySheet',{state:{
             data : selected.length >= 1 ? selected.map((res) => {
                 return res.original
@@ -50,17 +50,17 @@ const NewA3HomeSheet = () => {
     //     return res.original
     // }))//A3HomeDataRed.val
 
-    console.log('A3HomeDataRedValues',selected.length)
+    // console.log('A3HomeDataRedValues',selected.length)
 
   return (
     <>
     <div className='homeMainDiv'>
         <div className='homeHeader'>
-            <NewA3HomeHead getA3HomeData={getA3HomeData} getData={getData} location={location}/>
+            <NewA3HomeHead getA3HomeData={getA3HomeData} getData={getData} location={location} handleNavigate={handleNavigate}/>
         </div>
-        <div className='generateDiv'>
+        {/* <div className='generateDiv'>
             <button className='btn btn-success' onClick={handleNavigate}>Generate</button>
-        </div>
+        </div> */}
         <div className='homeTable'>
             {
                 A3PartyColumnRed.loading ? MainObject.loader() :

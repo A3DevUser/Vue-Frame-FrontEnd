@@ -60,7 +60,7 @@ const BassicTab = ({ gridData, columnData, reportData }) => {
                 return { Header: res.rptColLabel,
                      accessor: res.rptColName,
                       Filter: ColumnFilter,
-                       width: calculateColumnWidth(1.0 * window.innerWidth, columnData.length) } 
+                       width: calculateColumnWidth(0.823 * window.innerWidth, columnData.length) } 
             }
 
             })]

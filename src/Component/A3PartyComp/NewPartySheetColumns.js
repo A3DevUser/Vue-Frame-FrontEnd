@@ -6,8 +6,8 @@ const calculateColumnWidth = (tableWidth, totalColumns) => {
 
 export const NewPartysheetColumns = (col,accountData,updateMyData,setmaxScore) =>{
 
-    console.log('PartysheetData',col)
-    console.log('PartysheetData',accountData)
+    // console.log('PartysheetData',col)
+    // console.log('PartysheetData',accountData)
 
   return[  {
         Header : 'Test Details',
@@ -23,7 +23,7 @@ export const NewPartysheetColumns = (col,accountData,updateMyData,setmaxScore) =
         
     }
     ,...accountData.map((res)=>{
-        console.log('check val Party',res)
+        // console.log('check val Party',res)
     return {
         Header : res.split('$$')[0],
         accessor : res,

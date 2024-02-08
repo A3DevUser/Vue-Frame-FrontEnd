@@ -114,16 +114,16 @@ const accColumn = col.filter((fil)=>{return fil.parentCell=='account'}).map((res
   }
 
   
-  console.log('TestColumnDatacol',isScorVal)
+  // console.log('TestColumnDatacol',isScorVal)
   useEffect(()=>{
     // console.log('TestColumnDataFind',Object.values(finalData).map((res)=>{
     //   return res[isScorVal]
     // }))
-    console.log('TestColumnDataFind',finalData)
+    // console.log('TestColumnDataFind',finalData)
 
     if(filterTypr == 'Materiality Assessment$$Materiality Assessment'){
     setScore(Object.values(finalData).reduce((acc,cur)=>{
-      console.log('maWeightAgeValue', acc)
+      // console.log('maWeightAgeValue', acc)
       return acc += (cur[isScorVal] ? (Number(cur[isScorVal]))/100 : 0 )
     },0))
   }
@@ -150,7 +150,7 @@ const accColumn = col.filter((fil)=>{return fil.parentCell=='account'}).map((res
 
     let userId = userName
     const accList = accData.map((res)=>{return res.Associate_Vend})
-console.log('vendorIdData',accList)
+// console.log('vendorIdData',accList)
     const defaultColumn = React.useMemo(
         () => ({
           Filter: ColumnFilter
@@ -186,11 +186,11 @@ console.log('vendorIdData',accList)
         )   
       }
 
-      useEffect(()=>{
-        console.log('opFinalData',finalData)
-      },[finalData])
+      // useEffect(()=>{
+      //   console.log('opFinalData',finalData)
+      // },[finalData])
 
-console.log('DataRowCount',dData)
+// console.log('DataRowCount',dData)
       function handleSave(){
         // alert(dData.length)
         const dataList = Object.values(finalData);

@@ -167,10 +167,10 @@ const AddTab = ({columnData, reportData,gridData,handleSave }) => {
             }
           },[data])
 
-          useEffect(()=>{
-              console.log('finalData',AddTableMultFormDataRed)
+        //   useEffect(()=>{
+        //       console.log('finalData',AddTableMultFormDataRed)
 
-          },[AddTableMultFormDataRed])
+        //   },[AddTableMultFormDataRed])
 
           function handleShowMulti(){
             setshow(!show)

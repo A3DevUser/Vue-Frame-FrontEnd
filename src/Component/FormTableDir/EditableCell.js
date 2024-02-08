@@ -175,7 +175,7 @@ export const EditableCell = ({
     useEffect(() => {
       if (value != null){
         setDropdownArray(value.split('$$')); 
-        console.log('valueDropValRed',DropValRed.val)
+        // console.log('valueDropValRed',DropValRed.val)
         // console.log('valueDropValRed',value.split('$$'))
 
       }
@@ -589,7 +589,7 @@ const ImportGridRed = useSelector((state)=>state.ImportGridRed)
         // console.log('empty');
       }
     }
-    console.log('FormDataNewVal',{formId : rowObj.original.form_id},path)
+    // console.log('FormDataNewVal',{formId : rowObj.original.form_id},path)
     return <Link to={{pathname : path}} state={{formId : rowObj.original.form_id}} onClick={handleClick}  >{lable}</Link>
   }
 
@@ -723,7 +723,7 @@ const ImportGridRed = useSelector((state)=>state.ImportGridRed)
  export const EditablePartyLink = ({
   rowObj : rowObj,
  }) =>{
-console.log('EditablePartyLink',rowObj)
+// console.log('EditablePartyLink',rowObj)
   return <div style={{display:'flex', justifyContent:'center', alignItems:'center'}}>
   <Link to={'/partysheet'} state={{rowData :rowObj.original}} >Assesment Form</Link>
   </div>
@@ -735,7 +735,7 @@ console.log('EditablePartyLink',rowObj)
   penFlag : penFlag
  }) =>{
 
-  console.log('EditableHomeLink',penFlag)
+  // console.log('EditableHomeLink',penFlag)
   return (
   <div style={{display:'flex', justifyContent:'center', alignItems:'center'}}>
   <Link to={'/a3HomeSheet'} state={{reviewId : rowObj.original.review_plan_id,review_name:rowObj.original.review_name, dataRow : rowObj.original, daysFlag : penFlag}}>Assesment Form</Link>
@@ -895,6 +895,6 @@ export const CheckerLink = ({
   rowObj : rowObj,
 
 }) =>{
-  console.log('new row login data',rowObj)
+  // console.log('new row login data',rowObj)
   return <Link to={'/checkerForm'} state={{reviewId : rowObj.review_id, reviewName : rowObj.review_name, review_freq : rowObj.review_freq, sub_frequency : rowObj.sub_frequency, review_type : rowObj.review_type}}>Vendors</Link>
 }

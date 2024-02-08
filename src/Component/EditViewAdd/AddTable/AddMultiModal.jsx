@@ -22,9 +22,9 @@ const AddMultiModal = ({show,showFunc,gridData,setdata}) => {
         dispatch(FetchMultiModalColRowData(gridData.gridId, AuthRed.val))
     },[show])
 
-    useEffect(()=>{
-        console.log(selectRows)
-    },[selectRows])
+    // useEffect(()=>{
+    //     console.log(selectRows)
+    // },[selectRows])
 
     async function handleAdd(){
        await setdata((old)=>{return [...old,...selectRows.map((res,i)=>{return {...res,VF_OBJ_ID:old.length+i}})]})

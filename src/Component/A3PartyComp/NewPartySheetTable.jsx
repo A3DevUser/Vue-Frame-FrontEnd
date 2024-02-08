@@ -22,7 +22,7 @@ const NewPartySheetTable = ({columnData,tableData,vendorList,daysFlag}) => {
   const [fileArr,setfileArr] =useState()
   const dispatch = useDispatch()
   // const [score,setScore] = useState()
-console.log('vendorListValues',vendorList);
+// console.log('vendorListValues',vendorList);
 
   const AuthRed = useSelector((state)=>state.AuthRed)
   const navigate = useNavigate()
@@ -60,7 +60,7 @@ console.log('vendorListValues',vendorList);
       return {...res, reviewId : location.state.reviewId, vendorId : '', reviewName : location.state.review_name}
     })
 
-    console.log('savedataFinal',columnData)
+   // console.log('savedataFinal',columnData)
     dispatch(A3GetPartySheetData(finData,AuthRed.val,navigate, daysFlag ))
     // alert('Data Saved Successfully !!')
   }

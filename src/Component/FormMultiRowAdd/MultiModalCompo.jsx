@@ -18,7 +18,7 @@ export const MultiModalCompo = ({ title, bodyDetails, show, setshow, showFunc, m
 
   const handleMultiAdd = (selectedFlatRows) => {
     
-    console.log('MultiRow Added','Multi Row CLick')
+    // console.log('MultiRow Added','Multi Row CLick')
     
     let obj ={}
     columns.forEach((res)=> {return obj[res.accessor]=''})

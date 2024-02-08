@@ -23,9 +23,9 @@ const CheckerForm = () => {
         dispatch(FetchReviewPlanDataData(location.state.reviewId,AuthRed.val))
     },[])
 
-    useEffect(() => {
-      console.log('final row ID',location.state.reviewId)
-    },[location])
+    // useEffect(() => {
+    //   console.log('final row ID',location.state.reviewId)
+    // },[location])
 
   return (
     <>

@@ -19,14 +19,14 @@ const NewPartySheet = () => {
   const A3TestRed = useSelector((state) => state.A3TestRed);
   const vendorData = location.state.data
   const revData = location.state.dataRow
-  console.log('vendorData',vendorData)
+  // console.log('vendorData',vendorData)
   const vendorList =  vendorData.map((res)=>{
-    console.log('newIdGet',res)
+    // console.log('newIdGet',res)
     // return res.ASSOCIATE_VEND
     return res.VF_MAIN_OBJ_ID
   })
 
-  console.log('revDataValues',revData)
+  // console.log('revDataValues',revData)
 
   useEffect(()=>{
     // dispatch(FetchA3PartyColumnData(FormIdRed,'party',AuthRed.val));
