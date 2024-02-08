@@ -1,5 +1,6 @@
+import { PreOnboardignScoreAct } from '../../../Store/Actions/GeneralStates';
 import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import swal from 'sweetalert';
 
@@ -7,6 +8,7 @@ const DividePartySheet = ({ dataLength, handleChange, isScorVal, filterTypr, han
   // console.log('DividePartySheet',dataLength)
   const dividedCount = Math.ceil(dataLength / 10);
   const navigate = useNavigate()
+  const dispatch = useDispatch()
 
   const options = []
   const [TPRE, setTPRE] = useState(true)
@@ -41,6 +43,7 @@ const DividePartySheet = ({ dataLength, handleChange, isScorVal, filterTypr, han
 
 
   function handleDue() {
+    dispatch(PreOnboardignScoreAct({TPRE: NaN, MA: NaN, DDQ: NaN}))
     swal({
       title: 'Due Diligence Raised successfully',
       icon: 'success'
@@ -85,7 +88,7 @@ const DividePartySheet = ({ dataLength, handleChange, isScorVal, filterTypr, han
       <span className='mx-3' style={{ fontWeight: 'bolder', fontSize: '15px', display: filterTypr == 'Materiality Assessment$$Materiality Assessment' ? 'block' : 'none' }}>Materiality
         <input value={Number(PreOnboardignScoreRed.MA).toFixed(2) == 0 ? MAscore : Number(PreOnboardignScoreRed.MA).toFixed(2) >= 1.50 ? 'Yes' : 'No'} className='form-control' style={{ fontWeight: 'bolder', fontSize: '14px', width: '5vw', display: filterTypr == 'Materiality Assessment$$Materiality Assessment' ? 'block' : 'none' }} disabled /></span></div>
         </div>
-        <div className='mx-3'>
+        <div className='mx-3' style={{paddingLeft: filterTypr == 'Materiality Assessment$$Materiality Assessment' ? '' : '108px'}}>
         <button onClick={handleSave} className='btn btn-outline-success'><i class="bi bi-floppy"></i></button>
         </div>
         </div>

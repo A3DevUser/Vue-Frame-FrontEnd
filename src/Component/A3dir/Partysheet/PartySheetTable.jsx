@@ -291,11 +291,11 @@ console.log('DataRowCount',dData)
     <>
     <A3OverviewModal show={show} setShow={setShow} />
     <div style={{display:'flex', flexDirection:'column'}}>
-      <div className='my-2' style={{display:'flex',justifyContent:'space-between',width: '97%', gap:10}}>
-        <div style={{display:'flex', justifyContent:'center', alignItems:'center'}}>
+      {/* <div className='my-2' style={{display:'flex',justifyContent:'space-between',width: '97%', gap:10}}> */}
+        {/* <div style={{display:'flex', justifyContent:'center', alignItems:'center'}}> */}
         {/* <span style={{fontSize:25}} class="bi bi-arrow-left-circle-fill"></span> */}
         {/* <DividePartySheet score={score} filterTypr={filterTypr} dataLength={accData.length} handleChange={handleChange}/> */}
-        </div>
+        {/* </div> */}
         {/* <div>
         <DropdownButton variant='success' title='Overview'>
           <Dropdown.Item onClick={()=>setShow(true)}>Sheet Summary</Dropdown.Item>
@@ -316,7 +316,7 @@ console.log('DataRowCount',dData)
         </InputGroup.Text>
         </InputGroup> */}
         {/* <button onClick={handleSave} className='btn btn-outline-success'><i class="bi bi-floppy"></i></button> */}
-      </div>
+      {/* </div> */}
       <div>
     <Styles>
         <div {...getTableProps()} className="table sticky table-hover table-striped mx-3" style={{ width: '97%', height:'75vh' }}>

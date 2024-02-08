@@ -373,6 +373,7 @@ export const EditableCell = ({
     const [value, setValue] = React.useState(initialValue)
     const onChange = e => {
       setValue(e.target.value)
+      updateMyData(index, id, (e.target.value*WEIGHTAGE),null,parentId.column.parent.id.id)
     }
 
     // React.useEffect(() => {
@@ -385,7 +386,7 @@ export const EditableCell = ({
       // console.log(parentId)
       // console.log('selectedRowMA',WEIGHTAGE)
       // setmaWeightAge(WEIGHTAGE)
-      updateMyData(index, id, (value*WEIGHTAGE),null,parentId.column.parent.id.id)
+      // updateMyData(index, id, (value*WEIGHTAGE),null,parentId.column.parent.id.id)
     }
   
     React.useEffect(() => {
