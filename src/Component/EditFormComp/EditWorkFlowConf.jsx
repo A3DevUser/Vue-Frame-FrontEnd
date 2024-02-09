@@ -70,7 +70,7 @@ const EditWorkFlowConf = () => {
         dispatch(FetchConfSectionData(FormIdRed,AuthRed.val))
         dispatch(FetchConfGridData(FormIdRed,AuthRed.val))
         dispatch(FetchConfColumnData(FormIdRed,AuthRed.val))
-        // dispatch(FetchWorkFlowEditData(location.state !== null ? location.state.formId : sessionStorage.getItem('formId1') ,AuthRed.val))
+        dispatch(FetchWorkFlowEditData(location.state !== null ? location.state.formId : sessionStorage.getItem('formId1') ,AuthRed.val))
         // dispatch(FetchWorkFlowEditData('',AuthRed.val))
     },[FormIdRed])
 
