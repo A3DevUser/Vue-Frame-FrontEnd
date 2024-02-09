@@ -20,7 +20,9 @@ import { PreOnboardignScoreAct } from '../../../Store/Actions/GeneralStates'
 
 
 
-const PartySheetTable = ({col,dData,userName,accData,tableData,handleChange,filterTypr,setClickSave, clickSave,TPREscore,setTPREscore,MAscore,setMAscore,DDQscore,setDDQscore,setmaxScore,setmaxScoreTpre}) => {
+const PartySheetTable = ({col,dData,userName,accData,tableData,handleChange,filterTypr,setClickSave, clickSave,
+  scoreTpre,score,scoreDdq,setScoreTpre,setScore,setScoreDdq
+}) => {
 const dispatch = useDispatch()
 const navigate = useNavigate()
 
@@ -80,8 +82,8 @@ const accColumn = col.filter((fil)=>{return fil.parentCell=='account'}).map((res
   })
 
 
-  // const [maxScore,setmaxScore] = useState(0)
-  // const [maxScoreTpre,setmaxScoreTpre] = useState(0)
+  const [maxScore,setmaxScore] = useState(0)
+  const [maxScoreTpre,setmaxScoreTpre] = useState(0)
   
   const [accountData,setaccountData] = useState([...accData.slice(0,10)])
   const [columns,setcolumns]=useState([...PartysheetColumns(col,accData.slice(0,10).map((res)=>{return res.Associate_Vend}),updateMyData,setmaxScore,setmaxScoreTpre)])
@@ -94,9 +96,9 @@ const accColumn = col.filter((fil)=>{return fil.parentCell=='account'}).map((res
   
   const [finalData,setfinalData] = useState({})
   const [fileArr,setfileArr] =useState()
-  const [scoreTpre,setScoreTpre] = useState(0)
-  const [score,setScore] = useState(0)
-  const [scoreDdq,setScoreDdq] = useState(0)
+  // const [scoreTpre,setScoreTpre] = useState(0)
+  // const [score,setScore] = useState(0)
+  // const [scoreDdq,setScoreDdq] = useState(0)
   const [show,setShow] = useState(false)
   const [globalSearchVal,setglobalSearchVal] = useState('')
 
@@ -243,22 +245,22 @@ console.log('DataRowCount',dData)
           // }
           const dataList = Object.values(finalData);
           dispatch(FormTestScoreData([  {
-            "tpreScore": MAscore,
-            "tpreRating": MAscore >= (dData.length*maxScore)/2 ? 'High' : MAscore == 0 ? 'Low' : 'Medium',
+            "tpreScore": score,
+            "tpreRating": score >= (dData.length*maxScore)/2 ? 'High' : score == 0 ? 'Low' : 'Medium',
             "isMaterial": "Material",
             "dueDilligenceScore": "Yearly",
             "vendor_ID": accList[0].split('$$')[0],
             "VENDOR_ID": accList[0].split('$$')[0]
           },{
-            "tpreScore": DDQscore,
-            "tpreRating": DDQscore >= (dData.length*maxScore)/2 ? 'High' : DDQscore == 0 ? 'Low' : 'Medium',
+            "tpreScore": scoreDdq,
+            "tpreRating": scoreDdq >= (dData.length*maxScore)/2 ? 'High' : scoreDdq == 0 ? 'Low' : 'Medium',
             "isMaterial": "Material",
             "dueDilligenceScore": "0.00",
             "vendor_ID": accList[0].split('$$')[0],
             "VENDOR_ID": accList[0].split('$$')[0]
           },{
-            "tpreScore": TPREscore,
-            "tpreRating": TPREscore >= (dData.length*maxScoreTpre)/2 ? 'High' : TPREscore == 0 ? 'Low' : 'Medium',
+            "tpreScore": scoreTpre,
+            "tpreRating": scoreTpre >= (dData.length*maxScoreTpre)/2 ? 'High' : scoreTpre == 0 ? 'Low' : 'Medium',
             "isMaterial": "Material",
             "dueDilligenceScore": "Yearly",
             "vendor_ID": accList[0].split('$$')[0],

@@ -18,7 +18,7 @@ import { FetchReviewPlanDataData } from '../../Store/Actions/ReviewPlanDataAct'
 const BassicTab = ({ gridData, columnData, reportData }) => {
     // console.log('NewRptDataChk',JSON.stringify(gridData))
     // console.log('NewRptDataChk',JSON.stringify(columnData))
-    // console.log('NewRptDataChk',columnData)
+    console.log('NewRptDataChk',columnData)
     // const ReportTitleDataRed = useSelector((state) => state.ReportTitleDataRed)
     const ReportTitleColumnRed = useSelector((state) => state.ReportTitleColumnRed)
     const ReportTitleGridRed = useSelector((state) => state.ReportTitleGridRed)
@@ -60,7 +60,9 @@ const BassicTab = ({ gridData, columnData, reportData }) => {
                 return { Header: res.rptColLabel,
                      accessor: res.rptColName,
                       Filter: ColumnFilter,
-                       width: calculateColumnWidth(0.823 * window.innerWidth, columnData.length) } 
+                      width: res.rptColWidth
+                    //    width: calculateColumnWidth(0.823 * window.innerWidth, columnData.length) 
+                    } 
             }
 
             })]
