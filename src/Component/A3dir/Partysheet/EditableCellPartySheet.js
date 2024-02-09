@@ -329,7 +329,7 @@ export const EditableCell = ({
     updateMyData, 
     colObj:colObj,
     parentId,
-    setmaxScore
+    setmaxScoreTpre
   }) =>{
 
 
@@ -346,7 +346,7 @@ export const EditableCell = ({
   
     React.useEffect(() => {
       setValue(initialValue)
-      setmaxScore(5)
+      setmaxScoreTpre(5)
     }, [initialValue])
 
     return <select className="form-control" onChange={onChange} onBlur={onBlur}>

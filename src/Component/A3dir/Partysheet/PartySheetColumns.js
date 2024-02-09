@@ -4,7 +4,7 @@ const calculateColumnWidth = (tableWidth, totalColumns) => {
     return Math.floor(tableWidth / totalColumns);
 };
 
-export const PartysheetColumns = (col,accountData,updateMyData,setmaxScore,setmaWeightAge) =>{
+export const PartysheetColumns = (col,accountData,updateMyData,setmaxScore,setmaWeightAge,setmaxScoreTpre) =>{
 
     // console.log('PartysheetData',col)
     // console.log('PartysheetData',accountData)
@@ -62,7 +62,7 @@ export const PartysheetColumns = (col,accountData,updateMyData,setmaxScore,setma
                 return{
                     Header : cres.fieldName,
                     accessor : cres.accessor+'#'+res,
-                    Cell : ({cell}) =>{return <RiskRatingDropDown setmaxScore={setmaxScore} column={cell.column.id} row={cell.row.id} updateMyData={updateMyData} value={cell.value} colObj={cell.column} parentId={cell}/>},
+                    Cell : ({cell}) =>{return <RiskRatingDropDown setmaxScoreTpre={setmaxScoreTpre} column={cell.column.id} row={cell.row.id} updateMyData={updateMyData} value={cell.value} colObj={cell.column} parentId={cell}/>},
                     width : cres.width !== null ? cres.width : calculateColumnWidth( 0.97 * window.innerWidth, col.length)
                 }
             }else if(cres.cellType=='marrDropDown'){

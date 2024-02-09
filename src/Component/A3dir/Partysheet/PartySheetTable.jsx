@@ -81,10 +81,10 @@ const accColumn = col.filter((fil)=>{return fil.parentCell=='account'}).map((res
 
 
   const [maxScore,setmaxScore] = useState(0)
-
+  const [maxScoreTpre,setmaxScoreTpre] = useState(0)
   
   const [accountData,setaccountData] = useState([...accData.slice(0,10)])
-  const [columns,setcolumns]=useState([...PartysheetColumns(col,accData.slice(0,10).map((res)=>{return res.Associate_Vend}),updateMyData,setmaxScore)])
+  const [columns,setcolumns]=useState([...PartysheetColumns(col,accData.slice(0,10).map((res)=>{return res.Associate_Vend}),updateMyData,setmaxScore,setmaxScoreTpre)])
   const [data,setdata]=useState(
     tableData.length > 0 ?
     [...finalOpData] : [...dData]
@@ -258,7 +258,7 @@ console.log('DataRowCount',dData)
             "VENDOR_ID": accList[0].split('$$')[0]
           },{
             "tpreScore": scoreTpre,
-            "tpreRating": scoreTpre >= (dData.length*maxScore)/2 ? 'High' : scoreTpre == 0 ? 'Low' : 'Medium',
+            "tpreRating": scoreTpre >= (dData.length*maxScoreTpre)/2 ? 'High' : scoreTpre == 0 ? 'Low' : 'Medium',
             "isMaterial": "Material",
             "dueDilligenceScore": "Yearly",
             "vendor_ID": accList[0].split('$$')[0],
