@@ -20,7 +20,7 @@ import { PreOnboardignScoreAct } from '../../../Store/Actions/GeneralStates'
 
 
 
-const PartySheetTable = ({col,dData,userName,accData,tableData,handleChange,filterTypr,setClickSave, clickSave,TPREscore,setTPREscore,MAscore,setMAscore,DDQscore,setDDQscore}) => {
+const PartySheetTable = ({col,dData,userName,accData,tableData,handleChange,filterTypr,setClickSave, clickSave,TPREscore,setTPREscore,MAscore,setMAscore,DDQscore,setDDQscore,setmaxScore,setmaxScoreTpre}) => {
 const dispatch = useDispatch()
 const navigate = useNavigate()
 
@@ -80,8 +80,8 @@ const accColumn = col.filter((fil)=>{return fil.parentCell=='account'}).map((res
   })
 
 
-  const [maxScore,setmaxScore] = useState(0)
-  const [maxScoreTpre,setmaxScoreTpre] = useState(0)
+  // const [maxScore,setmaxScore] = useState(0)
+  // const [maxScoreTpre,setmaxScoreTpre] = useState(0)
   
   const [accountData,setaccountData] = useState([...accData.slice(0,10)])
   const [columns,setcolumns]=useState([...PartysheetColumns(col,accData.slice(0,10).map((res)=>{return res.Associate_Vend}),updateMyData,setmaxScore,setmaxScoreTpre)])

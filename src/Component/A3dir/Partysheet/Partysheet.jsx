@@ -26,6 +26,8 @@ const Partysheet = () => {
   const [TPREscore, setTPREscore] = useState()
   const [MAscore, setMAscore] = useState()
   const [DDQscore, setDDQscore] = useState()
+  const [maxScore,setmaxScore] = useState(0)
+  const [maxScoreTpre,setmaxScoreTpre] = useState(0)
   // console.log('location', location.state);
 
   const handleChange = (e) =>{
@@ -56,7 +58,7 @@ const Partysheet = () => {
   function handleSave (){
     if(!clickSave){
       setClickSave(true)
-      dispatch(PreOnboardignScoreAct({TPRE: NaN, MA: NaN, DDQ: NaN}))
+      // dispatch(PreOnboardignScoreAct({TPRE: NaN, MA: NaN, DDQ: NaN}))
     }
   }
 
