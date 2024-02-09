@@ -1,5 +1,6 @@
 import axios from "axios"
 import swal from "sweetalert"
+import { PreOnboardignScoreAct } from "./GeneralStates"
 
 
 
@@ -35,6 +36,7 @@ export const FormTestScoreData = (scoreData,token)=>{
         axios.post(`http://localhost:8080/VF/setVRMRatingData`,scoreData,{headers})
         .then((res)=>{
             dispatch(TestScoreDataSuccess(res.data))
+            dispatch(PreOnboardignScoreAct({TPRE: NaN, MA: NaN, DDQ: NaN}))
         })
         .catch((err)=>{
             dispatch(TestScoreDataError(err))

@@ -5,11 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import swal from 'sweetalert';
 
-const DividePartySheet = ({ dataLength, handleChange, isScorVal, filterTypr, handleSave,
-  // TPREscore,setTPREscore,MAscore,setMAscore,DDQscore,setDDQscore
-  // setScoreTpre,setScore,setScoreDdq
-  accData,dData,clickSave
- }) => {
+const DividePartySheet = ({ dataLength, handleChange, isScorVal, filterTypr, handleSave }) => {
   // console.log('DividePartySheet',dataLength)
   const dividedCount = Math.ceil(dataLength / 10);
   const navigate = useNavigate()
@@ -65,43 +61,45 @@ const DividePartySheet = ({ dataLength, handleChange, isScorVal, filterTypr, han
 
   function funSetScoreValMa (e){
     setMAscore(e)
+    
   }
 
   function funSetScoreValDdq (e){
     setDDQscore(e)
+    
   }
 
     // const accList = accData.map((res)=>{return res.Associate_Vend})
 
-  // // useEffect(() => {
-  //   function funHandleSave() {
-  //     console.log('ScoreValTest',MAscore);
-  //     console.log('ScoreValTest',DDQscore);
-  //     console.log('ScoreValTest',TPREscore);
-  //   dispatch(FormTestScoreData([  {
-  //     "tpreScore": MAscore,
-  //     "tpreRating": MAscore >= (dData.length*3)/2 ? 'High' : MAscore == 0 ? 'Low' : 'Medium',
-  //     "isMaterial": "Material",
-  //     "dueDilligenceScore": "Yearly",
-  //     "vendor_ID": accList[0].split('$$')[0],
-  //     "VENDOR_ID": accList[0].split('$$')[0]
-  //   },{
-  //     "tpreScore": DDQscore,
-  //     "tpreRating": DDQscore >= (dData.length*3)/2 ? 'High' : DDQscore == 0 ? 'Low' : 'Medium',
-  //     "isMaterial": "Material",
-  //     "dueDilligenceScore": "0.00",
-  //     "vendor_ID": accList[0].split('$$')[0],
-  //     "VENDOR_ID": accList[0].split('$$')[0]
-  //   },{
-  //     "tpreScore": TPREscore,
-  //     "tpreRating": TPREscore >= (dData.length*5)/2 ? 'High' : TPREscore == 0 ? 'Low' : 'Medium',
-  //     "isMaterial": "Material",
-  //     "dueDilligenceScore": "Yearly",
-  //     "vendor_ID": accList[0].split('$$')[0],
-  //     "VENDOR_ID": accList[0].split('$$')[0]
-  //   }],AuthRed.val))
-  //   }
-  // // },[clickSave])
+  // useEffect(() => {
+  //   // function funHandleSave() {
+  //     // console.log('ScoreValTest TPRE',Number(PreOnboardignScoreRed.TPRE).toFixed(2));
+  //     // console.log('ScoreValTest MA',Number(PreOnboardignScoreRed.MA).toFixed(2));
+  //     // console.log('ScoreValTest DDQ',Number(PreOnboardignScoreRed.DDQ).toFixed(2));
+  //   // dispatch(FormTestScoreData([  {
+  //   //   "tpreScore": MAscore,
+  //   //   "tpreRating": MAscore >= (dData.length*3)/2 ? 'High' : MAscore == 0 ? 'Low' : 'Medium',
+  //   //   "isMaterial": "Material",
+  //   //   "dueDilligenceScore": "Yearly",
+  //   //   "vendor_ID": accList[0].split('$$')[0],
+  //   //   "VENDOR_ID": accList[0].split('$$')[0]
+  //   // },{
+  //   //   "tpreScore": DDQscore,
+  //   //   "tpreRating": DDQscore >= (dData.length*3)/2 ? 'High' : DDQscore == 0 ? 'Low' : 'Medium',
+  //   //   "isMaterial": "Material",
+  //   //   "dueDilligenceScore": "0.00",
+  //   //   "vendor_ID": accList[0].split('$$')[0],
+  //   //   "VENDOR_ID": accList[0].split('$$')[0]
+  //   // },{
+  //   //   "tpreScore": TPREscore,
+  //   //   "tpreRating": TPREscore >= (dData.length*5)/2 ? 'High' : TPREscore == 0 ? 'Low' : 'Medium',
+  //   //   "isMaterial": "Material",
+  //   //   "dueDilligenceScore": "Yearly",
+  //   //   "vendor_ID": accList[0].split('$$')[0],
+  //   //   "VENDOR_ID": accList[0].split('$$')[0]
+  //   // }],AuthRed.val))
+  //   // }
+  // },[clickSave])
 
   return (
     <>

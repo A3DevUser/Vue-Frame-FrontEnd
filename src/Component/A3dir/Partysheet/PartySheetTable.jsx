@@ -209,58 +209,27 @@ console.log('DataRowCount',dData)
 
       useEffect(() => {
         if(clickSave){
-          // if(filterTypr == 'Materiality Assessment$$Materiality Assessment'){
-          //   const dataList = Object.values(finalData);
-          //   dispatch(FormTestScoreData([  {
-          //     "tpreScore": score,
-          //     "tpreRating": score >= (dData.length*maxScore)/2 ? 'High' : score == 0 ? 'Low' : 'Medium',
-          //     "isMaterial": "Material",
-          //     "dueDilligenceScore": "Yearly",
-          //     "vendor_ID": accList[0].split('$$')[0],
-          //     "VENDOR_ID": accList[0].split('$$')[0]
-          //   }],AuthRed.val))
-          //   dispatch(PostA3SaveData(dataList,AuthRed.val,navigate))
-          // }else if(filterTypr == 'Due Diligence$$Due Diligence'){
-          //   const dataList = Object.values(finalData);
-          //   dispatch(FormTestScoreData([  {
-          //     "tpreScore": scoreDdq,
-          //     "tpreRating": scoreDdq >= (dData.length*maxScore)/2 ? 'High' : scoreDdq == 0 ? 'Low' : 'Medium',
-          //     "isMaterial": "Material",
-          //     "dueDilligenceScore": "0.00",
-          //     "vendor_ID": accList[0].split('$$')[0],
-          //     "VENDOR_ID": accList[0].split('$$')[0]
-          //   }],AuthRed.val))
-          //   dispatch(PostA3SaveData(dataList,AuthRed.val,navigate))
-          // }else{
-          //   const dataList = Object.values(finalData);
-          //   dispatch(FormTestScoreData([  {
-          //     "tpreScore": scoreTpre,
-          //     "tpreRating": scoreTpre >= (dData.length*maxScore)/2 ? 'High' : scoreTpre == 0 ? 'Low' : 'Medium',
-          //     "isMaterial": "Material",
-          //     "dueDilligenceScore": "Yearly",
-          //     "vendor_ID": accList[0].split('$$')[0],
-          //     "VENDOR_ID": accList[0].split('$$')[0]
-          //   }],AuthRed.val))
-          //   dispatch(PostA3SaveData(dataList,AuthRed.val,navigate))
-          // }
+          console.log('ScoreValTest TPRE',Number(PreOnboardignScoreRed.TPRE).toFixed(2));
+          console.log('ScoreValTest MA',Number(PreOnboardignScoreRed.MA).toFixed(2));
+          console.log('ScoreValTest DDQ',Number(PreOnboardignScoreRed.DDQ).toFixed(2));
           const dataList = Object.values(finalData);
           dispatch(FormTestScoreData([  {
-            "tpreScore": score,
-            "tpreRating": score >= (dData.length*maxScore)/2 ? 'High' : score == 0 ? 'Low' : 'Medium',
-            "isMaterial": "Material",
-            "dueDilligenceScore": "Yearly",
-            "vendor_ID": accList[0].split('$$')[0],
-            "VENDOR_ID": accList[0].split('$$')[0]
-          },{
-            "tpreScore": scoreDdq,
-            "tpreRating": scoreDdq >= (dData.length*maxScore)/2 ? 'High' : scoreDdq == 0 ? 'Low' : 'Medium',
+            "tpreScore": Number(PreOnboardignScoreRed.MA).toFixed(2),
+            "tpreRating": Number(PreOnboardignScoreRed.MA).toFixed(2) >= (dData.length*maxScore)/2 ? 'High' : Number(PreOnboardignScoreRed.MA).toFixed(2) == 0 ? 'Low' : 'Medium',
             "isMaterial": "Material",
             "dueDilligenceScore": "0.00",
             "vendor_ID": accList[0].split('$$')[0],
             "VENDOR_ID": accList[0].split('$$')[0]
           },{
-            "tpreScore": scoreTpre,
-            "tpreRating": scoreTpre >= (dData.length*maxScoreTpre)/2 ? 'High' : scoreTpre == 0 ? 'Low' : 'Medium',
+            "tpreScore": Number(PreOnboardignScoreRed.DDQ).toFixed(2),
+            "tpreRating": Number(PreOnboardignScoreRed.DDQ).toFixed(2) >= (dData.length*maxScore)/2 ? 'High' : Number(PreOnboardignScoreRed.DDQ).toFixed(2) == 0 ? 'Low' : 'Medium',
+            "isMaterial": "Material",
+            "dueDilligenceScore": "Yearly",
+            "vendor_ID": accList[0].split('$$')[0],
+            "VENDOR_ID": accList[0].split('$$')[0]
+          },{
+            "tpreScore": Number(PreOnboardignScoreRed.TPRE).toFixed(2),
+            "tpreRating": Number(PreOnboardignScoreRed.TPRE).toFixed(2) >= (dData.length*maxScoreTpre)/2 ? 'High' : Number(PreOnboardignScoreRed.TPRE).toFixed(2) == 0 ? 'Low' : 'Medium',
             "isMaterial": "Material",
             "dueDilligenceScore": "Yearly",
             "vendor_ID": accList[0].split('$$')[0],

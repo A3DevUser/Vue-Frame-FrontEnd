@@ -24,12 +24,6 @@ const Partysheet = () => {
   const PreOnboardignScoreRed = useSelector((state) => state.PreOnboardignScoreRed)
 
   const [clickSave,setClickSave] = useState(false)
-  // const [TPREscore, setTPREscore] = useState()
-  // const [MAscore, setMAscore] = useState()
-  // const [DDQscore, setDDQscore] = useState()
-  // const [maxScore,setmaxScore] = useState(0)
-  // const [maxScoreTpre,setmaxScoreTpre] = useState(0)
-  // console.log('location', location.state);
   const [scoreTpre,setScoreTpre] = useState(0)
   const [score,setScore] = useState(0)
   const [scoreDdq,setScoreDdq] = useState(0)
@@ -59,41 +53,11 @@ const Partysheet = () => {
     }
   }, [ A3TestRed.val, location.state]);
 
-  // const accList = [location.state.rowData].map((res)=>{return res.Associate_Vend})
-
-  // useEffect(() => {
-  //   console.log('ScoreValTest',TPREscore);
-  //   console.log('ScoreValTest',DDQscore);
-  //   console.log('ScoreValTest',MAscore);
-  // },[MAscore,DDQscore,TPREscore])
-
   function handleSave (){
     if(!clickSave){
       setClickSave(true)
-      dispatch(PreOnboardignScoreAct({TPRE: NaN, MA: NaN, DDQ: NaN}))
+      // dispatch(PreOnboardignScoreAct({TPRE: NaN, MA: NaN, DDQ: NaN}))
     }
-    // dispatch(FormTestScoreData([  {
-    //   "tpreScore": MAscore,
-    //   "tpreRating": MAscore >= (A3TestRed.val.length*maxScore)/2 ? 'High' : MAscore == 0 ? 'Low' : 'Medium',
-    //   "isMaterial": "Material",
-    //   "dueDilligenceScore": "Yearly",
-    //   "vendor_ID": accList[0].split('$$')[0],
-    //   "VENDOR_ID": accList[0].split('$$')[0]
-    // },{
-    //   "tpreScore": DDQscore,
-    //   "tpreRating": DDQscore >= (A3TestRed.val.length*maxScore)/2 ? 'High' : DDQscore == 0 ? 'Low' : 'Medium',
-    //   "isMaterial": "Material",
-    //   "dueDilligenceScore": "0.00",
-    //   "vendor_ID": accList[0].split('$$')[0],
-    //   "VENDOR_ID": accList[0].split('$$')[0]
-    // },{
-    //   "tpreScore": TPREscore,
-    //   "tpreRating": TPREscore >= (A3TestRed.val.length*maxScoreTpre)/2 ? 'High' : TPREscore == 0 ? 'Low' : 'Medium',
-    //   "isMaterial": "Material",
-    //   "dueDilligenceScore": "Yearly",
-    //   "vendor_ID": accList[0].split('$$')[0],
-    //   "VENDOR_ID": accList[0].split('$$')[0]
-    // }],AuthRed.val))
   }
 
 
@@ -101,11 +65,7 @@ const Partysheet = () => {
     <>
     <div style={{display:'flex', flexDirection:'row', alignItems:'center'}}>
     <div >
-    <DividePartySheet filterTypr={filterTypr} dataLength={10} handleChange={handleChange} handleSave={handleSave} 
-    setScoreTpre={setScoreTpre} setScore={setScore} setScoreDdq={setScoreDdq}
-    accData={[location.state.rowData]} dData={A3TestRed.val} clickSave={clickSave}
-    //TPREscore={TPREscore} setTPREscore={setTPREscore} MAscore={MAscore} setMAscore={setMAscore} DDQscore={DDQscore} setDDQscore={setDDQscore}
-    />
+    <DividePartySheet filterTypr={filterTypr} dataLength={10} handleChange={handleChange} handleSave={handleSave} setScoreTpre={setScoreTpre} setScore={setScore} setScoreDdq={setScoreDdq}/>
     </div>
     </div>
       {/* partysheet */}
