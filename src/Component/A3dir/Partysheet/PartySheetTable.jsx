@@ -20,7 +20,7 @@ import { PreOnboardignScoreAct } from '../../../Store/Actions/GeneralStates'
 
 
 
-const PartySheetTable = ({col,dData,userName,accData,tableData,handleChange,filterTypr,setClickSave, clickSave}) => {
+const PartySheetTable = ({col,dData,userName,accData,tableData,handleChange,filterTypr,setClickSave, clickSave,TPREscore,setTPREscore,MAscore,setMAscore,DDQscore,setDDQscore}) => {
 const dispatch = useDispatch()
 const navigate = useNavigate()
 
@@ -243,22 +243,22 @@ console.log('DataRowCount',dData)
           // }
           const dataList = Object.values(finalData);
           dispatch(FormTestScoreData([  {
-            "tpreScore": score,
-            "tpreRating": score >= (dData.length*maxScore)/2 ? 'High' : score == 0 ? 'Low' : 'Medium',
+            "tpreScore": MAscore,
+            "tpreRating": MAscore >= (dData.length*maxScore)/2 ? 'High' : MAscore == 0 ? 'Low' : 'Medium',
             "isMaterial": "Material",
             "dueDilligenceScore": "Yearly",
             "vendor_ID": accList[0].split('$$')[0],
             "VENDOR_ID": accList[0].split('$$')[0]
           },{
-            "tpreScore": scoreDdq,
-            "tpreRating": scoreDdq >= (dData.length*maxScore)/2 ? 'High' : scoreDdq == 0 ? 'Low' : 'Medium',
+            "tpreScore": DDQscore,
+            "tpreRating": DDQscore >= (dData.length*maxScore)/2 ? 'High' : DDQscore == 0 ? 'Low' : 'Medium',
             "isMaterial": "Material",
             "dueDilligenceScore": "0.00",
             "vendor_ID": accList[0].split('$$')[0],
             "VENDOR_ID": accList[0].split('$$')[0]
           },{
-            "tpreScore": scoreTpre,
-            "tpreRating": scoreTpre >= (dData.length*maxScoreTpre)/2 ? 'High' : scoreTpre == 0 ? 'Low' : 'Medium',
+            "tpreScore": TPREscore,
+            "tpreRating": TPREscore >= (dData.length*maxScoreTpre)/2 ? 'High' : TPREscore == 0 ? 'Low' : 'Medium',
             "isMaterial": "Material",
             "dueDilligenceScore": "Yearly",
             "vendor_ID": accList[0].split('$$')[0],

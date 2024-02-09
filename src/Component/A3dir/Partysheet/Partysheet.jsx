@@ -23,7 +23,9 @@ const Partysheet = () => {
   const PreOnboardignScoreRed = useSelector((state) => state.PreOnboardignScoreRed)
 
   const [clickSave,setClickSave] = useState(false)
-
+  const [TPREscore, setTPREscore] = useState()
+  const [MAscore, setMAscore] = useState()
+  const [DDQscore, setDDQscore] = useState()
   // console.log('location', location.state);
 
   const handleChange = (e) =>{
@@ -63,7 +65,7 @@ const Partysheet = () => {
     <>
     <div style={{display:'flex', flexDirection:'row', alignItems:'center'}}>
     <div >
-    <DividePartySheet filterTypr={filterTypr} dataLength={10} handleChange={handleChange} handleSave={handleSave}/>
+    <DividePartySheet filterTypr={filterTypr} dataLength={10} handleChange={handleChange} handleSave={handleSave} TPREscore={TPREscore} setTPREscore={setTPREscore} MAscore={MAscore} setMAscore={setMAscore} DDQscore={DDQscore} setDDQscore={setDDQscore}/>
     </div>
     </div>
       {/* partysheet */}
@@ -71,7 +73,7 @@ const Partysheet = () => {
        A3TestRed.loading ?  MainObject.loader() : 
        A3PsOpDataRed.loading ? MainObject.loader() :
 
-        <PartySheetTable accData={[location.state.rowData]} col={A3PartyColumnRed.val} dData={A3TestRed.val} tableData={A3PsOpDataRed.val} handleChange={handleChange} filterTypr={filterTypr} setClickSave={setClickSave} clickSave={clickSave}/>
+        <PartySheetTable accData={[location.state.rowData]} col={A3PartyColumnRed.val} dData={A3TestRed.val} tableData={A3PsOpDataRed.val} handleChange={handleChange} filterTypr={filterTypr} setClickSave={setClickSave} clickSave={clickSave} TPREscore={TPREscore} setTPREscore={setTPREscore} MAscore={MAscore} setMAscore={setMAscore} DDQscore={DDQscore} setDDQscore={setDDQscore}/>
       }
     </>
   );

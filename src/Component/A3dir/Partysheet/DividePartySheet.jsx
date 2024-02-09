@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import swal from 'sweetalert';
 
-const DividePartySheet = ({ dataLength, handleChange, isScorVal, filterTypr, handleSave }) => {
+const DividePartySheet = ({ dataLength, handleChange, isScorVal, filterTypr, handleSave,TPREscore,setTPREscore,MAscore,setMAscore,DDQscore,setDDQscore }) => {
   // console.log('DividePartySheet',dataLength)
   const dividedCount = Math.ceil(dataLength / 10);
   const navigate = useNavigate()
@@ -16,9 +16,9 @@ const DividePartySheet = ({ dataLength, handleChange, isScorVal, filterTypr, han
   const [DDQ, setDDQ] = useState(false)
   const [scoreDisplay, setScoreDisplay] = useState();
   const PreOnboardignScoreRed = useSelector((state) => state.PreOnboardignScoreRed)
-  const [TPREscore, setTPREscore] = useState()
-  const [MAscore, setMAscore] = useState()
-  const [DDQscore, setDDQscore] = useState()
+  // const [TPREscore, setTPREscore] = useState()
+  // const [MAscore, setMAscore] = useState()
+  // const [DDQscore, setDDQscore] = useState()
 
   useEffect(() => {
     if (filterTypr == 'Materiality Assessment$$Materiality Assessment') {
