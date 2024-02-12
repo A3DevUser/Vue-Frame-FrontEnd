@@ -40,7 +40,6 @@ const DividePartySheet = ({ dataLength, handleChange, isScorVal, filterTypr, han
 
   for (let index = 1; index <= dividedCount; index++) {
     options.push(<option value={index} key={index}>sheet {index}</option>)
-
   }
 
 
@@ -103,43 +102,29 @@ const DividePartySheet = ({ dataLength, handleChange, isScorVal, filterTypr, han
 
   return (
     <>
-    <div style={{display:'flex', flexDirection:'row', alignItems:'center'}}>
-      <div style={{display:'grid',gridTemplateColumns:'auto auto auto', alignItems:'center'}}>
-      <div style={{paddingLeft:'20px'}}>
-        <span style={{ fontWeight: 'bolder', fontSize: '15px', }}>Pre-Onboarding Type :</span></div>
-        <div style={{paddingLeft:'18px'}}>
-      <select className='form-select' onChange={handleChange} style={{ width: '15vw', marginRight: '30vw' }} value={filterTypr}>
+   <div style={{display:'flex',justifyContent:'space-between' ,flexDirection:'row', alignItems:'self-end', padding:'15px', paddingTop:'10px',width:'98vw'}}>
+    <div style={{display:'flex', alignItems:'center', gap:10}}>
+   <span style={{ fontWeight: 'bolder', fontSize: '15px', }}>Pre-Onboarding Type :</span>
+   <select className='form-select' onChange={handleChange} style={{ width: '15vw' }} value={filterTypr}>
         {/* <option value={1}>Select Type...</option> */}
         <option value={'Third Party Risk Evaluation$$Third Party Risk Evaluation'} selected={setTPRE}>Third Party Risk Evaluation</option>
         <option value={'Materiality Assessment$$Materiality Assessment'} selected={setMA}>Materiality Assessment</option>
         <option value={'Due Diligence$$Due Diligence'} selected={setDDQ}>Due Diligence</option>
-      </select></div>
+      </select>
       </div>
-      <div style={{marginLeft:'-90px', paddingLeft:'1px' }}>
-      <button onClick={handleDue} className='btn btn-success' style={{ fontSize: '15px', width: '11vw' }}>Raise Due Diligence</button></div>
-      {/* <span className='mx-3' style={{fontWeight:'bolder', fontSize:'15px'}}>Score :</span>
-    <input value={Number(score).toFixed(2)} className='form-control' style={{fontWeight:'bolder', fontSize:'15px', width:'5vw'}} disabled/> */}
-    <div style={{display:'flex', flexDirection:'row', paddingLeft:'10px' }}>
-      <div className='mx-3'> 
+      <div style={{display:'flex', justifyContent:'right',alignItems:'self-end'}}>
+      <button onClick={handleDue} className='btn btn-success' style={{ fontSize: '15px' }}>Raise Due Diligence</button>
       <span className='mx-3' style={{ fontWeight: 'bolder', fontSize: '15px' }}>TPRE :
       <input value={Number(PreOnboardignScoreRed.TPRE).toFixed(2) == 0 ? TPREscore : (isNaN(Number(PreOnboardignScoreRed.TPRE).toFixed(2)) ? '0.00' : Number(PreOnboardignScoreRed.TPRE).toFixed(2))} className='form-control' style={{ fontWeight: 'bolder', fontSize: '15px', width: '5vw' }} onChange={(e) => funSetScoreValTpre(e)} disabled /></span>
-      </div>
-      <div className='mx-3'>
       <span className='mx-3' style={{ fontWeight: 'bolder', fontSize: '15px' }}>MA :
         <input value={Number(PreOnboardignScoreRed.MA).toFixed(2) == 0 ? MAscore : (isNaN(Number(PreOnboardignScoreRed.MA).toFixed(2)) ? '0.00' : Number(PreOnboardignScoreRed.MA).toFixed(2))} className='form-control' style={{ fontWeight: 'bolder', fontSize: '15px', width: '5vw' }} onChange={(e) => { funSetScoreValMa(e) }} disabled /></span>
-        </div>
-        <div className='mx-3'>
-      <span className='mx-3' style={{ fontWeight: 'bolder', fontSize: '15px' }}>DDQ :
+        <span className='mx-3' style={{ fontWeight: 'bolder', fontSize: '15px' }}>DDQ :
         <input value={Number(PreOnboardignScoreRed.DDQ).toFixed(2) == 0 ? DDQscore : (isNaN(Number(PreOnboardignScoreRed.DDQ).toFixed(2)) ? '0.00' : Number(PreOnboardignScoreRed.DDQ).toFixed(2))}  className='form-control' style={{ fontWeight: 'bolder', fontSize: '15px', width: '5vw' }} onChange={(e) => { funSetScoreValDdq(e) }} disabled /></span>
-        </div>
-        <div className='mx-3'>
-      <span className='mx-3' style={{ fontWeight: 'bolder', fontSize: '15px', display: filterTypr == 'Materiality Assessment$$Materiality Assessment' ? 'block' : 'none' }}>Materiality
-        <input value={Number(PreOnboardignScoreRed.MA).toFixed(2) == 0 ? MAscore : Number(PreOnboardignScoreRed.MA).toFixed(2) >= 1.50 ? 'Yes' : 'No'} className='form-control' style={{ fontWeight: 'bolder', fontSize: '14px', width: '5vw', display: filterTypr == 'Materiality Assessment$$Materiality Assessment' ? 'block' : 'none' }} disabled /></span></div>
-        </div>
-        <div className='mx-3' style={{paddingLeft: filterTypr == 'Materiality Assessment$$Materiality Assessment' ? '' : '108px'}}>
+        <span className='mx-3' style={{ fontWeight: 'bolder', fontSize: '15px', display: filterTypr == 'Materiality Assessment$$Materiality Assessment' ? 'block' : 'none' }}>Materiality
+        <input value={Number(PreOnboardignScoreRed.MA).toFixed(2) == 0 ? MAscore : Number(PreOnboardignScoreRed.MA).toFixed(2) >= 1.50 ? 'Yes' : 'No'} className='form-control' style={{ fontWeight: 'bolder', fontSize: '14px', width: '5vw', display: filterTypr == 'Materiality Assessment$$Materiality Assessment' ? 'block' : 'none' }} disabled /></span>
         <button onClick={handleSave} className='btn btn-outline-success'><i class="bi bi-floppy"></i></button>
         </div>
-        </div>
+   </div>
     </>
   )
 }

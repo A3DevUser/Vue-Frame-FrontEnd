@@ -163,8 +163,8 @@ const accColumn = col.filter((fil)=>{return fil.parentCell=='account'}).map((res
 
        
       const formData = new FormData()
-      function updateMyData(rowIndex, columnId, value, fileData){
-
+      function updateMyData(rowIndex, columnId, value, fileData,objId){
+        console.log('objId',objId)
         if(fileData){
             formData.append('file',fileData)
             setfileArr(formData)
@@ -173,7 +173,7 @@ const accColumn = col.filter((fil)=>{return fil.parentCell=='account'}).map((res
         const colName = columnId.slice(0,columnId.indexOf('#'));
         const accNum = columnId.slice(columnId.indexOf('#')+1,columnId.length);
         // need to spread account data while setting final data
-        setfinalData((old)=>( {...old,[accNum+rowIndex]:{id:accNum,...dData[rowIndex],...old[accNum+rowIndex],[colName]:value,...mainObjDataRed,...accountData.filter((fil)=>{return fil.Associate_Vend==accNum})[0]}}))
+        setfinalData((old)=>( {...old,[accNum+rowIndex]:{id:accNum,'RPT_DISPLAY_VAL' : objId,...dData[rowIndex],...old[accNum+rowIndex],[colName]:value,...mainObjDataRed,...accountData.filter((fil)=>{return fil.Associate_Vend==accNum})[0]}}))
 
           setdata(old =>
             old.map((row, index) => {

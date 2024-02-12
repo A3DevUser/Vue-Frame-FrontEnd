@@ -482,13 +482,16 @@ export const EditableCell = ({
     parentId
   }) => {
     const [value, setValue] = React.useState(initialValue)
+    const [objId,setobjId] = useState()
   
     const onChange = e => {
+      console.log('objId',e.target.options[e.target.selectedIndex].id)
       setValue(e.target.value)
+      setobjId(e.target.options[e.target.selectedIndex].id)
     }
   
     const onBlur = () => {
-      updateMyData(index, id, value,null,parentId.column.parent.id.id)
+      updateMyData(index, id, value,null,objId)
     }
   
     React.useEffect(() => {
@@ -502,7 +505,7 @@ export const EditableCell = ({
         {
           rowObj.original.RESPONSE_VALUE ?
           rowObj.original.RESPONSE_VALUE.sort((a,b)=>a.storedValue- b.storedValue).map((res)=>{
-            return <option value={res.storedValue}>{res.displayValue}</option>
+            return <option id={res.displayValue} value={res.storedValue}>{res.displayValue}</option>
           })
           :
           <></>
