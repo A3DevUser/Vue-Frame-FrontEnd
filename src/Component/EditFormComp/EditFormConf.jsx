@@ -185,7 +185,9 @@ const EditFormConf = () => {
         // }
     }
 
-    // console.log('EditWorkFlow', FormEditRed.val)
+    useEffect(()=>{
+      console.log('EditWorkFlow', GridRed)
+    },[GridRed])
 
 
   return (

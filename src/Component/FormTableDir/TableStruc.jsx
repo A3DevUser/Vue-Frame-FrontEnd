@@ -57,7 +57,7 @@ const TableStruc = ({getTableProps,getTableBodyProps,headerGroups,prepareRow,row
         {(gridData.gridId == 'GID-902') ? <><button className='btn btn-outline-info mx-2' title="Add" style={{display : (gridData.isMrow =='true'&& !add.includes(window.location.pathname)) || (window.location.pathname.includes('confform')&&gridData.isMrow =='true')  ? 'block' : 'none', }}
         // disabled={EmdRed == 'yes'}
         onClick={handleAddRow} disabled={disBtn}
-        ><i class="bi bi-plus-lg"></i> </button></> : <></>}
+        ><i class="bi bi-plus-lg"></i> </button></> : (window.location.pathname.includes('editConfForm')&&gridData.isMrow=='true') ? <button onClick={handleAddRow} className='btn btn-outline-info mx-2' title="Add"><i class="bi bi-plus-lg"></i></button> : <></> }
         { gridData.isMultiSelect == 'true' ? <>
         <div className='dropdown mx-2'>
             <DropdownButton title={<i class="bi bi-pen"></i>} position='left'>

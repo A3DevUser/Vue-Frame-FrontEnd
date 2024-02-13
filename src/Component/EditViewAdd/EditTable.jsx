@@ -34,7 +34,9 @@ const EditTable = () => {
     const [disBtn,setDisBtn] = useState(false)
 
 
+    console.log('GetDataRed.val',GetDataRed)
     useEffect(()=>{
+
       // console.log('locationVal',location);
     dispatch(FetchGridData(location.state.formId,AuthRed.val))
     // dispatch(FetchColumnData(FormIdRed,'yes',AuthRed.val))   
@@ -77,7 +79,6 @@ const EditTable = () => {
         })
       }
       }
-
 
   return (
 <div style={{marginTop:'3vh', paddingLeft:'1.3rem',paddingRight:'1rem'}}>

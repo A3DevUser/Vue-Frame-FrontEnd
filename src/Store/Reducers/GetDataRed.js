@@ -24,7 +24,7 @@ export const GetDataRed = (state = initialState, action) =>{
             ...initialState
         }
 
-        case 'ResetAct' : return {
+        case 'ResetEditState' : return {
             ...initialState
         }
 
