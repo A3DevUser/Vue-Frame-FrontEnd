@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useNavigate } from "react-router";
-import { LogInState } from "./GeneralStates";
+import { LogInState, UserDataState } from "./GeneralStates";
 
 const AuthReq = (val) => {
     return {
@@ -28,9 +28,7 @@ export const AuthToken = (user) => {
         axios.post('http://localhost:8080/auth/generateToken',user)
             .then((response) => {
                 // console.log('response.data',response.data)
-                sessionStorage.setItem('userName',user.username)
-                sessionStorage.setItem('userData', response.data.replace('"',''))
-                localStorage.setItem('token', response.data.replace('"',''))
+                dispatch(UserDataState(user.username))
                 dispatch(AuthSucess(response.data))
                 // console.log("userDataAuth ",response.data)
             dispatch(LogInState(true))

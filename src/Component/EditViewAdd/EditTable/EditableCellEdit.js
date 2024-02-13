@@ -10,7 +10,8 @@ import { FetchImportColumnData } from "../../../Store/Actions/ImportColumnAct"
 import { FetchImportGridData } from "../../../Store/Actions/ImportGridAct"
 import RichText from "../../../Component/RichText/RichText"
 import { Button, InputGroup, Modal } from "react-bootstrap"
-import ModalFormAdd from "./ModalFormAdd"
+// import ModalFormAdd from "./ModalFormAdd"
+import ModalFormEdit from "./ModalFormEdit"
 
 export const EditableCell = ({
     value: initialValue,
@@ -510,7 +511,7 @@ if(dropDown.filter((fil,i)=>{return i==index})[0].mixVal){
     
     return <div style={{ display: 'flex', alignItems: 'center', height: '10vh', justifyContent: 'center'}}>
       {MainObject.modalButton('Actions', handleFunc)}
-      {MainObject.modalpop('',<><ModalFormAdd VF_MAIN_OBJ_ID={VF_MAIN_OBJ_ID} /></>,show,handleFunc)}
+      {MainObject.modalpop('',<><ModalFormEdit VF_MAIN_OBJ_ID={VF_MAIN_OBJ_ID} /></>,show,handleFunc)}
     </div>
   }
 
