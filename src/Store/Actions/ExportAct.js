@@ -34,16 +34,14 @@ export const PostExportData = (userId,data,token) =>{
             // console.log('inside Export data ACT', res.data);
             dispatch(ExportSuccess(res.data))
             return swal({
-                title :'Alert',
-                text : 'Data Save Successfully',
+                title :'Data Save Successfully',
                 icon: "success",
             })
         })
         .catch((err)=>{
             dispatch(ExportError(err))
             return swal({
-                title :'Alert',
-                text : err,
+                title :'Error while uploading',
                 icon: "warning",
             })
         })
