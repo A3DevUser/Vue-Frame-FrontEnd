@@ -42,13 +42,20 @@ export const PostAddTableData = (userId,data,token,setDisBtn) =>{
         dispatch(AddTableReq());
         axios.post(`http://localhost:8080/VF/callWorkflowProcedure?currLoggedInUser=${userId}`,data,{headers})
         .then((res)=>{
+            console.log('PostAddTableData',res.data)
             dispatch(AddTableSuccess(res.data))
             setDisBtn(false)
-            return swal({
-                title :'Alert',
-                text : 'Data Save Successfully',
-                icon: "success",
-            })
+            if(res.data.valid=='true'){
+                return swal({
+                    title :res.data.message,
+                    icon: "success",
+                })
+            }else{
+                return swal({
+                    title :res.data.message,
+                    icon: "error",
+                })
+            }
         })
         .catch((err)=>{
             dispatch(AddTableErr(err))
