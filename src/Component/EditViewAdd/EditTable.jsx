@@ -78,6 +78,10 @@ const EditTable = () => {
       }
       }
 
+      useEffect(() => {
+        console.log('GetDataRedChkDataVal',GetDataRed);
+      },[GetDataRed])
+
 
   return (
 <div style={{marginTop:'3vh', paddingLeft:'1.3rem',paddingRight:'1rem'}}>

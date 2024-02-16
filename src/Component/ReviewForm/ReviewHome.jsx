@@ -11,6 +11,7 @@ import { FetchReviewDataData } from '../../Store/Actions/ReviewFormDataAct'
 import { Checkbox } from '../FormTableDir/Checkbox'
 import { useSticky } from 'react-table-sticky'
 import { SendReviewData } from '../../Store/Actions/SendReviewDataAct'
+import swal from 'sweetalert'
 
 
 
@@ -79,6 +80,19 @@ const ReviewHome = ({ gridData, columnData, reportData }) => {
 
     const handleReview = () =>{
         // console.log('Review Data Saved','inside send button') 
+        if(newreviewName == ''){
+            swal({
+                title :'Alert',
+                text : 'Kindly Enter Review Name.',
+                icon: "warning",
+            })
+        }else if([...selectedFlatRows].length < 1){
+            swal({
+                title :'Alert',
+                text : 'Kindly Select the vendor list to Generate.',
+                icon: "warning",
+            })
+        }else{
         let newData = [...selectedFlatRows.map((res)=>{return res.original})]
         const finalData = newData.map((res)=>{
             return {ASSOCIATE_VEND : res.ASSOCIATE_VEND,VENDOR_ID:'',...reviewFilter,VF_MAIN_OBJ_ID:res.VF_MAIN_OBJ_ID}
@@ -86,14 +100,18 @@ const ReviewHome = ({ gridData, columnData, reportData }) => {
 
         dispatch(SendReviewData(finalData,AuthRed.val))
     }
-
-    const handleVendors = () =>{
-        dispatch(FetchReviewDataData(reviewFilter.reviewFreq,reviewFilter.reviewSubFreq,AuthRed.val))
     }
 
+    const [newreviewName,setReviewName] = useState('')
+
     const handleBlur = (e) =>{
+        setReviewName(e.target.value)
         const reviewName = e.target.value
         setreviewFilter((old)=>{return {...old,[e.target.id]:reviewName}})
+    }
+
+    const handleVendors = () =>{
+            dispatch(FetchReviewDataData(reviewFilter.reviewFreq,reviewFilter.reviewSubFreq,AuthRed.val))
     }
 
     const { getTableProps,
