@@ -273,7 +273,45 @@ export const EditableCell = ({
     }, [initialValue])
   
     return <div>
-      <input value={value} type={'date'} className='form-control' style={{width:colObj.width, border:'none'}} onChange={onChange} onBlur={onBlur} placeholder='Enter Remark...'  />
+      <input value={value} type={'date'} className='form-control' style={{width:colObj.width, border:'none'}} onChange={onChange} onBlur={onBlur} placeholder='Enter Remark...' />
+      {/* xyz disabled={rowObj.original.isDisable}*/}
+    </div>
+  }
+
+  export const EditableDsDateCell = ({
+    value: initialValue,
+    row:  index ,
+    column:  id ,
+    updateMyData, 
+    colObj:colObj,
+    rowObj : rowObj,
+    parentId
+  }) => {
+    const [value, setValue] = React.useState(initialValue)
+    const [valChange,setValChange] = React.useState('')
+  
+    const onChange = e => {
+      setValue(e.target.value)
+    }
+  
+    const onBlur = () => {
+      updateMyData(index, id, value,null,'')
+    }
+  
+    React.useEffect(() => {
+      setValue(initialValue)
+    }, [initialValue])
+    
+    React.useEffect(() => {
+      setValChange(rowObj.values.dsStartDate)
+    },[rowObj])
+
+    React.useEffect(() => {
+      setValue('')
+    },[valChange])
+  
+    return <div>
+      <input value={value} type={'date'} className='form-control' style={{width:colObj.width, border:'none'}} onChange={onChange} onBlur={onBlur} placeholder='Enter Remark...' min={ rowObj.values.dsStartDate } />
       {/* xyz disabled={rowObj.original.isDisable}*/}
     </div>
   }

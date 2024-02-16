@@ -1,5 +1,5 @@
 import { useEffect } from "react"
-import { CheckerLink, DisableCell, DownloadRpt, EditableActionCell, EditableActionPopCell, EditableAnaCell, EditableAttachCell, EditableCell, EditableDateCell, EditableDdCell, EditableDdIe, EditableDisableDdCell, EditableHomeLink, EditableImporter, EditableLink, EditableLogicCell, EditableMixCell, EditableMksCell, EditableNumCell, EditablePartyLink, EditableRtf, EditableStaticCell, EditableUploader, ExternalA3Link, } from "./EditableCell"
+import { CheckerLink, DisableCell, DownloadRpt, EditableActionCell, EditableActionPopCell, EditableAnaCell, EditableAttachCell, EditableCell, EditableDateCell, EditableDdCell, EditableDdIe, EditableDisableDdCell, EditableDsDateCell, EditableHomeLink, EditableImporter, EditableLink, EditableLogicCell, EditableMixCell, EditableMksCell, EditableNumCell, EditablePartyLink, EditableRtf, EditableStaticCell, EditableUploader, ExternalA3Link, } from "./EditableCell"
 
 export const ColumnHeader = (colData, updateMyData, dropDown, addAndDeleteRow, gridData, data, handleOnfocus, dropDownData, location) => {
 
@@ -40,7 +40,18 @@ export const ColumnHeader = (colData, updateMyData, dropDown, addAndDeleteRow, g
 
 
       }
-    } else if (res.cellType === 'number') {
+    } else if (res.cellType === 'DsValidate') {
+      return {
+        Header: res.fieldName,
+        accessor: res.accessor,
+        Cell: ({ cell }) => { return <EditableDsDateCell column={cell.column.id} row={cell.row.id} updateMyData={updateMyData} value={cell.value} colObj={cell.column} parentId={cell} rowObj={cell.row} /> },
+        width: res.width,
+        sticky: res.sticky
+
+
+      }
+    }
+     else if (res.cellType === 'number') {
       return {
         Header: res.fieldName,
         accessor: res.accessor,
