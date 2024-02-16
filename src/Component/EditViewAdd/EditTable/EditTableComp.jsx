@@ -15,6 +15,7 @@ const EditTableComp = ({columnData, tableData,gridData,handleSave }) => {
 
     const DropValRed = useSelector((state) => state.DropValRed)
     const AuthRed = useSelector((state)=>state.AuthRed)
+    const MainObjIdRed = useSelector((state) => state.MainObjIdRed)
     const isMain = gridData.isMain == "true" ? true : false
 
 
