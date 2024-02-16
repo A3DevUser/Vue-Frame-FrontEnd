@@ -6,9 +6,10 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
 import { FetchPendencyColData } from '../../Store/Actions/PendencyColAct'
 import { MainObject } from '../../Component/Elements/commonFun'
-import { FormIdAct } from '../../Store/Actions/GeneralStates'
+import { FormIdAct, ResetEditState } from '../../Store/Actions/GeneralStates'
 import { FetchPendencyData } from '../../Store/Actions/PendencyDataAct'
 import { FetchGetData } from '../../Store/Actions/GetDataAct'
+import { FormIdRed } from '../../Store/Reducers/GeneralStatesRed'
 
 const PendencyDashboard = () => {
 
@@ -26,7 +27,8 @@ const PendencyDashboard = () => {
   useEffect(() => {
     dispatch(FetchPendencyColData(AuthRed.val))
     dispatch(FetchPendencyData(UserDataStateRed,AuthRed.val))
-  },[UserDataStateRed])
+    dispatch(ResetEditState())
+  },[UserDataStateRed,FormIdRed])
 
     let titleData = [{"Title":"Pendency Dashboard"}]
 

@@ -20,7 +20,7 @@ export const ColumnEditActRed = (state = initialState, action) =>{
             err : action.payload
         }
         
-        case 'ResetAct' : return {
+        case 'ResetEditState' : return {
             ...initialState
         }
 

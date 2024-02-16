@@ -56,15 +56,40 @@ const ReportConf = () => {
     const width = '75vw'
     // ...SendReportConfDataRed.val, , targetId: val.gridId
     const handleSave = (val) =>{
+
+      const mandatoryCol = ColumnRed.val.filter((fil)=>{
+        return ((fil.gridId == val.gridId)&&(fil.mandatory=='true'))
+      }).map((res)=>{return res.accessor})
+
+      function checkEmptyFields(obj, fields) {
+        return fields.some(field => !obj[field]);
+      }
+
+
       if(Object.keys(FormDatRed).includes(val.gridId)){
         if (val.gridId == 'GID-015'){
           const FormData = FormDatRed[val.gridId].map((res) => {return {...res}})
-          // console.log('mainGrid Val',FormData);
-          dispatch(FormReportConfData(val.api,FormData,AuthRed.val))
+          const result = FormData.map(obj => checkEmptyFields(obj, mandatoryCol))[0]
+          if(result){
+            return swal({
+              title:'Please fill the Mandatory fields!!!',
+              icon:'warning'
+            })
+          }else{
+            dispatch(FormReportConfData(val.api,FormData,AuthRed.val))
+          }
         }else{
           const FormData = FormDatRed[val.gridId].map((res) => {return {...res, ...SendReportConfDataRed.val,targetId: val.gridId}})
           // console.log('mainGrid Val',FormData);
-          dispatch(FormReportConfData(val.api,FormData,AuthRed.val))
+          const result = FormData.map(obj => checkEmptyFields(obj, mandatoryCol))[0]
+          if(result){
+            return swal({
+              title:'Please fill the Mandatory fields!!!',
+              icon:'warning'
+            })
+          }else{
+            dispatch(FormReportConfData(val.api,FormData,AuthRed.val))
+          }
         }
         }
     }

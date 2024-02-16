@@ -1,11 +1,16 @@
 import React, { useEffect } from 'react'
+import { useSelector } from 'react-redux'
 import { Outlet, Navigate } from 'react-router-dom'
 
 const ProtectedRoutes = ({ logStatus }) => {
+
+  const AuthRed = useSelector((state)=>state.AuthRed)
+
+
   return (
     <>
       {
-        sessionStorage.getItem('userData') ? <Outlet /> : <Navigate to={'/'} />
+        AuthRed.val ? <Outlet /> : <Navigate to={'/'} />
       }
     </>
   )

@@ -45,6 +45,7 @@ import NewA3HomeSheet from './Component/A3PartyComp/NewA3HomeSheet'
 import NewPartySheet from './Component/A3PartyComp/NewPartySheet'
 import ComboHomeTest from './Component/ComboHomeTest/ComboHomeTest'
 import ComboPartySheet from './Component/ComboHomeTest/ComboPartySheet'
+import NewEditTable from './Component/EditViewAdd/EditTable/NewEditTable'
 
 
 const App = () => {
@@ -65,12 +66,12 @@ const App = () => {
   //   }`
   // )
 
-  useEffect(() => {
-    dispatch(AuthSucess(sessionStorage.getItem('userData')))
-    dispatch(FormIdAct(sessionStorage.getItem('formId')))
-    dispatch(EmdAct(sessionStorage.getItem('emd')))
-    dispatch(UserDataState(sessionStorage.getItem('userName')))
-  }, [])
+  // useEffect(() => {
+  //   dispatch(AuthSucess(sessionStorage.getItem('userData')))
+  //   dispatch(FormIdAct(sessionStorage.getItem('formId')))
+  //   dispatch(EmdAct(sessionStorage.getItem('emd')))
+  //   dispatch(UserDataState(sessionStorage.getItem('userName')))
+  // }, [])
 
 
   return (
@@ -117,6 +118,8 @@ const App = () => {
           <Route path='/a3PartySheet' element={<NewPartySheet />} />
           <Route path='/hometestsheet' element={<ComboHomeTest />} />
           <Route path='/ComboPartySheet' element={<ComboPartySheet />} />
+          <Route path='/EditTableComp' element={<NewEditTable/>} />
+
         </Route>
         {/* <Route path='/hometestsheet' element={<ComboHomeTest/>}/> */}
       </Routes>

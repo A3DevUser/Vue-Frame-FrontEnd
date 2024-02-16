@@ -99,3 +99,9 @@ export const PreOnboardignScoreAct = (val) =>{
         payload: val
     }
 }
+
+export const ResetEditState = () =>{
+    return {
+        type :'ResetEditState'
+    }
+}

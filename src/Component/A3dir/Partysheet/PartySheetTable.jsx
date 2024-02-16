@@ -343,20 +343,28 @@ console.log('DataRowCount',dData)
           {headerGroups.map((headerGroup) => (
             <div className='tr' {...headerGroup.getHeaderGroupProps()}>
             {
-                headerGroup.headers.map((column) => (
-                    <div {...column.getHeaderProps(column.getSortByToggleProps())} className="th">
+                headerGroup.headers.map((column) => {
+                  console.log('headerGroup',column.parent)
+                  if(column.parent){
+                    return  <div {...column.getHeaderProps(column.getSortByToggleProps())} className="th">
+                    <div ></div>
+                    {column.render('Header')}
+                    <span>
+                      {column.isSorted
+                        ? column.isSortedDesc
+                          ? ' 🔽'
+                          : ' 🔼'
+                        : ''}
+                    </span>
+                          <div>{column.canFilter ? column.render('Filter') : null}</div>
+                  </div>
+                  }else{
+                  return  <div {...column.getHeaderProps()} className="th">
                   <div ></div>
                   {column.render('Header')}
-                  <span>
-                    {column.isSorted
-                      ? column.isSortedDesc
-                        ? ' 🔽'
-                        : ' 🔼'
-                      : ''}
-                  </span>
-                        <div>{column.canFilter ? column.render('Filter') : null}</div>
                 </div>
-                ))
+                  }
+})
             }
         </div>
           ))}
