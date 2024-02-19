@@ -28,9 +28,9 @@ function ConfTabsBar({accordionVal,gridData,columnData,data,defaultVal,setdefaul
         // MainObject.table('',localData,'','')
     }
 
-    useEffect(()=>{
-        // console.log('setLocalData',localData)
-    },[localData])
+    // useEffect(()=>{
+    //     console.log('colDataTableStr',columnData)
+    // },[columnData])
 
     // console.log('columnData',columnData)
     // console.log('Confdata',data)
