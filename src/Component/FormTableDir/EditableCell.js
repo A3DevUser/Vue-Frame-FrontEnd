@@ -18,6 +18,7 @@ import RichText from "../../Component/RichText/RichText"
 import { Button, InputGroup, Modal } from "react-bootstrap"
 import Select from 'react-select'
 import { FetchWorkFlowEditData } from "../../Store/Actions/WorkFlowEditAct"
+import swal from "sweetalert"
 
 export const EditableCell = ({
     value: initialValue,
@@ -38,7 +39,7 @@ export const EditableCell = ({
     const [freeze,setFreeze] = useState()
 
     const onChange = e => {
-      setValue(e.target.value)
+        setValue(e.target.value)      
     }
   
 
@@ -74,14 +75,31 @@ export const EditableCell = ({
       
     },[SendReportConfDataRed])
 
+    const alphanumericRegex = /^[a-zA-Z0-9_]*$/;
+
     const onBlur = () => {
-      updateMyData(index, id, value,null)
+      if(id == 'dbTableName'){
+        if(!alphanumericRegex.test(value)){
+        swal({
+              title :'Alert',
+              text : 'Entered Data is Incorrect',
+              icon: "warning",
+              dangerMode: true
+            })
+        }
+      }else{
+        updateMyData(index, id, value,null)
+      }
       // console.log('maxlengthpro',colObj)
     }
   
     React.useEffect(() => {
       setValue(initialValue)
     }, [initialValue])
+
+    React.useEffect(() => {
+      console.log('FormColumnName',id);
+    },[id])
     
     return <div>
       <textarea value={value} className='form-control' style={{width:colObj.width,border:'none'
