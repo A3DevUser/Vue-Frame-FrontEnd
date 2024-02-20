@@ -1,8 +1,8 @@
 import { FetchModalColumnData } from '../../../Store/Actions/ModalColumn';
 import { FetchModalGridData } from '../../../Store/Actions/ModalGrid';
 import { FetchModalSectionData } from '../../../Store/Actions/ModalSection';
-import React from 'react'
-import { useDispatch } from 'react-redux';
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 
 const ModalFormEdit = () => {
 
@@ -15,6 +15,7 @@ const ModalFormEdit = () => {
     const ModalGridRed = useSelector((state) => state.ModalGridRed)
     const AuthRed = useSelector((state)=>state.AuthRed)
     const GetDataRed = useSelector((state)=> state.GetDataRed)
+    const EmdRed = useSelector((state)=>state.EmdRed)
 
     useEffect(() => {
         dispatch(FetchModalSectionData(FormIdRed,AuthRed.val))

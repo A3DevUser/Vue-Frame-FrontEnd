@@ -1,14 +1,14 @@
 import { useEffect } from "react"
-import { CheckerLink, DisableCell, DownloadRpt, EditableActionCell, EditableActionPopCell, EditableAnaCell, EditableAttachCell, EditableCell, EditableDateCell, EditableDdCell, EditableDdIe, EditableDisableDdCell, EditableHomeLink, EditableImporter, EditableLink, EditableLogicCell, EditableMixCell, EditableMksCell, EditableNumCell, EditablePartyLink, EditableRtf, EditableStaticCell, EditableUploader, ExternalA3Link, } from "./EditableCell"
+import { CheckerLink, DisableCell, DownloadRpt, EditableActionCell, EditableActionPopCell, EditableAnaCell, EditableAttachCell, EditableCell, EditableDateCell, EditableDdCell, EditableDdIe, EditableDisableDdCell, EditableDsDateCell, EditableHomeLink, EditableImporter, EditableLink, EditableLogicCell, EditableMixCell, EditableMksCell, EditableNumCell, EditablePartyLink, EditableRtf, EditableStaticCell, EditableUploader, ExternalA3Link, } from "./EditableCell"
 
 export const ColumnHeader = (colData, updateMyData, dropDown, addAndDeleteRow, gridData, data, handleOnfocus, dropDownData, location) => {
-
+    console.log('newColStr',colData)
   return colData.filter((fil) => { return fil.gridId == gridData.gridId }).map((res) => {
-    // console.log('colData',res)
+
     if (res.cellType === 'textArea') {
       let gridIdVal = res.gridId
       return {
-        Header: res.fieldName,
+        Header: res.fieldName + `${res.mandatory == 'true' ? '*' : ' ' }`,
         accessor: res.accessor,
         Cell: ({ cell, row }) => {
           // console.log('theCellData', row.getRowProps())
@@ -24,7 +24,7 @@ export const ColumnHeader = (colData, updateMyData, dropDown, addAndDeleteRow, g
       let gridIdVal = res.gridId
       let colIdVal = res.columnId
       return {
-        Header: res.fieldName,
+        Header: res.fieldName + `${res.mandatory == 'true' ? '*' : ' ' }`,
         accessor: res.accessor,
         Cell: ({ cell }) => { return <EditableDdCell column={cell.column.id} row={cell.row.id} updateMyData={updateMyData} value={cell.value} dropDown={dropDownData} rowObj={cell.row} colObj={cell.column} parentId={{ formIdVal, gridIdVal, colIdVal, json: cell.row }} handleOnfocus={handleOnfocus} /> },
         width: res.width,
@@ -32,7 +32,7 @@ export const ColumnHeader = (colData, updateMyData, dropDown, addAndDeleteRow, g
       }
     } else if (res.cellType === 'date') {
       return {
-        Header: res.fieldName,
+        Header: res.fieldName + `${res.mandatory == 'true' ? '*' : ' ' }`,
         accessor: res.accessor,
         Cell: ({ cell }) => { return <EditableDateCell column={cell.column.id} row={cell.row.id} updateMyData={updateMyData} value={cell.value} colObj={cell.column} parentId={cell} rowObj={cell.row} /> },
         width: res.width,
@@ -40,9 +40,20 @@ export const ColumnHeader = (colData, updateMyData, dropDown, addAndDeleteRow, g
 
 
       }
-    } else if (res.cellType === 'number') {
+    } else if (res.cellType === 'DsValidate') {
       return {
-        Header: res.fieldName,
+        Header: res.fieldName + `${res.mandatory == 'true' ? '*' : ' ' }`,
+        accessor: res.accessor,
+        Cell: ({ cell }) => { return <EditableDsDateCell column={cell.column.id} row={cell.row.id} updateMyData={updateMyData} value={cell.value} colObj={cell.column} parentId={cell} rowObj={cell.row} /> },
+        width: res.width,
+        sticky: res.sticky
+
+
+      }
+    }
+     else if (res.cellType === 'number') {
+      return {
+        Header: res.fieldName + `${res.mandatory == 'true' ? '*' : ' ' }`,
         accessor: res.accessor,
         Cell: ({ cell }) => { return <EditableNumCell column={cell.column.id} row={cell.row.id} updateMyData={updateMyData} value={cell.value} dropDown={dropDown} colObj={cell.column} parentId={cell} rowObj={cell.row} valWidth={res.subSecWidth} /> },
         width: res.width,
@@ -52,7 +63,7 @@ export const ColumnHeader = (colData, updateMyData, dropDown, addAndDeleteRow, g
       }
     } else if (res.cellType === 'attach') {
       return {
-        Header: res.fieldName,
+        Header: res.fieldName + `${res.mandatory == 'true' ? '*' : ' ' }`,
         accessor: res.accessor,
         Cell: ({ cell }) => { return <EditableAttachCell column={cell.column.id} row={cell.row.id} updateMyData={updateMyData} value={cell.value} colObj={cell.column} parentId={cell} rowObj={cell.row} /> },
         width: res.width,
@@ -60,7 +71,7 @@ export const ColumnHeader = (colData, updateMyData, dropDown, addAndDeleteRow, g
       }
     } else if (res.cellType === 'addRemove') {
       return {
-        Header: res.fieldName,
+        Header: res.fieldName + `${res.mandatory == 'true' ? '*' : ' ' }`,
         accessor: res.accessor,
         Cell: ({ cell }) => { return <EditableActionCell colObj={cell.column} column={cell.column.id} row={cell.row.id} rowObj={cell.row} addAndDeleteRow={addAndDeleteRow} /> },
         width: res.width,
@@ -68,7 +79,7 @@ export const ColumnHeader = (colData, updateMyData, dropDown, addAndDeleteRow, g
       }
     } else if (res.cellType === 'modalBtn') {
       return {
-        Header: res.fieldName,
+        Header: res.fieldName + `${res.mandatory == 'true' ? '*' : ' ' }`,
         accessor: res.accessor,
         Cell: ({ cell }) => { return <EditableActionPopCell colObj={cell.column} column={cell.column.id} row={cell.row.id} rowObj={cell.row} gridData={gridData} /> },
         width: res.width,
@@ -79,7 +90,7 @@ export const ColumnHeader = (colData, updateMyData, dropDown, addAndDeleteRow, g
       let gridIdVal = res.gridId
       let colIdVal = res.columnId
       return {
-        Header: res.fieldName,
+        Header: res.fieldName + `${res.mandatory == 'true' ? '*' : ' ' }`,
         accessor: res.accessor,
         Cell: ({ cell }) => {
           // console.log(cell)
@@ -91,7 +102,7 @@ export const ColumnHeader = (colData, updateMyData, dropDown, addAndDeleteRow, g
     } else if (res.cellType === 'import') {
 
       return {
-        Header: res.fieldName,
+        Header: res.fieldName + `${res.mandatory == 'true' ? '*' : ' ' }`,
         accessor: res.accessor,
         Cell: ({ cell }) => {
           return <EditableImporter gridData={gridData} columnData={cell.column} />
@@ -103,7 +114,7 @@ export const ColumnHeader = (colData, updateMyData, dropDown, addAndDeleteRow, g
     } else if (res.cellType === 'export') {
 
       return{
-        Header: res.fieldName,
+        Header: res.fieldName + `${res.mandatory == 'true' ? '*' : ' ' }`,
         accessor: res.accessor,
         Cell : ({cell})=>{
           return<EditableUploader gridData={gridData} columnData={cell.column} />
@@ -115,7 +126,7 @@ export const ColumnHeader = (colData, updateMyData, dropDown, addAndDeleteRow, g
     }else if(res.cellType == 'link'){
       let gridIdVal = res.gridId
       return{
-        Header: res.fieldName,
+        Header: res.fieldName + `${res.mandatory == 'true' ? '*' : ' ' }`,
         accessor: res.accessor,
         Cell : ({cell})=>{
           // console.log('cell.row',cell.row)
@@ -128,7 +139,7 @@ export const ColumnHeader = (colData, updateMyData, dropDown, addAndDeleteRow, g
       }
     }else if(res.cellType == 'rtf'){
       return {
-        Header : res.fieldName,
+        Header: res.fieldName + `${res.mandatory == 'true' ? '*' : ' ' }`,
         accessor : res.accessor,
         Cell : ({cell}) =>{
           return <EditableRtf colObj={cell.column} column={cell.column.id} row={cell.row.id} updateMyData={updateMyData} value={cell.value} />
@@ -138,7 +149,7 @@ export const ColumnHeader = (colData, updateMyData, dropDown, addAndDeleteRow, g
       }
     }else if(res.cellType == 'partyLink'){
       return {
-        Header : res.fieldName,
+        Header: res.fieldName + `${res.mandatory == 'true' ? '*' : ' ' }`,
         accessor : res.accessor,
         Cell : ({cell}) =>{
           return <EditablePartyLink rowObj={cell.row}/>
@@ -148,7 +159,7 @@ export const ColumnHeader = (colData, updateMyData, dropDown, addAndDeleteRow, g
       }
     } else if(res.cellType =='homeLink'){
       return {
-        Header : res.fieldName,
+        Header: res.fieldName + `${res.mandatory == 'true' ? '*' : ' ' }`,
         accessor : res.accessor,
         Cell : ({cell}) =>{
           return <EditableHomeLink penFlag = {location.state.daysFlag} rowObj={cell.row}/>
@@ -161,7 +172,7 @@ export const ColumnHeader = (colData, updateMyData, dropDown, addAndDeleteRow, g
       let gridIdVal = res.gridId
       let colIdVal = res.columnId
       return {
-        Header: res.fieldName,
+        Header: res.fieldName + `${res.mandatory == 'true' ? '*' : ' ' }`,
         accessor: res.accessor,
         Cell: ({ cell }) => { return <EditableDisableDdCell column={cell.column.id} row={cell.row.id} updateMyData={updateMyData} value={cell.value} dropDown={dropDownData} rowObj={cell.row} colObj={cell.column} parentId={{ formIdVal, gridIdVal, colIdVal, json: cell.row }} handleOnfocus={handleOnfocus} /> },
         width: res.width,
@@ -170,7 +181,7 @@ export const ColumnHeader = (colData, updateMyData, dropDown, addAndDeleteRow, g
     }else if (res.cellType === 'disableTextCell') {
       let gridIdVal = res.gridId
       return {
-        Header: res.fieldName,
+        Header: res.fieldName + `${res.mandatory == 'true' ? '*' : ' ' }`,
         accessor: res.accessor,
         Cell: ({ cell, row }) => {
           // console.log('theCellData', row.getRowProps())
@@ -183,7 +194,7 @@ export const ColumnHeader = (colData, updateMyData, dropDown, addAndDeleteRow, g
       }
     }else if(res.cellType == 'a3Link'){
       return {
-        Header : res.fieldName,
+        Header: res.fieldName + `${res.mandatory == 'true' ? '*' : ' ' }`,
         accessor : res.accessor,
         Cell : ({cell}) =>{
           return <ExternalA3Link rowObj={cell.row} />
@@ -193,7 +204,7 @@ export const ColumnHeader = (colData, updateMyData, dropDown, addAndDeleteRow, g
       }
       }else if(res.cellType == 'reportDownload'){
         return {
-          Header : res.fieldName,
+          Header: res.fieldName + `${res.mandatory == 'true' ? '*' : ' ' }`,
           accessor : res.accessor,
           Cell : ({cell}) =>{
             return <DownloadRpt rowObj={cell.row} />
@@ -203,7 +214,7 @@ export const ColumnHeader = (colData, updateMyData, dropDown, addAndDeleteRow, g
         }
         }else if(res.cellType == 'checkerLink'){
           return {
-            Header : res.fieldName,
+            Header: res.fieldName + `${res.mandatory == 'true' ? '*' : ' ' }`,
             accessor : res.accessor,
             Cell : ({cell}) =>{
               return <CheckerLink rowObj={cell.row.original}/>
@@ -212,7 +223,7 @@ export const ColumnHeader = (colData, updateMyData, dropDown, addAndDeleteRow, g
         }
      else {
       return {
-        Header: res.fieldName,
+        Header: res.fieldName + `${res.mandatory == 'true' ? '*' : ' ' }`,
         accessor: res.accessor,
         width: res.width,
         sticky: res.sticky

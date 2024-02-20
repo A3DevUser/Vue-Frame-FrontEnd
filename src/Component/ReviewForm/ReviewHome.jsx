@@ -11,6 +11,7 @@ import { FetchReviewDataData } from '../../Store/Actions/ReviewFormDataAct'
 import { Checkbox } from '../FormTableDir/Checkbox'
 import { useSticky } from 'react-table-sticky'
 import { SendReviewData } from '../../Store/Actions/SendReviewDataAct'
+import swal from 'sweetalert'
 
 
 
@@ -25,6 +26,7 @@ const ReviewHome = ({ gridData, columnData, reportData }) => {
     const ReviewDataRed = useSelector((state)=>state.ReviewDataRed)
 
     const [reviewFilter,setreviewFilter] = useState({})
+    const [genDisable,setGenDisable] = useState(true)
 
     // useEffect(()=>{
     //     console.log('ReviewTypeFilterRed',ReviewTypeFilterRed)
@@ -60,25 +62,42 @@ const ReviewHome = ({ gridData, columnData, reportData }) => {
         }
     },[ReviewDataRed])
 
+    const [reviewType,setReviewType] = useState('')
     const handleTypeChange = (e) =>{
-        const reviewType = e.target.value
-        dispatch(FetchReviewFreq(reviewType,AuthRed.val))
-        setreviewFilter((old)=>{return {...old,[e.target.id]:reviewType}})
+        setReviewType(e.target.value)
+        dispatch(FetchReviewFreq(e.target.value,AuthRed.val))
+        setreviewFilter((old)=>{return {...old,[e.target.id]:e.target.value}})
     }
 
+    const [reviewFreq,setReviewFreq] = useState('')
     const handleFreqChange = (e) =>{
-        const reviewFreq = e.target.value
-        dispatch(FetchReviewSubFreq(reviewFreq,AuthRed.val))
-        setreviewFilter((old)=>{return {...old,[e.target.id]:reviewFreq}})
+        setReviewFreq(e.target.value)
+        dispatch(FetchReviewSubFreq(e.target.value,AuthRed.val))
+        setreviewFilter((old)=>{return {...old,[e.target.id]:e.target.value}})
     }
 
+    const [reviewSubFreq,setReviewSubFreq] = useState('')
     const handleSubfreq = (e) =>{
-        const reviewSubFreq = e.target.value
-        setreviewFilter((old)=>{return {...old,[e.target.id]:reviewSubFreq}})
+        setReviewSubFreq(e.target.value)
+        setreviewFilter((old)=>{return {...old,[e.target.id]:e.target.value}})
     }
 
     const handleReview = () =>{
         // console.log('Review Data Saved','inside send button') 
+        if(newreviewName == ''){
+            swal({
+                title :'Alert',
+                text : 'Kindly Enter Review Name.',
+                icon: "warning",
+            })
+        }else if([...selectedFlatRows].length < 1){
+            swal({
+                title :'Alert',
+                text : 'Kindly Select the vendor list to Generate.',
+                icon: "warning",
+            })
+        }else{
+            setGenDisable(true)
         let newData = [...selectedFlatRows.map((res)=>{return res.original})]
         const finalData = newData.map((res)=>{
             return {ASSOCIATE_VEND : res.ASSOCIATE_VEND,VENDOR_ID:'',...reviewFilter,VF_MAIN_OBJ_ID:res.VF_MAIN_OBJ_ID}
@@ -86,14 +105,22 @@ const ReviewHome = ({ gridData, columnData, reportData }) => {
 
         dispatch(SendReviewData(finalData,AuthRed.val))
     }
-
-    const handleVendors = () =>{
-        dispatch(FetchReviewDataData(reviewFilter.reviewFreq,reviewFilter.reviewSubFreq,AuthRed.val))
     }
 
+    const [newreviewName,setReviewName] = useState('')
+
     const handleBlur = (e) =>{
+        setReviewName(e.target.value)
         const reviewName = e.target.value
         setreviewFilter((old)=>{return {...old,[e.target.id]:reviewName}})
+    }
+
+    const handleVendors = () =>{
+            dispatch(FetchReviewDataData(reviewFilter.reviewFreq,reviewFilter.reviewSubFreq,AuthRed.val))
+            if(reviewFreq != '' && reviewSubFreq != '' && reviewType != ''){
+                console.log('handleVendors','Inside handleVendors');
+                setGenDisable(false)
+            }
     }
 
     const { getTableProps,
@@ -189,7 +216,7 @@ const ReviewHome = ({ gridData, columnData, reportData }) => {
 
                     </div>
                     <div className='collapseHead2'>
-                        <button className='btn btn-success' onClick={handleReview}>Generate Review</button>
+                        <button className='btn btn-success' onClick={handleReview} disabled={genDisable}>Generate Review</button>
                     </div>
                 </div>
                 <div className='tableDiv'>

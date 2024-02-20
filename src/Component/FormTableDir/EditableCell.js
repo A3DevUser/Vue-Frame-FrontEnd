@@ -18,6 +18,7 @@ import RichText from "../../Component/RichText/RichText"
 import { Button, InputGroup, Modal } from "react-bootstrap"
 import Select from 'react-select'
 import { FetchWorkFlowEditData } from "../../Store/Actions/WorkFlowEditAct"
+import swal from "sweetalert"
 
 export const EditableCell = ({
     value: initialValue,
@@ -38,7 +39,7 @@ export const EditableCell = ({
     const [freeze,setFreeze] = useState()
 
     const onChange = e => {
-      setValue(e.target.value)
+        setValue(e.target.value)      
     }
   
 
@@ -74,14 +75,31 @@ export const EditableCell = ({
       
     },[SendReportConfDataRed])
 
+    const alphanumericRegex = /^[a-zA-Z0-9_]*$/;
+
     const onBlur = () => {
-      updateMyData(index, id, value,null)
+      if(id == 'dbTableName'){
+        if(!alphanumericRegex.test(value)){
+        swal({
+              title :'Alert',
+              text : 'Entered Data is Incorrect',
+              icon: "warning",
+              dangerMode: true
+            })
+        }
+      }else{
+        updateMyData(index, id, value,null)
+      }
       // console.log('maxlengthpro',colObj)
     }
   
     React.useEffect(() => {
       setValue(initialValue)
     }, [initialValue])
+
+    React.useEffect(() => {
+      console.log('FormColumnName',id);
+    },[id])
     
     return <div>
       <textarea value={value} className='form-control' style={{width:colObj.width,border:'none'
@@ -230,6 +248,12 @@ export const EditableCell = ({
       if(colObj.id == 'dbcolLimit'){
             if(rowObj.original.cellType == 'textArea' || rowObj.original.cellType == ''){
               setFreeze(false)
+              // swal({
+              //   title :'Alert',
+              //   text : 'Kindly Enter Column Limit',
+              //   // icon: "success",
+              //   dangerMode: true
+              // })
             }else{
               setFreeze(true)
               setValue('')
@@ -273,7 +297,45 @@ export const EditableCell = ({
     }, [initialValue])
   
     return <div>
-      <input value={value} type={'date'} className='form-control' style={{width:colObj.width, border:'none'}} onChange={onChange} onBlur={onBlur} placeholder='Enter Remark...'  />
+      <input value={value} type={'date'} className='form-control' style={{width:colObj.width, border:'none'}} onChange={onChange} onBlur={onBlur} placeholder='Enter Remark...' />
+      {/* xyz disabled={rowObj.original.isDisable}*/}
+    </div>
+  }
+
+  export const EditableDsDateCell = ({
+    value: initialValue,
+    row:  index ,
+    column:  id ,
+    updateMyData, 
+    colObj:colObj,
+    rowObj : rowObj,
+    parentId
+  }) => {
+    const [value, setValue] = React.useState(initialValue)
+    const [valChange,setValChange] = React.useState('')
+  
+    const onChange = e => {
+      setValue(e.target.value)
+    }
+  
+    const onBlur = () => {
+      updateMyData(index, id, value,null,'')
+    }
+  
+    React.useEffect(() => {
+      setValue(initialValue)
+    }, [initialValue])
+    
+    React.useEffect(() => {
+      setValChange(rowObj.values.dsStartDate)
+    },[rowObj])
+
+    React.useEffect(() => {
+      setValue('')
+    },[valChange])
+  
+    return <div>
+      <input value={value} type={'date'} className='form-control' style={{width:colObj.width, border:'none'}} onChange={onChange} onBlur={onBlur} placeholder='Enter Remark...' min={ rowObj.values.dsStartDate } />
       {/* xyz disabled={rowObj.original.isDisable}*/}
     </div>
   }
