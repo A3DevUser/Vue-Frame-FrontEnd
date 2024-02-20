@@ -248,6 +248,12 @@ export const EditableCell = ({
       if(colObj.id == 'dbcolLimit'){
             if(rowObj.original.cellType == 'textArea' || rowObj.original.cellType == ''){
               setFreeze(false)
+              // swal({
+              //   title :'Alert',
+              //   text : 'Kindly Enter Column Limit',
+              //   // icon: "success",
+              //   dangerMode: true
+              // })
             }else{
               setFreeze(true)
               setValue('')
