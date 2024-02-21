@@ -135,6 +135,7 @@ const FormConf = () => {
         }).map((res)=>{return res.accessor})
 
         function checkEmptyFields(obj, fields) {
+          console.log('checkEmptyFields',obj);
           return fields.some(field => !obj[field]);
         }
 

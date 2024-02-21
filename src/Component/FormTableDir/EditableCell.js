@@ -78,7 +78,7 @@ export const EditableCell = ({
     const alphanumericRegex = /^[a-zA-Z0-9_]*$/;
 
     const onBlur = () => {
-      if(id == 'dbTableName'){
+      if(id == 'dbTableName' || id == 'accessor'){
         if(!alphanumericRegex.test(value)){
         swal({
               title :'Alert',
@@ -86,10 +86,13 @@ export const EditableCell = ({
               icon: "warning",
               dangerMode: true
             })
+        }else{
+          updateMyData(index, id, value,null)  
         }
       }else{
         updateMyData(index, id, value,null)
       }
+      // updateMyData(index, id, value,null)
       // console.log('maxlengthpro',colObj)
     }
   
