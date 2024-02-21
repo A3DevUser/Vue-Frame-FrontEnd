@@ -125,7 +125,8 @@ const TableStruc = ({getTableProps,getTableBodyProps,headerGroups,prepareRow,row
             }
         </div>
       </div>
-        <div style={{display:'flex', justifyContent:'center', marginTop:'1vw', gap:'10px',alignItems:'center' }} >
+      {console.log('gridData',gridData,((window.location.pathname !== '/confEdit') || (gridData.isMrow == 'true')))}
+        <div style={{display: ((window.location.pathname !== '/confEdit') && (gridData.isMrow == 'true')) ? 'flex' : 'none' , justifyContent:'center', marginTop:'1vw', gap:'10px',alignItems:'center' }} >
         <span >
             page: {' '}
             <strong>

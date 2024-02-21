@@ -11,6 +11,8 @@ import { FetchImportGridData } from "../../../Store/Actions/ImportGridAct"
 import RichText from "../../../Component/RichText/RichText"
 import { Button, InputGroup, Modal } from "react-bootstrap"
 import ModalFormAdd from "./ModalFormAdd"
+import { EmailValidation, PanValidation } from "./AddFuncs"
+import swal from "sweetalert"
 
 export const EditableCell = ({
     value: initialValue,
@@ -866,4 +868,84 @@ export const  ExternalA3Link = ({
   const auditId = rowObj.original.VF_MAIN_OBJ_ID;
 
   return <a href={`http://192.168.100.233:3001/?AuditId=${auditId}&UserId=${UserDataStateRed}&auditType=Universal%20branch`} target="_blank" >Perform Assesment</a>
+}
+
+export const EditablePanCell = ({
+  value: initialValue,
+  row:  index ,
+  column:  id ,
+  updateMyData, 
+  colObj:colObj,
+  rowObj : rowObj,
+}) => {
+
+
+  const [value, setValue] = React.useState(initialValue)
+
+  const onChange = e => {
+    setValue(e.target.value)
+  }
+
+
+
+  const onBlur = () => {
+    if(PanValidation(value)){
+      updateMyData(index, id, value,null)
+    }else{
+      setValue('')
+      return swal({
+        title : 'Inavlid PAN number',
+        icon : 'warning'
+      })
+    }
+    // console.log('maxlengthpro',colObj)
+  }
+
+  React.useEffect(() => {
+    setValue(initialValue)
+  }, [initialValue])
+  
+  return <div>
+    <textarea value={value} className='form-control' style={{width:colObj.width,border:'none'}} onChange={onChange} onBlur={onBlur} placeholder='Enter PAN...' maxLength={10}/>
+  </div>
+}
+
+export const EditableEmailCell = ({
+  value: initialValue,
+  row:  index ,
+  column:  id ,
+  updateMyData, 
+  colObj:colObj,
+  rowObj : rowObj,
+}) => {
+
+
+  const [value, setValue] = React.useState(initialValue)
+
+  const onChange = e => {
+    setValue(e.target.value)
+  }
+
+
+
+  const onBlur = () => {
+    if(EmailValidation(value)){
+      updateMyData(index, id, value,null)
+    }else{
+      setValue('')
+      return swal({
+        title : 'Inavlid email',
+        icon : 'warning'
+      })
+    }
+    // console.log('maxlengthpro',colObj)
+  }
+
+  React.useEffect(() => {
+    setValue(initialValue)
+  }, [initialValue])
+  
+  return <div>
+    <textarea value={value} className='form-control' style={{width:colObj.width,border:'none'}} onChange={onChange} onBlur={onBlur} placeholder='Enter Email...' />
+  </div>
 }

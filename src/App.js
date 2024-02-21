@@ -46,6 +46,7 @@ import NewPartySheet from './Component/A3PartyComp/NewPartySheet'
 import ComboHomeTest from './Component/ComboHomeTest/ComboHomeTest'
 import ComboPartySheet from './Component/ComboHomeTest/ComboPartySheet'
 import NewEditTable from './Component/EditViewAdd/EditTable/NewEditTable'
+import ErrorLog from './Component/Elements/ErrorLog'
 
 
 const App = () => {
@@ -119,7 +120,7 @@ const App = () => {
           <Route path='/hometestsheet' element={<ComboHomeTest />} />
           <Route path='/ComboPartySheet' element={<ComboPartySheet />} />
           <Route path='/EditTableComp' element={<NewEditTable/>} />
-
+          <Route element={<ErrorLog/>} />
         </Route>
         {/* <Route path='/hometestsheet' element={<ComboHomeTest/>}/> */}
       </Routes>

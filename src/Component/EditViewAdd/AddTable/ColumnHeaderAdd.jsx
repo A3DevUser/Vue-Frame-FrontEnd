@@ -1,5 +1,5 @@
 import { useEffect } from "react"
-import { DisableCell, EditableActionCell, EditableActionPopCell, EditableAnaCell, EditableAttachCell, EditableCell, EditableDateCell, EditableDdCell, EditableDdIe, EditableDisableDdCell, EditableHomeLink, EditableImporter, EditableLink, EditableLogicCell, EditableMixCell, EditableMksCell, EditableNumCell, EditablePartyLink, EditableRtf, EditableStaticCell, EditableUploader, ExternalA3Link, } from "./EditableCellAdd"
+import { DisableCell, EditableActionCell, EditableActionPopCell, EditableAnaCell, EditableAttachCell, EditableCell, EditableDateCell, EditableDdCell, EditableDdIe, EditableDisableDdCell, EditableEmailCell, EditableHomeLink, EditableImporter, EditableLink, EditableLogicCell, EditableMixCell, EditableMksCell, EditableNumCell, EditablePanCell, EditablePartyLink, EditableRtf, EditableStaticCell, EditableUploader, ExternalA3Link, } from "./EditableCellAdd"
 
 export const ColumnHeader = (colData, updateMyData, dropDown, addAndDeleteRow, gridData, data, handleOnfocus, dropDownData) => {
 
@@ -191,6 +191,26 @@ export const ColumnHeader = (colData, updateMyData, dropDown, addAndDeleteRow, g
         width: res.width,
         sticky: res.sticky
       }
+      }else if(res.cellType == 'pan'){
+        return {
+          Header : res.fieldName,
+          accessor : res.accessor,
+          Cell : ({cell}) =>{
+            return <EditablePanCell column={cell.column.id} row={cell.row.id} updateMyData={updateMyData} value={cell.value} colObj={cell.column}  rowObj={cell.row}/>
+          },
+          width: res.width,
+          sticky: res.sticky
+        }
+      }else if(res.cellType == 'email'){
+        return {
+          Header : res.fieldName,
+          accessor : res.accessor,
+          Cell : ({cell}) =>{
+            return <EditableEmailCell column={cell.column.id} row={cell.row.id} updateMyData={updateMyData} value={cell.value} colObj={cell.column}  rowObj={cell.row}/>
+          },
+          width: res.width,
+          sticky: res.sticky
+        }
       }
      else {
       return {
