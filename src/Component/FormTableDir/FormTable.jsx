@@ -18,6 +18,7 @@ import { MultiModalCompo } from '../../Component/FormMultiRowAdd/MultiModalCompo
 import { FetchMultiModalColData } from '../../Store/Actions/MultiModalColAct'
 import { FetchMultiModalColRowData } from '../../Store/Actions/MultiModalColRowAct'
 import { useLocation } from 'react-router'
+import { EditableCellPathDBvalData } from '../../Store/Actions/EditableCellPathDBval'
 
 const FormTable = ({ col, dData, gridData, handleSave, funNavConf, disBtn, setDisBtn }) => {
   const [data, setdata] = useState([...dData])
@@ -51,6 +52,7 @@ const FormTable = ({ col, dData, gridData, handleSave, funNavConf, disBtn, setDi
   useEffect(() => {
     setLocalData(SendReportConfDataRed.val)
   }, [SendReportConfDataRed])
+
 
 
     useEffect(()=>{
@@ -284,6 +286,9 @@ const FormTable = ({ col, dData, gridData, handleSave, funNavConf, disBtn, setDi
     
   }                                           //Tez
 
+  // useEffect(() => {
+  //   dispatch(EditableCellPathDBvalData(AuthRed.val))
+  // },[AuthRed])
 
   const handleOnfocus = (fid, gid, cid, rData, oData, rowInd) => {
     // console.log('dropvaldata',rData)

@@ -15,7 +15,7 @@ import { FetchImportColumnData } from "../../Store/Actions/ImportColumnAct"
 import { FetchImportGridData } from "../../Store/Actions/ImportGridAct"
 import { FetchObjectIdData } from "../../Store/Actions/ObjectIdAct"
 import RichText from "../../Component/RichText/RichText"
-import { Button, InputGroup, Modal } from "react-bootstrap"
+import { Button, InputGroup, Modal, Spinner } from "react-bootstrap"
 import Select from 'react-select'
 import { FetchWorkFlowEditData } from "../../Store/Actions/WorkFlowEditAct"
 import swal from "sweetalert"
@@ -190,9 +190,22 @@ export const EditableCell = ({
     const DropValRed = useSelector((state) => state.DropValRed)
     const DropDownValRed = useSelector((state)=> state.DropDownValRed)
     const ColumnRed = useSelector((state)=>state.ConfColumnRed)
+    const EditableCellPathDBRed = useSelector((state) => state.EditableCellPathDBRed)
     const [dropdownArray,setDropdownArray] = useState([]);
 
+    let dbPathName = []
 
+    useEffect(() => {
+      if(Array.isArray(EditableCellPathDBRed.val)){
+        dbPathName = EditableCellPathDBRed.val.filter((fil) => {
+          return fil.cellName == 'EditableDdCell'
+      })[0].data
+      }
+    },[EditableCellPathDBRed])
+
+    useEffect(() => {
+      console.log('EditableCellPathDBRed',dbPathName);
+    },[dbPathName])
 
     useEffect(() => {
       if (value != null){
@@ -204,7 +217,8 @@ export const EditableCell = ({
     },[])
 
   return <><select name={id} value={value} onFocus={()=>{handleOnfocus(parentId.formIdVal,parentId.gridIdVal,parentId.colIdVal,parentId.json.original,DropValRed.val,index)}} onChange={onChange} onBlur={onBlur} className='form-control' style={{width:colObj.width,height:'7vh', border:'none'}} disabled={rowObj.original.isDisable}>
-    {value != null&&window.location.pathname == '/editTable' ? <><option value={dropdownArray[0]}>{dropdownArray[1]}</option></> : value != null&&window.location.pathname == '/editConfForm' ? <><option value={dropdownArray[0]}>{dropdownArray[1]}</option></> : value != null&&window.location.pathname == '/editWorkFlowConf' ? <><option value={dropdownArray[0]}>{dropdownArray[1]}</option></> : value != null&&window.location.pathname == '/editDataSource' ? <><option value={dropdownArray[0]}>{dropdownArray[1]}</option></> : value != null&&window.location.pathname == '/editReport' ? <><option value={dropdownArray[0]}>{dropdownArray[1]}</option></> : <><option value="">Select One</option></>}
+        {value != null&&window.location.pathname.includes(dbPathName) ? <><option value={dropdownArray[0]}>{dropdownArray[1]}</option></> : <><option value="">Select One</option></>}
+    {/* {value != null&&window.location.pathname == '/editTable' ? <><option value={dropdownArray[0]}>{dropdownArray[1]}</option></> : value != null&&window.location.pathname == '/editConfForm' ? <><option value={dropdownArray[0]}>{dropdownArray[1]}</option></> : value != null&&window.location.pathname == '/editWorkFlowConf' ? <><option value={dropdownArray[0]}>{dropdownArray[1]}</option></> : value != null&&window.location.pathname == '/editDataSource' ? <><option value={dropdownArray[0]}>{dropdownArray[1]}</option></> : value != null&&window.location.pathname == '/editReport' ? <><option value={dropdownArray[0]}>{dropdownArray[1]}</option></> : <><option value="">Select One</option></>} */}
     {/* {value != null&&window.location.pathname == ('/editConfForm') ? <><option value={dropdownArray[0]}>{dropdownArray[1]}</option></> : <><option value="">Select One</option></>} */}
       {/* <option value="">Select One</option> */}
       {
@@ -787,9 +801,22 @@ const ImportGridRed = useSelector((state)=>state.ImportGridRed)
  export const EditablePartyLink = ({
   rowObj : rowObj,
  }) =>{
-// console.log('EditablePartyLink',rowObj)
+
+  const EditableCellPathDBRed = useSelector((state) => state.EditableCellPathDBRed)
+
+  let dbPathName = []
+
+  useEffect(() => {
+    if(Array.isArray(EditableCellPathDBRed.val)){
+      dbPathName = EditableCellPathDBRed.val.filter((fil) => {
+        return fil.cellName == 'EditablePartyLink'
+    })[0].data
+    }
+  },[EditableCellPathDBRed])
+
+// console.log('EditablePartyLink',rowObj)'/partysheet'
   return <div style={{display:'flex', justifyContent:'center', alignItems:'center'}}>
-  <Link to={'/partysheet'} state={{rowData :rowObj.original}} >Assesment Form</Link>
+  <Link to={dbPathName[0]} state={{rowData :rowObj.original}} >Assesment Form</Link>
   </div>
  }
 
@@ -799,10 +826,22 @@ const ImportGridRed = useSelector((state)=>state.ImportGridRed)
   penFlag : penFlag
  }) =>{
 
-  // console.log('EditableHomeLink',penFlag)
+  const EditableCellPathDBRed = useSelector((state) => state.EditableCellPathDBRed)
+
+  let dbPathName = []
+
+  useEffect(() => {
+    if(Array.isArray(EditableCellPathDBRed.val)){
+      dbPathName = EditableCellPathDBRed.val.filter((fil) => {
+        return fil.cellName == 'EditableHomeLink'
+    })[0].data
+    }
+  },[EditableCellPathDBRed])
+
+  // console.log('EditableHomeLink',penFlag)'/a3HomeSheet'
   return (
   <div style={{display:'flex', justifyContent:'center', alignItems:'center'}}>
-  <Link to={'/a3HomeSheet'} state={{reviewId : rowObj.original.review_plan_id,review_name:rowObj.original.review_name, dataRow : rowObj.original, daysFlag : penFlag}}>Assesment Form</Link>
+  <Link to={dbPathName[0]} state={{reviewId : rowObj.original.review_plan_id,review_name:rowObj.original.review_name, dataRow : rowObj.original, daysFlag : penFlag}}>Assesment Form</Link>
   </div>)
 
  }
@@ -881,8 +920,23 @@ const ImportGridRed = useSelector((state)=>state.ImportGridRed)
     }
   },[])
 
+  const EditableCellPathDBRed = useSelector((state) => state.EditableCellPathDBRed)
+
+  let dbPathName = []
+
+  useEffect(() => {
+    if(!EditableCellPathDBRed.loading){
+      console.log('EditableDisableDdCell',Array.isArray(EditableCellPathDBRed.val));
+    if(Array.isArray(EditableCellPathDBRed.val)){
+      dbPathName = EditableCellPathDBRed.val.filter((fil) => {
+        return fil.cellName == 'EditableDisableDdCell'
+    })[0].data
+    }}
+    console.log('EditableDisableDdCell',dbPathName);
+  },[EditableCellPathDBRed])
+
 return <select name={id} value={value} onFocus={()=>{handleOnfocus(parentId.formIdVal,parentId.gridIdVal,parentId.colIdVal,parentId.json.original,DropValRed.val,index)}} onChange={onChange} onBlur={onBlur} className='form-control' style={{width:colObj.width,height:'7vh', border:'none'}} disabled='true'>
-  {value != null&&window.location.pathname == '/editTable' ? <><option value={dropdownArray[0]}>{dropdownArray[1]}</option></> : <><option value="">Select One</option></>}
+  {value != null&&window.location.pathname.includes(dbPathName) ? <><option value={dropdownArray[0]}>{dropdownArray[1]}</option></> : <><option value="">Select One</option></>}
     {/* <option value="">Select One</option> */}
     {
      DropValRed.loading ? <option>loading...</option> : 
@@ -959,6 +1013,19 @@ export const CheckerLink = ({
   rowObj : rowObj,
 
 }) =>{
+
+  const EditableCellPathDBRed = useSelector((state) => state.EditableCellPathDBRed)
+
+  let dbPathName = []
+
+  useEffect(() => {
+    if(Array.isArray(EditableCellPathDBRed.val)){
+      dbPathName = EditableCellPathDBRed.val.filter((fil) => {
+        return fil.cellName == 'CheckerLink'
+    })[0].data
+    }
+  },[EditableCellPathDBRed])
+
   // console.log('new row login data',rowObj)
-  return <Link to={'/checkerForm'} state={{reviewId : rowObj.review_id, reviewName : rowObj.review_name, review_freq : rowObj.review_freq, sub_frequency : rowObj.sub_frequency, review_type : rowObj.review_type}}>Vendors</Link>
+  return <Link to={dbPathName[0]} state={{reviewId : rowObj.review_id, reviewName : rowObj.review_name, review_freq : rowObj.review_freq, sub_frequency : rowObj.sub_frequency, review_type : rowObj.review_type}}>Vendors</Link>
 }
