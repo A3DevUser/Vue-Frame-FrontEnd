@@ -154,15 +154,17 @@ const EditWorkFlowConf = () => {
           // }
          if (location.state !== null) {
           console.log('WFedittest','inside if');
+          console.log('WFedittest',location.state.formId);
           // console.log('mainGrid Val else',location.state)
           // console.log('mainGrid Val else',val.gridId)
-          return { ...res, formId: location.state.formId, targetId: val.gridId }
+          return { ...res, targetId: val.gridId }
         } else {
           console.log('WFedittest','inside else');
           // alert('inside EditForm')
           return { ...res, ...SendConfDataRed.val, targetId: val.gridId }
         }
       })
+      console.log('WFedittest',FormData);
       // console.log('mainGrid Val else',FormData)
       // console.log('FormDataNewVal',JSON.stringify(FormData))
       dispatch(FormConfData(val.api, FormData, AuthRed.val))
