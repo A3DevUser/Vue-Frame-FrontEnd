@@ -641,6 +641,21 @@ const ImportGridRed = useSelector((state)=>state.ImportGridRed)
 
     const dispatch = useDispatch()
     const AuthRed = useSelector((state)=>state.AuthRed)
+    const EditableCellGidFidDBRed = useSelector((state) => state.EditableCellGidFidDBRed)
+
+    let dbGidFidval = []
+
+    useEffect(() => {
+      if(Array.isArray(EditableCellGidFidDBRed.val)){
+        dbGidFidval = EditableCellGidFidDBRed.val.filter((fil) => {
+          return fil.cellName == 'EditableLink'
+      })[0].data
+      }
+    },[EditableCellGidFidDBRed])
+
+    // useEffect(() => {
+    //   console.log('EditableCellGidFidDBRed',dbGidFidval);
+    // },[dbGidFidval])
     
     // const handleClick = () =>{
     //   if(gridIdVal == 'GID-576'){
@@ -653,19 +668,24 @@ const ImportGridRed = useSelector((state)=>state.ImportGridRed)
 
     // }
     const handleClick = () =>{
-      if (gridIdVal == 'GID-576') {
-        dispatch(FormIdAct('FORM-105'))
-      } else if (gridIdVal == 'GID-641') {
-        dispatch(FormIdAct('FORM-106'))
-        // dispatch(FetchWorkFlowEditData(rowObj.original.form_id,AuthRed.val))
-      } else if (gridIdVal == 'GID-924') {
-        dispatch(FormIdAct('FORM-203'))
-        // console.log('FormDataNewVal',gridIdVal)        
-      }else if(gridIdVal == 'GID-925'){
-        dispatch(FormIdAct('FORM-202'))
-      }else{
-        // console.log('empty');
-      }
+
+      dbGidFidval.filter((fil) => {return fil.GRID_ID == gridIdVal}).forEach((res,i) => {
+        dispatch(FormIdAct(res.FORM_ID))
+      });
+
+      // if (gridIdVal == 'GID-576') {
+      //   dispatch(FormIdAct('FORM-105'))
+      // } else if (gridIdVal == 'GID-641') {
+      //   dispatch(FormIdAct('FORM-106'))
+      //   // dispatch(FetchWorkFlowEditData(rowObj.original.form_id,AuthRed.val))
+      // } else if (gridIdVal == 'GID-924') {
+      //   dispatch(FormIdAct('FORM-203'))
+      //   // console.log('FormDataNewVal',gridIdVal)        
+      // }else if(gridIdVal == 'GID-925'){
+      //   dispatch(FormIdAct('FORM-202'))
+      // }else{
+      //   // console.log('empty');
+      // }
     }
     // console.log('FormDataNewVal',{formId : rowObj.original.form_id},path)
     return <Link to={{pathname : path}} state={{formId : rowObj.original.form_id}} onClick={handleClick}  >{lable}</Link>

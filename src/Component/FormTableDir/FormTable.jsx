@@ -19,6 +19,7 @@ import { FetchMultiModalColData } from '../../Store/Actions/MultiModalColAct'
 import { FetchMultiModalColRowData } from '../../Store/Actions/MultiModalColRowAct'
 import { useLocation } from 'react-router'
 import { EditableCellPathDBvalData } from '../../Store/Actions/EditableCellPathDBval'
+import { FormReportConfData } from '../../Store/Actions/SendReportConfData'
 
 const FormTable = ({ col, dData, gridData, handleSave, funNavConf, disBtn, setDisBtn }) => {
   const [data, setdata] = useState([...dData])
@@ -43,16 +44,11 @@ const FormTable = ({ col, dData, gridData, handleSave, funNavConf, disBtn, setDi
 
   const SendReportConfDataRed = useSelector((state) => state.SendReportConfDataRed)
   const [localData, setLocalData] = useState([])
-  const [hide, setHide] = useState(false)
+  const [hide, setHide] = useState(true)
   const [localVal, setLocalVal] = useState([])
   const location = useLocation()
 
   // console.log('dData',dData)
-
-  useEffect(() => {
-    setLocalData(SendReportConfDataRed.val)
-  }, [SendReportConfDataRed])
-
 
 
     useEffect(()=>{
@@ -97,6 +93,16 @@ const FormTable = ({ col, dData, gridData, handleSave, funNavConf, disBtn, setDi
   // const AreaSchemeDateSetRed = useSelector((state)=>state.AreaSchemeDateSetRed)
 
   const dispatch = useDispatch()
+
+  useEffect(() => {
+    console.log('NewTestSendReportConfDataRed',SendReportConfDataRed.val);
+    if(Array.isArray(SendReportConfDataRed.val) && [...SendReportConfDataRed.val].length >= 1){
+      if(Object.keys(SendReportConfDataRed.val[0]).includes('columnName')){
+        setLocalData(SendReportConfDataRed.val)
+        setHide(false)
+      }
+    }
+  }, [SendReportConfDataRed])
 
 
   const formData = new FormData()

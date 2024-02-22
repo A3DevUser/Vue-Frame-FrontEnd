@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { PostFormExcelData } from '../../Store/Actions/FormExcelPostAct'
 import { FetchWFCommonData } from '../../Store/Actions/WorkFlowCommon'
@@ -33,6 +33,7 @@ const ConfEdit = () => {
     dispatch(FetchGetData(FormIdRed,AuthRed.val,UserDataStateRed))
     },[FormIdRed])
 
+
     const handleSave = () =>{
           Object.values(FormDatRed).forEach((res)=>{
             dispatch(PostFormExcelData(res,AuthRed.val)) 
@@ -44,15 +45,17 @@ const ConfEdit = () => {
 
       }
 
-
+      const [navGrid,setNavGrid] = useState()
       let FormConfig = 'GID-576'
       let WorkFlowConfig = 'GID-641'
       let reportEdit = 'GID-924'
       let dataSource = 'GID-925'
+      
 
       const funNavConf = (gridIdVal) => {
+        setNavGrid(gridIdVal)
           if(gridIdVal == FormConfig){
-            dispatch(FormIdAct('FORM-105'))
+            // dispatch(FormIdAct('FORM-105'))
               dispatch(FormIdAct('FORM-105'))
               navigate('/confform')
           }else if(gridIdVal == WorkFlowConfig){

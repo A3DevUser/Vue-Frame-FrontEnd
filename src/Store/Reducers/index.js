@@ -65,6 +65,7 @@ import { A3GetPartySheetDataRed } from "./A3GetPartySheetDataRed";
 import { SendTestScoreDataRed } from "./TestScoreDataRed"; 
 import { AddTablePostRed } from "./AddTablePostRed";
 import { EditableCellPathDBRed } from "./EditableCellPathDBRed";
+import { EditableCellGidFidDBRed } from "./EditableCellGidFidDBRed";
 
 
 const rootReducers = combineReducers({
@@ -145,7 +146,8 @@ const rootReducers = combineReducers({
     AddTableMultFormDataRed,
     AddTablePostRed,
     PreOnboardignScoreRed,
-    EditableCellPathDBRed
+    EditableCellPathDBRed,
+    EditableCellGidFidDBRed
     });
 
 export default rootReducers

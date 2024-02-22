@@ -11,6 +11,7 @@ import { FetchPendencyData } from '../../Store/Actions/PendencyDataAct'
 import { FetchGetData } from '../../Store/Actions/GetDataAct'
 import { FormIdRed } from '../../Store/Reducers/GeneralStatesRed'
 import { EditableCellPathDBvalData } from '../../Store/Actions/EditableCellPathDBval'
+import { EditableCellGidFidDBvalData } from '../../Store/Actions/EditableCellGidFidDBval'
 
 const PendencyDashboard = () => {
 
@@ -33,6 +34,7 @@ const PendencyDashboard = () => {
 
   useEffect(() => {
     dispatch(EditableCellPathDBvalData(AuthRed.val))
+    dispatch(EditableCellGidFidDBvalData(AuthRed.val))
   },[AuthRed])
 
     let titleData = [{"Title":"Pendency Dashboard"}]
