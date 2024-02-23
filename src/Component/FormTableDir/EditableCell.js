@@ -190,6 +190,8 @@ export const EditableCell = ({
 
     let dbPathName = []
 
+    // const [dbPathName,setdbPathName] = useState([])
+
     useEffect(() => {
       if(Array.isArray(EditableCellPathDBRed.val)){
         dbPathName = EditableCellPathDBRed.val.filter((fil) => {
@@ -820,6 +822,7 @@ const ImportGridRed = useSelector((state)=>state.ImportGridRed)
   const EditableCellPathDBRed = useSelector((state) => state.EditableCellPathDBRed)
 
   let dbPathName = []
+  // const [dbPathName,setdbPathName] = useState([])
 
   useEffect(() => {
     if(Array.isArray(EditableCellPathDBRed.val)){
@@ -844,6 +847,7 @@ const ImportGridRed = useSelector((state)=>state.ImportGridRed)
   const EditableCellPathDBRed = useSelector((state) => state.EditableCellPathDBRed)
 
   let dbPathName = []
+  // const [dbPathName,setdbPathName] = useState([])
 
   useEffect(() => {
     if(Array.isArray(EditableCellPathDBRed.val)){
@@ -938,6 +942,7 @@ const ImportGridRed = useSelector((state)=>state.ImportGridRed)
   const EditableCellPathDBRed = useSelector((state) => state.EditableCellPathDBRed)
 
   let dbPathName = []
+  // const [dbPathName,setdbPathName] = useState([])
 
   useEffect(() => {
     if(!EditableCellPathDBRed.loading){
@@ -1030,6 +1035,7 @@ export const CheckerLink = ({
   const EditableCellPathDBRed = useSelector((state) => state.EditableCellPathDBRed)
 
   let dbPathName = []
+  // const [dbPathName,setdbPathName] = useState([])
 
   useEffect(() => {
     if(Array.isArray(EditableCellPathDBRed.val)){

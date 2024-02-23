@@ -130,20 +130,20 @@ export const EditableCell = ({
       setValue(initialValue)
     }, [initialValue])
 
-    useEffect(()=>{
-      Object.keys(SendConfDataRed.val).forEach((res)=>{
-        return updateMyData(index, res, SendConfDataRed.val[res],null,'')
-      })
+    // useEffect(()=>{
+    //   Object.keys(SendConfDataRed.val).forEach((res)=>{
+    //     return updateMyData(index, res, SendConfDataRed.val[res],null,'')
+    //   })
 
-    },[SendConfDataRed])
+    // },[SendConfDataRed])
 
-    useEffect(() => {
-      if (parentId.gridIdVal != 'GID-015'){
-        Object.keys(SendReportConfDataRed.val).forEach((res)=>{
-          return updateMyData(index, res, SendReportConfDataRed.val[res],null,'')
-        })
-      }
-    },[SendReportConfDataRed])
+    // useEffect(() => {
+    //   if (parentId.gridIdVal != 'GID-015'){
+    //     Object.keys(SendReportConfDataRed.val).forEach((res)=>{
+    //       return updateMyData(index, res, SendReportConfDataRed.val[res],null,'')
+    //     })
+    //   }
+    // },[SendReportConfDataRed])
 
     // useEffect(()=>{
     //   if(colObj.id == 'Review_Freq'){

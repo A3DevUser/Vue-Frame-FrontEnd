@@ -87,7 +87,7 @@ const AddTable = () => {
     },[GridRed,ColumnRed])
 
       function handleSave(){
-        console.log('PostAddTableData','saved')
+        console.log('PostAddTableData',AddTableFormDataRed)
         Object.values(AddTableFormDataRed).forEach((res)=>{
           dispatch(PostAddTableData(UserDataStateRed,res,AuthRed.val,setDisBtn))
         })
