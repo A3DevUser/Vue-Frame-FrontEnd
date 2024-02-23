@@ -156,7 +156,7 @@ export const EditableCell = ({
 
     useEffect(() => {
 
-      if(window.location.pathname == '/confform'){
+      if(window.location.pathname == '/confreport'){
         if (parentId.gridIdVal != 'GID-015'){
           Object.keys(SendReportConfDataRed.val).forEach((res)=>{
             return updateMyData(index, res, SendReportConfDataRed.val[res],null,'')
