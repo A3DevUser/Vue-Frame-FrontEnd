@@ -32,7 +32,6 @@ export const EditableCell = ({
     gridIdVal: gridIdVal,
     parentId
   }) => {
-    const SendConfDataRed = useSelector((state) => state.SendConfDataRed)    
     const SendReportConfDataRed = useSelector((state) => state.SendReportConfDataRed)
 
     const [value, setValue] = React.useState(initialValue)
@@ -42,17 +41,6 @@ export const EditableCell = ({
         setValue(e.target.value)      
     }
   
-
-    // useEffect(()=>{
-    //   if(id=='formId'){
-    //     console.log('NEWSendReportConfDataRed',SendConfDataRed.val.formId)
-    //     updateMyData(index, id, SendConfDataRed.val.formId,null)
-    //     setFreeze(true)
-    //   }else if (id =='wfId'){
-    //     updateMyData(index, id, SendConfDataRed.val.wfId,null)
-    //     setFreeze(true)
-    //   }
-    // },[SendConfDataRed])
 
     useEffect(()=>{
       if (gridIdVal = 'GID-015'){
@@ -157,18 +145,25 @@ export const EditableCell = ({
     }, [initialValue])
 
     useEffect(()=>{
-      Object.keys(SendConfDataRed.val).forEach((res)=>{
-        return updateMyData(index, res, SendConfDataRed.val[res],null,'')
-      })
+
+      if(window.location.pathname == '/confform'){
+        Object.keys(SendConfDataRed.val).forEach((res)=>{
+          return updateMyData(index, res, SendConfDataRed.val[res],null,'')
+        })
+      }
 
     },[SendConfDataRed])
 
     useEffect(() => {
-      if (parentId.gridIdVal != 'GID-015'){
-        Object.keys(SendReportConfDataRed.val).forEach((res)=>{
-          return updateMyData(index, res, SendReportConfDataRed.val[res],null,'')
-        })
+
+      if(window.location.pathname == '/confform'){
+        if (parentId.gridIdVal != 'GID-015'){
+          Object.keys(SendReportConfDataRed.val).forEach((res)=>{
+            return updateMyData(index, res, SendReportConfDataRed.val[res],null,'')
+          })
+        }
       }
+
     },[SendReportConfDataRed])
 
     // useEffect(()=>{
@@ -980,8 +975,6 @@ export const DisableCell = ({
   gridIdVal: gridIdVal,
   parentId
 }) => {
-  const SendConfDataRed = useSelector((state) => state.SendConfDataRed)    
-  const SendReportConfDataRed = useSelector((state) => state.SendReportConfDataRed)
 
   const [value, setValue] = React.useState(initialValue)
   const [freeze,setFreeze] = useState()

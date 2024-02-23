@@ -187,6 +187,7 @@ const FormTable = ({ col, dData, gridData, handleSave, funNavConf, disBtn, setDi
     else if(([...WorkFlowEditRed.val][0]  !== null)&& window.location.pathname == ('/editWorkFlowConf')){
       let EditWorkFlow = [...WorkFlowEditRed.val][0].DATA[0].wfId
       const droparrcon = EditWorkFlow.split('$$')
+      console.log('checkNewDataWFedit',droparrcon);
       setDropdownArray(droparrcon)
       // console.log('new dropArry workflow');
     }

@@ -74,6 +74,11 @@ const EditWorkFlowConf = () => {
         // dispatch(FetchWorkFlowEditData('',AuthRed.val))
     },[FormIdRed])
 
+    // useEffect(() => {
+    //   console.log('FetchWorkFlowEditData',location.state.formId);
+    //   dispatch(FetchWorkFlowEditData(location.state.formId,AuthRed.val))
+    // },[location.state.formId])
+
     // console.log('FormIdRed',SectionRed);
     // console.log('FormIdRed',ColumnRed);
     // console.log('FormIdRed',GridRed);
@@ -164,7 +169,7 @@ const EditWorkFlowConf = () => {
           return { ...res, ...SendConfDataRed.val, targetId: val.gridId }
         }
       })
-      console.log('WFedittest',FormData);
+      // console.log('NewTestWFwditData',FormData);
       // console.log('mainGrid Val else',FormData)
       // console.log('FormDataNewVal',JSON.stringify(FormData))
       dispatch(FormConfData(val.api, FormData, AuthRed.val))
