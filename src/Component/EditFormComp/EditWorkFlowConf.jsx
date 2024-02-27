@@ -169,7 +169,7 @@ const EditWorkFlowConf = () => {
           return { ...res, ...SendConfDataRed.val, targetId: val.gridId }
         }
       })
-      // console.log('NewTestWFwditData',FormData);
+      console.log('NewTestWFwditData',FormData);
       // console.log('mainGrid Val else',FormData)
       // console.log('FormDataNewVal',JSON.stringify(FormData))
       dispatch(FormConfData(val.api, FormData, AuthRed.val))

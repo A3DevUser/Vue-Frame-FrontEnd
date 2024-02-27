@@ -175,6 +175,7 @@ const FormTable = ({ col, dData, gridData, handleSave, funNavConf, disBtn, setDi
   // }
 
   const [dropdownArray,setDropdownArray] = useState([]);
+  const [wfFormIdEdit,setWfFormIdEdit] = useState([]);
   const pages = ['/editConfForm']
   useEffect(() => {
     // console.log('new dropArry',[...FormEditRed.val][0].DATA[0].formId);
@@ -187,8 +188,12 @@ const FormTable = ({ col, dData, gridData, handleSave, funNavConf, disBtn, setDi
     else if(([...WorkFlowEditRed.val][0]  !== null)&& window.location.pathname == ('/editWorkFlowConf')){
       let EditWorkFlow = [...WorkFlowEditRed.val][0].DATA[0].wfId
       const droparrcon = EditWorkFlow.split('$$')
+      let EditWFformID = [...WorkFlowEditRed.val][0].DATA[0].formId
+      const wfFormId = EditWFformID.split('$$')
       console.log('checkNewDataWFedit',droparrcon);
+      console.log('EDITwfDatachkFormID',[...WorkFlowEditRed.val][0].DATA[0].formId);
       setDropdownArray(droparrcon)
+      setWfFormIdEdit(wfFormId)
       // console.log('new dropArry workflow');
     }
     else if(([...EditReportRed.val][0]  !== null) && window.location.pathname == ('/editReport')){
@@ -248,9 +253,18 @@ const FormTable = ({ col, dData, gridData, handleSave, funNavConf, disBtn, setDi
           }
         }
          else if (gridData.gridId == "GID-008" && window.location.pathname == ('/editWorkFlowConf')) {
+          // alert('inside wf edit')
           let EditWorkFlow = [...WorkFlowEditRed.val][0].DATA[0].wfId
           if ([...WorkFlowEditRed.val][0].DATA[0].wfId !== '' && window.location.pathname == ('/editWorkFlowConf')) {
             setdata((old) => { return [...old, { ...obj, wfId: dropdownArray[0] }] })
+          }
+          // console.log('gridData check val', gridData.gridId == "GID-008")
+        }
+        else if (gridData.gridId == "GID-011" && window.location.pathname == ('/editWorkFlowConf')) {
+          console.log('wfFormIdEdit',wfFormIdEdit);
+          let EditWorkFlow = [...WorkFlowEditRed.val][0].DATA[0].wfId
+          if ([...WorkFlowEditRed.val][0].DATA[0].wfId !== '' && window.location.pathname == ('/editWorkFlowConf')) {
+            setdata((old) => { return [...old, { ...obj, wfId: dropdownArray[0], formId: wfFormIdEdit[0] }] })
           }
           // console.log('gridData check val', gridData.gridId == "GID-008")
         }

@@ -187,13 +187,21 @@ export const EditableCell = ({
     const ColumnRed = useSelector((state)=>state.ConfColumnRed)
     const EditableCellPathDBRed = useSelector((state) => state.EditableCellPathDBRed)
     const [dropdownArray,setDropdownArray] = useState([]);
+    const [disabled,setDisabled] = useState('');
 
-    let dbPathName = []
+    useEffect(() => {
+      if(window.location.pathname == '/editWorkFlowConf'&&rowObj.original.cellType == 'formId'){
+        setDisabled(true)
+      }
+    },[rowObj.original.isDisable])
+
+    var dbPathName = 	[]
 
     // const [dbPathName,setdbPathName] = useState([])
 
+
     useEffect(() => {
-      if(Array.isArray(EditableCellPathDBRed.val)){
+      if(Array.isArray(EditableCellPathDBRed.val)&&[...EditableCellPathDBRed.val].length >= 1){
         dbPathName = EditableCellPathDBRed.val.filter((fil) => {
           return fil.cellName == 'EditableDdCell'
       })[0].data
@@ -201,8 +209,11 @@ export const EditableCell = ({
     },[EditableCellPathDBRed])
 
     useEffect(() => {
-      console.log('EditableCellPathDBRed',dbPathName);
-    },[dbPathName])
+      // console.log('EditableCellPathDBRed',dbPathName);
+      console.log('EditableCellPathDBRed',[...EditableCellPathDBRed.val].filter((fil) => {
+        return fil.cellName == 'EditableDdCell'
+    })[0].data);
+    },[EditableCellPathDBRed])
 
     useEffect(() => {
       if (value != null){
@@ -213,7 +224,7 @@ export const EditableCell = ({
       }
     },[])
 
-  return <><select name={id} value={value} onFocus={()=>{handleOnfocus(parentId.formIdVal,parentId.gridIdVal,parentId.colIdVal,parentId.json.original,DropValRed.val,index)}} onChange={onChange} onBlur={onBlur} className='form-control' style={{width:colObj.width,height:'7vh', border:'none'}} disabled={rowObj.original.isDisable}>
+  return <><select name={id} value={value} onFocus={()=>{handleOnfocus(parentId.formIdVal,parentId.gridIdVal,parentId.colIdVal,parentId.json.original,DropValRed.val,index)}} onChange={onChange} onBlur={onBlur} className='form-control' style={{width:colObj.width,height:'7vh', border:'none'}} disabled={disabled == '' ? rowObj.original.isDisable : disabled}>
         {value != null&&window.location.pathname.includes(dbPathName) ? <><option value={dropdownArray[0]}>{dropdownArray[1]}</option></> : <><option value="">Select One</option></>}
     {/* {value != null&&window.location.pathname == '/editTable' ? <><option value={dropdownArray[0]}>{dropdownArray[1]}</option></> : value != null&&window.location.pathname == '/editConfForm' ? <><option value={dropdownArray[0]}>{dropdownArray[1]}</option></> : value != null&&window.location.pathname == '/editWorkFlowConf' ? <><option value={dropdownArray[0]}>{dropdownArray[1]}</option></> : value != null&&window.location.pathname == '/editDataSource' ? <><option value={dropdownArray[0]}>{dropdownArray[1]}</option></> : value != null&&window.location.pathname == '/editReport' ? <><option value={dropdownArray[0]}>{dropdownArray[1]}</option></> : <><option value="">Select One</option></>} */}
     {/* {value != null&&window.location.pathname == ('/editConfForm') ? <><option value={dropdownArray[0]}>{dropdownArray[1]}</option></> : <><option value="">Select One</option></>} */}
@@ -1038,7 +1049,7 @@ export const CheckerLink = ({
   // const [dbPathName,setdbPathName] = useState([])
 
   useEffect(() => {
-    if(Array.isArray(EditableCellPathDBRed.val)){
+    if(Array.isArray(EditableCellPathDBRed.val)&&[EditableCellPathDBRed.val].length >= 1){
       dbPathName = EditableCellPathDBRed.val.filter((fil) => {
         return fil.cellName == 'CheckerLink'
     })[0].data
