@@ -190,10 +190,10 @@ export const EditableCell = ({
     const [disabled,setDisabled] = useState('');
 
     useEffect(() => {
-      if(window.location.pathname == '/editWorkFlowConf'&&rowObj.original.cellType == 'formId'){
+      if(window.location.pathname == '/editWorkFlowConf'&&colObj.id == 'formId'){
         setDisabled(true)
       }
-    },[rowObj.original.isDisable])
+    },[colObj])
 
     var dbPathName = 	[]
 
