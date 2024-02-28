@@ -342,7 +342,9 @@ export const EditableCell = ({
     var year = currentDate.getFullYear();
     var month = currentDate.getMonth() + 1;
     var day = currentDate.getDate();
-  
+ 
+    month = (month < 10 ? '0' : '') + month;
+    
     const onChange = e => {
       setValue(e.target.value)
     }
@@ -358,9 +360,8 @@ export const EditableCell = ({
     React.useEffect(() => {
       if(window.location.pathname == '/confreport' || window.location.pathname == '/editDataSource'){
         setValChange(rowObj.values.dsStartDate)
-        console.log('Current Date formate',rowObj.values.dsStartDate);
       }else if(window.location.pathname == '/confform'){
-        console.log('Current Date', year + "-" + month + "-" + day);
+        setValChange(year + "-" + month + "-" + day)
       }
     },[rowObj])
 
@@ -369,7 +370,7 @@ export const EditableCell = ({
     },[valChange])
   
     return <div>
-      <input value={value} type={'date'} className='form-control' style={{width:colObj.width, border:'none'}} onChange={onChange} onBlur={onBlur} placeholder='Enter Remark...' min={ rowObj.values.dsStartDate } />
+      <input value={value} type={'date'} className='form-control' style={{width:colObj.width, border:'none'}} onChange={onChange} onBlur={onBlur} placeholder='Enter Remark...' min={ valChange } />
       {/* xyz disabled={rowObj.original.isDisable}*/}
     </div>
   }
