@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Modal } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import '../Component/CSS/ModalComp.css'
-import { LogInState, MainObjId, ResetAct } from '../Store/Actions/GeneralStates'
+import { AuthRest, LogInState, MainObjId, ResetAct } from '../Store/Actions/GeneralStates'
 import MultiRowAddTab from './FormMultiRowAdd/MultiRowAddTab'
 import { MainObject } from './Elements/commonFun'
 
@@ -35,14 +35,18 @@ export const SimpleModalCompo = ({ title, bodyDetails, show, showFunc }) => {
   const UserDataStateRed = useSelector((state) => state.UserDataStateRed)
 
   const handleClick = () => {
-    sessionStorage.clear()
-    handleLogOut()
+    // sessionStorage.clear()
+    // localStorage.clear()
+    // sessionStorage.removeItem('userData');
     showFunc()
     dispatch(ResetAct())
-    window.location.reload()
+    dispatch(LogInState(false))
+    dispatch(AuthRest())
+    // window.location.reload()
   }
 
   const handleLogOut = () => {
+    localStorage.clear()
     sessionStorage.removeItem('userData');
     dispatch(LogInState(false))
   }

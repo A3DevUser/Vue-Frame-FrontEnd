@@ -105,3 +105,9 @@ export const ResetEditState = () =>{
         type :'ResetEditState'
     }
 }
+
+export const AuthRest = () => {
+    return{
+        type : 'AuthRest'
+    }
+}
