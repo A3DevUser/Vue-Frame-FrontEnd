@@ -25,6 +25,7 @@ const TableStruc = ({getTableProps,getTableBodyProps,headerGroups,prepareRow,row
     const save = ['/viewTable','/report','/editConfForm','/editWorkFlowConf','/editDataSource','/editReport','/confform']
     const add = ['/viewTable','/editTable','/report','/usereditTable','/userviewTable']
     const removeDupl = ['/viewTable','/editTable','/report','/usereditTable','/userviewTable','/useraddTable']
+    const getDataSource = ['confreport','editDataSource']
 
     // const [show,setshow] = useState(false)
 
@@ -77,8 +78,11 @@ const TableStruc = ({getTableProps,getTableBodyProps,headerGroups,prepareRow,row
         onClick={handleAddRow}><i class="bi bi-plus-lg"></i> </button>
         </> : <></>}
         {!hide ? 
-        <button className='btn btn-success mx-2' style={{display : (window.location.pathname.includes('confreport' || 'editDataSource')&&gridData.isMrow =='getdata') ? 'block' : 'none'}} onClick={handleAddRow}><i class="bi bi-plus-lg"></i> Get Data </button> : 
-        <button className='btn btn-success mx-2' disabled style={{display : (window.location.pathname.includes('confreport' || 'editDataSource')&&gridData.isMrow =='getdata') ? 'block' : 'none'}} onClick={handleAddRow}><i class="bi bi-plus-lg"></i> Get Data </button>}
+        <button className='btn btn-success mx-2' style={{display : (window.location.pathname.includes('confreport')&&gridData.isMrow =='getdata') ? 'block' : 'none'}} onClick={handleAddRow}><i class="bi bi-plus-lg"></i> Get Data </button> : 
+        <button className='btn btn-success mx-2' disabled style={{display : (window.location.pathname.includes('confreport')&&gridData.isMrow =='getdata') ? 'block' : 'none'}} onClick={handleAddRow}><i class="bi bi-plus-lg"></i> Get Data </button>}
+        {!hide ? 
+        <button className='btn btn-success mx-2' style={{display : (window.location.pathname.includes('editDataSource')&&gridData.isMrow =='getdata') ? 'block' : 'none'}} onClick={handleAddRow}><i class="bi bi-plus-lg"></i> Get Data </button> : 
+        <button className='btn btn-success mx-2' disabled style={{display : (window.location.pathname.includes('editDataSource')&&gridData.isMrow =='getdata') ? 'block' : 'none'}} onClick={handleAddRow}><i class="bi bi-plus-lg"></i> Get Data </button>}
         {gridData.gridId == 'GID-902' ? <></> : <><Button variant='btn btn-outline-danger'  title="Remove" style={{display : (gridData.isMrow =='true'&& !removeDupl.includes(window.location.pathname)) || (window.location.pathname.includes('confform')&&gridData.isMrow =='true') ? 'block' : 'none'}} onClick={handleRemove}><i class="bi bi-trash"> </i></Button></>}
         {gridData.gridId == 'GID-902' ? <></> : <><Button variant='btn btn-outline-secondary' title="Duplicate" style={{display : (gridData.isMrow =='true'&& !removeDupl.includes(window.location.pathname)) || (window.location.pathname.includes('confform')&&gridData.isMrow =='true') ? 'block' : 'none'}} className='mx-2' onClick={handleCopy}><i class="bi bi-copy"> </i></Button></>}
         {(gridData.isMain == 'true') || (save.includes(window.location.pathname)) || (window.location.pathname.includes('confreport')) ? <button className='btn btn-outline-success' style={{width: '', height: '', display:window.location.pathname.includes('viewTable') ?'none' :'block' }} onClick={()=>{handleSave(gridData,setdata,data)}}><i title='Save' class="bi bi-floppy" ></i></button> : <></>}

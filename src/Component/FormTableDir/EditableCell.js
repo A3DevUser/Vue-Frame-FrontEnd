@@ -338,6 +338,10 @@ export const EditableCell = ({
   }) => {
     const [value, setValue] = React.useState(initialValue)
     const [valChange,setValChange] = React.useState('')
+    var currentDate = new Date();
+    var year = currentDate.getFullYear();
+    var month = currentDate.getMonth() + 1;
+    var day = currentDate.getDate();
   
     const onChange = e => {
       setValue(e.target.value)
@@ -352,7 +356,12 @@ export const EditableCell = ({
     }, [initialValue])
     
     React.useEffect(() => {
-      setValChange(rowObj.values.dsStartDate)
+      if(window.location.pathname == '/confreport' || window.location.pathname == '/editDataSource'){
+        setValChange(rowObj.values.dsStartDate)
+        console.log('Current Date formate',rowObj.values.dsStartDate);
+      }else if(window.location.pathname == '/confform'){
+        console.log('Current Date', year + "-" + month + "-" + day);
+      }
     },[rowObj])
 
     React.useEffect(() => {
@@ -845,7 +854,7 @@ const ImportGridRed = useSelector((state)=>state.ImportGridRed)
 
 // console.log('EditablePartyLink',rowObj)'/partysheet'
   return <div style={{display:'flex', justifyContent:'center', alignItems:'center'}}>
-  <Link to={dbPathName[0]} state={{rowData :rowObj.original}} >Assesment Form</Link>
+  <Link to={'/partysheet'} state={{rowData :rowObj.original}} >Assesment Form</Link>
   </div>
  }
 
@@ -871,7 +880,7 @@ const ImportGridRed = useSelector((state)=>state.ImportGridRed)
   // console.log('EditableHomeLink',penFlag)'/a3HomeSheet'
   return (
   <div style={{display:'flex', justifyContent:'center', alignItems:'center'}}>
-  <Link to={dbPathName[0]} state={{reviewId : rowObj.original.review_plan_id,review_name:rowObj.original.review_name, dataRow : rowObj.original, daysFlag : penFlag}}>Assesment Form</Link>
+  <Link to={'/a3HomeSheet'} state={{reviewId : rowObj.original.review_plan_id,review_name:rowObj.original.review_name, dataRow : rowObj.original, daysFlag : penFlag}}>Assesment Form</Link>
   </div>)
 
  }
@@ -1057,5 +1066,5 @@ export const CheckerLink = ({
   },[EditableCellPathDBRed])
 
   // console.log('new row login data',rowObj)
-  return <Link to={dbPathName[0]} state={{reviewId : rowObj.review_id, reviewName : rowObj.review_name, review_freq : rowObj.review_freq, sub_frequency : rowObj.sub_frequency, review_type : rowObj.review_type}}>Vendors</Link>
+  return <Link to={'/checkerForm'} state={{reviewId : rowObj.review_id, reviewName : rowObj.review_name, review_freq : rowObj.review_freq, sub_frequency : rowObj.sub_frequency, review_type : rowObj.review_type}}>Vendors</Link>
 }
